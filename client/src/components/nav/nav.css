@@ -35,8 +35,7 @@
     align-items: center;
     height: 80px;
     z-index: 99;
-    background-color: var(--black);
-    /*transition: background-color 0.25s cubic-bezier(0.55, 0, 0.1, 1);*/
+    transition: background-color 0.25s cubic-bezier(0.55, 0, 0.1, 1);
   }
   
   .navbar-content {
@@ -148,7 +147,7 @@
   }
   
   .menu-lines {
-    height: 3px;
+    height: 2.5px;
     border-radius: 2px;
     width: 100%;
     background-color: var(--white);
@@ -178,7 +177,7 @@
     position: fixed;
     opacity: 0;
     z-index: 99;
-    transform: translate(101%, 0);
+    transform: translate(100%, 0);
     transition-property: opacity, transform;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
@@ -213,7 +212,6 @@
   }
 
   /*Responsiveness*/
-
   @media only screen and (max-width: 1250px) {
     .navbar-content {
       padding: 0 50px 0 50px;

@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
 import Nav from './components/nav/nav';
-import Home from './components/home/home';
+import Home from './components/landing/landing';
 //import Cvs from './components/cvs/cvs';
 const uuidv4 = require('uuid/v4');
 
 function App() {
-  var cvsIsActive = false;
+  var cvsIsActive = true;
+  var color;
 
   const homeNavLinks = ([
     {id: uuidv4(), text: 'À propos', path: "/"},
@@ -24,18 +24,21 @@ function App() {
 
   /*Home rendering*/
   if (cvsIsActive === false) {
+    color = "transparent";
     return (
       <React.Fragment>
-        <Nav links={homeNavLinks}/>
+        <Nav links={homeNavLinks} color={color}/>
         <Home />
       </React.Fragment>
     );
   } 
   /*Cvs rendering */
   else if (cvsIsActive === true) {
+    color = "var(--black)";
     return (
       <React.Fragment>
-        <Nav links={cvsNavLinks}/>
+        <Nav links={cvsNavLinks} color={color}/>
+        <Home />
       </React.Fragment>
     );
   }

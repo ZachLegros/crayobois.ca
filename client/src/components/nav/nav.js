@@ -1,6 +1,56 @@
 import React from 'react';
 import './nav.css';
 import Cart from '../cart/cart';
+import logo from './logo.png';
+
+/*Parallax and navColor */
+
+window.addEventListener('scroll', scrollEventHandler);
+window.addEventListener('load', loadEventHandler);
+
+function loadEventHandler() {
+  navColor();
+  parallax();
+}
+
+function scrollEventHandler() {
+  navColor();
+  parallax();
+}
+
+function navColor() {
+  const nav = document.getElementsByClassName("navbar");
+  var scrollValue = document.documentElement.scrollTop;
+
+  if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Edge") != -1) {
+    nav[0].style.backgroundColor = "var(--black)";
+  }
+  else if (nav[0].classList.contains("black")) {
+    nav[0].style.backgroundColor = "var(--black)";
+
+  }
+  else if (scrollValue > 90) {
+    nav[0].style.backgroundColor = "var(--black)";
+  }
+  else {
+    nav[0].style.backgroundColor = "transparent";
+  }
+}
+
+function parallax() {
+  const img = document.getElementById('landing-wrapper');
+  const scrollValue = document.documentElement.scrollTop;
+  const height = img.offsetHeight;
+  const landing_block = document.getElementById('landing-txt');
+  const btn = document.getElementsByClassName('btn');
+  const opacity = 1 - (scrollValue / (height / 2)) + 0.25;
+  
+  if (scrollValue <= height) {
+      img.style.backgroundPositionY = ((scrollValue) - (scrollValue * 0.6)) + "px";
+      landing_block.style.opacity = opacity;
+      btn[0].style.opacity = opacity;
+  }
+}
 
 /*Toggle*/
 var toggled = false;
@@ -59,13 +109,14 @@ function linesRot(toggled) {
   }
 }
 
+/*component */
 function Nav(props) {
   return (
     <React.Fragment>
       <nav>
-        <div className="navbar d-active">
+        <div className="navbar d-active" style={{backgroundColor: props.color}}>
           <div className="navbar-content">
-            <a className="logo-anchor"><img className="logo" src={""} alt="Crayobois logo"/></a>
+            <a className="logo-anchor" href="/"><img className="logo" src={logo} alt="Crayobois logo"/></a>
             <ul className="nav-links">
               {props.links.map((link) => {
                 return <li key={link.id}><a className="nav-link" href={link.path} key={link.id}>{link.text}</a></li>
@@ -74,13 +125,13 @@ function Nav(props) {
             </ul>
           </div>
         </div>
-        <div className="navbar m-active">
+        <div className="navbar m-active" style={{backgroundColor: props.color}}>
           <div className="navbar-content">
             <div className="ham" onClick={toggle}>
               <span id="line1" className="menu-lines"></span>
               <span id="line2" className="menu-lines"></span>
             </div>
-            <a className="logo-anchor"><img className="logo" src={""} alt="Crayobois logo"/></a>
+            <a className="logo-anchor" href="/"><img className="logo" src={logo} alt="Crayobois logo"/></a>
             <a className="basket"><Cart /></a>
           </div>
         </div>
