@@ -96,7 +96,7 @@
   flex-direction: column;
   background-color: var(--white);
   border-radius: 15px;
-  width: 200px;
+  width: 180px;
   line-height: 25px;
   box-shadow: 1px 1px 5px rgba(105, 105, 105, 0.13);
   margin: 25px;
@@ -180,6 +180,7 @@
 .status-txt {
   color: var(--black);
   font-size: 1.15rem;
+  text-transform: capitalize;
   margin-top: 10px;
 }
 
@@ -194,14 +195,16 @@
     height: 60px;
   }
   .materials-wrapper {
-    padding: 0;
+    padding: 25px 0 0 0;
+    justify-content: center;
     width: 100%;
     margin-top: 60px;
   }
   .material-thumbnail {
     flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
+    width: max-content;
+    margin-top: 0;
+    justify-content: center;
   }
   .material-desc {
     padding: 25px;
