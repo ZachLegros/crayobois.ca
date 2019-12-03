@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function Cart() {
-    return (
-    <i className="fas fa-shopping-cart"></i>
-    );
-};
+  return <i className="fas fa-shopping-cart"></i>;
+}
 
 export default Cart;

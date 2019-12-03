@@ -1,23 +1,23 @@
-import React from 'react';
-import './cvs.css';
-import Thumnails from '../thumbnails/thumbnails';
-import StateText from '../stateText/stateText';
-import BuildState from '../buildState/buildState';
+import React from "react";
+import "./cvs.css";
+import Thumnails from "../thumbnails/thumbnails";
+import StateText from "../stateText/stateText";
+import BuildState from "../buildState/buildState";
 
 function Cvs(props) {
-    return (
-        <React.Fragment>
-            <div className="app-wrapper">
-                <section className="material-section">
-                    <div className="materials-wrapper">
-                        <Thumnails />
-                        <StateText />
-                        <BuildState />
-                    </div>
-                </section>
-            </div>
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <div id="app-wrapper">
+        <section className="materials-section">
+          <div className="materials-wrapper">
+            <Thumnails />
+          </div>
+          <StateText />
+        </section>
+        <BuildState />
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default Cvs;

@@ -7,7 +7,7 @@ function Thumbnails(props) {
     return (
         <React.Fragment>
             <div className="material-thumbnail">
-                <img src={require(path)} className="material-img"/>
+                <img src={path} className="material-img"/>
                 <div className="material-desc">
                     <span className="material-name">Amarante</span>
                     <span className="material-origin">Amérique du Sud (Brésil)</span>
