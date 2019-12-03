@@ -1,6 +1,6 @@
 import React from "react";
 import "./cvs.css";
-import Thumnails from "../thumbnails/thumbnails";
+import Thumbnails from "../thumbnails/thumbnails";
 import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
 
@@ -10,7 +10,9 @@ function Cvs(props) {
       <div className="app-wrapper">
         <section className="materials-section">
           <div className="materials-wrapper">
-            <Thumnails />
+            <div className="materials">
+              <Thumbnails />
+            </div>
           </div>
           <StateText />
         </section>
