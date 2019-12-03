@@ -7,7 +7,7 @@ import BuildState from "../buildState/buildState";
 function Cvs(props) {
   return (
     <React.Fragment>
-      <div id="app-wrapper">
+      <div className="app-wrapper">
         <section className="materials-section">
           <div className="materials-wrapper">
             <Thumnails />
