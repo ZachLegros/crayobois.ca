@@ -1,5 +1,6 @@
 import React from 'react';
 import './landing.css';
+import './landing-script';
 
 function Landing() {
     return (
@@ -14,6 +15,7 @@ function Landing() {
                 </div>
                 <a className="btn" href="/creez-votre-stylo">Créez le vôtre<i className="fas fa-long-arrow-alt-right" aria-hidden="true" /></a>
             </div>
+            <script src="./landing-script.js"></script> 
         </div>
     </React.Fragment>
     )

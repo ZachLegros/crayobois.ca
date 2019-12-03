@@ -1,11 +1,12 @@
 import React from 'react';
 import Nav from './components/nav/nav';
-import Home from './components/landing/landing';
-//import Cvs from './components/cvs/cvs';
+import Landing from './components/landing/landing';
+import Cvs from './components/cvs/cvs';
+import Perks from './components/perks/perks';
 const uuidv4 = require('uuid/v4');
 
 function App() {
-  var cvsIsActive = true;
+  var cvsIsActive = false;
   var color;
 
   const homeNavLinks = ([
@@ -28,7 +29,8 @@ function App() {
     return (
       <React.Fragment>
         <Nav links={homeNavLinks} color={color}/>
-        <Home />
+        <Landing />
+        <Perks />
       </React.Fragment>
     );
   } 
@@ -38,7 +40,7 @@ function App() {
     return (
       <React.Fragment>
         <Nav links={cvsNavLinks} color={color}/>
-        <Home />
+        <Cvs />
       </React.Fragment>
     );
   }
