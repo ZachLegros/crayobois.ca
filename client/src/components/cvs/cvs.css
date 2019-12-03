@@ -141,6 +141,7 @@
   background: var(--orange);
   padding: 15px 0 15px 0;
   text-decoration: none;
+  border-radius: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

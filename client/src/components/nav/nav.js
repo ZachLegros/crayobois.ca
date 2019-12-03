@@ -18,9 +18,7 @@ function Nav(props) {
       nav[0].style.backgroundColor = "var(--black)";
     } else if (props.color == "var(--black)") {
       nav[0].style.backgroundColor = "var(--black)";
-    } else if (scrollValue > 90) {
-      nav[0].style.backgroundColor = "var(--black)";
-    } else {
+    }  else {
       nav[0].style.backgroundColor = "transparent";
     }
   }

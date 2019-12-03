@@ -9,10 +9,12 @@ function Landing() {
 
   function loadEventHandler() {
     parallax();
+    navColorLanding();
   }
 
   function scrollEventHandler() {
     parallax();
+    navColorLanding();
   }
 
   function parallax() {
@@ -29,6 +31,18 @@ function Landing() {
       btn[0].style.opacity = opacity;
     }
   }
+
+  function navColorLanding() {
+    const nav = document.getElementsByClassName("navbar");
+    var scrollValue = document.documentElement.scrollTop;
+
+    if (scrollValue > 90) {
+      nav[0].style.backgroundColor = "var(--black)";
+    } else {
+      nav[0].style.backgroundColor = "transparent";
+    }
+  }
+
   return (
     <React.Fragment>
       <div id="landing-wrapper">
