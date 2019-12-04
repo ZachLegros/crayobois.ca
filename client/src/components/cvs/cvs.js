@@ -4,7 +4,19 @@ import Thumbnails from "../thumbnails/thumbnails";
 import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
 
-function Cvs(props) {
+function Cvs() {
+    window.addEventListener("load", loadEventHandler);
+  
+    function loadEventHandler() {
+      navColorLanding();
+    }
+  
+    function navColorLanding() {
+      const nav = document.getElementsByClassName("navbar");
+
+      nav[0].style.backgroundColor = "var(--black)";
+    }
+
   return (
     <React.Fragment>
       <div className="app-wrapper">

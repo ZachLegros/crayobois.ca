@@ -2,25 +2,21 @@ import React from "react";
 import "./nav.css";
 import Cart from "../cart/cart";
 import logo from "./logo.png";
+const uuidv4 = require("uuid/v4");
 
-function Nav(props) {
+function Nav() {
   /*navColor */
   window.addEventListener("load", navColor);
 
   function navColor() {
     const nav = document.getElementsByClassName("navbar");
-    var scrollValue = document.documentElement.scrollTop;
 
     if (
       navigator.userAgent.indexOf("MSIE") !== -1 ||
       navigator.userAgent.indexOf("Edge") !== -1
     ) {
       nav[0].style.backgroundColor = "var(--black)";
-    } else if (props.color == "var(--black)") {
-      nav[0].style.backgroundColor = "var(--black)";
-    }  else {
-      nav[0].style.backgroundColor = "transparent";
-    }
+    } 
   }
 
   /*Toggle*/
@@ -80,19 +76,26 @@ function Nav(props) {
     }
   }
 
+  const navLinks = [
+    { id: uuidv4(), text: "Accueil", path: "/" },
+    { id: uuidv4(), text: "Galerie", path: "/" },
+    { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
+    { id: uuidv4(), text: "Contact", path: "/" }
+  ];
+
   return (
     <React.Fragment>
       <nav>
         <div
           className="navbar d-active"
-          style={{ backgroundColor: props.color }}
+          style={{ backgroundColor: "transparent" }}
         >
           <div className="navbar-content">
             <a className="logo-anchor" href="/">
               <img className="logo" src={logo} alt="Crayobois logo" />
             </a>
             <ul className="nav-links">
-              {props.links.map(link => {
+              {navLinks.map((link) => {
                 return (
                   <li key={link.id}>
                     <a className="nav-link" href={link.path} key={link.id}>
@@ -102,7 +105,7 @@ function Nav(props) {
                 );
               })}
               <li>
-                <a className="basket">
+                <a className="basket" href="/">
                   <Cart />
                 </a>
               </li>
@@ -111,7 +114,7 @@ function Nav(props) {
         </div>
         <div
           className="navbar m-active"
-          style={{ backgroundColor: props.color }}
+          style={{ backgroundColor: "var(--black)" }}
         >
           <div className="navbar-content">
             <div id="ham" onClick={toggle}>
@@ -121,7 +124,7 @@ function Nav(props) {
             <a className="logo-anchor" href="/">
               <img className="logo" src={logo} alt="Crayobois logo" />
             </a>
-            <a className="basket">
+            <a className="basket" href="/">
               <Cart />
             </a>
           </div>
@@ -129,7 +132,7 @@ function Nav(props) {
       </nav>
       <div id="mobile-tabs">
         <ul className="mobile-nav-links">
-          {props.links.map(link => {
+          {navLinks.map(link => {
             return (
               <li key={link.id}>
                 <a className="mobile-nav-link" href={link.path} key={link.id}>

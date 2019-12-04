@@ -9,11 +9,11 @@ function BuildState() {
         <div className="cvs-building-content">
           <div className="cvs-thumbnails-wrapper">
             <div className="cvs-status-thumbnail current">
-              <img src={log} className="cvs-status-img" />
+              <img src={log} className="cvs-status-img" alt=""/>
               <span className="status-txt">Matériaux</span>
             </div>
             <div className="cvs-status-thumbnail">
-              <img src={pen} className="cvs-status-img" />
+              <img src={pen} className="cvs-status-img" alt=""/>
               <span className="status-txt">Matériels</span>
             </div>
             <div className="cvs-status-thumbnail">
@@ -23,7 +23,7 @@ function BuildState() {
               <span className="status-txt">Commande</span>
             </div>
           </div>
-          <a className="cvs-next">Étape suivante</a>
+          <a className="cvs-next" href="/">Étape suivante</a>
         </div>
       </div>
     </React.Fragment>

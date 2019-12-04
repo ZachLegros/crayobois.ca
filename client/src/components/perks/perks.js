@@ -11,15 +11,15 @@ function Perks() {
                 <h1>Nos stylos sont</h1>
                 <div className="perks-icons">
                     <div className="perks-block">
-                        <img src={fist}></img>
+                        <img src={fist} alt=""/>
                         <span>Faits à la main</span>
                     </div>
                     <div className="perks-block">
-                        <img src={tree}></img>
+                        <img src={tree} alt=""/>
                         <span>Faits de bois exotique</span>
                     </div>
                     <div className="perks-block">
-                        <img src={sliders}></img>
+                        <img src={sliders} alt=""/>
                         <span>Personnalisés</span>
                     </div>
                 </div>
