@@ -35,7 +35,6 @@
   align-items: center;
   height: 80px;
   z-index: 99;
-  transition: background-color 0.25s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 .navbar-content {

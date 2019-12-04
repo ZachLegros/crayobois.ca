@@ -27,14 +27,15 @@ function Landing() {
 
     if (scrollValue <= height) {
       img.style.backgroundPositionY = scrollValue - scrollValue * 0.6 + "px";
-      landing_block.style.opacity = opacity;
-      btn[0].style.opacity = opacity;
+      //landing_block.style.opacity = opacity;
+     // btn[0].style.opacity = opacity;
     }
   }
 
   function navColorLanding() {
     const nav = document.getElementsByClassName("navbar");
     var scrollValue = document.documentElement.scrollTop;
+    nav[0].style.transition = "background-color 0.25s cubic-bezier(0.55, 0, 0.1, 1)"
 
     if (scrollValue > 90) {
       nav[0].style.backgroundColor = "var(--black)";

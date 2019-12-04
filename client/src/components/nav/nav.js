@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.css";
 import Cart from "../cart/cart";
-import logo from "./logo.png";
+import logo from "./logo.svg";
 const uuidv4 = require("uuid/v4");
 
 function Nav() {

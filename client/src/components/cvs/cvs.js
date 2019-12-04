@@ -8,10 +8,10 @@ function Cvs() {
     window.addEventListener("load", loadEventHandler);
   
     function loadEventHandler() {
-      navColorLanding();
+      navColorCvs();
     }
   
-    function navColorLanding() {
+    function navColorCvs() {
       const nav = document.getElementsByClassName("navbar");
 
       nav[0].style.backgroundColor = "var(--black)";
