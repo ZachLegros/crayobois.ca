@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "./nav.css";
 import Cart from "../cart/cart";
 import logo from "./logo.svg";
-const uuidv4 = require("uuid/v4");
+import { NavLinksContext } from "../navLinksContext";
 
 function Nav() {
+  const [navLinks, setNavLinks] = useContext(NavLinksContext);
+
   /*navColor */
   window.addEventListener("load", navColor);
 
@@ -16,7 +18,7 @@ function Nav() {
       navigator.userAgent.indexOf("Edge") !== -1
     ) {
       nav[0].style.backgroundColor = "var(--black)";
-    } 
+    }
   }
 
   /*Toggle*/
@@ -76,13 +78,6 @@ function Nav() {
     }
   }
 
-  const navLinks = [
-    { id: uuidv4(), text: "Accueil", path: "/" },
-    { id: uuidv4(), text: "Galerie", path: "/" },
-    { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
-    { id: uuidv4(), text: "Contact", path: "/" }
-  ];
-
   return (
     <React.Fragment>
       <nav>
@@ -95,7 +90,7 @@ function Nav() {
               <img className="logo" src={logo} alt="Crayobois logo" />
             </a>
             <ul className="nav-links">
-              {navLinks.map((link) => {
+              {navLinks.map(link => {
                 return (
                   <li key={link.id}>
                     <a className="nav-link" href={link.path} key={link.id}>

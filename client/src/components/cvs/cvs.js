@@ -5,6 +5,7 @@ import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
 
 function Cvs() {
+
     window.addEventListener("load", loadEventHandler);
   
     function loadEventHandler() {
