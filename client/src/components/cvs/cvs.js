@@ -21,7 +21,7 @@ function Cvs() {
   return (
     <React.Fragment>
       <div className="app-wrapper">
-        <section className="materials-section">
+        <section>
           <div className="materials-wrapper">
             <div className="materials">
               <Thumbnails />

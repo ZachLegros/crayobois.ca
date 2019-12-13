@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./nav.css";
 import Cart from "../cart/cart";
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import { NavLinksContext } from "../navLinksContext";
 
 function Nav() {
@@ -37,7 +37,7 @@ function Nav() {
       toggled = true;
       linesTrans(toggled);
       setTimeout(function() {
-        linesRot(toggled);
+      linesRot(toggled);
       }, 250);
     } else {
       toggled = false;
@@ -47,7 +47,7 @@ function Nav() {
       basket[1].style.opacity = "1";
       linesRot(toggled);
       setTimeout(function() {
-        linesTrans(toggled);
+      linesTrans(toggled);
       }, 250);
     }
   }
