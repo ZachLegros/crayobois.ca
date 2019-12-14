@@ -1,14 +1,27 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./cvs.css";
 import Thumbnails from "../thumbnails/thumbnails";
 import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
-
+import bois from ""
 const Cvs = props => {
-  const nav = document.getElementsByClassName("navbar");
+  const [loading, setLoading] = useState(true);
+  const [mat, setMat] = useState(null);
 
   useEffect(() => {
+    const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
+
+    //fetching
+    async function getMats() {
+      const url = "/creez-votre-stylo";
+      const response = await fetch(url);
+      const data = await response.json();
+      setMat(data, setLoading(false));
+    }
+
+    getMats();
+
     }, []);
 
   return (
@@ -17,7 +30,7 @@ const Cvs = props => {
         <section>
           <div className="materials-wrapper">
             <div className="materials">
-              <Thumbnails mats={props.mats}/>
+              {loading || !mat ? <span>loading...</span> : <Thumbnails mats={mat}/>}
             </div>
           </div>
           <StateText />
