@@ -1,22 +1,15 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./cvs.css";
 import Thumbnails from "../thumbnails/thumbnails";
 import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
 
-function Cvs() {
+const Cvs = props => {
+  const nav = document.getElementsByClassName("navbar");
 
-    window.addEventListener("load", loadEventHandler);
-  
-    function loadEventHandler() {
-      navColorCvs();
-    }
-  
-    function navColorCvs() {
-      const nav = document.getElementsByClassName("navbar");
-
-      nav[0].style.backgroundColor = "var(--black)";
-    }
+  useEffect(() => {
+    nav[0].style.backgroundColor = "var(--black)";
+    }, []);
 
   return (
     <React.Fragment>
@@ -24,7 +17,7 @@ function Cvs() {
         <section>
           <div className="materials-wrapper">
             <div className="materials">
-              <Thumbnails />
+              <Thumbnails mats={props.mats}/>
             </div>
           </div>
           <StateText />
@@ -33,6 +26,10 @@ function Cvs() {
       </div>
     </React.Fragment>
   );
-}
+};
 
-export default Cvs;
+const arePropsEqual = (prevProps, nextProps) => {
+  return (nextProps != prevProps);
+};
+
+export default React.memo(Cvs, arePropsEqual);
