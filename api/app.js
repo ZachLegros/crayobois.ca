@@ -1,3 +1,4 @@
+const dotenv = require('dotenv')
 const express = require("express");
 const logger = require("morgan");
 const uuidv4 = require("uuid/v4");
@@ -11,9 +12,9 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/mats", (req, res) => {
   //mongoDB shit right here
   mongoose
-    .connect()
+    .connect(process.env.DB_URI)
     .then(() => {
-      //response
+      console.log("response")
     })
     .catch(err => {
       console.log(err);
