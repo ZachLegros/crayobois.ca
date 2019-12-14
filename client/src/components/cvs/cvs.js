@@ -3,8 +3,9 @@ import "./cvs.css";
 import Thumbnails from "../thumbnails/thumbnails";
 import StateText from "../stateText/stateText";
 import BuildState from "../buildState/buildState";
-import bois from ""
-const Cvs = props => {
+import Spinner from "../spinner/spinner";
+
+const Cvs = () => {
   const [loading, setLoading] = useState(true);
   const [mat, setMat] = useState(null);
 
@@ -14,7 +15,7 @@ const Cvs = props => {
 
     //fetching
     async function getMats() {
-      const url = "/creez-votre-stylo";
+      const url = "/mats";
       const response = await fetch(url);
       const data = await response.json();
       setMat(data, setLoading(false));
@@ -29,9 +30,7 @@ const Cvs = props => {
       <div className="app-wrapper">
         <section>
           <div className="materials-wrapper">
-            <div className="materials">
-              {loading || !mat ? <span>loading...</span> : <Thumbnails mats={mat}/>}
-            </div>
+              {loading || !mat ? <Spinner /> : <div className="materials"><Thumbnails mats={mat}/></div>}
           </div>
           <StateText />
         </section>

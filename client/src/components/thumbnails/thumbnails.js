@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 
 function Thumbnails(props) {
@@ -10,7 +10,7 @@ function Thumbnails(props) {
       {props.mats.map(material => {
         return (
           <div className="material-thumbnail">
-            <img src={material.path} className="material-img" alt="" />
+            <div className="thumbnail-img-container"><a href={material.path} target="blank"><img src={material.path} className="material-img" alt="" /></a></div>
             <div className="material-desc">
               <span className="material-name">{material.name}</span>
               <span className="material-origin">{material.origin}</span>

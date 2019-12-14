@@ -36,6 +36,7 @@ section {
   height: max-content;
   width: 100%;
   padding: 25px;
+  height: auto;
 }
 
 .materials {
@@ -43,6 +44,7 @@ section {
   grid-template-columns: 50% 50%;
   height: max-content;
   width: 100%;
+  position: relative;
 }
 
 .cvs-building-content {
@@ -88,7 +90,7 @@ section {
 
 .cvs-status-thumbnail {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   opacity: 0.5;
@@ -114,13 +116,32 @@ section {
 }
 
 .material-img {
-  padding: 20px;
-  max-height: 125px;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11vw;
+  height: 10vw;
   max-width: 160px;
+  max-height: 125px;
+  min-width: 135px;
+  min-height: 105px;
+  padding: 20px;
+}
+
+.thumbnail-img-container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .material-desc {
-  padding: 0 25px 25px 25px;
+  padding: 0 25px 0 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -221,7 +242,7 @@ section {
   }
   .material-thumbnail {
     flex-direction: row;
-  
+
     margin-top: 0;
   }
   .material-desc {
@@ -247,6 +268,4 @@ section {
   .cvs-next {
     padding: 10px;
   }
-
 }
-
