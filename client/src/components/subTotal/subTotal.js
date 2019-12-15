@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { SubTotalContext } from "../subTotalContext";
 
 const subTotal = () => {
-  const [subT, setSubT] = useContext(SubTotalContext);
+  //const [subT, setSubT] = useContext(SubTotalContext);
   const formatter = new Intl.NumberFormat('fr-CA', {
         style: 'currency',
         currency: 'CAD',
@@ -11,7 +10,7 @@ const subTotal = () => {
 
     return(
         <React.Fragment>
-            <span className="sub-total">{formatter.format(subT)}</span>
+            <span className="sub-total">{/*formatter.format(subT)*/ 0}</span>
         </React.Fragment>
     );
 };

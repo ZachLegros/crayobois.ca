@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import log from "./icons/log.png";
 import pen from "./icons/pen.png";
 import SubTotal from "../subTotal/subTotal";
-import { SubTotalProvider } from "../subTotalContext";
 
 function BuildState() {
   
@@ -26,9 +25,7 @@ function BuildState() {
               <span className="status-txt">Commande</span>
             </div>
           </div>
-          <SubTotalProvider>
             <SubTotal />
-          </SubTotalProvider>
           {/*<a className="cvs-next" href="/">Étape suivante</a>*/}
         </div>
       </div>
