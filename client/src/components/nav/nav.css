@@ -1,7 +1,7 @@
 /*Vars*/
 :root {
   --d_black: #29353d;
-  --black: #29353d;
+  --black: hsl(204, 20%, 20%);
   --light_black: #242f36;
   --white: #ffffff;
   --off_white: #efefef;
