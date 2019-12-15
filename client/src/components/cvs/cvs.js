@@ -8,12 +8,13 @@ import Spinner from "../spinner/spinner";
 const Cvs = () => {
   const [loading, setLoading] = useState(true);
   const [mat, setMat] = useState(null);
+  
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
 
-    //fetching
+    //fetching materials
     async function getMats() {
       const url = "/mats";
       const response = await fetch(url);
@@ -34,7 +35,7 @@ const Cvs = () => {
           </div>
           <StateText />
         </section>
-        <BuildState />
+          <BuildState />
       </div>
     </React.Fragment>
   );

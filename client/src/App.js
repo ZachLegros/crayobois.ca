@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import Nav from "./components/nav/nav";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
@@ -14,11 +14,11 @@ function App() {
       </NavLinksProvider>
       <Router>
         <Route path="/" exact render={props => <Home {...props} />} />
-          <Route
-            path="/creez-votre-stylo"
-            exact
-            render={props => <Cvs {...props} />}
-          />
+        <Route
+          path="/creez-votre-stylo"
+          exact
+          render={props => <Cvs {...props} />}
+        />
       </Router>
     </React.Fragment>
   );

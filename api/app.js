@@ -4,7 +4,6 @@ const logger = require("morgan");
 const uuidv4 = require("uuid/v4");
 const mongoose = require("mongoose");
 const app = express();
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongoDB!"))
 
 //Schemas
 
@@ -23,9 +22,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/mats", (req, res) => {
-    materials.find({}).then(function (mats) {
-      res.send(mats);
-      });
-});
+  mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(console.log("Connected to mongoDB!"))
+    .then(() => {
+      materials.find({}).then(function (mats) {
+        res.send(mats);
+        });
+    })
+    //.then(mongoose.disconnect())
+  });
 
 module.exports = app;
