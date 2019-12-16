@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "./components/nav/nav";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLinksProvider } from "./components/context/navLinksContext";
-import { CvsProvider } from "./components/context/cvsContext";
+import GlobalState from "./components/context/GlobalState";
 
-function App() {
+const App = () => {
   return (
     <React.Fragment>
-      <CvsProvider>
+      <GlobalState>
         <NavLinksProvider>
           <Nav />
         </NavLinksProvider>
@@ -23,9 +23,9 @@ function App() {
             />
           </Switch>
         </Router>
-      </CvsProvider>
+      </GlobalState>
     </React.Fragment>
   );
-}
+};
 
 export default App;

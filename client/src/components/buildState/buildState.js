@@ -1,13 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./buildState.css";
-import { CvsContext } from "../context/cvsContext";
+import CvsContext from "../context/cvsContext";
 const uuidv4 = require("uuid/v4");
 
 function BuildState(props) {
-  const [cvs, setCvs] = useContext(CvsContext);
-  const [loading, setLoading] = useState(true);
+  const context = useContext(CvsContext);
+  //state to handle quantities of materials
   const [matsQty, setMatQty] = useState([]);
+  const [total, setTotal] = useState(0);
 
+  //function to format price
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
     currency: "CAD",
@@ -16,10 +18,9 @@ function BuildState(props) {
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
-
     function sorted(callback) {
       var types = {};
-      const materials = props.mats;
+      const materials = context.materials;
 
       function getTypes() {
         var set = new Set();
@@ -42,46 +43,54 @@ function BuildState(props) {
       }
 
       types = Object.entries(types);
-      callback();
+
+      //gets the total amount of materials
+      var count = 0;
+      for (var f = 0; f < types.length; f++) {
+        count += types[f][1];
+      }
+
+      setTotal(count);
+      //callback();
       return types;
     }
 
-    function addMatsToState() {
-      setLoading(false);
-    }
-
-    setMatQty(sorted(addMatsToState));
-  }, []);
+    setMatQty(sorted());
+  }, [context.materials]);
 
   return (
     <React.Fragment>
       <div className="cvs-building-status">
-        <span>{cvs.buildStateTop}</span>
-        {loading || !props.mats ? (
-          <div />
-        ) : (
-          <ul className="cvs-material-list">
-            {matsQty.map(material => {
-              const id = uuidv4();
-              return (
-                <li key={id}>
-                  <a
-                    key={id}
-                    onClick={() => {
-                      props.setLoading();
-                      setCvs(obj => {
-                        obj.type = material[0];
-                      });
-                    }}
-                  >
-                    {material[0] + ` (${material[1]})`}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <span className="sub-total">{formatter.format(cvs.subTotal)}</span>
+        <span>123</span>
+        <ul className="cvs-material-list">
+          <li>
+            <a
+              onClick={() => {
+                //context.toggleLoading();
+                context.filterMats([]);
+              }}
+            >
+              Tous les matériaux ({total})
+            </a>
+          </li>
+          {matsQty.map(material => {
+            const id = uuidv4();
+            return (
+              <li key={id}>
+                <a
+                  key={id}
+                  onClick={() => {
+                    //context.toggleLoading();
+                    context.filterMats(material[0]);
+                  }}
+                >
+                  {material[0] + ` (${material[1]})`}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <span className="sub-total">{formatter.format(context.subTotal)}</span>
       </div>
     </React.Fragment>
   );
