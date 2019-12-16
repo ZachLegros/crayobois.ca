@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-const uuidv4 = require("uuid/v4");
+import React, { useEffect, useState, useContext } from "react";
+import { CvsContext } from "../context/cvsContext";
 
 function Thumbnails(props) {
-  const [type, setType] = useState("Loupe d'érable teinté double");
+  const [cvs, setCvs] = useContext(CvsContext);
 
   const filter = props.mats.filter(obj => {
-  return obj.type === type
-  });
+    return obj.type === cvs.type;
+    });
 
   const formatter = new Intl.NumberFormat('fr-CA', {
     style: 'currency',
@@ -14,20 +14,20 @@ function Thumbnails(props) {
     minimumFractionDigits: 2
   });
 
-  function favToggle(id){
-    const thumbnail = document.getElementById("#" + id);
-
-    console.log(thumbnail);
+  function test(id) {
+    console.log(id);
   }
 
     useEffect(() => {
-      console.log(props.mats)
+      
     }, [])
 
   return (
     <React.Fragment>
-      {}
-      {filter.map(material => {
+      {props.loading || !props.mats ? (
+          <div />
+        ) : (
+      filter.map(material => {
         return (
           <div className="material-thumbnail" key={material._id} id={material._id}>
             <div className="thumbnail-img-container">
@@ -39,7 +39,7 @@ function Thumbnails(props) {
             <div className="material-thumbnail-content">
               <div className="material-thumbnail-content-top">
                 <span className="material-origin"><i className="fas fa-globe-americas"/>{material.origin}</span>
-                <i className="far fa-heart" onClick={favToggle(material._id)}></i>
+                <a onClick={() => {test(material._id)}}><i className="far fa-heart"></i></a>
               </div>
               <div className="material-thumbnail-content-mid">
                 <span className="material-name">{material.name}</span>
@@ -50,7 +50,8 @@ function Thumbnails(props) {
             </div>
           </div>
         );
-      })}
+      })
+        )};
     </React.Fragment>
   );
 }

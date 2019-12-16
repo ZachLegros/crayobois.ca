@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./cvs.css";
 import Thumbnails from "../thumbnails/thumbnails";
-import StateText from "../stateText/stateText";
+import TopState from "../topState/TopState";
 import BuildState from "../buildState/buildState";
 import Spinner from "../spinner/spinner";
 
 const Cvs = () => {
   const [loading, setLoading] = useState(true);
   const [mat, setMat] = useState(null);
-  
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
@@ -23,26 +22,31 @@ const Cvs = () => {
     }
 
     getMats();
-
-    }, []);
+  }, []);
 
   return (
-    <React.Fragment>
-      <div className="app-wrapper">
-        <section>
-          <div className="materials-wrapper">
-              {loading || !mat ? <Spinner /> : <div className="materials"><Thumbnails mats={mat}/></div>}
-          </div>
-          <StateText />
-        </section>
-          <BuildState />
-      </div>
-    </React.Fragment>
+    <div className="app-wrapper">
+      {loading || !mat ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          <section>
+            <div className="materials-wrapper">
+              <div className="materials">
+                <Thumbnails mats={mat} loading={loading} />
+              </div>
+            </div>
+            <TopState />
+          </section>
+          <BuildState mats={mat} setLoading={() => {setLoading(!loading)}} />
+        </React.Fragment>
+      )}
+    </div>
   );
 };
 
 const arePropsEqual = (prevProps, nextProps) => {
-  return (nextProps != prevProps);
+  return nextProps != prevProps;
 };
 
 export default React.memo(Cvs, arePropsEqual);

@@ -3,23 +3,27 @@ import Nav from "./components/nav/nav";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NavLinksProvider } from "./components/navLinksContext";
+import { NavLinksProvider } from "./components/context/navLinksContext";
+import { CvsProvider } from "./components/context/cvsContext";
 
 function App() {
-
   return (
     <React.Fragment>
-      <NavLinksProvider>
-        <Nav />
-      </NavLinksProvider>
-      <Router>
-        <Route path="/" exact render={props => <Home {...props} />} />
-        <Route
-          path="/creez-votre-stylo"
-          exact
-          render={props => <Cvs {...props} />}
-        />
-      </Router>
+      <CvsProvider>
+        <NavLinksProvider>
+          <Nav />
+        </NavLinksProvider>
+        <Router>
+          <Switch>
+            <Route path="/" exact render={props => <Home {...props} />} />
+            <Route
+              path="/creez-votre-stylo"
+              exact
+              render={props => <Cvs {...props} />}
+            />
+          </Switch>
+        </Router>
+      </CvsProvider>
     </React.Fragment>
   );
 }

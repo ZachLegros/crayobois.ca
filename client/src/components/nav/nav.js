@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./nav.css";
 import Cart from "../cart/cart";
 import logo from "./logo.png";
-import { NavLinksContext } from "../navLinksContext";
+import { NavLinksContext } from "../context/navLinksContext";
 
 function Nav() {
   const [navLinks, setNavLinks] = useContext(NavLinksContext);

@@ -1,6 +1,6 @@
 import React from "react";
 
-function StateText(props) {
+function TopState(props) {
   return (
     <React.Fragment>
       <div className="cvs-header">
@@ -10,4 +10,4 @@ function StateText(props) {
   );
 }
 
-export default StateText;
+export default TopState;
