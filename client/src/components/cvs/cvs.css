@@ -166,14 +166,33 @@ section {
 }
 
 .fa-heart {
-  color: rgb(207, 49, 49);
-  font-size: calc(1rem + 0.4vw);
+	color: rgb(207, 49, 49);
+  font-size: calc(1.25rem + 0.4vw);
   cursor: pointer;
-  transition: transform 0.15s cubic-bezier(0.55, 0, 0.1, 1);
+	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition-property: transform;
+	transition-duration: 0.5s;
 }
 
 .fa-heart:hover {
-  transform: scale(1.15);
+	transform: scale(1.15);
+}
+
+.fas {
+	-webkit-animation-name: onclick; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 0.25s; /* Safari 4.0 - 8.0 */
+  animation-name: onclick;
+  animation-duration: 0.25s;
+}
+
+.fas:hover {
+	transform: scale(1);
+}
+
+@keyframes onclick {
+    0%   {transform: scale(1);}
+    25%  {transform: scale(1.2);}
+    100% {transform: scale(1);}
 }
 
 .material-price {

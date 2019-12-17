@@ -11,12 +11,34 @@ function Thumbnails(props) {
   });
 
   function toggleHeart(id) {
+    var isOnPage = false;
+    function checkIfOnPage() {
+      //check if the mats are filtered and if the previous selected item is on the page
+      if (context.filteredMats.length !== 0) {
+        for (var i = 0; i < context.filteredMats.length; i++) {
+          if (context.filteredMats[i]._id === context.prevToggleId) {
+            isOnPage = true;
+          }
+        }
+      } else {
+        isOnPage = true;
+      }
+    }
+    checkIfOnPage();
+    console.log(isOnPage);
+    //same thumbnail
     if (context.prevToggleId === id) {
       document.getElementById(id).classList.remove("fas");
       context.setPrevToggleId(0);
+      //if no other thumbnail is selected
     } else if (context.prevToggleId === 0) {
       document.getElementById(id).classList.add("fas");
       context.setPrevToggleId(id);
+      //if another thumbnail is selected in another page
+    } else if (isOnPage === false) {
+      document.getElementById(id).classList.add("fas");
+      context.setPrevToggleId(id);
+      //if another thumbnail is selected in page
     } else {
       document.getElementById(context.prevToggleId).classList.remove("fas");
       document.getElementById(id).classList.add("fas");
@@ -54,7 +76,14 @@ function Thumbnails(props) {
                       toggleHeart(material._id);
                     }}
                   >
-                   <i id={material._id} className={context.prevToggleId === material._id ? "far fa-heart fas" : "far fa-heart"}></i>
+                    <i
+                      id={material._id}
+                      className={
+                        context.prevToggleId === material._id
+                          ? "far fa-heart fas"
+                          : "far fa-heart"
+                      }
+                    ></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">
@@ -99,7 +128,14 @@ function Thumbnails(props) {
                       toggleHeart(material._id);
                     }}
                   >
-                   <i id={material._id} className={context.prevToggleId === material._id ? "far fa-heart fas" : "far fa-heart"}></i>
+                    <i
+                      id={material._id}
+                      className={
+                        context.prevToggleId === material._id
+                          ? "far fa-heart fas"
+                          : "far fa-heart"
+                      }
+                    ></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">
