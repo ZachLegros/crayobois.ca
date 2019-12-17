@@ -12,7 +12,9 @@ const GlobalState = props => {
     { obj: null, id: 1 }
   ]);
   const [prevToggleId, setPrevToggleId] = useState(0);
-
+  const [cvsPage, setCvsPage] = useState("materials");
+  const [filteringName, setFilteringName] = useState("Tous les matériaux");
+  const [filterName, setFilterName] = useState("Types de bois");
   //const [loading, setLoading] = useState(true);
 
   /*  const toggleLoading = () => {
@@ -99,8 +101,10 @@ const GlobalState = props => {
         addToPen: addToPen,
         materialPrice: materialPrice,
         hardwarePrice: hardwarePrice,
-        prevToggleId: prevToggleId,
-        setPrevToggleId: setPrevToggleId
+        prevToggleId: [prevToggleId, setPrevToggleId],
+        cvsPage: [cvsPage, setCvsPage],
+        filteringName: [filteringName, setFilteringName],
+        filterName: [filterName, setFilterName]
       }}
     >
       {props.children}

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./buildState.css";
 import CvsContext from "../context/cvsContext";
+import SubTotal from "../subTotal/subTotal";
 const uuidv4 = require("uuid/v4");
 
 function BuildState(props) {
@@ -8,14 +9,9 @@ function BuildState(props) {
   //state to handle quantities of materials
   const [matsQty, setMatQty] = useState([]);
   const [total, setTotal] = useState(0);
-
-  var subTotal = context.materialPrice + context.hardwarePrice;
-  //function to format price
-  const formatter = new Intl.NumberFormat("fr-CA", {
-    style: "currency",
-    currency: "CAD",
-    minimumFractionDigits: 2
-  });
+  const [filteringName, setFilteringName] = context.filteringName;
+  const [filterName, setFilterName] = context.filterName;
+  const [cvsPage, setCvsPage] = context.cvsPage;
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
@@ -59,40 +55,41 @@ function BuildState(props) {
   }, [context.materials]);
 
   return (
-    <React.Fragment>
-      <div className="cvs-building-status">
-        <span>123</span>
-        <ul className="cvs-material-list">
-          <li>
-            <a
-              onClick={() => {
-                //context.toggleLoading();
-                context.filterMats([]);
-              }}
-            >
-              Tous les matériaux ({total})
-            </a>
-          </li>
-          {matsQty.map(material => {
-            const id = uuidv4();
-            return (
-              <li key={id}>
-                <a
-                  key={id}
-                  onClick={() => {
-                    //context.toggleLoading();
-                    context.filterMats(material[0]);
-                  }}
-                >
-                  {material[0] + ` (${material[1]})`}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        <span className="sub-total">{formatter.format(subTotal)}</span>
-      </div>
-    </React.Fragment>
+    <div className="cvs-building-status">
+      <span className="cvs-filter-name">{filterName}</span>
+      <ul className="cvs-filter-list">
+        <li>
+          <a
+            onClick={() => {
+              context.filterMats([]);
+              setFilteringName("Tous les matériaux");
+            }}
+          >
+            Tous les matériaux ({total})
+          </a>
+        </li>
+        {matsQty.map(material => {
+          const id = uuidv4();
+          return (
+            <li key={id}>
+              <a
+                key={id}
+                onClick={() => {
+                  //context.toggleLoading();
+                  context.filterMats(material[0]);
+                  setFilteringName(material[0]);
+                }}
+              >
+                {material[0] + ` (${material[1]})`}
+              </a>
+            </li>
+          );
+        })}
+        {/*when on page 'hardware*/}
+      </ul>
+      {/*sub total component*/}
+      <SubTotal />
+    </div>
   );
 }
 

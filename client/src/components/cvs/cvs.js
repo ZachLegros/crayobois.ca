@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./cvs.css";
 import Thumbnails from "../thumbnails/thumbnails";
-import TopState from "../topState/TopState";
+import TopThumbnails from "../topThumbnails/topThumbnails";
 import BuildState from "../buildState/buildState";
 import Spinner from "../spinner/spinner";
 import CvsContext from "../context/cvsContext";
@@ -23,12 +23,12 @@ const Cvs = () => {
       <div className="app-wrapper">
         <React.Fragment>
           <section>
+            <TopThumbnails />
             <div className="materials-wrapper">
               <div className="materials">
                 <Thumbnails />
               </div>
             </div>
-            <TopState />
           </section>
           <BuildState />
         </React.Fragment>

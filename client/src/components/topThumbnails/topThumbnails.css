@@ -1,0 +1,77 @@
+.cvs-state {
+  font-size: calc(0.5rem + 1vw);
+  font-weight: 500;
+  color: #393939;
+}
+
+.cvs-search-box {
+  border: none;
+  background-color: none;
+  border-radius: 40px;
+  height: 30px;
+  padding: 10px;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  pointer-events:auto;
+}
+
+.cvs-search-box:hover > .cvs-search-bar {
+  width: 200px;
+  padding-left: 8px;
+  opacity: 1;
+}
+
+.cvs-search-box:hover {
+  background-color: #efefef;
+}
+
+.cvs-search-bar {
+  border: none;
+  background: none;
+  margin-left: 0;
+  float: left;
+  padding: 0;
+  font-size: 16px;
+  outline: none;
+  color: rgb(109, 109, 109);
+  width: 0;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+  line-height: 30px;
+  opacity: 0;
+}
+
+.cvs-search-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  float: right;
+  display: flex;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  color: rgb(170, 170, 170);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media only screen and (max-width: 825px) {
+  .cvs-state {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+    .cvs-search-box:hover ~ .cvs-state {
+        display: none;
+    }
+
+    .cvs-search-box:hover > .cvs-search-bar {
+        width: 200px;
+        padding-left: 8px;
+        opacity: 1;
+      }
+}
+
