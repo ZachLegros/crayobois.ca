@@ -3,7 +3,7 @@ import CvsContext from "../context/cvsContext";
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
-  const [prevToggleId, setPrevToggleId] = useState(0);
+
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
     currency: "CAD",
@@ -11,13 +11,16 @@ function Thumbnails(props) {
   });
 
   function toggleHeart(id) {
-
-    if (prevToggleId === id) {
+    if (context.prevToggleId === id) {
       document.getElementById(id).classList.remove("fas");
-      setPrevToggleId(0);
-    } else {
+      context.setPrevToggleId(0);
+    } else if (context.prevToggleId === 0) {
       document.getElementById(id).classList.add("fas");
-      setPrevToggleId(id);
+      context.setPrevToggleId(id);
+    } else {
+      document.getElementById(context.prevToggleId).classList.remove("fas");
+      document.getElementById(id).classList.add("fas");
+      context.setPrevToggleId(id);
     }
   }
 
@@ -28,10 +31,7 @@ function Thumbnails(props) {
       <React.Fragment>
         {context.materials.map(material => {
           return (
-            <div
-              className="material-thumbnail"
-              key={material._id}
-            >
+            <div className="material-thumbnail" key={material._id}>
               <div className="thumbnail-img-container">
                 <a
                   className="thumbnail-img-link"
@@ -54,7 +54,7 @@ function Thumbnails(props) {
                       toggleHeart(material._id);
                     }}
                   >
-                    <i id={material._id} className="far fa-heart"></i>
+                   <i id={material._id} className={context.prevToggleId === material._id ? "far fa-heart fas" : "far fa-heart"}></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">
@@ -76,10 +76,7 @@ function Thumbnails(props) {
       <React.Fragment>
         {context.filteredMats.map(material => {
           return (
-            <div
-              className="material-thumbnail"
-              key={material._id}
-            >
+            <div className="material-thumbnail" key={material._id}>
               <div className="thumbnail-img-container">
                 <a
                   className="thumbnail-img-link"
@@ -102,7 +99,7 @@ function Thumbnails(props) {
                       toggleHeart(material._id);
                     }}
                   >
-                    <i id={material._id} className="far fa-heart"></i>
+                   <i id={material._id} className={context.prevToggleId === material._id ? "far fa-heart fas" : "far fa-heart"}></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">

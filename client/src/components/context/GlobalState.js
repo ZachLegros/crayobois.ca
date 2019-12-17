@@ -11,6 +11,8 @@ const GlobalState = props => {
     { obj: null, id: 0 },
     { obj: null, id: 1 }
   ]);
+  const [prevToggleId, setPrevToggleId] = useState(0);
+
   //const [loading, setLoading] = useState(true);
 
   /*  const toggleLoading = () => {
@@ -96,7 +98,9 @@ const GlobalState = props => {
         myPen: myPen,
         addToPen: addToPen,
         materialPrice: materialPrice,
-        hardwarePrice: hardwarePrice
+        hardwarePrice: hardwarePrice,
+        prevToggleId: prevToggleId,
+        setPrevToggleId: setPrevToggleId
       }}
     >
       {props.children}
