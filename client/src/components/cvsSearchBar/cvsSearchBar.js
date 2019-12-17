@@ -14,7 +14,7 @@ function CvsSearchBar(props) {
           placeholder="Chercher un bois..."
         ></input>
         <a className="cvs-search-btn">
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </a>
       </div>
     </React.Fragment>

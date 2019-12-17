@@ -1,7 +1,7 @@
 .cvs-state {
   font-size: calc(0.5rem + 1vw);
-  font-weight: 500;
-  color: #393939;
+  font-weight: 400;
+  color: #211A1A;
 }
 
 .cvs-search-box {
@@ -53,13 +53,13 @@
   justify-content: center;
   align-items: center;
   color: rgb(170, 170, 170);
-  cursor: pointer;
+  cursor: default;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media only screen and (max-width: 825px) {
   .cvs-state {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -74,4 +74,5 @@
         opacity: 1;
       }
 }
+
 

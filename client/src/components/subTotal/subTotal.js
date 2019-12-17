@@ -13,9 +13,10 @@ function SubTotal(props) {
   });
 
   return (
-    <React.Fragment>
-      <span className="sub-total">{formatter.format(sTotal)}</span>
-    </React.Fragment>
+      <div className="sub-total-container"> 
+        <span className="sub-total">Sous-total: </span>
+        <span className="sub-total-value">{formatter.format(sTotal)}</span>
+      </div>
   );
 }
 

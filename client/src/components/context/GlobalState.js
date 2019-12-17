@@ -53,35 +53,41 @@ const GlobalState = props => {
       }
     }
 
-    /*  console.log("obj id: " + id);
+    console.log("obj id: " + id);
     console.log("index: " + idx);
     console.log(obj);
-    console.log(obj.price); */
+    console.log(obj.price); 
 
     const newArr = myPen;
-    // console.log(newArr);
+    console.log(newArr);
 
     //logic which handles the sub total
     if (idx === 0) {
+      //
       if (obj._id === newArr[idx].id) {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
+        newArr[idx].obj = null;
+        console.log(newArr);
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
+        newArr[idx].obj = obj;
+
       }
-      newArr[idx].obj = obj;
       setMyPen(newArr);
       setMaterialPrice(newComponentPrice);
     } else {
       if (obj._id === newArr[idx].id) {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
+        newArr[idx].obj = null;
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
+        newArr[idx].obj = obj;
+
       }
-      newArr[idx].obj = obj;
       setMyPen(newArr);
       setHardwarePrice(newComponentPrice);
     }
@@ -97,7 +103,7 @@ const GlobalState = props => {
         filterMats: filterMats,
         filteredMats: filteredMats,
         getMats: getMats,
-        myPen: myPen,
+        myPen: [myPen, setMyPen],
         addToPen: addToPen,
         materialPrice: materialPrice,
         hardwarePrice: hardwarePrice,

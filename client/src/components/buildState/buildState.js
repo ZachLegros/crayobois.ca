@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./buildState.css";
 import CvsContext from "../context/cvsContext";
 import SubTotal from "../subTotal/subTotal";
+import CvsNav from "../cvsNav/cvsNav";
 const uuidv4 = require("uuid/v4");
 
 function BuildState(props) {
@@ -11,7 +12,6 @@ function BuildState(props) {
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
   const [filterName, setFilterName] = context.filterName;
-  const [cvsPage, setCvsPage] = context.cvsPage;
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
@@ -88,7 +88,10 @@ function BuildState(props) {
         {/*when on page 'hardware*/}
       </ul>
       {/*sub total component*/}
-      <SubTotal />
+      <div className="buildState-bottom">
+        <SubTotal />
+        <CvsNav />
+      </div>
     </div>
   );
 }
