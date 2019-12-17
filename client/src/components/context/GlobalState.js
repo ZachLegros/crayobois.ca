@@ -4,13 +4,13 @@ import CvsContext from "./cvsContext";
 const GlobalState = props => {
   const [mats, setMats] = useState([]);
   const [cart, setCart] = useState([]);
-  const [subTotal, setSubTotal] = useState(0);
   const [filteredMats, setFilteredMats] = useState([]);
-  const [myPen, setMyPen] = useState({
-    bois: { obj: null, price: 0 },
-    hardware: { obj: null, price: 0 },
-    shape: { obj: null, price: 0 }
-  });
+  const [materialPrice, setMaterialPrice] = useState(0);
+  const [hardwarePrice, setHardwarePrice] = useState(0);
+  const [myPen, setMyPen] = useState([
+    { obj: null, id: 0 },
+    { obj: null, id: 1 }
+  ]);
   //const [loading, setLoading] = useState(true);
 
   /*  const toggleLoading = () => {
@@ -41,22 +41,46 @@ const GlobalState = props => {
     }
   };
 
-  const changeSubTotal = () => {
-    console.log(myPen);
-    setSubTotal(() => {
-        //map over array
-        
-        const arr = Object.keys(myPen);
+  const addToPen = (id, idx) => {
+    var obj = {};
+    for (var i = 0; i < mats.length; i++) {
+      if (mats[i]._id === id) {
+        obj = mats[i];
+      }
+    }
 
-    });
-  };
+    /*  console.log("obj id: " + id);
+    console.log("index: " + idx);
+    console.log(obj);
+    console.log(obj.price); */
 
-  const addToPen = (id, type) => {
-    setMyPen(obj => {
-      const newElem = mats.find(element => (element._id = id));
-      obj[type].obj = newElem;
-      obj[type].price = newElem.price;
-    }, changeSubTotal());
+    const newArr = myPen;
+    // console.log(newArr);
+
+    //logic which handles the sub total
+    if (idx === 0) {
+      if (obj._id === newArr[idx].id) {
+        var newComponentPrice = 0;
+        newArr[idx].id = 0;
+      } else {
+        var newComponentPrice = obj.price;
+        newArr[idx].id = obj._id;
+      }
+      newArr[idx].obj = obj;
+      setMyPen(newArr);
+      setMaterialPrice(newComponentPrice);
+    } else {
+      if (obj._id === newArr[idx].id) {
+        var newComponentPrice = 0;
+        newArr[idx].id = 0;
+      } else {
+        var newComponentPrice = obj.price;
+        newArr[idx].id = obj._id;
+      }
+      newArr[idx].obj = obj;
+      setMyPen(newArr);
+      setHardwarePrice(newComponentPrice);
+    }
   };
 
   return (
@@ -68,10 +92,11 @@ const GlobalState = props => {
         removeFromCart: removeFromCart,
         filterMats: filterMats,
         filteredMats: filteredMats,
-        subTotal: subTotal,
         getMats: getMats,
         myPen: myPen,
-        addToPen: addToPen
+        addToPen: addToPen,
+        materialPrice: materialPrice,
+        hardwarePrice: hardwarePrice
       }}
     >
       {props.children}

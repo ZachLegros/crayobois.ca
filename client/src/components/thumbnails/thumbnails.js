@@ -3,20 +3,25 @@ import CvsContext from "../context/cvsContext";
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
-
+  const [prevToggleId, setPrevToggleId] = useState(0);
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
     currency: "CAD",
     minimumFractionDigits: 2
   });
 
-  function test(id) {
-    console.log(id);
+  function toggleHeart(id) {
+
+    if (prevToggleId === id) {
+      document.getElementById(id).classList.remove("fas");
+      setPrevToggleId(0);
+    } else {
+      document.getElementById(id).classList.add("fas");
+      setPrevToggleId(id);
+    }
   }
 
-  useEffect(() => {
-    console.log(context.materials);
-  }, []);
+  useEffect(() => {}, []);
 
   if (context.filteredMats.length === 0) {
     return (
@@ -26,7 +31,6 @@ function Thumbnails(props) {
             <div
               className="material-thumbnail"
               key={material._id}
-              id={material._id}
             >
               <div className="thumbnail-img-container">
                 <a
@@ -46,10 +50,11 @@ function Thumbnails(props) {
                   </span>
                   <a
                     onClick={() => {
-                      context.addToPen(material._id, material.nature);
+                      context.addToPen(material._id, 0);
+                      toggleHeart(material._id);
                     }}
                   >
-                    <i className="far fa-heart"></i>
+                    <i id={material._id} className="far fa-heart"></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">
@@ -74,7 +79,6 @@ function Thumbnails(props) {
             <div
               className="material-thumbnail"
               key={material._id}
-              id={material._id}
             >
               <div className="thumbnail-img-container">
                 <a
@@ -94,10 +98,11 @@ function Thumbnails(props) {
                   </span>
                   <a
                     onClick={() => {
-                      test(material._id);
+                      context.addToPen(material._id, 0);
+                      toggleHeart(material._id);
                     }}
                   >
-                    <i className="far fa-heart"></i>
+                    <i id={material._id} className="far fa-heart"></i>
                   </a>
                 </div>
                 <div className="material-thumbnail-content-mid">

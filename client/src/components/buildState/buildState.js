@@ -9,6 +9,7 @@ function BuildState(props) {
   const [matsQty, setMatQty] = useState([]);
   const [total, setTotal] = useState(0);
 
+  var subTotal = context.materialPrice + context.hardwarePrice;
   //function to format price
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -18,7 +19,7 @@ function BuildState(props) {
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
-    function sorted(callback) {
+    function sorted() {
       var types = {};
       const materials = context.materials;
 
@@ -51,7 +52,6 @@ function BuildState(props) {
       }
 
       setTotal(count);
-      //callback();
       return types;
     }
 
@@ -90,7 +90,7 @@ function BuildState(props) {
             );
           })}
         </ul>
-        <span className="sub-total">{formatter.format(context.subTotal)}</span>
+        <span className="sub-total">{formatter.format(subTotal)}</span>
       </div>
     </React.Fragment>
   );
