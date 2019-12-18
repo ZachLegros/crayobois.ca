@@ -8,6 +8,7 @@ import CvsContext from "../context/cvsContext";
 
 const Cvs = () => {
   const context = useContext(CvsContext);
+  const loading = context.loading;
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
@@ -22,12 +23,16 @@ const Cvs = () => {
     return (
       <div className="app-wrapper">
         <React.Fragment>
-          <section>
+          <section id="cvs-scrollable-section">
             <TopThumbnails />
             <div className="materials-wrapper">
-              <div className="materials">
-                <Thumbnails />
-              </div>
+              {loading === true ? (
+                <Spinner />
+              ) : (
+                <div className="materials">
+                  <Thumbnails />
+                </div>
+              )}
             </div>
           </section>
           <BuildState />

@@ -14,12 +14,13 @@ const GlobalState = props => {
   const [prevToggleId, setPrevToggleId] = useState(0);
   const [cvsPage, setCvsPage] = useState("materials");
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
-  const [filterName, setFilterName] = useState("Types de bois");
-  //const [loading, setLoading] = useState(true);
+  const [filterName, setFilterName] = useState("Filtrer par type");
+  const [loading, setLoading] = useState(false);
 
-  /*  const toggleLoading = () => {
-    setLoading(!loading);
-  }; */
+  const toggleLoading = () => {
+    setLoading(true);
+    setTimeout(() => {setLoading(false)}, 250);
+  };
 
   //fetching materials
   async function getMats() {
@@ -56,7 +57,7 @@ const GlobalState = props => {
     console.log("obj id: " + id);
     console.log("index: " + idx);
     console.log(obj);
-    console.log(obj.price); 
+    console.log(obj.price);
 
     const newArr = myPen;
     console.log(newArr);
@@ -73,7 +74,6 @@ const GlobalState = props => {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
         newArr[idx].obj = obj;
-
       }
       setMyPen(newArr);
       setMaterialPrice(newComponentPrice);
@@ -86,7 +86,6 @@ const GlobalState = props => {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
         newArr[idx].obj = obj;
-
       }
       setMyPen(newArr);
       setHardwarePrice(newComponentPrice);
@@ -110,7 +109,9 @@ const GlobalState = props => {
         prevToggleId: [prevToggleId, setPrevToggleId],
         cvsPage: [cvsPage, setCvsPage],
         filteringName: [filteringName, setFilteringName],
-        filterName: [filterName, setFilterName]
+        filterName: [filterName, setFilterName],
+        toggleLoading: toggleLoading,
+        loading: loading
       }}
     >
       {props.children}

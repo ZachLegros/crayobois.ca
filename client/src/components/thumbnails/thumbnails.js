@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import CvsContext from "../context/cvsContext";
+import Spinner from "../spinner/spinner";
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
@@ -30,26 +31,35 @@ function Thumbnails(props) {
     console.log(isOnPage);
     //same thumbnail
     if (prevToggleId === id) {
-      document.getElementById(id).classList.remove("fas");
+      document.getElementById(id).classList.remove("fa-heart");
+      document.getElementById(id).classList.add("fa-plus");
       setPrevToggleId(0);
       //if no other thumbnail is selected
-    } else if (prevToggleId === 0) {
-      document.getElementById(id).classList.add("fas");
-      setPrevToggleId(id);
       //if another thumbnail is selected in another page
-    } else if (isOnPage === false) {
-      document.getElementById(id).classList.add("fas");
+    } else if (prevToggleId === 0 || isOnPage === false) {
+      document.getElementById(id).classList.add("fa-heart");
+      document.getElementById(id).classList.remove("fa-plus");
       setPrevToggleId(id);
-      //if another thumbnail is selected in page
-    } else {
-      document.getElementById(prevToggleId).classList.remove("fas");
-      document.getElementById(id).classList.add("fas");
+    } 
+      //if another thumbnail is selected in the page
+     else {
+      document.getElementById(prevToggleId).classList.remove("fa-heart");
+      document.getElementById(prevToggleId).classList.add("fa-plus");
+      document.getElementById(id).classList.add("fa-heart");
+      document.getElementById(id).classList.remove("fa-plus");
       setPrevToggleId(id);
     }
   }
 
-  useEffect(() => {}, []);
+  function popHeartOn(id) {
+    document.getElementById(id).style.transform = "scale(1.1)";
+  }
 
+  function popHeartOff(id) {
+    document.getElementById(id).style.transform = "scale(1)";
+  }
+
+  useEffect(() => {}, []);
 
   if (cvsPage == "materials") {
     if (context.filteredMats.length === 0) {
@@ -57,16 +67,26 @@ function Thumbnails(props) {
         <React.Fragment>
           {context.materials.map(material => {
             return (
-              <div className="material-thumbnail" key={material._id}>
+              <div
+                className="material-thumbnail"
+                key={material._id}
+                onMouseEnter={() => {
+                  popHeartOn(material._id);
+                }}
+                onMouseLeave={() => {
+                  popHeartOff(material._id);
+                }}
+              >
                 <div className="thumbnail-img-container">
-                  <a
-                    className="thumbnail-img-link"
-                    href={material.path}
-                    target="blank"
-                  >
-                    <img src={material.path} className="material-img" alt="" />
-                    <i className="fas fa-search-plus"></i>
-                  </a>
+                  <img
+                    src={material.path}
+                    className="material-img"
+                    onClick={() => {
+                      context.addToPen(material._id, 0);
+                      toggleHeart(material._id);
+                    }}
+                    alt=""
+                  />
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
@@ -84,14 +104,23 @@ function Thumbnails(props) {
                         id={material._id}
                         className={
                           context.prevToggleId === material._id
-                            ? "far fa-heart fas"
-                            : "far fa-heart"
+                            ? "fas fa-heart"
+                            : "fas fa-plus"
                         }
                       ></i>
                     </a>
                   </div>
                   <div className="material-thumbnail-content-mid">
-                    <span className="material-name">{material.name}</span>
+                    <span className="material-name">
+                      {material.name}
+                      <a
+                        className="thumbnail-img-link"
+                        href={material.path}
+                        target="blank"
+                      >
+                        <i className="fas fa-search-plus"></i>
+                      </a>
+                    </span>
                   </div>
                   <div className="material-thumbnail-content-bottom">
                     <span className="material-price">
@@ -109,16 +138,26 @@ function Thumbnails(props) {
         <React.Fragment>
           {context.filteredMats.map(material => {
             return (
-              <div className="material-thumbnail" key={material._id}>
+              <div
+                className="material-thumbnail"
+                key={material._id}
+                onMouseEnter={() => {
+                  popHeartOn(material._id);
+                }}
+                onMouseLeave={() => {
+                  popHeartOff(material._id);
+                }}
+              >
                 <div className="thumbnail-img-container">
-                  <a
-                    className="thumbnail-img-link"
-                    href={material.path}
-                    target="blank"
-                  >
-                    <img src={material.path} className="material-img" alt="" />
-                    <i className="fas fa-search-plus"></i>
-                  </a>
+                  <img
+                    src={material.path}
+                    className="material-img"
+                    onClick={() => {
+                      context.addToPen(material._id, 0);
+                      toggleHeart(material._id);
+                    }}
+                    alt=""
+                  />
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
@@ -136,14 +175,23 @@ function Thumbnails(props) {
                         id={material._id}
                         className={
                           context.prevToggleId === material._id
-                            ? "far fa-heart fas"
-                            : "far fa-heart"
+                            ? "fas fa-heart"
+                            : "fas fa-plus"
                         }
                       ></i>
                     </a>
                   </div>
                   <div className="material-thumbnail-content-mid">
-                    <span className="material-name">{material.name}</span>
+                    <span className="material-name">
+                      {material.name}
+                      <a
+                        className="thumbnail-img-link"
+                        href={material.path}
+                        target="blank"
+                      >
+                        <i className="fas fa-search-plus"></i>
+                      </a>
+                    </span>
                   </div>
                   <div className="material-thumbnail-content-bottom">
                     <span className="material-price">

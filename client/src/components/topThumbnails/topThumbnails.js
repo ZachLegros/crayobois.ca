@@ -11,7 +11,10 @@ function TopThumbnails(props) {
     <React.Fragment>
       <div className="cvs-header">
         <CvsSearchBar />
-        <span className="cvs-state">{filteringName}</span>
+        <span className="cvs-state">
+          {filteringName}
+          <i className="fas fa-sort"></i>
+        </span>
       </div>
     </React.Fragment>
   );

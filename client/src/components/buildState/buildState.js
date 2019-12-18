@@ -13,6 +13,10 @@ function BuildState(props) {
   const [filteringName, setFilteringName] = context.filteringName;
   const [filterName, setFilterName] = context.filterName;
 
+  function scrollTop() {
+    document.getElementById("cvs-scrollable-section").scrollTop = 0;
+  }
+
   useEffect(() => {
     //function that gets all the wood type and their quantities
     function sorted() {
@@ -63,6 +67,8 @@ function BuildState(props) {
             onClick={() => {
               context.filterMats([]);
               setFilteringName("Tous les matériaux");
+              scrollTop();
+              context.toggleLoading();
             }}
           >
             Tous les matériaux ({total})
@@ -78,6 +84,8 @@ function BuildState(props) {
                   //context.toggleLoading();
                   context.filterMats(material[0]);
                   setFilteringName(material[0]);
+                  scrollTop();
+                  context.toggleLoading();
                 }}
               >
                 {material[0] + ` (${material[1]})`}
