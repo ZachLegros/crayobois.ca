@@ -16,6 +16,7 @@ const GlobalState = props => {
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
   const [filterName, setFilterName] = useState("Filtrer par type");
   const [loading, setLoading] = useState(false);
+  const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -111,7 +112,8 @@ const GlobalState = props => {
         filteringName: [filteringName, setFilteringName],
         filterName: [filterName, setFilterName],
         toggleLoading: toggleLoading,
-        loading: loading
+        loading: loading,
+        cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle]
       }}
     >
       {props.children}

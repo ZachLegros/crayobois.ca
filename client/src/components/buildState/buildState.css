@@ -132,6 +132,9 @@
   .cvs-building-status {
     width: 40%;
   }
+  #cvs-scrollable-section {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 825px) {

@@ -91,7 +91,7 @@ function Thumbnails(props) {
                       <i
                         id={material._id}
                         className={
-                          context.prevToggleId === material._id
+                          prevToggleId === material._id
                             ? "fas fa-heart"
                             : "fas fa-plus"
                         }
@@ -157,7 +157,7 @@ function Thumbnails(props) {
                       <i
                         id={material._id}
                         className={
-                          context.prevToggleId === material._id
+                          prevToggleId === material._id
                             ? "fas fa-heart"
                             : "fas fa-plus"
                         }

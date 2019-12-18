@@ -15,7 +15,7 @@
   height: 100%;
 }
 
-#cvs-scrollable-section {
+.cvs-scrollable-section {
   position: relative;
   width: 70%;
   height: 100%;
@@ -229,12 +229,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
+  flex-direction: row;
   padding: 0 50px 0 50px;
-  z-index: 10;
+  z-index: 999;
   background: var(--white);
   border-bottom: 1px solid #dfdfdf;
-  box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041), 0px 5px 15px rgba(36, 36, 36, 0.07);
+  box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041), 0px 5px 15px rgba(36, 36, 36, 0.041);
 
 }
 

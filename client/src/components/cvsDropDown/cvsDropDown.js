@@ -1,20 +1,26 @@
-import React, { useState, useContext, useEffect } from "react";
-import "./buildState.css";
+import React, {useState, useContext, useEffect} from "react";
 import CvsContext from "../context/cvsContext";
-import SubTotal from "../subTotal/subTotal";
-import CvsNav from "../cvsNav/cvsNav";
+import "./cvsDropDown.css";
 const uuidv4 = require("uuid/v4");
 
-function BuildState(props) {
+function CvsDropDown(props) {
   const context = useContext(CvsContext);
   //state to handle quantities of materials
   const [matsQty, setMatQty] = useState([]);
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
-  const [filterName, setFilterName] = context.filterName;
-
+  const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
+  
   function scrollTop() {
     document.getElementById("cvs-scrollable-section").scrollTop = 0;
+  }
+
+  function toggleDropDown() {
+    const width  = document.documentElement.clientWidth;
+    console.log(width);
+    if (width <= 825) {
+      setCvsDropDownToggle(!cvsDropDownToggle);
+    }
   }
 
   useEffect(() => {
@@ -59,9 +65,10 @@ function BuildState(props) {
   }, [context.materials]);
 
   return (
-    <div className="cvs-building-status">
-      <span className="cvs-filter-name">{filterName}</span>
-      <ul className="cvs-filter-list">
+    <div id="cvs-dropdown" className={
+        cvsDropDownToggle === true ? "cvs-dropdown-active" : "cvs-dropdown"
+    }>
+      <ul className="cvs-dropdown-filter-list">
         <li>
           <a
             onClick={() => {
@@ -69,11 +76,12 @@ function BuildState(props) {
               setFilteringName("Tous les matériaux");
               scrollTop();
               context.toggleLoading();
+              toggleDropDown();
             }}
             className={
               filteringName === "Tous les matériaux"
-                ? "filter-active"
-                : "filter-off"
+                ? "filter-dropdown-active"
+                : "filter-dropdown-off"
             }
           >
             Tous les matériaux ({total})
@@ -86,14 +94,16 @@ function BuildState(props) {
               <a
                 key={id}
                 onClick={() => {
-                  //context.toggleLoading();
                   context.filterMats(material[0]);
                   setFilteringName(material[0]);
                   scrollTop();
                   context.toggleLoading();
+                  toggleDropDown();
                 }}
                 className={
-                  filteringName == material[0] ? "filter-active" : "filter-off"
+                  filteringName == material[0]
+                    ? "filter-dropdown-active"
+                    : "filter-dropdown-off"
                 }
               >
                 {material[0] + ` (${material[1]})`}
@@ -103,13 +113,8 @@ function BuildState(props) {
         })}
         {/*when on page 'hardware*/}
       </ul>
-      {/*sub total component*/}
-      <div className="buildState-bottom">
-        <SubTotal />
-        <CvsNav />
-      </div>
     </div>
   );
 }
 
-export default BuildState;
+export default CvsDropDown;
