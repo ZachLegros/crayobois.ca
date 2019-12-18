@@ -38,6 +38,10 @@
   height: auto;
 }
 
+.unscrollable {
+  overflow: hidden;
+}
+
 .materials {
   display: grid;
   grid-template-columns: 50% 50%;

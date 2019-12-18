@@ -10,6 +10,7 @@ import CvsDropDown from "../cvsDropDown/cvsDropDown";
 const Cvs = () => {
   const context = useContext(CvsContext);
   const loading = context.loading;
+  const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
@@ -24,7 +25,8 @@ const Cvs = () => {
     return (
       <div className="app-wrapper">
         <React.Fragment>
-          <section id="cvs-scrollable-section" className="cvs-scrollable-section">
+          <section id="cvs-scrollable-section" className={cvsDropDownToggle === false ? "cvs-scrollable-section" : "cvs-scrollable-section unscrollable"
+          }>
             <TopThumbnails />
             <CvsDropDown />
             <div className="materials-wrapper">
