@@ -12,6 +12,7 @@ function BuildState(props) {
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
   const [filterName, setFilterName] = context.filterName;
+  const [activeLink, setActiveLink] = useState("Tous les matériaux");
 
   function scrollTop() {
     document.getElementById("cvs-scrollable-section").scrollTop = 0;
@@ -68,8 +69,12 @@ function BuildState(props) {
               context.filterMats([]);
               setFilteringName("Tous les matériaux");
               scrollTop();
+              setActiveLink("Tous les matériaux");
               context.toggleLoading();
             }}
+            className={
+              activeLink === "Tous les matériaux" ? "filter-active" : "filter-off"
+            }
           >
             Tous les matériaux ({total})
           </a>
@@ -85,10 +90,15 @@ function BuildState(props) {
                   context.filterMats(material[0]);
                   setFilteringName(material[0]);
                   scrollTop();
+                  setActiveLink(material[0]);
                   context.toggleLoading();
                 }}
+                className={
+                  activeLink == material[0] ? "filter-active" : "filter-off"
+                }
               >
                 {material[0] + ` (${material[1]})`}
+                
               </a>
             </li>
           );

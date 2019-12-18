@@ -51,13 +51,6 @@ function Thumbnails(props) {
     }
   }
 
-  function popHeartOn(id) {
-    document.getElementById(id).style.transform = "scale(1.1)";
-  }
-
-  function popHeartOff(id) {
-    document.getElementById(id).style.transform = "scale(1)";
-  }
 
   useEffect(() => {}, []);
 
@@ -70,12 +63,7 @@ function Thumbnails(props) {
               <div
                 className="material-thumbnail"
                 key={material._id}
-                onMouseEnter={() => {
-                  popHeartOn(material._id);
-                }}
-                onMouseLeave={() => {
-                  popHeartOff(material._id);
-                }}
+                
               >
                 <div className="thumbnail-img-container">
                   <img
@@ -141,12 +129,7 @@ function Thumbnails(props) {
               <div
                 className="material-thumbnail"
                 key={material._id}
-                onMouseEnter={() => {
-                  popHeartOn(material._id);
-                }}
-                onMouseLeave={() => {
-                  popHeartOff(material._id);
-                }}
+                
               >
                 <div className="thumbnail-img-container">
                   <img

@@ -15,7 +15,7 @@
   height: 100%;
 }
 
-section {
+#cvs-scrollable-section {
   position: relative;
   width: 70%;
   height: 100%;
@@ -65,7 +65,7 @@ section {
   border-radius: 15px;
   width: auto;
   line-height: 30px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 15px 45px rgba(50, 50, 93, 0.041), 0px 5px 15px rgba(0, 0, 0, .07);
   margin: 25px;
   padding: 20px;
 }
@@ -93,7 +93,7 @@ section {
 .fa-search-plus {
   font-size: 1rem;
   color: hsl(0, 0%, 79%);
-  transition: all 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  transition: all 0.15s cubic-bezier(0.55, 0, 0.1, 1);
   margin-left: 8px;
 }
 
@@ -170,7 +170,7 @@ section {
 }
 
 .fa-plus {
-  color: #39394C;
+  color: #29353D;
   font-size: calc(0.9rem + 0.4vw);
   cursor: pointer;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -234,6 +234,8 @@ section {
   z-index: 10;
   background: var(--white);
   border-bottom: 1px solid #dfdfdf;
+  box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041), 0px 5px 15px rgba(36, 36, 36, 0.07);
+
 }
 
 .fa-shopping-cart {
