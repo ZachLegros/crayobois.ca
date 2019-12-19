@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.2"
+    "concurrently": "^5.0.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"cd client && npm start\" \"cd api && nodemon start\""
   },
   "repository": {
     "type": "git",
