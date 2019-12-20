@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Nav from "./components/nav/nav";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -11,18 +10,26 @@ const App = () => {
     <React.Fragment>
       <GlobalState>
         <NavLinksProvider>
-          <Nav />
+          <Router>
+            <Switch>
+              <Route path="/" exact render={props => <Home {...props} />} />
+              <Route
+                path="/creez-votre-stylo"
+                exact
+                render={props => <Cvs {...props} />}
+              />
+              <Route
+                path="/"
+                render={() => (
+                  <React.Fragment>
+                    <div>404</div>
+                    <div>Page not found</div>
+                  </React.Fragment>
+                )}
+              />
+            </Switch>
+          </Router>
         </NavLinksProvider>
-        <Router>
-          <Switch>
-            <Route path="/" exact render={props => <Home {...props} />} />
-            <Route
-              path="/creez-votre-stylo"
-              exact
-              render={props => <Cvs {...props} />}
-            />
-          </Switch>
-        </Router>
       </GlobalState>
     </React.Fragment>
   );
