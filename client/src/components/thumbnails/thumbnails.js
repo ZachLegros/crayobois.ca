@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import CvsContext from "../context/cvsContext";
 import Spinner from "../spinner/spinner";
+import "./thumbnails.css"
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
@@ -40,9 +41,9 @@ function Thumbnails(props) {
       document.getElementById(id).classList.add("fa-heart");
       document.getElementById(id).classList.remove("fa-plus");
       setPrevToggleId(id);
-    } 
-      //if another thumbnail is selected in the page
-     else {
+    }
+    //if another thumbnail is selected in the page
+    else {
       document.getElementById(prevToggleId).classList.remove("fa-heart");
       document.getElementById(prevToggleId).classList.add("fa-plus");
       document.getElementById(id).classList.add("fa-heart");
@@ -51,20 +52,15 @@ function Thumbnails(props) {
     }
   }
 
-
   useEffect(() => {}, []);
 
-  if (cvsPage == "materials") {
+  if (cvsPage === "materials") {
     if (context.filteredMats.length === 0) {
       return (
         <React.Fragment>
           {context.materials.map(material => {
             return (
-              <div
-                className="material-thumbnail"
-                key={material._id}
-                
-              >
+              <div className="material-thumbnail" key={material._id}>
                 <div className="thumbnail-img-container">
                   <img
                     src={material.path}
@@ -126,11 +122,7 @@ function Thumbnails(props) {
         <React.Fragment>
           {context.filteredMats.map(material => {
             return (
-              <div
-                className="material-thumbnail"
-                key={material._id}
-                
-              >
+              <div className="material-thumbnail" key={material._id}>
                 <div className="thumbnail-img-container">
                   <img
                     src={material.path}
@@ -170,6 +162,7 @@ function Thumbnails(props) {
                       <a
                         className="thumbnail-img-link"
                         href={material.path}
+                        loading="lazy"
                         target="blank"
                       >
                         <i className="fas fa-search-plus"></i>
@@ -188,6 +181,38 @@ function Thumbnails(props) {
         </React.Fragment>
       );
     }
+  } else if (cvsPage === "hardwares") {
+    return (
+      <React.Fragment>
+        <span className="cvs-step-title">Sélection du style</span>
+        <div className="hardware-thumbnail">
+          <div className="hardware-thumbnail-top">
+            <div>
+              <i className="fas fa-palette"></i>
+              <span className="hardware-color">{/*color*/}</span>
+            </div>
+            <div>
+              <i className="fas fa-plus"></i>
+            </div>
+          </div>
+          <div className="hardware-thumbnail-mid">
+            <div className="hardware-thumbnail-mid-img-container">
+              <div>
+                <i className="fas fa-chevron-up"></i>
+                <i className="fas fa-chevron-down"></i>
+              </div>
+              <div>{/*img path*/}</div>
+            </div>
+            <span className="hardware-thumbnail-mid-notice">
+              *Le matériau démontré est la loupe d’érable
+            </span>
+          </div>
+          <div className="hardware-thumbnail-bottom">
+            <span>{/*price*/}</span>
+          </div>
+        </div>
+      </React.Fragment>
+    );
   }
 }
 

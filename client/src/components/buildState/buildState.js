@@ -9,9 +9,11 @@ function BuildState(props) {
   const context = useContext(CvsContext);
   //state to handle quantities of materials
   const [matsQty, setMatQty] = useState([]);
+  const [hawsQty, setHawsQty] = useState([]);
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
   const [filterName, setFilterName] = context.filterName;
+  const cvsPage = context.cvsPage[0];
 
   function scrollTop() {
     document.getElementById("cvs-scrollable-section").scrollTop = 0;
@@ -19,14 +21,13 @@ function BuildState(props) {
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
-    function sorted() {
+    function sorted(collection, collectionName) {
       var types = {};
-      const materials = context.materials;
 
       function getTypes() {
         var set = new Set();
-        for (var i = 0; i < materials.length; i++) {
-          set.add(materials[i].type);
+        for (var i = 0; i < collection.length; i++) {
+          set.add(collection[i].type);
         }
         const arr = [...set];
         var obj = {};
@@ -36,80 +37,130 @@ function BuildState(props) {
         return obj;
       }
 
-      types = getTypes();
+      if (collectionName === "mats") {
+        types = getTypes();
 
-      for (var j = 0; j < materials.length; j++) {
-        const type = materials[j].type;
-        types[type]++;
+        for (var j = 0; j < collection.length; j++) {
+          const type = collection[j].type;
+          types[type]++;
+        }
+
+        //types: Array[type: qty of type]
+        types = Object.entries(types);
+
+        //gets the total amount of materials
+        var count = 0;
+        for (var f = 0; f < types.length; f++) {
+          count += types[f][1];
+        }
+
+        setTotal(count);
+        return types;
+      } else if (collectionName === "haws") {
+        types = getTypes();
+
+        for (var j = 0; j < collection.length; j++) {
+          const type = collection[j].type;
+          types[type]++;
+        }
+
+        types = Object.entries(types);
+        return types;
       }
-
-      types = Object.entries(types);
-
-      //gets the total amount of materials
-      var count = 0;
-      for (var f = 0; f < types.length; f++) {
-        count += types[f][1];
-      }
-
-      setTotal(count);
-      return types;
     }
 
-    setMatQty(sorted());
-  }, [context.materials]);
+    setMatQty(sorted(context.materials, "mats"));
+    setHawsQty(sorted(context.hardwares, "haws"));
+  }, [context.materials, context.hardwares]);
 
-  return (
-    <div className="cvs-building-status">
-      <span className="cvs-filter-name">{filterName}</span>
-      <ul className="cvs-filter-list">
-        <li>
-          <a
-            onClick={() => {
-              context.filterMats([]);
-              setFilteringName("Tous les matériaux");
-              scrollTop();
-              context.toggleLoading();
-            }}
-            className={
-              filteringName === "Tous les matériaux"
-                ? "filter-active"
-                : "filter-off"
-            }
-          >
-            Tous les matériaux ({total})
-          </a>
-        </li>
-        {matsQty.map(material => {
-          const id = uuidv4();
-          return (
-            <li key={id}>
-              <a
-                key={id}
-                onClick={() => {
-                  //context.toggleLoading();
-                  context.filterMats(material[0]);
-                  setFilteringName(material[0]);
-                  scrollTop();
-                  context.toggleLoading();
-                }}
-                className={
-                  filteringName == material[0] ? "filter-active" : "filter-off"
-                }
-              >
-                {material[0] + ` (${material[1]})`}
-              </a>
-            </li>
-          );
-        })}
-        {/*when on page 'hardware*/}
-      </ul>
-      {/*sub total component*/}
-      <div className="buildState-bottom">
-        <SubTotal />
-        <CvsNav />
+  if (cvsPage === "materials") {
+    return (
+      <div className="cvs-building-status">
+        <span className="cvs-filter-name">{filterName}</span>
+        <ul className="cvs-filter-list">
+          <li>
+            <a
+              onClick={() => {
+                context.filterMats([]);
+                setFilteringName("Tous les matériaux");
+                scrollTop();
+                context.toggleLoading();
+              }}
+              className={
+                filteringName === "Tous les matériaux"
+                  ? "filter-active"
+                  : "filter-off"
+              }
+            >
+              Tous les matériaux ({total})
+            </a>
+          </li>
+          {matsQty.map(material => {
+            const id = uuidv4();
+            return (
+              <li key={id}>
+                <a
+                  key={id}
+                  onClick={() => {
+                    context.filterMats(material[0]);
+                    setFilteringName(material[0]);
+                    scrollTop();
+                    context.toggleLoading();
+                  }}
+                  className={
+                    filteringName === material[0]
+                      ? "filter-active"
+                      : "filter-off"
+                  }
+                >
+                  {material[0] + ` (${material[1]})`}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        {/*sub total component*/}
+        <div className="buildState-bottom">
+          <SubTotal />
+          <CvsNav />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (cvsPage === "hardwares") {
+    return (
+      <div className="cvs-building-status">
+        <span className="cvs-filter-name">{filterName}</span>
+        <ul className="cvs-filter-list">
+          {hawsQty.map(hardware => {
+            const id = uuidv4();
+            return (
+              <li key={id}>
+                <a
+                  key={id}
+                  onClick={() => {
+                    context.filterHaws(hardware[0]);
+                    setFilteringName(hardware[0]);
+                    scrollTop();
+                    context.toggleLoading();
+                  }}
+                  className={
+                    filteringName === hardware[0] ? "filter-active" : "filter-off"
+                  }
+                >
+                  {hardware[0] + ` (${hardware[1]})`}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        {/*sub total component*/}
+        <div className="buildState-bottom">
+          <SubTotal />
+          <CvsNav />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default BuildState;

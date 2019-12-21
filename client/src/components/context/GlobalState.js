@@ -3,8 +3,11 @@ import CvsContext from "./cvsContext";
 
 const GlobalState = props => {
   const [mats, setMats] = useState([]);
+  const [haws, setHaws] = useState([]);
+  const [activeHaws, setActiveHaws] = useState([]);
   const [cart, setCart] = useState([]);
   const [filteredMats, setFilteredMats] = useState([]);
+  const [filteredHaws, setFilteredHaws] = useState([]);
   const [materialPrice, setMaterialPrice] = useState(0);
   const [hardwarePrice, setHardwarePrice] = useState(0);
   const [myPen, setMyPen] = useState([
@@ -12,7 +15,7 @@ const GlobalState = props => {
     { obj: null, id: 1 }
   ]);
   const [prevToggleId, setPrevToggleId] = useState(0);
-  const [cvsPage, setCvsPage] = useState("materials");
+  const [cvsPage, setCvsPage] = useState("hardwares");
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
   const [filterName, setFilterName] = useState("Filtrer par type");
   const [loading, setLoading] = useState(false);
@@ -20,7 +23,9 @@ const GlobalState = props => {
 
   const toggleLoading = () => {
     setLoading(true);
-    setTimeout(() => {setLoading(false)}, 250);
+    setTimeout(() => {
+      setLoading(false);
+    }, 250);
   };
 
   //fetching materials
@@ -29,6 +34,14 @@ const GlobalState = props => {
     const response = await fetch(url);
     const data = await response.json();
     setMats(data, console.log(data));
+  }
+
+  //fetching hardwares
+  async function getHaws() {
+    const url = "/haws";
+    const response = await fetch(url);
+    const data = await response.json();
+    setHaws(data, console.log(data));
   }
 
   const addToCart = pen => {};
@@ -47,6 +60,14 @@ const GlobalState = props => {
     }
   };
 
+  const filterHaws = type => {
+    const toFilter = haws;
+    const filtered = toFilter.filter(function(item) {
+      return item.type === type;
+    });
+    setFilteredHaws(filtered);
+  };
+
   const addToPen = (id, idx) => {
     var obj = {};
     for (var i = 0; i < mats.length; i++) {
@@ -54,14 +75,7 @@ const GlobalState = props => {
         obj = mats[i];
       }
     }
-
-    console.log("obj id: " + id);
-    console.log("index: " + idx);
-    console.log(obj);
-    console.log(obj.price);
-
     const newArr = myPen;
-    console.log(newArr);
 
     //logic which handles the sub total
     if (idx === 0) {
@@ -97,12 +111,17 @@ const GlobalState = props => {
     <CvsContext.Provider
       value={{
         materials: mats,
+        hardwares: haws,
         cart: cart,
         addToCart: addToCart,
         removeFromCart: removeFromCart,
         filterMats: filterMats,
         filteredMats: filteredMats,
+        filterHaws: filterHaws,
+        filteredHaws: filteredHaws,
+        activeHaws: [activeHaws, setActiveHaws],
         getMats: getMats,
+        getHaws: getHaws,
         myPen: [myPen, setMyPen],
         addToPen: addToPen,
         materialPrice: materialPrice,

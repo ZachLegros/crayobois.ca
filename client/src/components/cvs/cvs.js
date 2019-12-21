@@ -12,13 +12,16 @@ const Cvs = () => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
+  const cvsPage = context.cvsPage[0];
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
 
     context.getMats();
+    context.getHaws();
   }, []);
+
   if (context.materials.length === 0) {
     return (
       <React.Fragment>
@@ -42,11 +45,11 @@ const Cvs = () => {
           >
             <TopThumbnails />
             <CvsDropDown />
-            <div className="materials-wrapper">
+            <div className={cvsPage + "-wrapper"}>
               {loading === true ? (
                 <Spinner />
               ) : (
-                <div className="materials">
+                <div className={cvsPage}>
                   <Thumbnails />
                 </div>
               )}

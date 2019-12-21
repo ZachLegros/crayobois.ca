@@ -235,7 +235,7 @@
   justify-content: space-between;
   flex-direction: row;
   padding: 0 50px 0 50px;
-  z-index: 999;
+  z-index: 2;
   background: var(--white);
   border-bottom: 1px solid #dfdfdf;
   box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041), 0px 5px 15px rgba(36, 36, 36, 0.041);
@@ -272,7 +272,7 @@
     margin-top: 60px;
     flex-direction: column;
   }
-  section {
+  .cvs-scrollable-section {
     width: 100%;
   }
 
