@@ -13,13 +13,15 @@ const Cvs = () => {
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const cvsPage = context.cvsPage[0];
+  const [activeHaws, setActiveHaws] = context.activeHaws;
+  const [sortedHaws, setSortedHaws] = context.sortedHaws;
+
+  context.getMats();
+  context.getHaws();
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
-
-    context.getMats();
-    context.getHaws();
   }, []);
 
   if (context.materials.length === 0) {

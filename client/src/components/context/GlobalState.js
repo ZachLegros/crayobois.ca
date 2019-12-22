@@ -20,6 +20,7 @@ const GlobalState = props => {
   const [filterName, setFilterName] = useState("Filtrer par type");
   const [loading, setLoading] = useState(false);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
+  const [sortedHaws, setSortedHaws] = useState([])
 
   const toggleLoading = () => {
     setLoading(true);
@@ -107,6 +108,30 @@ const GlobalState = props => {
     }
   };
 
+  function sortHawsByType(haws) {
+    //obj: {type: [obj of that type]}
+    const types = getTypes(haws);
+
+    for (var e = 0; e < haws.length; e++) {
+      types[haws[e].type].append(haws[e]);
+    }
+
+    setSortedHaws(types);
+  }
+
+  function getTypes(collection) {
+    var set = new Set();
+    for (var i = 0; i < collection.length; i++) {
+      set.add(collection[i].type);
+    }
+    const arr = [...set];
+    var obj = {};
+    for (var e = 0; e < arr.length; e++) {
+      obj[arr[e]] = [];
+    }
+    return obj;
+  }
+
   return (
     <CvsContext.Provider
       value={{
@@ -132,7 +157,9 @@ const GlobalState = props => {
         filterName: [filterName, setFilterName],
         toggleLoading: toggleLoading,
         loading: loading,
-        cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle]
+        cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle],
+        sortedHaws: [sortedHaws, setSortedHaws],
+        sortHawsByType: sortHawsByType
       }}
     >
       {props.children}
