@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import CvsContext from "../context/cvsContext";
 import Spinner from "../spinner/spinner";
-import "./thumbnails.css"
+import "./thumbnails.css";
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
   const [prevToggleId, setPrevToggleId] = context.prevToggleId;
-  const displayed = context.displayedHaw[0]; 
+  const displayed = context.displayedHaw[0];
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -196,12 +196,14 @@ function Thumbnails(props) {
             </div>
           </div>
           <div className="hardware-thumbnail-mid">
-            <div className="hardware-thumbnail-mid-img-container">
-              <div>
+            <div className="hardware-thumbnail-mid-nav">
+              <div className="hardware-thumbnail-mid-nav-arrows">
                 <i className="fas fa-chevron-up"></i>
                 <i className="fas fa-chevron-down"></i>
               </div>
-              <img src={displayed.path}></img>
+              <div className="hardware-thumbnail-mid-img-container">
+                <img src={displayed.path} className="hardware-img"></img>
+              </div>
             </div>
             <span className="hardware-thumbnail-mid-notice">
               *Le matériau démontré est la loupe d’érable
