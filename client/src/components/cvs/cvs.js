@@ -12,16 +12,17 @@ const Cvs = () => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
-  const cvsPage = context.cvsPage[0];
   const [activeHaws, setActiveHaws] = context.activeHaws;
   const [sortedHaws, setSortedHaws] = context.sortedHaws;
+  const active = context.activeCvsPage[0];
 
-  context.getMats();
-  context.getHaws();
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
+
+    context.getMats();
+    context.getHaws();
   }, []);
 
   if (context.materials.length === 0) {
@@ -47,11 +48,11 @@ const Cvs = () => {
           >
             <TopThumbnails />
             <CvsDropDown />
-            <div className={cvsPage + "-wrapper"}>
+            <div className={active + "-wrapper"}>
               {loading === true ? (
                 <Spinner />
               ) : (
-                <div className={cvsPage}>
+                <div className={active}>
                   <Thumbnails />
                 </div>
               )}

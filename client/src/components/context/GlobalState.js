@@ -5,6 +5,7 @@ const GlobalState = props => {
   const [mats, setMats] = useState([]);
   const [haws, setHaws] = useState([]);
   const [activeHaws, setActiveHaws] = useState([]);
+  const [displayedHaw, setDisplayedHaw] = useState({});
   const [cart, setCart] = useState([]);
   const [filteredMats, setFilteredMats] = useState([]);
   const [filteredHaws, setFilteredHaws] = useState([]);
@@ -15,12 +16,13 @@ const GlobalState = props => {
     { obj: null, id: 1 }
   ]);
   const [prevToggleId, setPrevToggleId] = useState(0);
-  const [cvsPage, setCvsPage] = useState("hardwares");
+  const [cvsPages, setCvsPages] = useState(["materials", "hardwares"]);
+  const [activeCvsPage, setActiveCvsPage] = useState("materials")
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
   const [filterName, setFilterName] = useState("Filtrer par type");
   const [loading, setLoading] = useState(false);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
-  const [sortedHaws, setSortedHaws] = useState([])
+  const [sortedHaws, setSortedHaws] = useState([]);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -43,6 +45,7 @@ const GlobalState = props => {
     const response = await fetch(url);
     const data = await response.json();
     setHaws(data, console.log(data));
+    sortHawsByType(data);
   }
 
   const addToCart = pen => {};
@@ -62,11 +65,10 @@ const GlobalState = props => {
   };
 
   const filterHaws = type => {
-    const toFilter = haws;
-    const filtered = toFilter.filter(function(item) {
-      return item.type === type;
-    });
-    setFilteredHaws(filtered);
+    const active = sortedHaws[type];
+    const displayed = active[0];
+    setActiveHaws(active);
+    setDisplayedHaw(displayed);
   };
 
   const addToPen = (id, idx) => {
@@ -111,12 +113,14 @@ const GlobalState = props => {
   function sortHawsByType(haws) {
     //obj: {type: [obj of that type]}
     const types = getTypes(haws);
-
     for (var e = 0; e < haws.length; e++) {
-      types[haws[e].type].append(haws[e]);
+      types[haws[e].type].push(haws[e]);
     }
-
     setSortedHaws(types);
+    const arr = Object.entries(types);
+    //default values for haws collection and displayed haw
+    setActiveHaws(arr[0]);
+    setDisplayedHaw(arr[0][1][0]);
   }
 
   function getTypes(collection) {
@@ -130,6 +134,15 @@ const GlobalState = props => {
       obj[arr[e]] = [];
     }
     return obj;
+  }
+
+ function cvsNav() {
+   console.log("entered in function")
+    if (activeCvsPage !== "materials") {
+      console.log("entered in if statement")
+      const idx = cvsPages.findIndex(activeCvsPage);
+      setActiveCvsPage(cvsPages[idx]);
+    }
   }
 
   return (
@@ -152,14 +165,16 @@ const GlobalState = props => {
         materialPrice: materialPrice,
         hardwarePrice: hardwarePrice,
         prevToggleId: [prevToggleId, setPrevToggleId],
-        cvsPage: [cvsPage, setCvsPage],
+        cvsPages: cvsPages,
+        activeCvsPage: [activeCvsPage, setActiveCvsPage],
         filteringName: [filteringName, setFilteringName],
         filterName: [filterName, setFilterName],
         toggleLoading: toggleLoading,
         loading: loading,
         cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle],
         sortedHaws: [sortedHaws, setSortedHaws],
-        sortHawsByType: sortHawsByType
+        displayedHaw: [displayedHaw, setDisplayedHaw],
+        cvsNav: cvsNav
       }}
     >
       {props.children}

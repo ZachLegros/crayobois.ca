@@ -13,7 +13,6 @@ function BuildState(props) {
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
   const [filterName, setFilterName] = context.filterName;
-  const cvsPage = context.cvsPage[0];
 
   function scrollTop() {
     document.getElementById("cvs-scrollable-section").scrollTop = 0;
@@ -73,7 +72,7 @@ function BuildState(props) {
     setHawsQty(sorted(context.hardwares, "haws"));
   }, [context.materials, context.hardwares]);
 
-  if (cvsPage === "materials") {
+  if (context.activeCvsPage[0] === "materials") {
     return (
       <div className="cvs-building-status">
         <span className="cvs-filter-name">{filterName}</span>
@@ -126,7 +125,7 @@ function BuildState(props) {
         </div>
       </div>
     );
-  } else if (cvsPage === "hardwares") {
+  } else if (context.activeCvsPage[0] === "hardwares") {
     return (
       <div className="cvs-building-status">
         <span className="cvs-filter-name">{filterName}</span>

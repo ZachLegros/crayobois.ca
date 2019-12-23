@@ -6,7 +6,7 @@ import "./thumbnails.css"
 function Thumbnails(props) {
   const context = useContext(CvsContext);
   const [prevToggleId, setPrevToggleId] = context.prevToggleId;
-  const [cvsPage, setCvsPage] = context.cvsPage;
+  const displayed = context.displayedHaw[0]; 
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -54,7 +54,7 @@ function Thumbnails(props) {
 
   useEffect(() => {}, []);
 
-  if (cvsPage === "materials") {
+  if (context.activeCvsPage[0] === "materials") {
     if (context.filteredMats.length === 0) {
       return (
         <React.Fragment>
@@ -181,7 +181,7 @@ function Thumbnails(props) {
         </React.Fragment>
       );
     }
-  } else if (cvsPage === "hardwares") {
+  } else if (context.activeCvsPage[0] === "hardwares") {
     return (
       <React.Fragment>
         <span className="cvs-step-title">Sélection du style</span>
@@ -189,7 +189,7 @@ function Thumbnails(props) {
           <div className="hardware-thumbnail-top">
             <div>
               <i className="fas fa-palette"></i>
-              <span className="hardware-color">{/*color*/}</span>
+              <span className="hardware-color">{displayed.color}</span>
             </div>
             <div>
               <i className="fas fa-plus"></i>
@@ -201,14 +201,14 @@ function Thumbnails(props) {
                 <i className="fas fa-chevron-up"></i>
                 <i className="fas fa-chevron-down"></i>
               </div>
-              <div>{/*img path*/}</div>
+              <img src={displayed.path}></img>
             </div>
             <span className="hardware-thumbnail-mid-notice">
               *Le matériau démontré est la loupe d’érable
             </span>
           </div>
           <div className="hardware-thumbnail-bottom">
-            <span>{/*price*/}</span>
+            <span>{formatter.format(displayed.price)}</span>
           </div>
         </div>
       </React.Fragment>
