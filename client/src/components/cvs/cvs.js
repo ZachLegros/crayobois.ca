@@ -12,8 +12,6 @@ const Cvs = () => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
-  const [activeHaws, setActiveHaws] = context.activeHaws;
-  const [sortedHaws, setSortedHaws] = context.sortedHaws;
   const active = context.activeCvsPage[0];
 
 

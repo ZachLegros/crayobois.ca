@@ -12,11 +12,8 @@ function BuildState(props) {
   const [hawsQty, setHawsQty] = useState([]);
   const [total, setTotal] = useState(0);
   const [filteringName, setFilteringName] = context.filteringName;
+  const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
   const [filterName, setFilterName] = context.filterName;
-
-  function scrollTop() {
-    document.getElementById("cvs-scrollable-section").scrollTop = 0;
-  }
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
@@ -82,7 +79,7 @@ function BuildState(props) {
               onClick={() => {
                 context.filterMats([]);
                 setFilteringName("Tous les matériaux");
-                scrollTop();
+                context.scrollTop();
                 context.toggleLoading();
               }}
               className={
@@ -103,7 +100,7 @@ function BuildState(props) {
                   onClick={() => {
                     context.filterMats(material[0]);
                     setFilteringName(material[0]);
-                    scrollTop();
+                    context.scrollTop();
                     context.toggleLoading();
                   }}
                   className={
@@ -138,12 +135,12 @@ function BuildState(props) {
                   key={id}
                   onClick={() => {
                     context.filterHaws(hardware[0]);
-                    setFilteringName(hardware[0]);
-                    scrollTop();
+                    setHawsFilteringName(hardware[0]);
+                    context.scrollTop();
                     context.toggleLoading();
                   }}
                   className={
-                    filteringName === hardware[0] ? "filter-active" : "filter-off"
+                    hawsFilteringName === hardware[0] ? "filter-active" : "filter-off"
                   }
                 >
                   {hardware[0] + ` (${hardware[1]})`}

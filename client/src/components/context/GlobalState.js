@@ -19,6 +19,7 @@ const GlobalState = props => {
   const [cvsPages, setCvsPages] = useState(["materials", "hardwares"]);
   const [activeCvsPage, setActiveCvsPage] = useState("materials")
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
+  const [hawsFilteringName, setHawsFilteringName] = useState("");
   const [filterName, setFilterName] = useState("Filtrer par type");
   const [loading, setLoading] = useState(false);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
@@ -121,6 +122,7 @@ const GlobalState = props => {
     //default values for haws collection and displayed haw
     setActiveHaws(arr[0]);
     setDisplayedHaw(arr[0][1][0]);
+    setHawsFilteringName(arr[0])
   }
 
   function getTypes(collection) {
@@ -136,13 +138,25 @@ const GlobalState = props => {
     return obj;
   }
 
- function cvsNav() {
-   console.log("entered in function")
-    if (activeCvsPage !== "materials") {
-      console.log("entered in if statement")
-      const idx = cvsPages.findIndex(activeCvsPage);
-      setActiveCvsPage(cvsPages[idx]);
+ function cvsNav(action) {
+  const idx = cvsPages.indexOf(activeCvsPage);
+  if (action === "back" && activeCvsPage !== "materials") {
+      toggleLoading();
+      scrollTop();
+      setActiveCvsPage(cvsPages[idx - 1]);
+    } else if (action === "next" && idx !== cvsPages.length - 1 && myPen[0].obj !== null) {
+      toggleLoading();
+      scrollTop();
+      setActiveCvsPage(cvsPages[idx + 1]);
+    } else if (idx === cvsPages.length - 1) {
+      toggleLoading();
+      scrollTop();
+      setActiveCvsPage(cvsPages[0]);
     }
+  }
+
+  function scrollTop() {
+    document.getElementById("cvs-scrollable-section").scrollTop = 0;
   }
 
   return (
@@ -174,7 +188,9 @@ const GlobalState = props => {
         cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle],
         sortedHaws: [sortedHaws, setSortedHaws],
         displayedHaw: [displayedHaw, setDisplayedHaw],
-        cvsNav: cvsNav
+        cvsNav: cvsNav,
+        hawsFilteringName: [hawsFilteringName, setHawsFilteringName],
+        scrollTop: scrollTop
       }}
     >
       {props.children}

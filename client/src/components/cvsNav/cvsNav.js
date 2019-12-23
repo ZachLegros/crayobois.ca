@@ -6,6 +6,7 @@ function CvsNav(props) {
   const myPen = context.myPen;
   const cvsPage = context.activeCvsPage[0];
 
+
   return (
     <div className="cvs-nav-container">
       <a
@@ -14,7 +15,9 @@ function CvsNav(props) {
             ? "cvs-btn cvs-back active"
             : "cvs-btn cvs-back"
         }
-        onClick={() => context.cvsNav()}
+        onClick={() => {
+          context.cvsNav("back");
+        }}
       >
         Précédent
       </a>
@@ -25,7 +28,9 @@ function CvsNav(props) {
             ? "cvs-btn cvs-next active"
             : "cvs-btn cvs-next"
         }
-        onClick={() => context.cvsNav()}
+        onClick={() => {
+          context.cvsNav("next");
+        }}
       >
         Suivant
       </a>
