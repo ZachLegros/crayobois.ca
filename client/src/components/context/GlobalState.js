@@ -122,7 +122,7 @@ const GlobalState = props => {
     //default values for haws collection and displayed haw
     setActiveHaws(arr[0]);
     setDisplayedHaw(arr[0][1][0]);
-    setHawsFilteringName(arr[0])
+    setHawsFilteringName(arr[0][0])
   }
 
   function getTypes(collection) {
