@@ -184,7 +184,6 @@ function Thumbnails(props) {
   } else if (context.activeCvsPage[0] === "hardwares") {
     return (
       <React.Fragment>
-        <span className="cvs-step-title">Sélection du style</span>
         <div className="hardware-thumbnail">
           <div className="hardware-thumbnail-top">
             <div>
@@ -197,20 +196,17 @@ function Thumbnails(props) {
           </div>
           <div className="hardware-thumbnail-mid">
             <div className="hardware-thumbnail-mid-nav">
-              <div className="hardware-thumbnail-mid-nav-arrows">
-                <i className="fas fa-chevron-up"></i>
-                <i className="fas fa-chevron-down"></i>
-              </div>
-              <div className="hardware-thumbnail-mid-img-container">
-                <img src={displayed.path} className="hardware-img"></img>
-              </div>
+            <img src={displayed.path} className="hardware-img"></img>
+             
             </div>
-            <span className="hardware-thumbnail-mid-notice">
+            {/*<span className="hardware-thumbnail-mid-notice">
               *Le matériau démontré est la loupe d’érable
-            </span>
+    </span>*/}
           </div>
           <div className="hardware-thumbnail-bottom">
-            <span>{formatter.format(displayed.price)}</span>
+            <span className="hardware-price">
+              {formatter.format(displayed.price)}
+            </span>
           </div>
         </div>
       </React.Fragment>

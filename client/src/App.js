@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

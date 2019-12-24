@@ -8,12 +8,11 @@ import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import Nav from "../nav/nav";
 
-const Cvs = () => {
+const Cvs = React.memo(() => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const active = context.activeCvsPage[0];
-
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
@@ -39,9 +38,9 @@ const Cvs = () => {
           <section
             id="cvs-scrollable-section"
             className={
-              cvsDropDownToggle === false
-                ? "cvs-scrollable-section"
-                : "cvs-scrollable-section unscrollable"
+              cvsDropDownToggle === true || active === "hardwares"
+                ? "cvs-scrollable-section unscrollable"
+                : "cvs-scrollable-section"
             }
           >
             <TopThumbnails />
@@ -61,6 +60,6 @@ const Cvs = () => {
       </React.Fragment>
     );
   }
-};
+});
 
 export default Cvs;
