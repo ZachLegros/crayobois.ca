@@ -10,3 +10,5 @@ Also, this website will include a Gallery which shows all sort of pictures from 
 'About' section.
 
 For this application, we used the 'MERN' stack and plan on adding Firebase.
+
+![A quick preview of the 'Create your own pen' app](https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/github%20preview%2Fcvs%20preview.png?alt=media&token=9cf2f58d-7abc-44c8-b6ef-f6cfcd7a3488)
