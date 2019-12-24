@@ -182,6 +182,9 @@ function Thumbnails(props) {
       );
     }
   } else if (context.activeCvsPage[0] === "hardwares") {
+    const imgStyle = {
+      backgroundImage: 'url(' + displayed.path + ')'
+    }
     return (
       <React.Fragment>
         <div className="hardware-thumbnail">
@@ -195,13 +198,10 @@ function Thumbnails(props) {
             </div>
           </div>
           <div className="hardware-thumbnail-mid">
-            <div className="hardware-thumbnail-mid-nav">
-            <img src={displayed.path} className="hardware-img"></img>
-             
-            </div>
-            {/*<span className="hardware-thumbnail-mid-notice">
+            <div className="hardware-thumbnail-mid-img" style={imgStyle}></div>
+            <span className="hardware-thumbnail-mid-notice">
               *Le matériau démontré est la loupe d’érable
-    </span>*/}
+    </span>
           </div>
           <div className="hardware-thumbnail-bottom">
             <span className="hardware-price">

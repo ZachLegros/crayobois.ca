@@ -38,7 +38,7 @@ const Cvs = React.memo(() => {
           <section
             id="cvs-scrollable-section"
             className={
-              cvsDropDownToggle === true || active === "hardwares"
+              cvsDropDownToggle === true
                 ? "cvs-scrollable-section unscrollable"
                 : "cvs-scrollable-section"
             }
