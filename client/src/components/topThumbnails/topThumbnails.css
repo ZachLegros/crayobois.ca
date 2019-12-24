@@ -1,7 +1,7 @@
 .cvs-state {
   font-size: calc(0.5rem + 1vw);
-  font-weight: 400;
-  color: var(--black);
+  font-weight: 500;
+  color: #29353D;
   display: flex;
   align-items: center;
   position: relative;

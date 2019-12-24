@@ -59,16 +59,16 @@
 }
 
 .hardware-thumbnail-mid-notice {
-    color: #9EACB2;
-    font-style: italic;
-    font-size: calc(0.40rem + 0.4vw);
-    padding: 25px 0 0 0;
+  color: #9eacb2;
+  font-style: italic;
+  font-size: calc(0.45rem + 0.4vw);
+  padding-right: 15px;
 }
 
 .hardware-thumbnail-bottom {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   border-top: 1px solid #e7e7e7;
   padding-top: 25px;
@@ -78,7 +78,7 @@
 .hardware-color {
   color: hsl(0, 0%, 20%);
   font-weight: 500;
-  font-size: calc(0.75rem + 0.4vw);
+  font-size: calc(0.9rem + 0.4vw);
 }
 
 .hardware-price {
@@ -88,10 +88,43 @@
 }
 
 .fa-palette {
-  margin-right: 7px;
-  opacity: 0.8;
-  color: hsl(0, 0%, 25%);
+  margin-right: 20px;
+  color: #FFFFFF;
   font-size: calc(0.75rem + 0.4vw);
+  position: relative;
+  z-index: 1;
+}
+
+.fa-palette::after {
+  content: "";
+  width: 180%;
+  height: 180%;
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  background-color: #29353D;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.haws-nav-arrow {
+  font-size: 2rem;
+  color: #D4D4D4;
+  cursor: pointer;
+}
+
+.haws-nav-arrow-active {
+  font-size: 2rem;
+  color: #667077;
+  cursor: pointer;
+}
+
+.hardware-thumbnail-mid-nav {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (max-height: 650px) {
@@ -107,13 +140,43 @@
     margin-top: 60px;
     height: calc(100% - 110px);
   }
+
   .hardwares {
     height: 100%;
   }
+
   .hardware-thumbnail {
     overflow-y: hidden;
     height: 100%;
     width: calc(100% - 50px);
+  }
+
+  .hardware-thumbnail-mid-notice {
+    color: #9eacb2;
+    font-style: italic;
+    font-size: calc(0.4rem + 0.4vw);
+  }
+
+  .hardware-thumbnail-bottom {
+    padding-top: 15px;
+    margin-top: 15px;
+  }
+
+  .hardware-thumbnail-top {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .hardware-color {
+    font-size: calc(0.9rem + 0.4vw);
+  }
+
+  .fa-palette {
+    font-size: calc(0.9rem + 0.4vw);
+  }
+
+  .hardware-thumbnail-mid-img {
+    width: 80%;
   }
 
   @media only screen and (max-height: 600px) {
