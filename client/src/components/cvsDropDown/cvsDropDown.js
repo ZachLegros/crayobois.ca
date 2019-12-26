@@ -18,7 +18,6 @@ function CvsDropDown(props) {
 
   function toggleDropDown() {
     const width = document.documentElement.clientWidth;
-    console.log(width);
     if (width <= 825) {
       setCvsDropDownToggle(!cvsDropDownToggle);
     }
@@ -60,7 +59,6 @@ function CvsDropDown(props) {
         }
 
         setTotal(count);
-        console.log(`${collectionName}: ${types}`)
         return types;
       } else if (collectionName === "haws") {
         types = getTypes();
@@ -71,7 +69,6 @@ function CvsDropDown(props) {
         }
 
         types = Object.entries(types);
-        console.log(`${collectionName}: ${types}`)
         return types;
       }
     }

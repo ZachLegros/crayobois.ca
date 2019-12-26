@@ -7,6 +7,7 @@ function Thumbnails(props) {
   const context = useContext(CvsContext);
   const [prevToggleId, setPrevToggleId] = context.prevToggleId;
   const displayed = context.displayedHaw[0];
+  const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -14,7 +15,7 @@ function Thumbnails(props) {
     minimumFractionDigits: 2
   });
 
-  function toggleHeart(id) {
+  function toggleMatsHeart(id, type) {
     var isOnPage = false;
     function checkIfOnPage() {
       //check if the mats are filtered and if the previous selected item is on the page
@@ -29,7 +30,6 @@ function Thumbnails(props) {
       }
     }
     checkIfOnPage();
-    console.log(isOnPage);
     //same thumbnail
     if (prevToggleId === id) {
       document.getElementById(id).classList.remove("fa-heart");
@@ -52,6 +52,16 @@ function Thumbnails(props) {
     }
   }
 
+  function toggleHawsHeart() {
+    if (prevToggleHaw === {}) {
+      setPrevToggleHaw(displayed);
+    } else if (prevToggleHaw === displayed) {
+      setPrevToggleHaw({});
+    } else {
+      setPrevToggleHaw(displayed);
+    }
+  }
+
   useEffect(() => {}, []);
 
   if (context.activeCvsPage[0] === "materials") {
@@ -67,7 +77,7 @@ function Thumbnails(props) {
                     className="material-img"
                     onClick={() => {
                       context.addToPen(material._id, 0);
-                      toggleHeart(material._id);
+                      toggleMatsHeart(material._id);
                     }}
                     alt=""
                   />
@@ -81,7 +91,7 @@ function Thumbnails(props) {
                     <a
                       onClick={() => {
                         context.addToPen(material._id, 0);
-                        toggleHeart(material._id);
+                        toggleMatsHeart(material._id);
                       }}
                     >
                       <i
@@ -129,7 +139,7 @@ function Thumbnails(props) {
                     className="material-img"
                     onClick={() => {
                       context.addToPen(material._id, 0);
-                      toggleHeart(material._id);
+                      toggleMatsHeart(material._id);
                     }}
                     alt=""
                   />
@@ -143,7 +153,7 @@ function Thumbnails(props) {
                     <a
                       onClick={() => {
                         context.addToPen(material._id, 0);
-                        toggleHeart(material._id);
+                        toggleMatsHeart(material._id);
                       }}
                     >
                       <i
@@ -194,17 +204,21 @@ function Thumbnails(props) {
               <span className="hardware-color">{displayed.color}</span>
             </div>
             <div>
-              <i className="fas fa-plus"></i>
+              <i className={prevToggleHaw === displayed ? "fas fa-heart" : "fas fa-plus"} onClick={() => {
+                context.addToPen(displayed, 1);
+                toggleHawsHeart();
+              }}></i>
             </div>
           </div>
           <div className="hardware-thumbnail-mid">
             <div className="hardware-thumbnail-mid-nav">
-              <i className="fas fa-chevron-left haws-nav-arrow" onClick={() => {context.newDisplayedHaw("prev")}}></i>
+              <i className="fas fa-chevron-left haws-nav-arrow" onClick={() => {
+                context.newDisplayedHaw("prev")}}></i>
               <div
                 className="hardware-thumbnail-mid-img"
                 style={imgStyle}
               ></div>
-              <i className="fas fa-chevron-right haws-nav-arrow-active" onClick={() => {context.newDisplayedHaw("next")}}></i>
+              <i className="fas fa-chevron-right haws-nav-arrow" onClick={() => {context.newDisplayedHaw("next")}}></i>
             </div>
           </div>
           <div className="hardware-thumbnail-bottom">

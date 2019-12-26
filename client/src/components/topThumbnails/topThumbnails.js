@@ -12,7 +12,6 @@ function TopThumbnails(props) {
 
   function toggleDropDown() {
     const width = document.documentElement.clientWidth;
-    console.log(width);
     if (width <= 825) {
       setCvsDropDownToggle(!cvsDropDownToggle);
     }

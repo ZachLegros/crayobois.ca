@@ -24,6 +24,8 @@ const GlobalState = props => {
   const [loading, setLoading] = useState(false);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
   const [sortedHaws, setSortedHaws] = useState([]);
+  const [prevToggleHaw, setPrevToggleHaw] = useState({});
+  const [cvsAlertOn, setcvsAlertOn] = useState(true);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -37,7 +39,7 @@ const GlobalState = props => {
     const url = "/mats";
     const response = await fetch(url);
     const data = await response.json();
-    setMats(data, console.log(data));
+    setMats(data);
   }
 
   //fetching hardwares
@@ -45,7 +47,7 @@ const GlobalState = props => {
     const url = "/haws";
     const response = await fetch(url);
     const data = await response.json();
-    setHaws(data, console.log(data));
+    setHaws(data);
     sortHawsByType(data);
   }
 
@@ -68,17 +70,12 @@ const GlobalState = props => {
   const filterHaws = type => {
     const active = sortedHaws[type];
     const displayed = active[0];
-    console.log(active)
-    console.log(displayed)
     setActiveHaws(active);
     setDisplayedHaw(displayed);
   };
 
   const newDisplayedHaw = action => {
     const maxIdx = activeHaws.length - 1;
-    console.log(maxIdx);
-    console.log(activeHaws);
-    console.log(displayedHaw);
     const currentIdx = activeHaws.indexOf(displayedHaw);
 
     if (action === "next") {
@@ -99,22 +96,23 @@ const GlobalState = props => {
   };
 
   const addToPen = (id, idx) => {
-    var obj = {};
-    for (var i = 0; i < mats.length; i++) {
-      if (mats[i]._id === id) {
-        obj = mats[i];
-      }
-    }
+    //previous 'myPen'
     const newArr = myPen;
 
-    //logic which handles the sub total
     if (idx === 0) {
-      //
+      //getting material
+      var obj = {};
+      for (var i = 0; i < mats.length; i++) {
+        if (mats[i]._id === id) {
+          obj = mats[i];
+        }
+      }
+      //removing item
       if (obj._id === newArr[idx].id) {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
         newArr[idx].obj = null;
-        console.log(newArr);
+      //adding item
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
@@ -123,10 +121,14 @@ const GlobalState = props => {
       setMyPen(newArr);
       setMaterialPrice(newComponentPrice);
     } else {
-      if (obj._id === newArr[idx].id) {
+      var hawId = id._id;
+      var obj = id;
+      //removing item
+      if (hawId === newArr[idx].id) {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
         newArr[idx].obj = null;
+      //adding item
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
@@ -178,10 +180,8 @@ const GlobalState = props => {
       toggleLoading();
       scrollTop();
       setActiveCvsPage(cvsPages[idx + 1]);
-    } else if (idx === cvsPages.length - 1) {
-      toggleLoading();
-      scrollTop();
-      setActiveCvsPage(cvsPages[0]);
+    } else if (idx === cvsPages.length - 1 && myPen[1].obj !== null) {
+      setcvsAlertOn(true);
     }
   }
 
@@ -221,7 +221,9 @@ const GlobalState = props => {
         cvsNav: cvsNav,
         hawsFilteringName: [hawsFilteringName, setHawsFilteringName],
         scrollTop: scrollTop,
-        newDisplayedHaw: newDisplayedHaw
+        newDisplayedHaw: newDisplayedHaw,
+        prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
+        cvsAlertOn: [cvsAlertOn, setcvsAlertOn]
       }}
     >
       {props.children}

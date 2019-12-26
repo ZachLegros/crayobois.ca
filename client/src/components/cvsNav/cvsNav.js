@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CvsContext from "../context/cvsContext";
 
 function CvsNav(props) {
   const context = useContext(CvsContext);
   const myPen = context.myPen;
   const cvsPage = context.activeCvsPage[0];
-
 
   return (
     <div className="cvs-nav-container">
@@ -24,7 +23,12 @@ function CvsNav(props) {
 
       <a
         className={
+          cvsPage === "materials" ? 
           myPen[0][0].obj !== null
+            ? "cvs-btn cvs-next active"
+            : "cvs-btn cvs-next"
+          :
+          myPen[0][1].obj !== null
             ? "cvs-btn cvs-next active"
             : "cvs-btn cvs-next"
         }

@@ -7,12 +7,14 @@ import Spinner from "../spinner/spinner";
 import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import Nav from "../nav/nav";
+import CvsAlert from "../cvsAlert/cvsAlert";
 
 const Cvs = React.memo(() => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const active = context.activeCvsPage[0];
+  const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
@@ -33,7 +35,7 @@ const Cvs = React.memo(() => {
     return (
       <React.Fragment>
         <Nav />
-
+        {cvsAlertOn ? <CvsAlert /> : <React.Fragment />}
         <div className="app-wrapper">
           <section
             id="cvs-scrollable-section"
