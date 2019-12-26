@@ -8,7 +8,7 @@ function TopThumbnails(props) {
   const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const [activeCvsPage, setActiveCvsPage] = context.activeCvsPage;
-  console.log(activeCvsPage)
+
   function toggleDropDown() {
     const width = document.documentElement.clientWidth;
     if (width <= 825) {

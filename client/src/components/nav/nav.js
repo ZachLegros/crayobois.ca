@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./nav.css";
-import Cart from "../cart/cart";
+import User from "../user/user";
 import logo from "./logo.png";
 import { NavLinksContext } from "../context/navLinksContext";
 
@@ -27,27 +27,27 @@ function Nav() {
   function toggle() {
     const tabs = document.getElementById("mobile-tabs");
     const logo = document.getElementsByClassName("logo");
-    const basket = document.getElementsByClassName("basket");
+    const user = document.getElementsByClassName("fa-user");
 
     if (toggled === false) {
       tabs.style.opacity = "1";
       tabs.style.transform = "translate(0, 0)";
       logo[1].style.opacity = "0";
-      basket[1].style.opacity = "0";
+      user[1].style.opacity = "0";
       toggled = true;
       linesTrans(toggled);
       setTimeout(function() {
-      linesRot(toggled);
+        linesRot(toggled);
       }, 250);
     } else {
       toggled = false;
       tabs.style.opacity = "0";
       tabs.style.transform = "translate(100%, 0)";
       logo[1].style.opacity = "1";
-      basket[1].style.opacity = "1";
+      user[1].style.opacity = "1";
       linesRot(toggled);
       setTimeout(function() {
-      linesTrans(toggled);
+        linesTrans(toggled);
       }, 250);
     }
   }
@@ -100,8 +100,8 @@ function Nav() {
                 );
               })}
               <li>
-                <a className="basket" href="/">
-                  <Cart />
+                <a>
+                  <User />
                 </a>
               </li>
             </ul>
@@ -119,9 +119,7 @@ function Nav() {
             <a className="logo-anchor" href="/">
               <img className="logo" src={logo} alt="Crayobois logo" />
             </a>
-            <a className="basket" href="/">
-              <Cart />
-            </a>
+            <User />
           </div>
         </div>
       </nav>
