@@ -127,6 +127,10 @@
   justify-content: center;
 }
 
+.haws-icon-container {
+  z-index: 0;
+}
+
 @media only screen and (max-height: 650px) {
   .hardware-thumbnail {
     overflow-y: scroll;

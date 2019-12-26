@@ -34,6 +34,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  z-index: 10;
 }
 
 .cvs-dropdown-filter-list li a:hover {

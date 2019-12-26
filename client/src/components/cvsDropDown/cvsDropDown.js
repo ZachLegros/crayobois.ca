@@ -60,6 +60,7 @@ function CvsDropDown(props) {
         }
 
         setTotal(count);
+        console.log(`${collectionName}: ${types}`)
         return types;
       } else if (collectionName === "haws") {
         types = getTypes();
@@ -70,13 +71,15 @@ function CvsDropDown(props) {
         }
 
         types = Object.entries(types);
+        console.log(`${collectionName}: ${types}`)
         return types;
       }
     }
 
     setMatQty(sorted(context.materials, "mats"));
     setHawsQty(sorted(context.hardwares, "haws"));
-  }, [context.materials]);
+    
+  }, []);
 
   if (context.activeCvsPage[0] === "materials") {
     return (

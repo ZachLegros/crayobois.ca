@@ -189,7 +189,7 @@ function Thumbnails(props) {
       <React.Fragment>
         <div className="hardware-thumbnail">
           <div className="hardware-thumbnail-top">
-            <div>
+            <div className="haws-icon-container">
               <i className="fas fa-palette"></i>
               <span className="hardware-color">{displayed.color}</span>
             </div>
@@ -199,12 +199,12 @@ function Thumbnails(props) {
           </div>
           <div className="hardware-thumbnail-mid">
             <div className="hardware-thumbnail-mid-nav">
-              <i className="fas fa-chevron-left haws-nav-arrow"></i>
+              <i className="fas fa-chevron-left haws-nav-arrow" onClick={() => {context.newDisplayedHaw("prev")}}></i>
               <div
                 className="hardware-thumbnail-mid-img"
                 style={imgStyle}
               ></div>
-              <i className="fas fa-chevron-right haws-nav-arrow-active"></i>
+              <i className="fas fa-chevron-right haws-nav-arrow-active" onClick={() => {context.newDisplayedHaw("next")}}></i>
             </div>
           </div>
           <div className="hardware-thumbnail-bottom">

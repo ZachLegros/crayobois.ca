@@ -17,7 +17,7 @@ const GlobalState = props => {
   ]);
   const [prevToggleId, setPrevToggleId] = useState(0);
   const [cvsPages, setCvsPages] = useState(["materials", "hardwares"]);
-  const [activeCvsPage, setActiveCvsPage] = useState("materials")
+  const [activeCvsPage, setActiveCvsPage] = useState("materials");
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
   const [hawsFilteringName, setHawsFilteringName] = useState("");
   const [filterName, setFilterName] = useState("Filtrer par type");
@@ -68,8 +68,34 @@ const GlobalState = props => {
   const filterHaws = type => {
     const active = sortedHaws[type];
     const displayed = active[0];
+    console.log(active)
+    console.log(displayed)
     setActiveHaws(active);
     setDisplayedHaw(displayed);
+  };
+
+  const newDisplayedHaw = action => {
+    const maxIdx = activeHaws.length - 1;
+    console.log(maxIdx);
+    console.log(activeHaws);
+    console.log(displayedHaw);
+    const currentIdx = activeHaws.indexOf(displayedHaw);
+
+    if (action === "next") {
+      if (currentIdx === maxIdx) {
+        setDisplayedHaw(activeHaws[0]);
+      } else if (currentIdx < maxIdx) {
+        const newIdx = currentIdx + 1;
+        setDisplayedHaw(activeHaws[newIdx]);
+      }
+    } else if (action === "prev") {
+      if (currentIdx === 0) {
+        setDisplayedHaw(activeHaws[maxIdx]);
+      } else if (currentIdx > 0) {
+        const newIdx = currentIdx - 1;
+        setDisplayedHaw(activeHaws[newIdx]);
+      }
+    }
   };
 
   const addToPen = (id, idx) => {
@@ -120,9 +146,9 @@ const GlobalState = props => {
     setSortedHaws(types);
     const arr = Object.entries(types);
     //default values for haws collection and displayed haw
-    setActiveHaws(arr[0]);
+    setActiveHaws(arr[0][1]);
     setDisplayedHaw(arr[0][1][0]);
-    setHawsFilteringName(arr[0][0])
+    setHawsFilteringName(arr[0][0]);
   }
 
   function getTypes(collection) {
@@ -138,13 +164,17 @@ const GlobalState = props => {
     return obj;
   }
 
- function cvsNav(action) {
-  const idx = cvsPages.indexOf(activeCvsPage);
-  if (action === "back" && activeCvsPage !== "materials") {
+  function cvsNav(action) {
+    const idx = cvsPages.indexOf(activeCvsPage);
+    if (action === "back" && activeCvsPage !== "materials") {
       toggleLoading();
       scrollTop();
       setActiveCvsPage(cvsPages[idx - 1]);
-    } else if (action === "next" && idx !== cvsPages.length - 1 && myPen[0].obj !== null) {
+    } else if (
+      action === "next" &&
+      idx !== cvsPages.length - 1 &&
+      myPen[0].obj !== null
+    ) {
       toggleLoading();
       scrollTop();
       setActiveCvsPage(cvsPages[idx + 1]);
@@ -190,7 +220,8 @@ const GlobalState = props => {
         displayedHaw: [displayedHaw, setDisplayedHaw],
         cvsNav: cvsNav,
         hawsFilteringName: [hawsFilteringName, setHawsFilteringName],
-        scrollTop: scrollTop
+        scrollTop: scrollTop,
+        newDisplayedHaw: newDisplayedHaw
       }}
     >
       {props.children}

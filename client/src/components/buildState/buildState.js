@@ -135,6 +135,7 @@ function BuildState(props) {
                   key={id}
                   onClick={() => {
                     context.filterHaws(hardware[0]);
+                    
                     setHawsFilteringName(hardware[0]);
                     context.scrollTop();
                     context.toggleLoading();
