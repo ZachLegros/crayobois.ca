@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import CvsContext from "../context/cvsContext";
-import CvsSearchBar from "../cvsSearchBar/cvsSearchBar";
 import "./topThumbnails.css";
 
 function TopThumbnails(props) {
@@ -9,7 +8,7 @@ function TopThumbnails(props) {
   const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const [activeCvsPage, setActiveCvsPage] = context.activeCvsPage;
-
+  console.log(activeCvsPage)
   function toggleDropDown() {
     const width = document.documentElement.clientWidth;
     if (width <= 825) {
@@ -21,7 +20,6 @@ function TopThumbnails(props) {
     return (
       <React.Fragment>
         <div className="cvs-header">
-          <CvsSearchBar />
           <span
             className="cvs-state"
             onClick={() => {
@@ -38,7 +36,9 @@ function TopThumbnails(props) {
     return (
       <React.Fragment>
         <div className="cvs-header">
-          <CvsSearchBar />
+          <i className="fas fa-chevron-left back" onClick={() => {
+          context.cvsNav("back");
+        }}></i>
           <span
             className="cvs-state"
             onClick={() => {

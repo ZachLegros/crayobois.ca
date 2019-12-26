@@ -172,6 +172,7 @@ const GlobalState = props => {
       toggleLoading();
       scrollTop();
       setActiveCvsPage(cvsPages[idx - 1]);
+      setCvsDropDownToggle(false);
     } else if (
       action === "next" &&
       idx !== cvsPages.length - 1 &&
@@ -180,8 +181,10 @@ const GlobalState = props => {
       toggleLoading();
       scrollTop();
       setActiveCvsPage(cvsPages[idx + 1]);
+      setCvsDropDownToggle(false);
     } else if (idx === cvsPages.length - 1 && myPen[1].obj !== null) {
       setCvsAlertOn(true);
+      setCvsDropDownToggle(false);
     }
   }
 

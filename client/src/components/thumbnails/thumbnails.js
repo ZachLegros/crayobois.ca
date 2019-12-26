@@ -203,12 +203,12 @@ function Thumbnails(props) {
               <i className="fas fa-palette"></i>
               <span className="hardware-color">{displayed.color}</span>
             </div>
-            <div>
+            <a>
               <i className={prevToggleHaw === displayed ? "fas fa-heart" : "fas fa-plus"} onClick={() => {
                 context.addToPen(displayed, 1);
                 toggleHawsHeart();
               }}></i>
-            </div>
+            </a>
           </div>
           <div className="hardware-thumbnail-mid">
             <div className="hardware-thumbnail-mid-nav">
