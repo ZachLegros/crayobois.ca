@@ -25,7 +25,7 @@ const GlobalState = props => {
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
   const [sortedHaws, setSortedHaws] = useState([]);
   const [prevToggleHaw, setPrevToggleHaw] = useState({});
-  const [cvsAlertOn, setcvsAlertOn] = useState(true);
+  const [cvsAlertOn, setCvsAlertOn] = useState(false);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -181,7 +181,7 @@ const GlobalState = props => {
       scrollTop();
       setActiveCvsPage(cvsPages[idx + 1]);
     } else if (idx === cvsPages.length - 1 && myPen[1].obj !== null) {
-      setcvsAlertOn(true);
+      setCvsAlertOn(true);
     }
   }
 
@@ -223,7 +223,7 @@ const GlobalState = props => {
         scrollTop: scrollTop,
         newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
-        cvsAlertOn: [cvsAlertOn, setcvsAlertOn]
+        cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
       }}
     >
       {props.children}

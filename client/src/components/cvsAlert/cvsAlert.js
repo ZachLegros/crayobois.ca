@@ -4,7 +4,7 @@ import "./cvsAlert.css";
 
 function CvsAlert(props) {
   const context = useContext(CvsContext);
-  const [cvsAlertOn, setcvsAlertOn] = context.cvsAlertOn;
+  const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   return (
     <React.Fragment>
@@ -14,7 +14,7 @@ function CvsAlert(props) {
         </span>
         <div className="cvs-alert-buttons">
           <span className="cvs-alert-cancel" onClick={() => {
-              
+              setCvsAlertOn(false);
           }}>Annuler</span>
           <span className="cvs-alert-yes">Oui</span>
         </div>
