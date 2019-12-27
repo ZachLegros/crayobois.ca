@@ -1,8 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./loginAndRegister.css";
+import "./signUpAndSignIn.css";
 import Nav from "../nav/nav";
+import SignIn from "../signIn/signIn";
+import SignUp from "../signUp/signUp";
 
-const LoginAndRegister = () => {
+
+const SignUpAndSignIn = () => {
   useEffect(() => {
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
@@ -11,8 +14,9 @@ const LoginAndRegister = () => {
   return (
     <React.Fragment>
       <Nav />
+      <SignIn />
     </React.Fragment>
   );
 };
 
-export default LoginAndRegister;
+export default SignUpAndSignIn;

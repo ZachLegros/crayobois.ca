@@ -4,7 +4,7 @@ import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLinksProvider } from "./components/context/navLinksContext";
 import GlobalState from "./components/context/GlobalState";
-import LoginAndRegister from "./components/loginAndRegister/loginAndRegister";
+import SignUpAndSignIn from "./components/signUpAndSignIn/signUpAndSignIn";
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
                 exact
                 render={props => <Cvs {...props} />}
               />
-              <Route path="/user" exact render={props => <LoginAndRegister {...props}/>} />
+              <Route path="/user" exact render={props => <SignUpAndSignIn {...props}/>} />
               <Route
                 path="/"
                 render={() => (
