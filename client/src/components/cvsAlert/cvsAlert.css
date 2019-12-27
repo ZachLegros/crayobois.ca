@@ -51,10 +51,10 @@
 }
 
 .cvs-alert-msg {
-  font-size: 1.30rem;
-  font-weight: normal;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: #29353d;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   width: 100%;
   text-align: center;
 }
@@ -71,7 +71,7 @@
 
 .cvs-alert-cancel {
   padding: 12px;
-  background-color: #29353d;
+  background-color: #485d6b;
   border-radius: 35px;
   width: 50%;
   margin-right: 12.5px;
@@ -85,4 +85,12 @@
   width: 50%;
   margin-left: 12.5px;
   cursor: pointer;
+}
+
+.alert-button {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.alert-button:hover {
+  opacity: 0.85;
 }

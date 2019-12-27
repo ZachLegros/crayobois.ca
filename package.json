@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "concurrently": "^5.0.2"
+    "concurrently": "^5.0.2",
+    "firebase": "^7.6.1"
   },
   "devDependencies": {},
   "scripts": {
