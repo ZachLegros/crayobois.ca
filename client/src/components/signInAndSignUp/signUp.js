@@ -1,19 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/authContext";
+import Nav from "../nav/nav";
+import "./signUpAndSignIn.css";
 
 const SignUp = () => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
+    // nav color
+    const nav = document.getElementsByClassName("navbar");
+    nav[0].style.backgroundColor = "var(--black)";
+
     const signupForm = document.querySelector("#signup-form");
     signupForm.addEventListener("submit", e => {
       e.preventDefault();
 
       // get user info
-      const email = signupForm['signup-email'].value;
-      const password = signupForm['signup-password'].value;
-      const password2 = signupForm['signup-confirm-password'].value;
-      
+      const email = signupForm["signup-email"].value;
+      const password = signupForm["signup-password"].value;
+      const password2 = signupForm["signup-confirm-password"].value;
+
       if (password === password2 && password.length >= 6) {
         //sign up the user
         authContext.signup(email, password);
@@ -23,6 +29,7 @@ const SignUp = () => {
 
   return (
     <React.Fragment>
+      <Nav />
       <section id="sign-in-sign-up">
         <div className="sign-in-sign-up-container">
           <span className="header-text">Créer un compte</span>

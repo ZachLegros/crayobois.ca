@@ -4,8 +4,9 @@ import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLinksProvider } from "./components/context/navLinksContext";
 import GlobalState from "./components/context/GlobalState";
-import SignUpAndSignIn from "./components/signUpAndSignIn/signUpAndSignIn";
 import AuthState from "./components/context/AuthState";
+import SignIn from "./components/signInAndSignUp/signIn";
+import SignUp from "./components/signInAndSignUp/signUp";
 
 const App = () => {
   return (
@@ -22,9 +23,14 @@ const App = () => {
               />
               <AuthState>
                 <Route
-                  path="/user"
+                  path="/se-connecter"
                   exact
-                  render={props => <SignUpAndSignIn {...props} />}
+                  render={props => <SignIn {...props} />}
+                />
+                <Route
+                  path="/creer-un-compte"
+                  exact
+                  render={props => <SignUp {...props} />}
                 />
               </AuthState>
               <Route

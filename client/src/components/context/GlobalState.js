@@ -26,6 +26,7 @@ const GlobalState = props => {
   const [sortedHaws, setSortedHaws] = useState([]);
   const [prevToggleHaw, setPrevToggleHaw] = useState({});
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -226,7 +227,8 @@ const GlobalState = props => {
         scrollTop: scrollTop,
         newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
-        cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
+        cvsAlertOn: [cvsAlertOn, setCvsAlertOn],
+        isLoggedIn: [isLoggedIn, setIsLoggedIn]
       }}
     >
       {props.children}

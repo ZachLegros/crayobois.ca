@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "./authContext";
+import CvsContext from "./cvsContext";
 import * as firebase from "firebase";
 
 const AuthState = props => {
+  const cvsContext = useContext(CvsContext);
+  const [isLoggedIn, setIsLoggedIn] = cvsContext.isLoggedIn;
+  
   // firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyBccRjBkjdgTdVxFQwKvrbpUCGCMeVryAA",
@@ -20,6 +24,15 @@ const AuthState = props => {
   const auth = firebase.auth();
   const db = firebase.firestore();
 
+  // isLoggedIn
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  });
+
   // sign up a user
   const signup = (email, password) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -31,16 +44,20 @@ const AuthState = props => {
     });
   };
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
-    auth.signOut().then(() => {
-
-    });
-  }
+    auth.signOut();
+  };
 
   const signin = (email, password) => {
-    auth.signInWithEmailAndPassword(email, password);
-  }
+    auth.signInWithEmailAndPassword(email, password).then(cred => {
+      console.log(cred.user);
+
+      //ui update here
+      const signinForm = document.querySelector("#signin-form");
+      signinForm.reset();
+    });
+  };
 
   return (
     <AuthContext.Provider
