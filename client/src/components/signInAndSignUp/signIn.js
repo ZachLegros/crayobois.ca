@@ -57,10 +57,6 @@ const SignIn = () => {
               />
               <i className="fas fa-lock input-icon"></i>
             </div>
-            <label className="remember-me">
-              <input type="checkbox" name="check" id="remember-me-check" />
-              <span className="remember-me-txt">Se souvenir de moi</span>
-            </label>
             <button className="form-btn">Se connecter</button>
           </form>
           <div className="form-or-container">

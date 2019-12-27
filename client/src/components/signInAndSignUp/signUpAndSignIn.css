@@ -82,39 +82,7 @@
     height: 18px;
     pointer-events: none;
   }
-  
-  .remember-me {
-    display: flex;
-    align-items: center;
-    color: hsl(204, 20%, 40%);
-    font-size: 16px;
-    width: 100%;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .remember-me input[type="checkbox"] {
-    display: none;
-  }
-  
-  .remember-me input[type="checkbox"] + .remember-me-txt::before {
-    content: "\f096";
-    font-family: "FontAwesome";
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    width: 1em;
-    display: inline-block;
-    margin-right: 5px;
-    color: hsl(204, 20%, 70%);
-  }
-  
-  .remember-me input[type="checkbox"]:checked + .remember-me-txt::before {
-    content: "\f14a";
-  }
-  
+
   .form-btn {
     background-color: var(--orange);
     color: #fff;

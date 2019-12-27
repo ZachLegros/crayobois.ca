@@ -26,7 +26,7 @@ const GlobalState = props => {
   const [sortedHaws, setSortedHaws] = useState([]);
   const [prevToggleHaw, setPrevToggleHaw] = useState({});
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleLoading = () => {
     setLoading(true);
