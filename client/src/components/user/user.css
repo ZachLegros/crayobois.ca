@@ -1,5 +1,6 @@
 .fa-user {
   font-size: 1.25rem;
   color: #fff;
+  cursor: pointer;
   transition: all 0.25s cubic-bezier(0.55, 0, 0.1, 1);
 }

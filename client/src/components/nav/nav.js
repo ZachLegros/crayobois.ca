@@ -100,9 +100,7 @@ function Nav() {
                 );
               })}
               <li>
-                <a>
                   <User />
-                </a>
               </li>
             </ul>
           </div>
