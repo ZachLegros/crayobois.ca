@@ -1,50 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLinksProvider } from "./components/context/navLinksContext";
 import GlobalState from "./components/context/GlobalState";
 import AuthState from "./components/context/AuthState";
-import SignIn from "./components/signInAndSignUp/signIn";
-import SignUp from "./components/signInAndSignUp/signUp";
+import User from "./components/signInAndSignUp/user";
+import LoggedInChecker from "./components/cvs/loggedInChecker";
 
 const App = () => {
   return (
     <React.Fragment>
       <GlobalState>
-        <NavLinksProvider>
-          <Router>
-            <Switch>
-              <Route path="/" exact render={props => <Home {...props} />} />
-              <Route
-                path="/creez-votre-stylo"
-                exact
-                render={props => <Cvs {...props} />}
-              />
-              <AuthState>
+        <AuthState>
+          <NavLinksProvider>
+            <Router>
+              <Switch>
+                <Route path="/" exact render={props => <Home {...props} />} />
                 <Route
-                  path="/se-connecter"
+                  path="/creez-votre-stylo"
                   exact
-                  render={props => <SignIn {...props} />}
+                  render={props => <LoggedInChecker {...props} />}
                 />
                 <Route
-                  path="/creer-un-compte"
+                  path="/utilisateur"
                   exact
-                  render={props => <SignUp {...props} />}
+                  render={props => <User {...props} />}
                 />
-              </AuthState>
-              <Route
-                path="/"
-                render={() => (
-                  <React.Fragment>
-                    <div>404</div>
-                    <div>Page not found</div>
-                  </React.Fragment>
-                )}
-              />
-            </Switch>
-          </Router>
-        </NavLinksProvider>
+                <Route
+                  path="/"
+                  render={() => (
+                    <React.Fragment>
+                      <div>404</div>
+                      <div>Page not found</div>
+                    </React.Fragment>
+                  )}
+                />
+              </Switch>
+            </Router>
+          </NavLinksProvider>
+        </AuthState>
       </GlobalState>
     </React.Fragment>
   );

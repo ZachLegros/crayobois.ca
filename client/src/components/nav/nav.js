@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./nav.css";
-import User from "../user/user";
+import User from "../userIcon/userIcon";
 import logo from "./logo.png";
 import { NavLinksContext } from "../context/navLinksContext";
 

@@ -5,6 +5,11 @@ import "./signUpAndSignIn.css";
 
 const SignUp = () => {
   const authContext = useContext(AuthContext);
+  const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
+
+  function toggleSignIn() {
+    setSignInOrUp("in");
+  }
 
   useEffect(() => {
     // nav color
@@ -72,7 +77,14 @@ const SignUp = () => {
           <div className="form-or-container">
             <span className="form-or">ou</span>
           </div>
-          <button className="form-btn black">Se connecter</button>
+          <button
+            className="form-btn black"
+            onClick={() => {
+              toggleSignIn();
+            }}
+          >
+            Se connecter
+          </button>
         </div>
       </section>
     </React.Fragment>

@@ -8,7 +8,6 @@ import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import Nav from "../nav/nav";
 import CvsAlert from "../cvsAlert/cvsAlert";
-import SignIn from "../signInAndSignUp/signIn";
 
 const Cvs = React.memo(() => {
   const context = useContext(CvsContext);
@@ -18,57 +17,45 @@ const Cvs = React.memo(() => {
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
-
-    context.getMats();
-    context.getHaws();
+      context.getMats();
+      context.getHaws();
   }, []);
 
-  if (context.isLoggedIn === true) {
-    if (context.materials.length === 0) {
-      return (
-        <React.Fragment>
-          <Nav />
-          <Spinner />
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          <Nav />
-          {cvsAlertOn ? <CvsAlert /> : <React.Fragment />}
-          <div className="app-wrapper">
-            <section
-              id="cvs-scrollable-section"
-              className={
-                cvsDropDownToggle === true
-                  ? "cvs-scrollable-section unscrollable"
-                  : "cvs-scrollable-section"
-              }
-            >
-              <TopThumbnails />
-              <CvsDropDown />
-              <div className={active + "-wrapper"}>
-                {loading === true ? (
-                  <Spinner />
-                ) : (
-                  <div className={active}>
-                    <Thumbnails />
-                  </div>
-                )}
-              </div>
-            </section>
-            <BuildState />
-          </div>
-        </React.Fragment>
-      );
-    }
+  if (context.materials.length === 0) {
+    return (
+      <React.Fragment>
+        <Nav />
+        <Spinner />
+      </React.Fragment>
+    );
   } else {
     return (
       <React.Fragment>
         <Nav />
-        <SignIn />
+        {cvsAlertOn ? <CvsAlert /> : <React.Fragment />}
+        <div className="app-wrapper">
+          <section
+            id="cvs-scrollable-section"
+            className={
+              cvsDropDownToggle === true
+                ? "cvs-scrollable-section unscrollable"
+                : "cvs-scrollable-section"
+            }
+          >
+            <TopThumbnails />
+            <CvsDropDown />
+            <div className={active + "-wrapper"}>
+              {loading === true ? (
+                <Spinner />
+              ) : (
+                <div className={active}>
+                  <Thumbnails />
+                </div>
+              )}
+            </div>
+          </section>
+          <BuildState />
+        </div>
       </React.Fragment>
     );
   }

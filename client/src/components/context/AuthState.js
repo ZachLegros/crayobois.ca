@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "./authContext";
 import CvsContext from "./cvsContext";
 import * as firebase from "firebase";
@@ -6,7 +6,8 @@ import * as firebase from "firebase";
 const AuthState = props => {
   const cvsContext = useContext(CvsContext);
   const [isLoggedIn, setIsLoggedIn] = cvsContext.isLoggedIn;
-  
+  const [signInOrUp, setSignInOrUp] = useState("in");
+
   // firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyBccRjBkjdgTdVxFQwKvrbpUCGCMeVryAA",
@@ -16,9 +17,12 @@ const AuthState = props => {
     appId: "1:410478848299:web:b2f130cd32dba774fcbd6e",
     measurementId: "G-XHQN6JX1WG"
   };
+
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  }
 
   // make auth and firestore references
   const auth = firebase.auth();
@@ -36,23 +40,18 @@ const AuthState = props => {
   // sign up a user
   const signup = (email, password) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(cred.user);
-
       //ui update here
       const signupForm = document.querySelector("#signup-form");
       signupForm.reset();
     });
   };
 
-  const logout = e => {
-    e.preventDefault();
+  const signout = () => {
     auth.signOut();
   };
 
   const signin = (email, password) => {
     auth.signInWithEmailAndPassword(email, password).then(cred => {
-      console.log(cred.user);
-
       //ui update here
       const signinForm = document.querySelector("#signin-form");
       signinForm.reset();
@@ -63,8 +62,9 @@ const AuthState = props => {
     <AuthContext.Provider
       value={{
         signup: signup,
-        logout: logout,
-        signin: signin
+        signout: signout,
+        signin: signin,
+        signInOrUp: [signInOrUp, setSignInOrUp]
       }}
     >
       {props.children}

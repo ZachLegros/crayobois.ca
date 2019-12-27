@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import "./user.css";
+import "./userIcon.css";
 
 const User = () => {
   return (
     <React.Fragment>
-      <a href="/user"><i className="fas fa-user"></i></a>
+      <a href="/utilisateur"><i className="fas fa-user"></i></a>
     </React.Fragment>
   );
 };
