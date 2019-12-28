@@ -12,7 +12,7 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-      //nav color
+    //nav color
     const nav = document.getElementsByClassName("navbar");
     nav[0].style.backgroundColor = "var(--black)";
 
@@ -30,7 +30,7 @@ const SignIn = () => {
 
   return (
     <React.Fragment>
-        <Nav />
+      <Nav />
       <section id="sign-in-sign-up">
         <div className="sign-in-sign-up-container">
           <span className="header-text">Se connecter</span>
@@ -62,7 +62,14 @@ const SignIn = () => {
           <div className="form-or-container">
             <span className="form-or">ou</span>
           </div>
-          <button className="form-btn black" onClick={() => {toggleSignUp();}}>Créer un compte</button>
+          <button
+            className="form-btn black"
+            onClick={() => {
+              toggleSignUp();
+            }}
+          >
+            Créer un compte
+          </button>
         </div>
       </section>
     </React.Fragment>

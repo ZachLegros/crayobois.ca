@@ -21,13 +21,13 @@ const SignUp = () => {
       e.preventDefault();
 
       // get user info
-      const email = signupForm["signup-email"].value;
+      const name = signupForm["signup-name"].value.trim();
+      const email = signupForm["signup-email"].value.trim();
       const password = signupForm["signup-password"].value;
-      const password2 = signupForm["signup-confirm-password"].value;
 
-      if (password === password2 && password.length >= 6) {
+      if (password.length >= 6) {
         //sign up the user
-        authContext.signup(email, password);
+        authContext.signup(name, email, password);
       }
     });
   }, []);
@@ -39,6 +39,17 @@ const SignUp = () => {
         <div className="sign-in-sign-up-container">
           <span className="header-text">Créer un compte</span>
           <form id="signup-form">
+          <div className="input-field">
+              <input
+                type="text"
+                name="name"
+                id="signup-name"
+                placeholder="Nom complet"
+                autoComplete="off"
+                required
+              />
+              <i className="fas fa-envelope input-icon"></i>
+            </div>
             <div className="input-field">
               <input
                 type="email"
@@ -56,17 +67,6 @@ const SignUp = () => {
                 name="password"
                 id="signup-password"
                 placeholder="Mot de passe"
-                autoComplete="off"
-                required
-              />
-              <i className="fas fa-lock input-icon"></i>
-            </div>
-            <div className="input-field">
-              <input
-                type="password"
-                name="confirm-password"
-                id="signup-confirm-password"
-                placeholder="Confirmer le mot de passe"
                 autoComplete="off"
                 required
               />

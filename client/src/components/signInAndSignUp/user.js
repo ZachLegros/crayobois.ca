@@ -1,27 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
-import CvsContext from "../context/cvsContext";
 import AuthContext from "../context/authContext";
 import Nav from "../nav/nav";
 import SignIn from "./signIn";
 import SignUp from "./signUp";
-import Spinner from "../spinner/spinner";
-import { Redirect } from "react-router-dom";
+import Dashboard from "../dashboard/dashboard";
 
 const User = () => {
-  const context = useContext(CvsContext);
-  const [isLoggedIn, setIsLoggedIn] = context.isLoggedIn;
   const authContext = useContext(AuthContext);
   const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
   const [
     initializedFirebase,
     setInitializedFirebase
   ] = authContext.initializedFirebase;
-
-  //test
-  function signout() {
-    authContext.signout();
-    setInitializedFirebase(null);
-  }
+  const [user, setUser] = authContext.user;
 
   useEffect(() => {
     // nav color
@@ -37,15 +28,7 @@ const User = () => {
       return (
         <React.Fragment>
           <Nav />
-          {/*Test*/}
-          <button
-            className="test"
-            onClick={() => {
-              signout();
-            }}
-          >
-            Sign out
-          </button>
+          <Dashboard />
         </React.Fragment>
       );
   } else {
