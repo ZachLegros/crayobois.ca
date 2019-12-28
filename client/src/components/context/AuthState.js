@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import AuthContext from "./authContext";
-import CvsContext from "./cvsContext";
 import * as firebase from "firebase";
 
 const AuthState = props => {
-  const cvsContext = useContext(CvsContext);
   const [signInOrUp, setSignInOrUp] = useState("in");
   const [initializedFirebase, setInitializedFirebase] = useState(null);
   const [user, setUser] = useState({ displayName: "" });
+  const [caughtErr, setCaughtErr] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // firebase config
   const firebaseConfig = {
@@ -38,20 +39,27 @@ const AuthState = props => {
 
   // sign up a user
   const signup = (name, email, password) => {
-    try {
-      auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    const actionBtn = document.querySelector("#signup-action");
+    
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
         auth.currentUser.updateProfile({ displayName: name }).then(() => {
+          setCaughtErr(false);
           sendVerification();
           setUser(cred.user);
           //ui update here
           const signupForm = document.querySelector("#signup-form");
           signupForm.reset();
           setInitializedFirebase(cred.user);
+          setLoading(false);
         });
+      })
+      .catch(err => {
+        setCaughtErr(true);
+        setErrorMsg("Adresse e-mail déjà utilisée.");
+        actionBtn.classList.remove("btn-loading");
       });
-    } catch (err) {
-      console.log(err.message);
-    }
   };
 
   const sendVerification = () => {
@@ -66,18 +74,25 @@ const AuthState = props => {
     setInitializedFirebase(null);
   };
 
-  const signin = async (email, password) => {
-    try {
-      await auth.signInWithEmailAndPassword(email, password).then(cred => {
+  const signin = (email, password) => {
+    const actionBtn = document.querySelector("#signin-action");
+    
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(cred => {
+        setLoading(true);
+        setCaughtErr(false);
         setUser(cred.user);
         //ui update here
         const signinForm = document.querySelector("#signin-form");
         signinForm.reset();
         setInitializedFirebase(cred.user);
+      })
+      .catch(err => {
+        setCaughtErr(true);
+        setErrorMsg("Adresse e-mail ou mot de passe invalide.");
+        actionBtn.classList.remove("btn-loading");
       });
-    } catch (err) {
-      console.log(err.message);
-    }
   };
 
   const getUsername = () => {
@@ -99,7 +114,10 @@ const AuthState = props => {
         isInitialized: isInitialized,
         user: [user, setUser],
         getUsername: getUsername,
-        getVerification: getVerification
+        getVerification: getVerification,
+        caughtErr: [caughtErr, setCaughtErr],
+        errorMsg: [errorMsg, setErrorMsg],
+        loading: [loading, setLoading]
       }}
     >
       {props.children}

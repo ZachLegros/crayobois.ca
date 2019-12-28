@@ -10,17 +10,20 @@ const Dashboard = () => {
   ] = authContext.initializedFirebase;
   const [name, setName] = useState("");
   const [verified, setVerified] = useState(false);
-  //test
+  
+  // signout function
   function signout() {
     authContext.signout();
     setInitializedFirebase(null);
   }
 
+  // get name of user
   const getUsername = () => {
     const uName = authContext.getUsername();
     setName(uName);
   };
 
+  // get verification of email state
   const getVerification = () => {
       const verification = authContext.getVerification();
       setVerified(verification);

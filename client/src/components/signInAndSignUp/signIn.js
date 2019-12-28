@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/authContext";
 import Nav from "../nav/nav";
 import "./signUpAndSignIn.css";
+import Spinner from "../spinner/spinner";
 
 const SignIn = () => {
   const authContext = useContext(AuthContext);
   const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
+  const [caughtErr, setCaughtErr] = authContext.caughtErr;
+  const [errorMsg, setErrorMsg] = authContext.errorMsg;
 
   function toggleSignUp() {
     setSignInOrUp("up");
@@ -17,14 +20,18 @@ const SignIn = () => {
     nav[0].style.backgroundColor = "var(--black)";
 
     const signinForm = document.querySelector("#signin-form");
+    const actionBtn = document.querySelector("#signin-action");
     signinForm.addEventListener("submit", e => {
       e.preventDefault();
+      actionBtn.classList.add("btn-loading");
 
       // get user info
       const email = signinForm["signin-email"].value;
       const password = signinForm["signin-password"].value;
 
-      authContext.signin(email, password);
+      setTimeout(() => {
+        authContext.signin(email, password);
+      }, 500);
     });
   }, []);
 
@@ -35,11 +42,22 @@ const SignIn = () => {
         <div className="sign-in-sign-up-container">
           <span className="header-text">Se connecter</span>
           <form id="signin-form">
+            {caughtErr ? (
+              <div className="error-container">
+                <span className="error-message">
+                  <i className="fas fa-info-circle"></i>
+                  {errorMsg}
+                </span>
+              </div>
+            ) : (
+              <React.Fragment></React.Fragment>
+            )}
             <div className="input-field">
               <input
                 type="email"
                 name="email"
                 id="signin-email"
+                className="input"
                 placeholder="Adresse e-mail"
                 autoComplete="off"
                 required
@@ -50,6 +68,7 @@ const SignIn = () => {
               <input
                 type="password"
                 name="password"
+                className="input"
                 id="signin-password"
                 placeholder="Mot de passe"
                 autoComplete="off"
@@ -57,7 +76,16 @@ const SignIn = () => {
               />
               <i className="fas fa-lock input-icon"></i>
             </div>
-            <button className="form-btn">Se connecter</button>
+            <div className="signin-forgot-password-container">
+              <span className="signin-forgot-password">
+                Vous avez oublié votre mot de passe?
+              </span>
+            </div>
+            <div className="action-container">
+              <button id="signin-action" className="form-btn">
+                Se connecter
+              </button>
+            </div>
           </form>
           <div className="form-or-container">
             <span className="form-or">ou</span>
@@ -66,6 +94,8 @@ const SignIn = () => {
             className="form-btn black"
             onClick={() => {
               toggleSignUp();
+              setErrorMsg("");
+              setCaughtErr(false);
             }}
           >
             Créer un compte
