@@ -111,6 +111,8 @@ const AuthState = props => {
       .sendPasswordResetEmail(email)
       .then(() => {
         setEmailSent(true);
+        setCaughtErr(false);
+        setErrorMsg("");
       })
       .catch(err => {
         setCaughtErr(true);

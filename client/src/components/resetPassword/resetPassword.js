@@ -33,8 +33,7 @@ const ResetPassword = props => {
   return (
     <React.Fragment>
       <Nav />
-      {emailSent ? (
-        props.history.push("/utilisateur")
+      {emailSent ? (props.history.push("/utilisateur")
       ) : (
         <section id="reset-password-section">
           <div className="reset-password-container">
