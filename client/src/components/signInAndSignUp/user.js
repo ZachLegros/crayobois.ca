@@ -4,6 +4,7 @@ import Nav from "../nav/nav";
 import SignIn from "./signIn";
 import SignUp from "./signUp";
 import Dashboard from "../dashboard/dashboard";
+import Spinner from "../spinner/spinner";
 
 const User = () => {
   const authContext = useContext(AuthContext);
@@ -12,7 +13,7 @@ const User = () => {
     initializedFirebase,
     setInitializedFirebase
   ] = authContext.initializedFirebase;
-  const [user, setUser] = authContext.user;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // nav color
@@ -21,16 +22,24 @@ const User = () => {
 
     authContext.isInitialized().then(val => {
       setInitializedFirebase(val);
+      setLoading(false);
     });
-  }, [initializedFirebase]);
+  }, []);
 
-  if (initializedFirebase) {
-      return (
+  if (loading) {
+    return (
         <React.Fragment>
-          <Nav />
-          <Dashboard />
-        </React.Fragment>
-      );
+        <Nav />
+        <Spinner />
+      </React.Fragment>
+    ) 
+  } else if (initializedFirebase) {
+    return (
+      <React.Fragment>
+        <Nav />
+        <Dashboard />
+      </React.Fragment>
+    );
   } else {
     return (
       <React.Fragment>

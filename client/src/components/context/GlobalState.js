@@ -21,12 +21,11 @@ const GlobalState = props => {
   const [filteringName, setFilteringName] = useState("Tous les matériaux");
   const [hawsFilteringName, setHawsFilteringName] = useState("");
   const [filterName, setFilterName] = useState("Filtrer par type");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
   const [sortedHaws, setSortedHaws] = useState([]);
   const [prevToggleHaw, setPrevToggleHaw] = useState({});
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const toggleLoading = () => {
     setLoading(true);
@@ -41,6 +40,7 @@ const GlobalState = props => {
     const response = await fetch(url);
     const data = await response.json();
     setMats(data);
+    setLoading(false);
   }
 
   //fetching hardwares
@@ -50,6 +50,7 @@ const GlobalState = props => {
     const data = await response.json();
     setHaws(data);
     sortHawsByType(data);
+    setLoading(false);
   }
 
   const addToCart = pen => {};
@@ -218,7 +219,7 @@ const GlobalState = props => {
         filteringName: [filteringName, setFilteringName],
         filterName: [filterName, setFilterName],
         toggleLoading: toggleLoading,
-        loading: loading,
+        loading: [loading, setLoading],
         cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle],
         sortedHaws: [sortedHaws, setSortedHaws],
         displayedHaw: [displayedHaw, setDisplayedHaw],
@@ -228,7 +229,6 @@ const GlobalState = props => {
         newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
         cvsAlertOn: [cvsAlertOn, setCvsAlertOn],
-        isLoggedIn: [isLoggedIn, setIsLoggedIn]
       }}
     >
       {props.children}

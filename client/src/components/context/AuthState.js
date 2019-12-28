@@ -6,7 +6,7 @@ import * as firebase from "firebase";
 const AuthState = props => {
   const cvsContext = useContext(CvsContext);
   const [signInOrUp, setSignInOrUp] = useState("in");
-  const [initializedFirebase, setInitializedFirebase] = useState(false);
+  const [initializedFirebase, setInitializedFirebase] = useState(null);
   const [user, setUser] = useState({ displayName: "" });
 
   // firebase config
@@ -41,6 +41,7 @@ const AuthState = props => {
     try {
       auth.createUserWithEmailAndPassword(email, password).then(cred => {
         auth.currentUser.updateProfile({ displayName: name }).then(() => {
+          sendVerification();
           setUser(cred.user);
           //ui update here
           const signupForm = document.querySelector("#signup-form");
@@ -53,9 +54,16 @@ const AuthState = props => {
     }
   };
 
+  const sendVerification = () => {
+    const user = auth.currentUser;
+
+    user.sendEmailVerification();
+  };
+
   const signout = () => {
     auth.signOut();
     setSignInOrUp("in");
+    setInitializedFirebase(null);
   };
 
   const signin = async (email, password) => {
@@ -72,6 +80,14 @@ const AuthState = props => {
     }
   };
 
+  const getUsername = () => {
+    return auth.currentUser.displayName;
+  };
+
+  const getVerification = () => {
+    return auth.currentUser.emailVerified;
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -81,7 +97,9 @@ const AuthState = props => {
         signInOrUp: [signInOrUp, setSignInOrUp],
         initializedFirebase: [initializedFirebase, setInitializedFirebase],
         isInitialized: isInitialized,
-        user: [user, setUser]
+        user: [user, setUser],
+        getUsername: getUsername,
+        getVerification: getVerification
       }}
     >
       {props.children}

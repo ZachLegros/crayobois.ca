@@ -4,19 +4,32 @@ import AuthContext from "../context/authContext";
 
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
-  const [user, setUser] = authContext.user;
   const [
     initializedFirebase,
     setInitializedFirebase
   ] = authContext.initializedFirebase;
-
+  const [name, setName] = useState("");
+  const [verified, setVerified] = useState(false);
   //test
   function signout() {
     authContext.signout();
     setInitializedFirebase(null);
   }
 
-  useEffect(() => {}, []);
+  const getUsername = () => {
+    const uName = authContext.getUsername();
+    setName(uName);
+  };
+
+  const getVerification = () => {
+      const verification = authContext.getVerification();
+      setVerified(verification);
+  }
+
+  useEffect(() => {
+    getUsername();
+    getVerification();
+  }, []);
 
   return (
     <React.Fragment>
@@ -29,15 +42,8 @@ const Dashboard = () => {
       >
         Sign out
       </button>
-      <button
-        className="test"
-        onClick={() => {
-          console.log(user);
-        }}
-      >
-        Show user
-      </button>
-      <span className="dashboard-username">{user.displayName}</span>
+      <span className="dashboard-username">{name}</span>
+      {verified ? <span>Email verified</span> : <span>Email not verified</span>}
     </React.Fragment>
   );
 };

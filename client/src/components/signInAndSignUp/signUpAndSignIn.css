@@ -80,7 +80,11 @@
     top: 50%;
     transform: translateY(-50%);
     height: 18px;
+    width: 18px;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .form-btn {

@@ -9,7 +9,7 @@ import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import Nav from "../nav/nav";
 import CvsAlert from "../cvsAlert/cvsAlert";
 
-const Cvs = React.memo(() => {
+const Cvs = React.memo(props => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
@@ -17,8 +17,10 @@ const Cvs = React.memo(() => {
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
-      context.getMats();
-      context.getHaws();
+    const nav = document.getElementsByClassName("navbar");
+    nav[0].style.backgroundColor = "var(--black)";
+    context.getMats();
+    context.getHaws();
   }, []);
 
   if (context.materials.length === 0) {

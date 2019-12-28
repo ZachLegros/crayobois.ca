@@ -39,7 +39,7 @@ const SignUp = () => {
         <div className="sign-in-sign-up-container">
           <span className="header-text">Créer un compte</span>
           <form id="signup-form">
-          <div className="input-field">
+            <div className="input-field">
               <input
                 type="text"
                 name="name"
@@ -48,7 +48,9 @@ const SignUp = () => {
                 autoComplete="off"
                 required
               />
-              <i className="fas fa-envelope input-icon"></i>
+              <div className="input-icon">
+                <i className="fas fa-id-badge"></i>
+              </div>
             </div>
             <div className="input-field">
               <input
