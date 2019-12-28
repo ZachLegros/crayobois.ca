@@ -76,11 +76,11 @@ const SignIn = () => {
               />
               <i className="fas fa-lock input-icon"></i>
             </div>
-            <div className="signin-forgot-password-container">
+            <a href="/utilisateur/nouveau-mot-de-passe" className="signin-forgot-password-container">
               <span className="signin-forgot-password">
                 Vous avez oublié votre mot de passe?
               </span>
-            </div>
+            </a>
             <div className="action-container">
               <button id="signin-action" className="form-btn">
                 Se connecter

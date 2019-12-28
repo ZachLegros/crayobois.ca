@@ -9,6 +9,7 @@ const AuthState = props => {
   const [caughtErr, setCaughtErr] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   // firebase config
   const firebaseConfig = {
@@ -40,7 +41,7 @@ const AuthState = props => {
   // sign up a user
   const signup = (name, email, password) => {
     const actionBtn = document.querySelector("#signup-action");
-    
+
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(cred => {
@@ -76,7 +77,7 @@ const AuthState = props => {
 
   const signin = (email, password) => {
     const actionBtn = document.querySelector("#signin-action");
-    
+
     auth
       .signInWithEmailAndPassword(email, password)
       .then(cred => {
@@ -103,6 +104,21 @@ const AuthState = props => {
     return auth.currentUser.emailVerified;
   };
 
+  const resetPassword = email => {
+    const actionBtn = document.querySelector("#forgot-password-action");
+    
+    auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        setEmailSent(true);
+      })
+      .catch(err => {
+        setCaughtErr(true);
+        setErrorMsg("L'adresse e-mail fournie est invalide.");
+        actionBtn.classList.remove("btn-loading");
+      });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -117,7 +133,9 @@ const AuthState = props => {
         getVerification: getVerification,
         caughtErr: [caughtErr, setCaughtErr],
         errorMsg: [errorMsg, setErrorMsg],
-        loading: [loading, setLoading]
+        loading: [loading, setLoading],
+        resetPassword: resetPassword,
+        emailSent: [emailSent, setEmailSent]
       }}
     >
       {props.children}

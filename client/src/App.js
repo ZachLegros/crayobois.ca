@@ -7,6 +7,7 @@ import GlobalState from "./components/context/GlobalState";
 import AuthState from "./components/context/AuthState";
 import User from "./components/signInAndSignUp/user";
 import LoggedInChecker from "./components/cvs/loggedInChecker";
+import ResetPassword from "./components/resetPassword/resetPassword";
 
 const App = () => {
   return (
@@ -26,6 +27,11 @@ const App = () => {
                   path="/utilisateur"
                   exact
                   render={props => <User {...props} />}
+                />
+                <Route
+                  path="/utilisateur/nouveau-mot-de-passe"
+                  exact
+                  render={props => <ResetPassword {...props} />}
                 />
                 <Route
                   path="/"
