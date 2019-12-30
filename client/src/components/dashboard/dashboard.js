@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [verified, setVerified] = useState(false);
   const [email, setEmail] = useState("");
   const [userNav, setUserNav] = useState("profile");
+  const [user, setUser] = authContext.user;
 
   // signout function
   function signout() {
@@ -44,6 +45,7 @@ const Dashboard = () => {
     getUsername();
     getVerification();
     getEmail();
+    authContext.getUserSession();
   }, []);
 
   return (
@@ -61,7 +63,7 @@ const Dashboard = () => {
               }}
               className="dashboard-hero-logout-btn"
             >
-              Déconnexion<i class="fas fa-sign-out-alt form-btn-icon"></i>
+              Déconnexion<i className="fas fa-sign-out-alt form-btn-icon"></i>
             </button>
           </div>
           <div className="dashboard-nav-container">
@@ -83,7 +85,7 @@ const Dashboard = () => {
               <li
                 className="dashboard-nav-link"
                 onClick={() => {
-                  setUserNav("bag");
+                  setUserNav("cart");
                 }}
               >
                 <a>
@@ -127,11 +129,11 @@ const Dashboard = () => {
           {/*Render profile*/}
           {userNav === "profile" ? <Profile /> : <React.Fragment />}
           {/*Render cart*/}
-          {userNav === "profile" ? <Cart /> : <React.Fragment />}
+          {userNav === "cart" ? <Cart /> : <React.Fragment />}
           {/*Render profile*/}
-          {userNav === "profile" ? <Orders /> : <React.Fragment />}
+          {userNav === "orders" ? <Orders /> : <React.Fragment />}
           {/*Render profile*/}
-          {userNav === "profile" ? <Settings /> : <React.Fragment />}
+          {userNav === "settings" ? <Settings /> : <React.Fragment />}
         </div>
       </section>
     </React.Fragment>

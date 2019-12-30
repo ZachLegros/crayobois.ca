@@ -5,7 +5,14 @@ import * as firebase from "firebase";
 const AuthState = props => {
   const [signInOrUp, setSignInOrUp] = useState("in");
   const [initializedFirebase, setInitializedFirebase] = useState(null);
-  const [user, setUser] = useState({ displayName: "" });
+  const [user, setUser] = useState({
+    dateCreated: "",
+    email: "",
+    fullName: "",
+    orders: [],
+    pensPurchased: [],
+    shoppingCart: []
+  });
   const [caughtErr, setCaughtErr] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -38,7 +45,7 @@ const AuthState = props => {
     });
   };
 
-  // sign up a user
+  // signup a user
   const signup = (name, email, password) => {
     const actionBtn = document.querySelector("#signup-action");
 
@@ -48,7 +55,10 @@ const AuthState = props => {
         auth.currentUser.updateProfile({ displayName: name }).then(() => {
           setCaughtErr(false);
           sendVerification();
-          setUser(cred.user);
+
+          // add user to firestore
+          addUserToFirestore(cred.user.uid, name, email);
+
           //ui update here
           const signupForm = document.querySelector("#signup-form");
           signupForm.reset();
@@ -63,18 +73,54 @@ const AuthState = props => {
       });
   };
 
+  // add user to firestore
+  const addUserToFirestore = (uid, name, email) => {
+    //get date
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+
+    db.collection("users")
+      .doc(uid)
+      .set({
+        dateCreated: date,
+        email: email,
+        fullName: name,
+        orders: [],
+        pensPurchased: [],
+        shoppingCart: []
+      });
+
+    // initializes the user's session
+    setUser({
+      dateCreated: date,
+      email: email,
+      fullName: name,
+      orders: [],
+      pensPurchased: [],
+      shoppingCart: []
+    });
+  };
+
+  // send email verification
   const sendVerification = () => {
     const user = auth.currentUser;
 
     user.sendEmailVerification();
   };
 
+  // signout user
   const signout = () => {
     auth.signOut();
     setSignInOrUp("in");
     setInitializedFirebase(null);
   };
 
+  // signin user
   const signin = (email, password) => {
     const actionBtn = document.querySelector("#signin-action");
 
@@ -83,8 +129,10 @@ const AuthState = props => {
       .then(cred => {
         setLoading(true);
         setCaughtErr(false);
-        setUser(cred.user);
-        console.log(cred.user)
+
+        // get user from db to initialize session
+        getUserSession();
+
         //ui update here
         const signinForm = document.querySelector("#signin-form");
         signinForm.reset();
@@ -97,21 +145,45 @@ const AuthState = props => {
       });
   };
 
+  // get user's session
+  const getUserSession = () => {
+    if (auth.currentUser !== null) {
+      db.collection("users")
+        .doc(auth.currentUser.uid)
+        .get()
+        .then(doc => {
+          const user = doc.data();
+          setUser({
+            dateCreated: user.dateCreated,
+            email: user.email,
+            fullName: user.fullName,
+            orders: user.orders,
+            pensPurchased: user.pensPurchased,
+            shoppingCart: user.shoppingCart
+          });
+        });
+    }
+  };
+
+  // check username
   const getUsername = () => {
     return auth.currentUser.displayName;
   };
 
+  // check email verified
   const getVerification = () => {
     return auth.currentUser.emailVerified;
   };
 
+  // check user' email
   const getEmail = () => {
     return auth.currentUser.email;
   };
 
+  // reset password of account related to email
   const resetPassword = email => {
     const actionBtn = document.querySelector("#forgot-password-action");
-    
+
     auth
       .sendPasswordResetEmail(email)
       .then(() => {
@@ -143,7 +215,8 @@ const AuthState = props => {
         errorMsg: [errorMsg, setErrorMsg],
         loading: [loading, setLoading],
         resetPassword: resetPassword,
-        emailSent: [emailSent, setEmailSent]
+        emailSent: [emailSent, setEmailSent],
+        getUserSession: getUserSession
       }}
     >
       {props.children}
