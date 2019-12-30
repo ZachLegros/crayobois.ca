@@ -1,6 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./dashboard.css";
 import AuthContext from "../context/authContext";
+import Profile from "./profile";
+import Cart from "./cart";
+import Orders from "./orders";
+import Settings from "./settings";
 
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
@@ -11,6 +15,7 @@ const Dashboard = () => {
   const [name, setName] = useState("");
   const [verified, setVerified] = useState(false);
   const [email, setEmail] = useState("");
+  const [userNav, setUserNav] = useState("profile");
 
   // signout function
   function signout() {
@@ -51,37 +56,67 @@ const Dashboard = () => {
             <span className="dashboard-hero-username">{name}</span>
             <span className="dashboard-hero-email">{email}</span>
             <button
-            onClick={() => {
-              signout();
-            }}
-            className="dashboard-hero-logout"
-          >
-            Déconnexion<i class="fas fa-sign-out-alt form-btn-icon"></i>
-          </button>
+              onClick={() => {
+                signout();
+              }}
+              className="dashboard-hero-logout-btn"
+            >
+              Déconnexion<i class="fas fa-sign-out-alt form-btn-icon"></i>
+            </button>
           </div>
           <div className="dashboard-nav-container">
             <ul className="dashboard-nav">
-              <li className="dashboard-nav-link">
+              <li
+                className="dashboard-nav-link"
+                onClick={() => {
+                  setUserNav("profile");
+                }}
+              >
                 <a>
-                <div className="dashboard-nav-icon-container"> <i className="fas fa-address-card dashboard-nav-icon"></i></div>Mon
-                  profil
+                  <div className="dashboard-nav-icon-container">
+                    {" "}
+                    <i className="fas fa-address-card dashboard-nav-icon"></i>
+                  </div>
+                  Mon profil
                 </a>
               </li>
-              <li className="dashboard-nav-link">
+              <li
+                className="dashboard-nav-link"
+                onClick={() => {
+                  setUserNav("bag");
+                }}
+              >
                 <a>
-                <div className="dashboard-nav-icon-container"> <i className="fas fa-shopping-basket dashboard-nav-icon"></i></div>
+                  <div className="dashboard-nav-icon-container">
+                    {" "}
+                    <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
+                  </div>
                   Mon panier
                 </a>
               </li>
-              <li className="dashboard-nav-link">
+              <li
+                className="dashboard-nav-link"
+                onClick={() => {
+                  setUserNav("orders");
+                }}
+              >
                 <a>
-                <div className="dashboard-nav-icon-container"><i className="fas fa-dolly-flatbed dashboard-nav-icon"></i></div>Mes
-                  commandes
+                  <div className="dashboard-nav-icon-container">
+                    <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
+                  </div>
+                  Mes commandes
                 </a>
               </li>
-              <li className="dashboard-nav-link">
+              <li
+                className="dashboard-nav-link"
+                onClick={() => {
+                  setUserNav("settings");
+                }}
+              >
                 <a>
-                 <div className="dashboard-nav-icon-container"><i className="fas fa-user-cog dashboard-nav-icon"></i></div>
+                  <div className="dashboard-nav-icon-container">
+                    <i className="fas fa-user-cog dashboard-nav-icon"></i>
+                  </div>
                   Paramètres
                 </a>
               </li>
@@ -89,12 +124,14 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dashboard-content">
-          <span>content</span>
-          {verified ? (
-            <span>Email verified</span>
-          ) : (
-            <span>Email not verified</span>
-          )}
+          {/*Render profile*/}
+          {userNav === "profile" ? <Profile /> : <React.Fragment />}
+          {/*Render cart*/}
+          {userNav === "profile" ? <Cart /> : <React.Fragment />}
+          {/*Render profile*/}
+          {userNav === "profile" ? <Orders /> : <React.Fragment />}
+          {/*Render profile*/}
+          {userNav === "profile" ? <Settings /> : <React.Fragment />}
         </div>
       </section>
     </React.Fragment>
