@@ -6,6 +6,7 @@ const AuthState = props => {
   const [signInOrUp, setSignInOrUp] = useState("in");
   const [initializedFirebase, setInitializedFirebase] = useState(null);
   const [user, setUser] = useState({
+    color: "",
     dateCreated: "",
     email: "",
     fullName: "",
@@ -17,6 +18,29 @@ const AuthState = props => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+
+  // random color generator for user profile
+  function getRandomColor() {
+    const availableColors = [
+      "#df5872",
+      "#a9ebdb",
+      "#62cdfe",
+      "#404936",
+      "#d2061f",
+      "#c907f5",
+      "#6bb3be",
+      "#2b9f8b",
+      "#f93bb7",
+      "#7be311",
+      "var(--orange)",
+      "var(--green)",
+      "#a50261",
+      "var(--black)"
+    ];
+    const max = availableColors.length;
+    const randIdx = Math.floor(Math.random() * Math.floor(max));
+    return availableColors[randIdx];
+  }
 
   // firebase config
   const firebaseConfig = {
@@ -84,26 +108,23 @@ const AuthState = props => {
       "-" +
       today.getDate();
 
-    db.collection("users")
-      .doc(uid)
-      .set({
-        dateCreated: date,
-        email: email,
-        fullName: name,
-        orders: [],
-        pensPurchased: [],
-        shoppingCart: []
-      });
-
-    // initializes the user's session
-    setUser({
+    const userObj = {
+      color: getRandomColor(),
       dateCreated: date,
       email: email,
       fullName: name,
       orders: [],
       pensPurchased: [],
       shoppingCart: []
-    });
+    };
+
+    // adding user to db
+    db.collection("users")
+      .doc(uid)
+      .set(userObj);
+
+    // initializes the user's session
+    setUser(userObj);
   };
 
   // send email verification
@@ -118,6 +139,8 @@ const AuthState = props => {
     auth.signOut();
     setSignInOrUp("in");
     setInitializedFirebase(null);
+    const root = document.documentElement;
+    root.style.setProperty("--profile_color", "#fff");
   };
 
   // signin user
@@ -152,14 +175,18 @@ const AuthState = props => {
         .doc(auth.currentUser.uid)
         .get()
         .then(doc => {
-          const user = doc.data();
+          const userData = doc.data();
+          const color = userData.color;
+          const root = document.documentElement;
+          root.style.setProperty("--profile_color", color);
           setUser({
-            dateCreated: user.dateCreated,
-            email: user.email,
-            fullName: user.fullName,
-            orders: user.orders,
-            pensPurchased: user.pensPurchased,
-            shoppingCart: user.shoppingCart
+            color: userData.color,
+            dateCreated: userData.dateCreated,
+            email: userData.email,
+            fullName: userData.fullName,
+            orders: userData.orders,
+            pensPurchased: userData.pensPurchased,
+            shoppingCart: userData.shoppingCart
           });
         });
     }
@@ -198,6 +225,24 @@ const AuthState = props => {
       });
   };
 
+  const userArrayUpdater = (target, value) => {
+    db.collection("users")
+      .doc(auth.currentUser.uid)
+      .get()
+      .then(doc => {
+        const userData = doc.data();
+        const prevProp = userData[target];
+        console.log(prevProp);
+      });
+    // const newProp = prevProp.push(value);
+
+    /* db.collection("users")
+      .doc(uid)
+      .update({
+        [target]: newProp
+      });*/
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -216,7 +261,8 @@ const AuthState = props => {
         loading: [loading, setLoading],
         resetPassword: resetPassword,
         emailSent: [emailSent, setEmailSent],
-        getUserSession: getUserSession
+        getUserSession: getUserSession,
+        userArrayUpdater: userArrayUpdater
       }}
     >
       {props.children}
