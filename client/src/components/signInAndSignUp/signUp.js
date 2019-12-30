@@ -96,7 +96,7 @@ const SignUp = () => {
               </div>
               <div className="action-container">
                 <button id="signup-action" className="form-btn">
-                  Créer un compte
+                  Créer un compte<i class="fas fa-user-plus form-btn-icon"></i>
                 </button>
               </div>
             </form>
@@ -111,7 +111,7 @@ const SignUp = () => {
                 setCaughtErr(false);
               }}
             >
-              Se connecter
+              Se connecter<i class="fas fa-sign-in-alt form-btn-icon"></i>
             </button>
           </div>
         </section>

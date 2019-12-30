@@ -84,6 +84,7 @@ const AuthState = props => {
         setLoading(true);
         setCaughtErr(false);
         setUser(cred.user);
+        console.log(cred.user)
         //ui update here
         const signinForm = document.querySelector("#signin-form");
         signinForm.reset();
@@ -102,6 +103,10 @@ const AuthState = props => {
 
   const getVerification = () => {
     return auth.currentUser.emailVerified;
+  };
+
+  const getEmail = () => {
+    return auth.currentUser.email;
   };
 
   const resetPassword = email => {
@@ -133,6 +138,7 @@ const AuthState = props => {
         user: [user, setUser],
         getUsername: getUsername,
         getVerification: getVerification,
+        getEmail: getEmail,
         caughtErr: [caughtErr, setCaughtErr],
         errorMsg: [errorMsg, setErrorMsg],
         loading: [loading, setLoading],

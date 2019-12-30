@@ -16,7 +16,8 @@ function CvsAlert(props) {
           <span className="alert-button cvs-alert-cancel" onClick={() => {
               setCvsAlertOn(false);
           }}>Annuler</span>
-          <span className="alert-button cvs-alert-yes">Oui</span>
+          <span className="alert-button
+           cvs-alert-yes">Oui</span>
         </div>
       </div>
       <div className="overlay"></div>
