@@ -10,8 +10,8 @@ function CvsAlert(props) {
   const [myPen, setMyPen] = context.myPen;
   const [prevToggleId, setPrevToggleId] = context.prevToggleId;
   const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
-  const [materialPrice, setMaterialPrice] = context.setMaterialPrice;
-  const [hardwarePrice, setHardwarePrice] = context.setHardwarePrice;
+  const [materialPrice, setMaterialPrice] = context.materialPrice;
+  const [hardwarePrice, setHardwarePrice] = context.hardwarePrice;
 
   return (
     <React.Fragment>
@@ -32,6 +32,8 @@ function CvsAlert(props) {
             className="alert-button
            cvs-alert-yes"
             onClick={() => {
+              // update shopping cart
+              authContext.userArrayUpdater("shoppingCart", myPen);
               // state initialization
               setCvsAlertOn(false);
               context.cvsNav("", "materials");
@@ -43,8 +45,6 @@ function CvsAlert(props) {
                 { obj: null, id: 0 },
                 { obj: null, id: 1 }
               ]);
-              // update shopping cart
-              authContext.userArrayUpdater("shoppingCart", myPen);
             }}
           >
             Oui
