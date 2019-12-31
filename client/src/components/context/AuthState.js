@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AuthContext from "./authContext";
 import * as firebase from "firebase";
+const uuidv4 = require("uuid/v4");
 
 const AuthState = props => {
   const [signInOrUp, setSignInOrUp] = useState("in");
@@ -188,8 +189,23 @@ const AuthState = props => {
             pensPurchased: userData.pensPurchased,
             shoppingCart: userData.shoppingCart
           });
+          userSessionHandler();
         });
     }
+  };
+
+  // user session listener
+  const userSessionHandler = () => {
+    const data = db
+      .collection("users")
+      .doc(
+        auth.currentUser.uid
+      ); /*.onSnapshot(querySnapshot => {
+      let changes = querySnapshot.docChanges;
+      console.log("listening");
+      console.log(changes);
+    });*/
+    console.log(data);
   };
 
   // check username
@@ -225,8 +241,9 @@ const AuthState = props => {
       });
   };
 
-  const userArrayUpdater = (target, value) => {
+  const AddToCart = value => {
     const uid = auth.currentUser.uid;
+    const target = "shoppingCart";
 
     db.collection("users")
       .doc(uid)
@@ -235,19 +252,51 @@ const AuthState = props => {
         const data = doc.data();
         var userData = data[target];
         var newObj = {};
+        newObj["id"] = uuidv4();
         newObj["pen"] = value;
         newObj["quantity"] = 1;
-        
+
         // add new object in array
         userData.push(newObj);
 
-        console.log(userData);
         //add new array to db
         db.collection("users")
           .doc(uid)
           .update({
             [target]: userData
           });
+      });
+  };
+
+  const removeFromCart = id => {
+    const uid = auth.currentUser.uid;
+
+    db.collection("users")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        var cart = data["shoppingCart"];
+        var newCart = [];
+        for (var i = 0; i < cart.length; i++) {
+          if (cart[i].id !== id) {
+            newCart.push(cart[i]);
+          }
+        }
+        //add new array to db
+        db.collection("users")
+          .doc(uid)
+          .update({
+            ["shoppingCart"]: newCart
+          });
+
+        const prevUser = user;
+        const idx = prevUser.shoppingCart.findIndex(pen => pen.id === id);
+        prevUser.shoppingCart.splice(idx, 1);
+        const newUser = prevUser;
+        console.log(newUser);
+
+        setUser(newUser);
       });
   };
 
@@ -270,7 +319,8 @@ const AuthState = props => {
         resetPassword: resetPassword,
         emailSent: [emailSent, setEmailSent],
         getUserSession: getUserSession,
-        userArrayUpdater: userArrayUpdater
+        AddToCart: AddToCart,
+        removeFromCart: removeFromCart
       }}
     >
       {props.children}

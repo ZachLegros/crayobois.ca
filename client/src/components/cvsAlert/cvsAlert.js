@@ -33,7 +33,7 @@ function CvsAlert(props) {
            cvs-alert-yes"
             onClick={() => {
               // update shopping cart
-              authContext.userArrayUpdater("shoppingCart", myPen);
+              authContext.AddToCart(myPen);
               // state initialization
               setCvsAlertOn(false);
               context.cvsNav("", "materials");
