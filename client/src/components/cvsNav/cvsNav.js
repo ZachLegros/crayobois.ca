@@ -15,7 +15,7 @@ function CvsNav(props) {
             : "cvs-btn cvs-back"
         }
         onClick={() => {
-          context.cvsNav("back");
+          context.cvsNav("back", null);
         }}
       >
         Précédent
@@ -33,7 +33,7 @@ function CvsNav(props) {
             : "cvs-btn cvs-next"
         }
         onClick={() => {
-          context.cvsNav("next");
+          context.cvsNav("next", null);
         }}
       >
         Suivant

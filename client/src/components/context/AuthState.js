@@ -226,21 +226,28 @@ const AuthState = props => {
   };
 
   const userArrayUpdater = (target, value) => {
+    const uid = auth.currentUser.uid;
+
     db.collection("users")
-      .doc(auth.currentUser.uid)
+      .doc(uid)
       .get()
       .then(doc => {
-        const userData = doc.data();
-        const prevProp = userData[target];
-        console.log(prevProp);
-      });
-    // const newProp = prevProp.push(value);
+        const data = doc.data();
+        var userData = data[target];
+        var newObj = {};
+        newObj[userData.length + 1] = value;
+        
+        // add new object in array
+        userData.push(newObj);
 
-    /* db.collection("users")
-      .doc(uid)
-      .update({
-        [target]: newProp
-      });*/
+        console.log(userData);
+        //add new array to db
+        db.collection("users")
+          .doc(uid)
+          .update({
+            [target]: userData
+          });
+      });
   };
 
   return (

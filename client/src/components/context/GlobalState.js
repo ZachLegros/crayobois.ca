@@ -114,7 +114,7 @@ const GlobalState = props => {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
         newArr[idx].obj = null;
-      //adding item
+        //adding item
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
@@ -130,7 +130,7 @@ const GlobalState = props => {
         var newComponentPrice = 0;
         newArr[idx].id = 0;
         newArr[idx].obj = null;
-      //adding item
+        //adding item
       } else {
         var newComponentPrice = obj.price;
         newArr[idx].id = obj._id;
@@ -168,25 +168,32 @@ const GlobalState = props => {
     return obj;
   }
 
-  function cvsNav(action) {
-    const idx = cvsPages.indexOf(activeCvsPage);
-    if (action === "back" && activeCvsPage !== "materials") {
+  function cvsNav(action, goTo) {
+    if (goTo === null) {
+      const idx = cvsPages.indexOf(activeCvsPage);
+      if (action === "back" && activeCvsPage !== "materials") {
+        toggleLoading();
+        scrollTop();
+        setActiveCvsPage(cvsPages[idx - 1]);
+        setCvsDropDownToggle(false);
+      } else if (
+        action === "next" &&
+        idx !== cvsPages.length - 1 &&
+        myPen[0].obj !== null
+      ) {
+        toggleLoading();
+        scrollTop();
+        setActiveCvsPage(cvsPages[idx + 1]);
+        setCvsDropDownToggle(false);
+      } else if (idx === cvsPages.length - 1 && myPen[1].obj !== null) {
+        setCvsAlertOn(true);
+        setCvsDropDownToggle(false);
+      }
+    } else {
+      const idx = cvsPages.indexOf(goTo);
+      setActiveCvsPage(cvsPages[idx]);
       toggleLoading();
       scrollTop();
-      setActiveCvsPage(cvsPages[idx - 1]);
-      setCvsDropDownToggle(false);
-    } else if (
-      action === "next" &&
-      idx !== cvsPages.length - 1 &&
-      myPen[0].obj !== null
-    ) {
-      toggleLoading();
-      scrollTop();
-      setActiveCvsPage(cvsPages[idx + 1]);
-      setCvsDropDownToggle(false);
-    } else if (idx === cvsPages.length - 1 && myPen[1].obj !== null) {
-      setCvsAlertOn(true);
-      setCvsDropDownToggle(false);
     }
   }
 
@@ -228,7 +235,7 @@ const GlobalState = props => {
         scrollTop: scrollTop,
         newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
-        cvsAlertOn: [cvsAlertOn, setCvsAlertOn],
+        cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
       }}
     >
       {props.children}

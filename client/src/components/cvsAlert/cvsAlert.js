@@ -7,7 +7,11 @@ function CvsAlert(props) {
   const context = useContext(CvsContext);
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
   const authContext = useContext(AuthContext);
-  const myPen = context.myPen[0];
+  const [myPen, setMyPen] = context.myPen;
+  const [prevToggleId, setPrevToggleId] = context.prevToggleId;
+  const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
+  const [materialPrice, setMaterialPrice] = context.setMaterialPrice;
+  const [hardwarePrice, setHardwarePrice] = context.setHardwarePrice;
 
   return (
     <React.Fragment>
@@ -28,6 +32,18 @@ function CvsAlert(props) {
             className="alert-button
            cvs-alert-yes"
             onClick={() => {
+              // state initialization
+              setCvsAlertOn(false);
+              context.cvsNav("", "materials");
+              setPrevToggleId(0);
+              setMaterialPrice(0);
+              setPrevToggleHaw({});
+              setHardwarePrice(0);
+              setMyPen([
+                { obj: null, id: 0 },
+                { obj: null, id: 1 }
+              ]);
+              // update shopping cart
               authContext.userArrayUpdater("shoppingCart", myPen);
             }}
           >
