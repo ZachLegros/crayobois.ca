@@ -16,7 +16,6 @@ function SubTotal(props) {
       <div className="sub-total-container"> 
         <span className="sub-total">Sous-total: </span>
         <span className="sub-total-value">{formatter.format(sTotal)}</span>
-        
       </div>
   );
 }

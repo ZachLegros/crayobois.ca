@@ -8,48 +8,74 @@ const Cart = props => {
   const [user, setUser] = authContext.user;
   const cart = user.shoppingCart;
 
+  const formatter = new Intl.NumberFormat("fr-CA", {
+    style: "currency",
+    currency: "CAD",
+    minimumFractionDigits: 2
+  });
 
+  const subTotalCalculator = (inputValue, itemsPrice) => {
+    return inputValue + itemsPrice;
+  };
 
   useEffect(() => {}, []);
 
   return (
     <React.Fragment>
       <span className="dashboard-content-header">Mon panier</span>
-      <button onClick={() => console.log(cart)}></button>
       <div className="cart-container">
-          {() => {return <span>hello</span>}}
-        {() => {
-          for (var i = 0; i < cart.length; i++) {
-            return (
-              <div className="cart-pen-container" key={uuidv4()}>
-                <React.Fragment>
-                  {() => {
-                    for (var e = 0; e < cart[i]["pen"].length; e++) {
-                      const item = cart[i]["pen"][e];
-                      return (
-                        <React.Fragment>
-                          <span>{item.name}</span>
-                          <span>{item.price}</span>
-                        </React.Fragment>
-                      );
-                    }
-                  }}
-                </React.Fragment>
-              </div>
-            );
-          }
-        }}
-
-        {/*{user.shoppingCart.map(pens => {
+        {user.shoppingCart.map(pens => {
           return (
             <div className="cart-pen-container" key={uuidv4()}>
-              <React.Fragment>
-                <span>{pens.pen[0].obj.name}</span>
-                <span>{pens.pen[0].obj.price}</span>
-              </React.Fragment>
+              <div className="cart-pen-delete">
+                <i className="fas fa-times-circle"></i>
+              </div>
+              {pens.pen.map(item => {
+                return (
+                  <React.Fragment key={uuidv4()}>
+                    <div className="cart-pen-item">
+                      <div className="cart-pen-img-and-name">
+                        <img
+                          src={item.obj.path}
+                          className="cart-pen-img"
+                          key={uuidv4()}
+                        />
+
+                        {item.obj.name ? (
+                          <span className="cart-pen-item-name" key={uuidv4()}>
+                            {item.obj.name}
+                          </span>
+                        ) : (
+                          <span className="cart-pen-item-name" key={uuidv4()}>
+                            {item.obj.type}{" "}
+                            <span className="cart-pen-item-color">
+                              {item.obj.color}
+                            </span>
+                          </span>
+                        )}
+                      </div>
+                      <span className="cart-pen-item-price" key={uuidv4()}>
+                        {formatter.format(item.obj.price)}
+                      </span>
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+              <div className="cart-pen-container-bottom">
+                <div className="qty-input">
+                  <span>Quantité (max. 10): </span>
+                  <input
+                    type="number"
+                    name="quantity"
+                    defaultValue="1"
+                    min="1"
+                    max="10"
+                  />
+                </div>
+              </div>
             </div>
           );
-        })}*/}
+        })}
       </div>
     </React.Fragment>
   );

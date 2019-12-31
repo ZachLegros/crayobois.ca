@@ -236,6 +236,7 @@ const AuthState = props => {
         var userData = data[target];
         var newObj = {};
         newObj["pen"] = value;
+        newObj["quantity"] = 1;
         
         // add new object in array
         userData.push(newObj);
