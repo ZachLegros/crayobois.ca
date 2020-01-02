@@ -19,6 +19,7 @@
   align-items: space-around;
   flex-direction: column;
   padding: 25px 25px 0 25px;
+  margin-top: -1px;
 }
 
 .cart-pen-img-and-name {

@@ -20,6 +20,12 @@ const AuthState = props => {
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [cart, setCart] = useState([]);
+  const [dashboardAlertOn, setDashboardAlertOn] = useState(false);
+  const [alert, setAlert] = useState({
+    message: "",
+    action: "",
+    placeHolder: ""
+  });
 
   // random color generator for user profile
   function getRandomColor() {
@@ -195,19 +201,9 @@ const AuthState = props => {
     }
   };
 
-  // check username
-  const getUsername = () => {
-    return auth.currentUser.displayName;
-  };
-
   // check email verified
   const getVerification = () => {
     return auth.currentUser.emailVerified;
-  };
-
-  // check user' email
-  const getEmail = () => {
-    return auth.currentUser.email;
   };
 
   // reset password of account related to email
@@ -257,20 +253,19 @@ const AuthState = props => {
 
   function removeFromCart(id) {
     const uid = auth.currentUser.uid;
-    var cart = [];
 
-    const newUser = user;
+    const newUser = {...user};
     const idx = newUser.shoppingCart.findIndex(pen => pen.id === id);
     newUser.shoppingCart.splice(idx, 1);
     setUser(newUser);
-    cart = newUser.shoppingCart;
+    const cart = newUser.shoppingCart;
 
     db.collection("users")
       .doc(uid)
       .get()
       .then(doc => {
         const data = doc.data();
-        var cart = data["shoppingCart"];
+        const cart = data["shoppingCart"];
         var newCart = [];
         for (var i = 0; i < cart.length; i++) {
           if (cart[i].id !== id) {
@@ -284,20 +279,63 @@ const AuthState = props => {
             ["shoppingCart"]: newCart
           });
       });
-    
+
     return cart;
   }
 
   const updateCart = newCart => {
     const uid = auth.currentUser.uid;
 
-      //add new array to db
+    //add new array to db
+    db.collection("users")
+      .doc(uid)
+      .update({
+        ["shoppingCart"]: newCart
+      });
+  };
+
+  const alertParams = (msg, action, placeHolder) => {
+    setDashboardAlertOn(true);
+    setAlert({
+      message: msg,
+      action: action,
+      placeHolder: placeHolder
+    });
+  };
+
+  const changeEmail = newEmail => {
+    const uid = auth.currentUser.uid;
+    auth.currentUser.updateEmail(newEmail);
+
+    db.collection("users")
+      .doc(uid)
+      .update({
+        ["email"]: newEmail
+      });
+
+    var userCopy = Object.assign([], user);
+    userCopy.email = newEmail;
+    setUser(userCopy);
+  };
+
+  const changeName = newName => {
+    const uid = auth.currentUser.uid;
+    auth.currentUser.updateProfile({ displayName: newName }).then(() => {
       db.collection("users")
         .doc(uid)
         .update({
-          ["shoppingCart"]: newCart
+          ["fullName"]: newName
         });
-  }
+
+      var userCopy = Object.assign([], user);
+      userCopy.fullName = newName;
+      setUser(userCopy);
+    });
+  };
+
+  const changePassword = newPassword => {
+    auth.currentUser.updatePassword(newPassword);
+  };
 
   return (
     <AuthContext.Provider
@@ -309,9 +347,7 @@ const AuthState = props => {
         initializedFirebase: [initializedFirebase, setInitializedFirebase],
         isInitialized: isInitialized,
         user: [user, setUser],
-        getUsername: getUsername,
         getVerification: getVerification,
-        getEmail: getEmail,
         caughtErr: [caughtErr, setCaughtErr],
         errorMsg: [errorMsg, setErrorMsg],
         loading: [loading, setLoading],
@@ -321,7 +357,13 @@ const AuthState = props => {
         AddToCart: AddToCart,
         removeFromCart: removeFromCart,
         cart: [cart, setCart],
-        updateCart: updateCart
+        updateCart: updateCart,
+        alert: alert,
+        alertParams: alertParams,
+        changeEmail: changeEmail,
+        changeName: changeName,
+        changePassword: changePassword,
+        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn]
       }}
     >
       {props.children}

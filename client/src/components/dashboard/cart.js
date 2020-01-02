@@ -18,13 +18,17 @@ const Cart = props => {
   const getSubTotal = cart => {
     var value = 0;
 
-    for (var i = 0; i < cart.length; i++) {
-      var priceOfObjects = 0;
-      for (var e = 0; e < cart[i].pen.length; e++) {
-        priceOfObjects += cart[i].pen[e].obj.price;
-      }
+    if (cart.length === 0) {
+      value = 0;
+    } else {
+      for (var i = 0; i < cart.length; i++) {
+        var priceOfObjects = 0;
+        for (var e = 0; e < cart[i].pen.length; e++) {
+          priceOfObjects += cart[i].pen[e].obj.price;
+        }
 
-      value += priceOfObjects * cart[i].quantity;
+        value += priceOfObjects * cart[i].quantity;
+      }
     }
 
     return value;
@@ -47,10 +51,11 @@ const Cart = props => {
 
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
-  }, [cart]);
+  }, []);
 
   return (
     <React.Fragment>
+      <span className="dashboard-content-header">Mon panier</span>
       <div className="cart-container">
         {cart.length !== 0 ? (
           cart.map((pens, index) => {
@@ -76,6 +81,7 @@ const Cart = props => {
                     onClick={async () => {
                       const newCart = await authContext.removeFromCart(pens.id);
                       setCart(newCart);
+                      setSubTotal(getSubTotal(newCart));
                     }}
                   >
                     <i className="fas fa-times-circle"></i>

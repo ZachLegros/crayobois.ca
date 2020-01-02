@@ -4,18 +4,18 @@ import AuthContext from "../context/authContext";
 import Profile from "./profile";
 import Cart from "./cart";
 import Orders from "./orders";
+import DashboardAlert from "./dashboardAlert";
 
-const Dashboard = (props) => {
+const Dashboard = props => {
   const authContext = useContext(AuthContext);
   const [
     initializedFirebase,
     setInitializedFirebase
   ] = authContext.initializedFirebase;
-  const [name, setName] = useState("");
-  const [verified, setVerified] = useState(false);
-  const [email, setEmail] = useState("");
-  const [userNav, setUserNav] = useState("profile");
   const [user, setUser] = authContext.user;
+  const [verified, setVerified] = useState(false);
+  const [userNav, setUserNav] = useState("profile");
+  const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
 
   // signout function
   function signout() {
@@ -23,39 +23,26 @@ const Dashboard = (props) => {
     setInitializedFirebase(null);
   }
 
-  // get name of user
-  const getUsername = () => {
-    const uName = authContext.getUsername();
-    setName(uName);
-  };
-
   // get verification of email state
   const getVerification = () => {
     const verification = authContext.getVerification();
     setVerified(verification);
   };
 
-  const getEmail = () => {
-    const email = authContext.getEmail();
-    setEmail(email);
-  };
-
   useEffect(() => {
-    getUsername();
     getVerification();
-    getEmail();
     authContext.getUserSession();
   }, []);
 
   return (
     <React.Fragment>
-      {/*Test*/}
+      {dashboardAlertOn === true ? <DashboardAlert /> : <React.Fragment />}
       <section className="dashboard">
         <div className="dashboard-user">
           <div className="dashboard-hero">
             <i className="fas fa-user dashboard-user-icon"></i>
-            <span className="dashboard-hero-username">{name}</span>
-            <span className="dashboard-hero-email">{email}</span>
+            <span className="dashboard-hero-username">{user.fullName}</span>
+            <span className="dashboard-hero-email">{user.email}</span>
             <button
               onClick={() => {
                 signout();
@@ -99,7 +86,6 @@ const Dashboard = (props) => {
                 className="dashboard-nav-link"
                 onClick={() => {
                   setUserNav("orders");
-
                 }}
               >
                 <a>
@@ -109,7 +95,6 @@ const Dashboard = (props) => {
                   Mes commandes
                 </a>
               </li>
-             
             </ul>
           </div>
         </div>
