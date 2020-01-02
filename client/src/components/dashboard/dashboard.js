@@ -17,6 +17,7 @@ const Dashboard = props => {
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
+  const cart = user.shoppingCart;
 
   // signout function
   function signout() {
@@ -80,7 +81,7 @@ const Dashboard = props => {
                     {" "}
                     <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                   </div>
-                  Mon panier
+                  Mon panier {cart.length === 0 ? "" : `(${cart.length})`}
                 </a>
               </li>
               <li
