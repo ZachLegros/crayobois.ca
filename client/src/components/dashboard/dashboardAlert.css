@@ -123,16 +123,28 @@
 }
 
 @media only screen and (max-width: 825px) {
-    .dashboard-alert-msg {
-        font-size: 1rem;
-      }
+  .dashboard-alert-msg {
+    font-size: 1rem;
+  }
 
-    .reset-password-email {
-        font-size: 1rem;
-        margin-bottom: 12.5px;
-      } 
+  .reset-password-email {
+    font-size: 1rem;
+    margin-bottom: 12.5px;
+  }
 
-      .dashboard-alert-msg {
-        margin-bottom: 12.5px;
-      }
+  .dashboard-alert-msg {
+    margin-bottom: 12.5px;
+  }
+
+  .dashboard-alert {
+    width: 65%;
+  }
+
+  .dashboard-alert-action {
+    font-size: 0.95rem;
+  }
+
+  .dashboard-alert-cancel {
+    font-size: 0.95rem;
+  }
 }

@@ -84,9 +84,19 @@
   display: flex;
 }
 
-input[type="number"]::-webkit-inner-spin-button {
-  opacity: 0;
-  display: none;
+.qty-input input {
+    width: 45px;
+    margin-left: 10px;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 .cart-content-footer {
@@ -138,5 +148,6 @@ input[type="number"]::-webkit-inner-spin-button {
       margin: 0;
       padding: 25px;
       font-size: 1.1rem;
+      font-weight: 500;
   }
 }

@@ -102,7 +102,7 @@ const Dashboard = props => {
               <li className="dashboard-mobile-current">
                 {userNav === "profile" ? (
                   // get selected link
-                  <li
+                  <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("profile");
@@ -123,10 +123,10 @@ const Dashboard = props => {
                         }
                       ></i>
                     </a>
-                  </li>
+                  </span>
                 ) : // get selected link
                 userNav === "cart" ? (
-                  <li
+                  <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("cart");
@@ -139,16 +139,18 @@ const Dashboard = props => {
                         <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                       </div>
                       Mon panier
-                      <i className={
+                      <i
+                        className={
                           dropdownToggled
                             ? "fas fa-chevron-down userDropdownToggleIcon rotated"
                             : "fas fa-chevron-down userDropdownToggleIcon"
-                        }></i>
+                        }
+                      ></i>
                     </a>
-                  </li>
+                  </span>
                 ) : (
                   // get selected link
-                  <li
+                  <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("orders");
@@ -161,13 +163,15 @@ const Dashboard = props => {
                         <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
                       </div>
                       Mes commandes
-                      <i className={
+                      <i
+                        className={
                           dropdownToggled
                             ? "fas fa-chevron-down userDropdownToggleIcon rotated"
                             : "fas fa-chevron-down userDropdownToggleIcon"
-                        }></i>
+                        }
+                      ></i>
                     </a>
-                  </li>
+                  </span>
                 )}
               </li>
               {/*Dropdown*/}
@@ -175,7 +179,7 @@ const Dashboard = props => {
                 <li className="dashboard-mobile-dropdown">
                   <ul className="dashboard-mobile-nav">
                     {userNav !== "profile" ? (
-                      <li
+                      <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
                           setUserNav("profile");
@@ -188,12 +192,12 @@ const Dashboard = props => {
                           </div>
                           Mon profil
                         </a>
-                      </li>
+                      </span>
                     ) : (
                       <React.Fragment />
                     )}
                     {userNav !== "cart" ? (
-                      <li
+                      <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
                           setUserNav("cart");
@@ -206,12 +210,12 @@ const Dashboard = props => {
                           </div>
                           Mon panier
                         </a>
-                      </li>
+                      </span>
                     ) : (
                       <React.Fragment />
                     )}
                     {userNav !== "orders" ? (
-                      <li
+                      <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
                           setUserNav("orders");
@@ -224,7 +228,7 @@ const Dashboard = props => {
                           </div>
                           Mes commandes
                         </a>
-                      </li>
+                      </span>
                     ) : (
                       <React.Fragment />
                     )}

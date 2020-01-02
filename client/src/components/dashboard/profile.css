@@ -102,4 +102,8 @@
     .profile-attribute-text {
         flex-direction: column;
     }
+
+    .profile-change-password {
+        margin-bottom: 12.5px;
+    }
 }

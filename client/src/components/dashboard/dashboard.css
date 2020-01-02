@@ -247,7 +247,14 @@
 }
 
 .dashboard-mobile-current {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.dashboard-notice {
+  margin-top: 25px;
+  color: var(--black);
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 /*Responsiveness*/
@@ -320,6 +327,15 @@
 
   .profile-attribute {
     margin: 12.5px 0 12.5px 0;
+  }
+
+  .dashboard-notice {
+    margin: 25px;
+    color: var(--black);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+    width: calc(100% - 50px);
   }
 }
 
