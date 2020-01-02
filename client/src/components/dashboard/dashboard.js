@@ -96,6 +96,50 @@ const Dashboard = props => {
                 </a>
               </li>
             </ul>
+            <ul className="dashboard-mobile-nav">
+              <li
+                className="dashboard-mobile-nav-link"
+                onClick={() => {
+                  setUserNav("profile");
+                }}
+              >
+                <a>
+                  <div className="dashboard-nav-icon-container">
+                    {" "}
+                    <i className="fas fa-address-card dashboard-nav-icon"></i>
+                  </div>
+                  Mon profil
+                </a>
+              </li>
+              <li
+                className="dashboard-mobile-nav-link"
+                onClick={() => {
+                  setUserNav("cart");
+                }}
+              >
+                <a>
+                  <div className="dashboard-nav-icon-container">
+                    {" "}
+                    <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
+                  </div>
+                  Mon panier
+                </a>
+              </li>
+              <li
+                className="dashboard-mobile-nav-link"
+                onClick={() => {
+                  setUserNav("orders");
+                }}
+              >
+                <a>
+                  <div className="dashboard-nav-icon-container">
+                    <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
+                  </div>
+                  Mes commandes
+                </a>
+              </li>
+            </ul>
+
           </div>
         </div>
         <div className="dashboard-content">
