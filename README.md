@@ -6,11 +6,11 @@ shopping cart and proceed to checkout with paypal or create a new pen.
 
 Later on, we plan to implement a secure login/signup service with Firebase to enhance user experience.
 
-Also, this website will include a Gallery which shows all sort of pictures from the company, a contact form and a landing page with an
+Also, this website will include a gallery which shows all sort of pictures from the company, a contact form and a landing page with an
 'About' section.
 
-For this application, we used the 'MERN' stack and plan on adding Firebase.
+For this application, we used the 'MERN' stack and Firebase.
 
-A quick preview of the 'Create your own pen' app (on page 'Choose the material'):
+A quick preview of the 'Create your own pen' app on page 'Choose the material':
 
 ![A quick preview of the 'Create your own pen' app](https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/github%20preview%2Fcvs%20preview.png?alt=media&token=9cf2f58d-7abc-44c8-b6ef-f6cfcd7a3488)
