@@ -1,0 +1,49 @@
+.profile-attribute {
+  margin: 50px 0 50px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-attribute-name {
+  color: hsl(204, 20%, 40%);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: 160px;
+}
+
+.profile-attribute-state {
+  color: hsl(204, 20%, 40%);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-left: 25px;
+  background-color: hsl(204, 20%, 92%);
+  padding: 12px 20px 12px 20px;
+  border-radius: 35px;
+}
+
+.fa-edit {
+  color: hsl(204, 20%, 60%);
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.profile-change-password {
+    background-color: var(--profile_color);
+    color: #fff;
+    padding: 8px 16px 8px 16px;
+    border-radius: 35px;
+    width: max-content;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .profile-change-password:hover {
+    opacity: 0.85;
+  }

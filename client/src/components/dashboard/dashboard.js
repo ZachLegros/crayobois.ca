@@ -4,7 +4,6 @@ import AuthContext from "../context/authContext";
 import Profile from "./profile";
 import Cart from "./cart";
 import Orders from "./orders";
-import Settings from "./settings";
 
 const Dashboard = (props) => {
   const authContext = useContext(AuthContext);
@@ -100,7 +99,7 @@ const Dashboard = (props) => {
                 className="dashboard-nav-link"
                 onClick={() => {
                   setUserNav("orders");
-                  
+
                 }}
               >
                 <a>
@@ -110,19 +109,7 @@ const Dashboard = (props) => {
                   Mes commandes
                 </a>
               </li>
-              <li
-                className="dashboard-nav-link"
-                onClick={() => {
-                  setUserNav("settings");
-                }}
-              >
-                <a>
-                  <div className="dashboard-nav-icon-container">
-                    <i className="fas fa-user-cog dashboard-nav-icon"></i>
-                  </div>
-                  Paramètres
-                </a>
-              </li>
+             
             </ul>
           </div>
         </div>
@@ -131,10 +118,8 @@ const Dashboard = (props) => {
           {userNav === "profile" ? <Profile /> : <React.Fragment />}
           {/*Render cart*/}
           {userNav === "cart" ? <Cart /> : <React.Fragment />}
-          {/*Render profile*/}
+          {/*Render orders*/}
           {userNav === "orders" ? <Orders /> : <React.Fragment />}
-          {/*Render profile*/}
-          {userNav === "settings" ? <Settings /> : <React.Fragment />}
         </div>
       </section>
     </React.Fragment>
