@@ -6,34 +6,22 @@ const DashboardAlert = props => {
   const authContext = useContext(AuthContext);
   const alert = authContext.alert;
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
+  const [user, setUser] = authContext.user;
 
   useEffect(() => {
     const actionForm = document.querySelector("#dashboard-alert-form");
     actionForm.addEventListener("submit", e => {
       e.preventDefault();
-
-      if (
-        actionForm["dashboard-alert-input"].value === "" ||
-        actionForm["dashboard-alert-input"].value.length <= 3
-      ) {
         //error handler here
-        console.log("non");
-      } else {
-        if (alert.action === "ChangeEmail") {
-          setDashboardAlertOn(false);
-          const value = actionForm["dashboard-alert-input"].value.trim();
-          authContext.changeEmail(value);
-        } else if (alert.action === "ChangeName") {
+        if (alert.action === "ChangeName") {
+          // get input and patch
           setDashboardAlertOn(false);
           const value = actionForm["dashboard-alert-input"].value.trim();
           authContext.changeName(value);
         } else if (alert.action === "ChangePassword") {
           setDashboardAlertOn(false);
-          const value = actionForm["dashboard-alert-input"].value;
-          authContext.changePassword(value);
+          authContext.changePassword();
         }
-      }
-      // get input and patch
     });
   }, []);
 
@@ -49,41 +37,25 @@ const DashboardAlert = props => {
         <span className="dashboard-alert-msg">{alert.message}</span>
         <form id="dashboard-alert-form" className="dashboard-alert-form">
           {alert.action === "ChangeName" ? (
-            <input
-              type="text"
-              name="nom"
-              className="dashboard-alert-input"
-              id="dashboard-alert-input"
-              autoComplete="off"
-              placeholder={alert.placeholder}
-              required
-            />
-          ) : (
-            <React.Fragment></React.Fragment>
-          )}
-          {alert.action === "ChangeEmail" ? (
-            <input
-              type="email"
-              name="email"
-              className="dashboard-alert-input"
-              id="dashboard-alert-input"
-              autoComplete="off"
-              placeholder={alert.placeholder}
-              required
-            />
+            <div className="input-field">
+              <input
+                type="text"
+                name="name"
+                id="dashboard-alert-input"
+                className="input"
+                placeholder={alert.placeholder}
+                autoComplete="off"
+                required
+              />
+              <div className="input-icon">
+                <i className="fas fa-id-badge"></i>
+              </div>
+            </div>
           ) : (
             <React.Fragment></React.Fragment>
           )}
           {alert.action === "ChangePassword" ? (
-            <input
-              type="password"
-              name="password"
-              id="dashboard-alert-input"
-              className="dashboard-alert-input"
-              autoComplete="off"
-              placeholder={alert.placeholder}
-              required
-            />
+            <span className="reset-password-email">{user.email}</span>
           ) : (
             <React.Fragment></React.Fragment>
           )}

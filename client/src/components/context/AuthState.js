@@ -254,7 +254,7 @@ const AuthState = props => {
   function removeFromCart(id) {
     const uid = auth.currentUser.uid;
 
-    const newUser = {...user};
+    const newUser = { ...user };
     const idx = newUser.shoppingCart.findIndex(pen => pen.id === id);
     newUser.shoppingCart.splice(idx, 1);
     setUser(newUser);
@@ -303,21 +303,6 @@ const AuthState = props => {
     });
   };
 
-  const changeEmail = newEmail => {
-    const uid = auth.currentUser.uid;
-    auth.currentUser.updateEmail(newEmail);
-
-    db.collection("users")
-      .doc(uid)
-      .update({
-        ["email"]: newEmail
-      });
-
-    var userCopy = Object.assign([], user);
-    userCopy.email = newEmail;
-    setUser(userCopy);
-  };
-
   const changeName = newName => {
     const uid = auth.currentUser.uid;
     auth.currentUser.updateProfile({ displayName: newName }).then(() => {
@@ -333,8 +318,10 @@ const AuthState = props => {
     });
   };
 
-  const changePassword = newPassword => {
-    auth.currentUser.updatePassword(newPassword);
+  const changePassword = () => {
+    const email = auth.currentUser.email;
+
+    auth.sendPasswordResetEmail(email);
   };
 
   return (
@@ -360,7 +347,6 @@ const AuthState = props => {
         updateCart: updateCart,
         alert: alert,
         alertParams: alertParams,
-        changeEmail: changeEmail,
         changeName: changeName,
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn]

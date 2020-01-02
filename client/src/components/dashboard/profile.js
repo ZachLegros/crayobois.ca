@@ -6,10 +6,8 @@ const Profile = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = authContext.user;
 
-  const nameMsg = "Entrez votre nouveau nom d'utilisateur ci-dessous.";
-  const emailMsg =
-    "Entrez votre nouvelle adresse e-mail ci-dessous. Une demande de confirmation y sera envoyé par la suite.";
-  const passMsg = "Entrez votre nouveau mot de passe ci-dessous";
+  const nameMsg = "Entrez votre nouveau nom d'utilisateur ci-dessous:";
+  const passMsg = "Une autorisation de changement de mot de passe sera envoyée à l'adresse suivante:";
 
   return (
     <React.Fragment>
@@ -29,14 +27,8 @@ const Profile = props => {
         </div>
         <div className="profile-attribute">
           <span className="profile-attribute-name">Adresse e-mail</span>
-          <span className="profile-attribute-state">
+          <span className="profile-attribute-state-uneditable">
             {user.email}
-            <i
-              className="fas fa-edit"
-              onClick={() => {
-                authContext.alertParams(emailMsg, "ChangeEmail", "Adresse e-mail");
-              }}
-            ></i>
           </span>
         </div>
         <div className="profile-attribute">

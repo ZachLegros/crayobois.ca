@@ -23,6 +23,13 @@
   border-radius: 35px;
 }
 
+.profile-attribute-state-uneditable {
+  color: var(--black);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-left: 25px;
+}
+
 .fa-edit {
   color: hsl(204, 20%, 60%);
   margin-left: 15px;
@@ -30,24 +37,24 @@
 }
 
 .profile-change-password {
-    background-color: var(--profile_color);
-    color: #fff;
-    padding: 8px 16px 8px 16px;
-    border-radius: 35px;
-    width: max-content;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    transition-property: opacity;
-    transition-duration: 0.2s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .profile-change-password:hover {
-    opacity: 0.85;
-  }
+  background-color: var(--profile_color);
+  color: #fff;
+  padding: 8px 16px 8px 16px;
+  border-radius: 35px;
+  width: max-content;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  .fullName {
-      text-transform: capitalize;
-  }
+.profile-change-password:hover {
+  opacity: 0.85;
+}
+
+.fullName {
+  text-transform: capitalize;
+}
