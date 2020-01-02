@@ -51,6 +51,13 @@ const Cart = props => {
 
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
+
+    // preventing form submission
+    for (var i = 0; i < cart.length; i++) {
+      document.getElementById("qty-form" + i).addEventListener("submit", e => {
+        e.preventDefault();
+      });
+    }
   }, []);
 
   return (
@@ -62,15 +69,15 @@ const Cart = props => {
             return (
               <div className="cart-pen-container" key={uuidv4()}>
                 <div className="cart-pen-container-top">
-                  <form className="qty-input">
+                  <form id={"qty-form" + index} className="qty-input">
                     <label htmlFor="quantity">Quantité: </label>
                     <input
                       type="number"
                       name="quantity"
                       min="1"
                       max="10"
-                      value={cart[index].quantity}
-                      onChange={() => {
+                      defaultValue={cart[index].quantity}
+                      onBlur={() => {
                         setQuantity("quantity" + index, index);
                       }}
                       id={"quantity" + index}

@@ -82,12 +82,18 @@
 
 .qty-input {
   display: flex;
+  
 }
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 0;
+    display: none;
+  }
 
 .cart-content-footer {
   color: var(--black);
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   width: 100%;
   margin: 25px 0 50px 0;
 }

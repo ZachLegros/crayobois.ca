@@ -47,3 +47,7 @@
   .profile-change-password:hover {
     opacity: 0.85;
   }
+
+  .fullName {
+      text-transform: capitalize;
+  }

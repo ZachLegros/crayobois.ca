@@ -33,8 +33,12 @@ const DashboardAlert = props => {
 
   return (
     <React.Fragment>
-      <div className="dashboard-overlay"></div>
-
+      <div
+        className="dashboard-overlay"
+        onClick={() => {
+          setDashboardAlertOn(false);
+        }}
+      ></div>
       <div className="dashboard-alert">
         <span className="dashboard-alert-msg">{alert.message}</span>
         <form id="dashboard-alert-form" className="dashboard-alert-form">

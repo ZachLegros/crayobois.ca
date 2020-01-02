@@ -17,7 +17,7 @@ const Profile = props => {
       <div className="profile-content">
         <div className="profile-attribute">
           <span className="profile-attribute-name">Nom d'utilisateur</span>
-          <span className="profile-attribute-state">
+          <span className="profile-attribute-state fullName">
             {user.fullName}
             <i
               className="fas fa-edit"
@@ -46,7 +46,7 @@ const Profile = props => {
               authContext.alertParams(passMsg, "ChangePassword", "Mot de passe");
             }}
           >
-            Changer mon mot de passe<i class="fas fa-key form-btn-icon"></i>
+            Changer mon mot de passe<i className="fas fa-key form-btn-icon"></i>
           </span>
         </div>
       </div>
