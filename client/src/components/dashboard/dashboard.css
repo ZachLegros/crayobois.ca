@@ -209,11 +209,11 @@
   justify-content: center;
   display: flex;
   overflow: hidden;
-  transform: scaleY(0);
+  transform: scaleY(1);
   transform-origin: top;
-  height: 0px;
-  opacity: 0;
-  transition: all 0.25s ease;
+  height: 106px;
+  opacity: 1;
+  animation: dropdown 0.15s ease-in-out 0s;
 }
 
 .dashboard-mobile-dropdown-toggler {
@@ -225,24 +225,29 @@
   border-bottom: 1px solid #dfdfdf;
   margin: 0;
   width: 100%;
-  cursor: pointer;
 }
 
-.dashboard-mobile-dropdown-toggler > .dashboard-mobile-dropdown {
-  transform: scaleY(1);
-  opacity: 1;
-  height: 100%;
+@keyframes dropdown {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+    height: 0px;
+  }
 }
 
 .userDropdownToggleIcon {
-    margin-left: 12.5px;
-    color: hsl(204, 20%, 60%);
-    font-size: 0.9rem;
-    transition: all 0.15s ease-in-out;
+  margin-left: 12.5px;
+  color: hsl(204, 20%, 60%);
+  font-size: 0.9rem;
+  transition: all 0.15s ease-in-out;
 }
 
 .rotated {
-    transform: rotate(180deg);
+  transform: rotate(-180deg);
+}
+
+.dashboard-mobile-current {
+    cursor: pointer;
 }
 
 /*Responsiveness*/

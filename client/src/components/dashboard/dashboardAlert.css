@@ -1,5 +1,5 @@
 .dashboard-alert {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -12,7 +12,7 @@
   border-radius: 25px;
   padding: 25px;
   max-width: 550px;
-  width: max-content;
+  width: 70%;
   animation: alert-active;
   animation-duration: 0.25s;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,7 +77,7 @@
 }
 
 .dashboard-overlay {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 100;
@@ -120,4 +120,19 @@
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
+}
+
+@media only screen and (max-width: 825px) {
+    .dashboard-alert-msg {
+        font-size: 1rem;
+      }
+
+    .reset-password-email {
+        font-size: 1rem;
+        margin-bottom: 12.5px;
+      } 
+
+      .dashboard-alert-msg {
+        margin-bottom: 12.5px;
+      }
 }

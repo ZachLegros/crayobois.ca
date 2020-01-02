@@ -16,6 +16,7 @@ const Dashboard = props => {
   const [verified, setVerified] = useState(false);
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
+  const [dropdownToggled, setDropdownToggled] = useState(false);
 
   // signout function
   function signout() {
@@ -96,6 +97,7 @@ const Dashboard = props => {
                 </a>
               </li>
             </ul>
+            {/* Mobile dropdown */}
             <ul className="dashboard-mobile-dropdown-toggler">
               <li className="dashboard-mobile-current">
                 {userNav === "profile" ? (
@@ -104,6 +106,8 @@ const Dashboard = props => {
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("profile");
+                      const newState = !dropdownToggled;
+                      setDropdownToggled(newState);
                     }}
                   >
                     <a>
@@ -111,7 +115,13 @@ const Dashboard = props => {
                         <i className="fas fa-address-card dashboard-nav-icon"></i>
                       </div>
                       Mon profil
-                      <i className="fas fa-chevron-down userDropdownToggleIcon"></i>
+                      <i
+                        className={
+                          dropdownToggled
+                            ? "fas fa-chevron-down userDropdownToggleIcon rotated"
+                            : "fas fa-chevron-down userDropdownToggleIcon"
+                        }
+                      ></i>
                     </a>
                   </li>
                 ) : // get selected link
@@ -120,6 +130,8 @@ const Dashboard = props => {
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("cart");
+                      const newState = !dropdownToggled;
+                      setDropdownToggled(newState);
                     }}
                   >
                     <a>
@@ -127,7 +139,11 @@ const Dashboard = props => {
                         <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                       </div>
                       Mon panier
-                      <i className="fas fa-chevron-down userDropdownToggleIcon"></i>
+                      <i className={
+                          dropdownToggled
+                            ? "fas fa-chevron-down userDropdownToggleIcon rotated"
+                            : "fas fa-chevron-down userDropdownToggleIcon"
+                        }></i>
                     </a>
                   </li>
                 ) : (
@@ -136,6 +152,8 @@ const Dashboard = props => {
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
                       setUserNav("orders");
+                      const newState = !dropdownToggled;
+                      setDropdownToggled(newState);
                     }}
                   >
                     <a>
@@ -143,67 +161,78 @@ const Dashboard = props => {
                         <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
                       </div>
                       Mes commandes
-                      <i className="fas fa-chevron-down userDropdownToggleIcon"></i>
+                      <i className={
+                          dropdownToggled
+                            ? "fas fa-chevron-down userDropdownToggleIcon rotated"
+                            : "fas fa-chevron-down userDropdownToggleIcon"
+                        }></i>
                     </a>
                   </li>
                 )}
               </li>
               {/*Dropdown*/}
-              <li className="dashboard-mobile-dropdown">
-                <ul className="dashboard-mobile-nav">
-                  {userNav !== "profile" ? (
-                    <li
-                      className="dashboard-mobile-nav-link"
-                      onClick={() => {
-                        setUserNav("profile");
-                      }}
-                    >
-                      <a>
-                        <div className="dashboard-nav-icon-container">
-                          <i className="fas fa-address-card dashboard-nav-icon"></i>
-                        </div>
-                        Mon profil
-                      </a>
-                    </li>
-                  ) : (
-                    <React.Fragment />
-                  )}
-                  {userNav !== "cart" ? (
-                    <li
-                      className="dashboard-mobile-nav-link"
-                      onClick={() => {
-                        setUserNav("cart");
-                      }}
-                    >
-                      <a>
-                        <div className="dashboard-nav-icon-container">
-                          <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
-                        </div>
-                        Mon panier
-                      </a>
-                    </li>
-                  ) : (
-                    <React.Fragment />
-                  )}
-                  {userNav !== "orders" ? (
-                    <li
-                      className="dashboard-mobile-nav-link"
-                      onClick={() => {
-                        setUserNav("orders");
-                      }}
-                    >
-                      <a>
-                        <div className="dashboard-nav-icon-container">
-                          <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
-                        </div>
-                        Mes commandes
-                      </a>
-                    </li>
-                  ) : (
-                    <React.Fragment />
-                  )}
-                </ul>
-              </li>
+              {dropdownToggled ? (
+                <li className="dashboard-mobile-dropdown">
+                  <ul className="dashboard-mobile-nav">
+                    {userNav !== "profile" ? (
+                      <li
+                        className="dashboard-mobile-nav-link"
+                        onClick={() => {
+                          setUserNav("profile");
+                          setDropdownToggled(false);
+                        }}
+                      >
+                        <a>
+                          <div className="dashboard-nav-icon-container">
+                            <i className="fas fa-address-card dashboard-nav-icon"></i>
+                          </div>
+                          Mon profil
+                        </a>
+                      </li>
+                    ) : (
+                      <React.Fragment />
+                    )}
+                    {userNav !== "cart" ? (
+                      <li
+                        className="dashboard-mobile-nav-link"
+                        onClick={() => {
+                          setUserNav("cart");
+                          setDropdownToggled(false);
+                        }}
+                      >
+                        <a>
+                          <div className="dashboard-nav-icon-container">
+                            <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
+                          </div>
+                          Mon panier
+                        </a>
+                      </li>
+                    ) : (
+                      <React.Fragment />
+                    )}
+                    {userNav !== "orders" ? (
+                      <li
+                        className="dashboard-mobile-nav-link"
+                        onClick={() => {
+                          setUserNav("orders");
+                          setDropdownToggled(false);
+                        }}
+                      >
+                        <a>
+                          <div className="dashboard-nav-icon-container">
+                            <i className="fas fa-dolly-flatbed dashboard-nav-icon"></i>
+                          </div>
+                          Mes commandes
+                        </a>
+                      </li>
+                    ) : (
+                      <React.Fragment />
+                    )}
+                  </ul>
+                </li>
+              ) : (
+                <React.Fragment />
+              )}
             </ul>
           </div>
         </div>

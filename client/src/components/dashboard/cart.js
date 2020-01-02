@@ -56,75 +56,79 @@ const Cart = props => {
   return (
     <React.Fragment>
       <span className="dashboard-content-header">Mon panier</span>
-      <div className="cart-container">
-        {cart.length !== 0 ? (
-          cart.map((pens, index) => {
-            return (
-              <div className="cart-pen-container" key={uuidv4()}>
-                <div className="cart-pen-container-top">
-                  <div id={"qty-form" + index} className="qty-input">
-                    <label htmlFor="quantity">Quantité: </label>
-                    <input
-                      type="number"
-                      name="quantity"
-                      min="1"
-                      max="10"
-                      defaultValue={cart[index].quantity}
-                      onBlur={() => {
-                        setQuantity("quantity" + index, index);
-                      }}
-                      id={"quantity" + index}
-                    />
-                  </div>
-                  <div
-                    className="cart-pen-delete"
-                    onClick={async () => {
-                      const newCart = await authContext.removeFromCart(pens.id);
-                      setCart(newCart);
-                      setSubTotal(getSubTotal(newCart));
-                    }}
-                  >
-                    <i className="fas fa-times-circle"></i>
-                  </div>
-                </div>
-                {pens.pen.map(item => {
-                  return (
-                    <div className="cart-pen-item" key={uuidv4()}>
-                      <div className="cart-pen-img-and-name">
-                        <img
-                          src={item.obj.path}
-                          className="cart-pen-img"
-                          key={uuidv4()}
-                        />
-                        {item.obj.name ? (
-                          <span className="cart-pen-item-name" key={uuidv4()}>
-                            {item.obj.name}
-                          </span>
-                        ) : (
-                          <span className="cart-pen-item-name" key={uuidv4()}>
-                            {item.obj.type}{" "}
-                            <span className="cart-pen-item-color">
-                              {item.obj.color}
-                            </span>
-                          </span>
-                        )}
-                      </div>
-                      <span className="cart-pen-item-price" key={uuidv4()}>
-                        {formatter.format(item.obj.price)}
-                      </span>
+      <section className="cart-section">
+        <div className="cart-container">
+          {cart.length !== 0 ? (
+            cart.map((pens, index) => {
+              return (
+                <div className="cart-pen-container" key={uuidv4()}>
+                  <div className="cart-pen-container-top">
+                    <div id={"qty-form" + index} className="qty-input">
+                      <label htmlFor="quantity">Quantité: </label>
+                      <input
+                        type="number"
+                        name="quantity"
+                        min="1"
+                        max="10"
+                        defaultValue={cart[index].quantity}
+                        onBlur={() => {
+                          setQuantity("quantity" + index, index);
+                        }}
+                        id={"quantity" + index}
+                      />
                     </div>
-                  );
-                })}
-              </div>
-            );
-          })
-        ) : (
-          <React.Fragment></React.Fragment>
-        )}
-      </div>
-      <span className="cart-content-footer">
-        Sous-total: {formatter.format(subTotal)}
-      </span>
+                    <div
+                      className="cart-pen-delete"
+                      onClick={async () => {
+                        const newCart = await authContext.removeFromCart(
+                          pens.id
+                        );
+                        setCart(newCart);
+                        setSubTotal(getSubTotal(newCart));
+                      }}
+                    >
+                      <i className="fas fa-times-circle"></i>
+                    </div>
+                  </div>
+                  {pens.pen.map(item => {
+                    return (
+                      <div className="cart-pen-item" key={uuidv4()}>
+                        <div className="cart-pen-img-and-name">
+                          <img
+                            src={item.obj.path}
+                            className="cart-pen-img"
+                            key={uuidv4()}
+                          />
+                          {item.obj.name ? (
+                            <span className="cart-pen-item-name" key={uuidv4()}>
+                              {item.obj.name}
+                            </span>
+                          ) : (
+                            <span className="cart-pen-item-name" key={uuidv4()}>
+                              {item.obj.type}{" "}
+                              <span className="cart-pen-item-color">
+                                {item.obj.color}
+                              </span>
+                            </span>
+                          )}
+                        </div>
+                        <span className="cart-pen-item-price" key={uuidv4()}>
+                          {formatter.format(item.obj.price)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })
+          ) : (
+            <React.Fragment></React.Fragment>
+          )}
+        </div>
+        <span className="cart-content-footer">
+          Sous-total: {formatter.format(subTotal)}
+        </span>
+      </section>
     </React.Fragment>
   );
 };
