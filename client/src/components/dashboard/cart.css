@@ -40,9 +40,9 @@
 }
 
 .cart-pen-item-price {
-    color: var(--black);
-    font-weight: 500;
-    font-size: 1.25rem;
+  color: var(--black);
+  font-weight: 500;
+  font-size: 1.25rem;
 }
 
 .cart-pen-img {
@@ -68,11 +68,16 @@
 .cart-pen-delete i {
   color: var(--black);
   font-size: 1.1rem;
+  cursor: pointer;
 }
 
-.cart-pen-container-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 25px 0 25px 0;
+.cart-pen-container-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0 25px 0;
+}
+
+.qty-input {
+  display: flex;
 }

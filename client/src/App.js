@@ -8,6 +8,7 @@ import AuthState from "./components/context/AuthState";
 import User from "./components/signInAndSignUp/user";
 import LoggedInChecker from "./components/cvs/loggedInChecker";
 import ResetPassword from "./components/resetPassword/resetPassword";
+import Cart from "./components/dashboard/cart";
 
 const App = () => {
   return (

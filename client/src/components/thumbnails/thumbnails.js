@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import CvsContext from "../context/cvsContext";
 import Spinner from "../spinner/spinner";
 import "./thumbnails.css";
+const { uuid } = require('uuidv4');
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);

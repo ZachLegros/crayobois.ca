@@ -19,6 +19,7 @@ const AuthState = props => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [cart, setCart] = useState([]);
 
   // random color generator for user profile
   function getRandomColor() {
@@ -35,8 +36,7 @@ const AuthState = props => {
       "#7be311",
       "var(--orange)",
       "var(--green)",
-      "#a50261",
-      "var(--black)"
+      "#a50261"
     ];
     const max = availableColors.length;
     const randIdx = Math.floor(Math.random() * Math.floor(max));
@@ -126,6 +126,7 @@ const AuthState = props => {
 
     // initializes the user's session
     setUser(userObj);
+    setCart(userObj.shoppingCart);
   };
 
   // send email verification
@@ -189,23 +190,9 @@ const AuthState = props => {
             pensPurchased: userData.pensPurchased,
             shoppingCart: userData.shoppingCart
           });
-          userSessionHandler();
+          setCart(userData.shoppingCart);
         });
     }
-  };
-
-  // user session listener
-  const userSessionHandler = () => {
-    const data = db
-      .collection("users")
-      .doc(
-        auth.currentUser.uid
-      ); /*.onSnapshot(querySnapshot => {
-      let changes = querySnapshot.docChanges;
-      console.log("listening");
-      console.log(changes);
-    });*/
-    console.log(data);
   };
 
   // check username
@@ -268,8 +255,15 @@ const AuthState = props => {
       });
   };
 
-  const removeFromCart = id => {
+  function removeFromCart(id) {
     const uid = auth.currentUser.uid;
+    var cart = [];
+
+    const newUser = user;
+    const idx = newUser.shoppingCart.findIndex(pen => pen.id === id);
+    newUser.shoppingCart.splice(idx, 1);
+    setUser(newUser);
+    cart = newUser.shoppingCart;
 
     db.collection("users")
       .doc(uid)
@@ -289,16 +283,10 @@ const AuthState = props => {
           .update({
             ["shoppingCart"]: newCart
           });
-
-        const prevUser = user;
-        const idx = prevUser.shoppingCart.findIndex(pen => pen.id === id);
-        prevUser.shoppingCart.splice(idx, 1);
-        const newUser = prevUser;
-        console.log(newUser);
-
-        setUser(newUser);
       });
-  };
+    
+    return cart;
+  }
 
   return (
     <AuthContext.Provider
@@ -320,7 +308,8 @@ const AuthState = props => {
         emailSent: [emailSent, setEmailSent],
         getUserSession: getUserSession,
         AddToCart: AddToCart,
-        removeFromCart: removeFromCart
+        removeFromCart: removeFromCart,
+        cart: [cart, setCart]
       }}
     >
       {props.children}

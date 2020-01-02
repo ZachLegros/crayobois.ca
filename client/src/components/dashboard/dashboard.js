@@ -6,7 +6,7 @@ import Cart from "./cart";
 import Orders from "./orders";
 import Settings from "./settings";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const authContext = useContext(AuthContext);
   const [
     initializedFirebase,
@@ -100,6 +100,7 @@ const Dashboard = () => {
                 className="dashboard-nav-link"
                 onClick={() => {
                   setUserNav("orders");
+                  
                 }}
               >
                 <a>
