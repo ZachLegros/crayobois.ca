@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/authContext";
 import "./cart.css";
 const uuidv4 = require("uuid/v4");
@@ -7,6 +7,7 @@ const Cart = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = authContext.user;
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
+  const [subTotal, setSubTotal] = useState(0);
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -14,32 +15,61 @@ const Cart = props => {
     minimumFractionDigits: 2
   });
 
+  const getSubTotal = cart => {
+    var value = 0;
+
+    for (var i = 0; i < cart.length; i++) {
+      var priceOfObjects = 0;
+      for (var e = 0; e < cart[i].pen.length; e++) {
+        priceOfObjects += cart[i].pen[e].obj.price;
+      }
+
+      value += priceOfObjects * cart[i].quantity;
+    }
+
+    return value;
+  };
+
+  const setQuantity = (id, index) => {
+    const input = document.getElementById(id);
+
+    if (input.value > 10) {
+      input.value = 10;
+    } else if (input.value < 1) {
+      input.value = 1;
+    }
+
+    var newCart = Object.assign([], cart);
+    newCart[index].quantity = input.value;
+    authContext.updateCart(newCart);
+    setSubTotal(getSubTotal(newCart));
+  };
+
   useEffect(() => {
-  }, []);
+    setSubTotal(getSubTotal(cart));
+  }, [cart]);
 
   return (
     <React.Fragment>
-      <span className="dashboard-content-header">Mon panier</span>
       <div className="cart-container">
         {cart.length !== 0 ? (
-          cart.map(pens => {
+          cart.map((pens, index) => {
             return (
               <div className="cart-pen-container" key={uuidv4()}>
                 <div className="cart-pen-container-top">
                   <form className="qty-input">
-                    <label for="quantity">Quantité: </label>
-                    <select name="quantity">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
+                    <label htmlFor="quantity">Quantité: </label>
+                    <input
+                      type="number"
+                      name="quantity"
+                      min="1"
+                      max="10"
+                      value={cart[index].quantity}
+                      onChange={() => {
+                        setQuantity("quantity" + index, index);
+                      }}
+                      id={"quantity" + index}
+                    />
                   </form>
                   <div
                     className="cart-pen-delete"
@@ -85,8 +115,10 @@ const Cart = props => {
         ) : (
           <React.Fragment></React.Fragment>
         )}
-        <span>sous-total</span>
       </div>
+      <span className="cart-content-footer">
+        Sous-total: {formatter.format(subTotal)}
+      </span>
     </React.Fragment>
   );
 };

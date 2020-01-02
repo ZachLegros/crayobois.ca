@@ -288,6 +288,17 @@ const AuthState = props => {
     return cart;
   }
 
+  const updateCart = newCart => {
+    const uid = auth.currentUser.uid;
+
+      //add new array to db
+      db.collection("users")
+        .doc(uid)
+        .update({
+          ["shoppingCart"]: newCart
+        });
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -309,7 +320,8 @@ const AuthState = props => {
         getUserSession: getUserSession,
         AddToCart: AddToCart,
         removeFromCart: removeFromCart,
-        cart: [cart, setCart]
+        cart: [cart, setCart],
+        updateCart: updateCart
       }}
     >
       {props.children}
