@@ -24,7 +24,7 @@ const AuthState = props => {
   const [alert, setAlert] = useState({
     message: "",
     action: "",
-    placeHolder: ""
+    placeholder: ""
   });
 
   // random color generator for user profile
@@ -294,12 +294,12 @@ const AuthState = props => {
       });
   };
 
-  const alertParams = (msg, action, placeHolder) => {
+  const alertParams = (msg, action, placeholder) => {
     setDashboardAlertOn(true);
     setAlert({
       message: msg,
       action: action,
-      placeHolder: placeHolder
+      placeholder: placeholder
     });
   };
 

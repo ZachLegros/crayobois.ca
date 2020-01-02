@@ -102,3 +102,35 @@
       transform: translate(-50%, -50%) scale(1);
     }
   }
+
+  .dashboard-alert-input {
+    border: none;
+    background-color: hsl(210, 20%, 92%);
+    -webkit-text-fill-color: hsl(204, 20%, 40%);
+    color: hsl(204, 20%, 40%);
+    font-size: 18px !important;
+    padding: 12px 20px 12px 20px;
+    border-radius: 35px;
+    outline: none;
+    width: calc(100% - 40px);
+    margin-bottom: 25px;
+    filter: none;
+  }
+
+  
+/*autofill style*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  border: none;
+  -webkit-text-fill-color: hsl(204, 20%, 40%);
+  -webkit-box-shadow: 0 0 0px 1000px hsl(210, 20%, 92%) inset;
+}

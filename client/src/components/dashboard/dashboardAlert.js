@@ -11,18 +11,24 @@ const DashboardAlert = props => {
     const actionForm = document.querySelector("#dashboard-alert-form");
     actionForm.addEventListener("submit", e => {
       e.preventDefault();
-      setDashboardAlertOn(false);
 
-      if (actionForm["dashboard-alert-input"].value === "") {
+      if (
+        actionForm["dashboard-alert-input"].value === "" ||
+        actionForm["dashboard-alert-input"].value.length <= 3
+      ) {
+        //error handler here
         console.log("non");
       } else {
         if (alert.action === "ChangeEmail") {
+          setDashboardAlertOn(false);
           const value = actionForm["dashboard-alert-input"].value.trim();
           authContext.changeEmail(value);
         } else if (alert.action === "ChangeName") {
+          setDashboardAlertOn(false);
           const value = actionForm["dashboard-alert-input"].value.trim();
           authContext.changeName(value);
         } else if (alert.action === "ChangePassword") {
+          setDashboardAlertOn(false);
           const value = actionForm["dashboard-alert-input"].value;
           authContext.changePassword(value);
         }
@@ -48,7 +54,9 @@ const DashboardAlert = props => {
               name="nom"
               className="dashboard-alert-input"
               id="dashboard-alert-input"
+              autoComplete="off"
               placeholder={alert.placeholder}
+              required
             />
           ) : (
             <React.Fragment></React.Fragment>
@@ -59,7 +67,9 @@ const DashboardAlert = props => {
               name="email"
               className="dashboard-alert-input"
               id="dashboard-alert-input"
+              autoComplete="off"
               placeholder={alert.placeholder}
+              required
             />
           ) : (
             <React.Fragment></React.Fragment>
@@ -70,7 +80,9 @@ const DashboardAlert = props => {
               name="password"
               id="dashboard-alert-input"
               className="dashboard-alert-input"
+              autoComplete="off"
               placeholder={alert.placeholder}
+              required
             />
           ) : (
             <React.Fragment></React.Fragment>
