@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import "./cart.css";
 const uuidv4 = require("uuid/v4");
@@ -8,6 +9,7 @@ const Cart = props => {
   const [user, setUser] = authContext.user;
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
+  const history = useHistory();
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -49,7 +51,6 @@ const Cart = props => {
     setSubTotal(getSubTotal(newCart));
   };
 
-
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
   }, []);
@@ -58,7 +59,9 @@ const Cart = props => {
     <React.Fragment>
       <span className="dashboard-content-header">Mon panier</span>
       {cart.length === 0 ? (
-        <span className="dashboard-notice">Il n'y a aucun stylo dans votre panier</span>
+        <span className="dashboard-notice">
+          Il n'y a aucun stylo dans votre panier
+        </span>
       ) : (
         <section className="cart-section">
           <div className="cart-container">
@@ -137,7 +140,14 @@ const Cart = props => {
           </div>
           <span className="cart-content-footer">
             Sous-total: {formatter.format(subTotal)}
-            <span className="profile-change-password" onClick={() => {return}}>Checkout</span>
+            <span
+              className="profile-change-password"
+              onClick={() => {
+                history.push("/utilisateur/commander");
+              }}
+            >
+              Checkout
+            </span>
           </span>
         </section>
       )}

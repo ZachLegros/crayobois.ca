@@ -8,8 +8,10 @@ const Checkout = props => {
   const [error, setError] = useState(null);
   const paypalRef = useRef();
   // testing product
-  const product = useState({
-
+  const [product, setProduct] = useState({
+    price: 777.77,
+    name: "comfy chair",
+    description: "fancy chair, like new"
   });
 
   useEffect(() => {
@@ -21,7 +23,6 @@ const Checkout = props => {
               {
                 description: product.description,
                 amount: {
-                  currency_code: "CAD",
                   value: product.price
                 }
               }
@@ -52,16 +53,13 @@ const Checkout = props => {
 
   return (
     <React.Fragment>
-      return (
       <div>
         {error && <div>Uh oh, an error occurred! {error.message}</div>}
         <h1>
           {product.description} for ${product.price}
         </h1>
-        <img alt={product.description} src={product.image} width="200" />
         <div ref={paypalRef} />
       </div>
-      ); }
     </React.Fragment>
   );
 };
