@@ -137,7 +137,7 @@ const Cart = props => {
           </div>
           <span className="cart-content-footer">
             Sous-total: {formatter.format(subTotal)}
-            <span className="profile-change-password" onClick={() => {authContext.checkout(subTotal)}}>Checkout</span>
+            <span className="profile-change-password" onClick={() => {return}}>Checkout</span>
           </span>
         </section>
       )}

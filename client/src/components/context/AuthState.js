@@ -378,7 +378,6 @@ const AuthState = props => {
         changeName: changeName,
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
-        checkout: checkout
       }}
     >
       {props.children}

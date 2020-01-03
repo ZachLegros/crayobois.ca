@@ -4,7 +4,6 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require('cors')
-const paypal = require("paypal-rest-sdk");
 
 app.use(cors());
 
