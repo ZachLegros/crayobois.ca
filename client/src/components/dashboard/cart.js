@@ -49,6 +49,7 @@ const Cart = props => {
     setSubTotal(getSubTotal(newCart));
   };
 
+
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
   }, []);
@@ -57,7 +58,7 @@ const Cart = props => {
     <React.Fragment>
       <span className="dashboard-content-header">Mon panier</span>
       {cart.length === 0 ? (
-        <span className="dashboard-notice">Il n'y aucun stylo dans votre panier</span>
+        <span className="dashboard-notice">Il n'y a aucun stylo dans votre panier</span>
       ) : (
         <section className="cart-section">
           <div className="cart-container">
@@ -114,7 +115,7 @@ const Cart = props => {
                                 className="cart-pen-item-name"
                                 key={uuidv4()}
                               >
-                                {item.obj.type}{" "}
+                                {item.obj.type}
                                 <span className="cart-pen-item-color">
                                   {item.obj.color}
                                 </span>

@@ -139,7 +139,7 @@ const Dashboard = props => {
                       <div className="dashboard-nav-icon-container">
                         <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                       </div>
-                      Mon panier
+                      Mon panier {cart.length === 0 ? "" : `(${cart.length})`}
                       <i
                         className={
                           dropdownToggled
@@ -209,7 +209,7 @@ const Dashboard = props => {
                           <div className="dashboard-nav-icon-container">
                             <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                           </div>
-                          Mon panier
+                          Mon panier {cart.length === 0 ? "" : `(${cart.length})`}
                         </a>
                       </span>
                     ) : (

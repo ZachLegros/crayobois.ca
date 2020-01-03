@@ -31,7 +31,6 @@ const AuthState = props => {
   function getRandomColor() {
     const availableColors = [
       "#df5872",
-      "#a9ebdb",
       "#62cdfe",
       "#404936",
       "#d2061f",
