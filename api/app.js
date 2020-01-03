@@ -3,12 +3,12 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
-const cors = require('cors')
+const cors = require("cors");
+const paypal = require("paypal-rest-sdk");
 
 app.use(cors());
 
 app.use(express.json());
-
 
 // Import routes
 const materialsRoute = require("./routes/materials");
@@ -17,7 +17,9 @@ const hardwaresRoute = require("./routes/hardwares");
 app.use("/mats", materialsRoute);
 app.use("/haws", hardwaresRoute);
 
-
+app.post("/pay", (req, res) => {
+  console.log(req.body);
+});
 // mongoose connection
 mongoose.connect(
   process.env.DB_URI,

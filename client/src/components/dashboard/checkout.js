@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import AuthContext from "../context/authContext";
+import "./checkout.css";
 
 const Checkout = props => {
   const authContext = useContext(AuthContext);
@@ -9,9 +10,16 @@ const Checkout = props => {
   const paypalRef = useRef();
   // testing product
   const [product, setProduct] = useState({
-    price: 777.77,
+    price: 25.0,
     name: "comfy chair",
-    description: "fancy chair, like new"
+    description: "fancy chair, like new",
+    quantity: 5
+  });
+  const [product2, setProduct2] = useState({
+    price: 100.0,
+    name: "Xbox",
+    description: "Old but still working",
+    quantity: 2
   });
 
   useEffect(() => {
@@ -21,10 +29,42 @@ const Checkout = props => {
           return actions.order.create({
             purchase_units: [
               {
-                description: product.description,
+                reference_id: "PUHF",
+                description: "Stylo personnalisé",
+
+                custom_id: "Something7364",
                 amount: {
-                  value: product.price
-                }
+                  currency_code: "CAD",
+                  value: "200.00",
+                  breakdown: {
+                    item_total: {
+                      currency_code: "CAD",
+                      value: "200.00"
+                    }
+                  }
+                },
+                items: [
+                  {
+                    name: "Item 1",
+                    description: "The best item ever",
+                    sku: "xyz-2654",
+                    unit_amount: {
+                      currency_code: "CAD",
+                      value: "100.00"
+                    },
+                    quantity: "1"
+                  },
+                  {
+                    name: "Item 2",
+                    description: "Not bad too",
+                    sku: "zdc-3942",
+                    unit_amount: {
+                      currency_code: "CAD",
+                      value: "50.00"
+                    },
+                    quantity: "2"
+                  }
+                ]
               }
             ]
           });
@@ -53,7 +93,7 @@ const Checkout = props => {
 
   return (
     <React.Fragment>
-      <div>
+      <div className="paypal">
         {error && <div>Uh oh, an error occurred! {error.message}</div>}
         <h1>
           {product.description} for ${product.price}
