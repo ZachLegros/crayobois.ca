@@ -115,7 +115,7 @@ const Cart = props => {
                                 className="cart-pen-item-name"
                                 key={uuidv4()}
                               >
-                                {item.obj.type}
+                                {item.obj.type}{" "}
                                 <span className="cart-pen-item-color">
                                   {item.obj.color}
                                 </span>
@@ -137,6 +137,7 @@ const Cart = props => {
           </div>
           <span className="cart-content-footer">
             Sous-total: {formatter.format(subTotal)}
+            <span className="profile-change-password" onClick={() => {authContext.checkout(subTotal)}}>Checkout</span>
           </span>
         </section>
       )}

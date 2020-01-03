@@ -323,6 +323,35 @@ const AuthState = props => {
     auth.sendPasswordResetEmail(email);
   };
 
+  /* const checkout = total => {
+    const uid = auth.currentUser.uid;
+    let checkoutInfo;
+    // fetching user's data
+    db.collection("users")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        checkoutInfo = {
+          email: data.email,
+          name: data.fullName,
+          cart: data.shoppingCart,
+          total: total
+        };
+      })
+      .then(() => {
+        // post resquest to api
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(checkoutInfo)
+        };
+        fetch("/pay", options);
+      });
+  };
+ */
   return (
     <AuthContext.Provider
       value={{
@@ -348,7 +377,8 @@ const AuthState = props => {
         alertParams: alertParams,
         changeName: changeName,
         changePassword: changePassword,
-        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn]
+        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
+        checkout: checkout
       }}
     >
       {props.children}

@@ -105,6 +105,9 @@ input[type=number] {
   font-size: 1.5rem;
   width: 100%;
   margin: 25px 0 50px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cart-section {
@@ -149,6 +152,6 @@ input[type=number] {
       padding: 25px;
       font-size: 1.1rem;
       font-weight: 500;
-      margin-top: 66px
+      margin-top: 66px;
   }
 }
