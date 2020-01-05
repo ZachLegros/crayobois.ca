@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import "./cart.css";
+import Order from "./order";
+import Payment from "./payment";
 const uuidv4 = require("uuid/v4");
 
 const Cart = props => {
@@ -101,7 +103,8 @@ const Cart = props => {
         </span>
       ) : (
         <section className="cart-section">
-          <div className="cart-container">
+          {checkoutStep === "cart" ? (
+            <div className="cart-container">
             {cart.length !== 0 ? (
               cart.map((pens, index) => {
                 return (
@@ -175,6 +178,8 @@ const Cart = props => {
               <React.Fragment></React.Fragment>
             )}
           </div>
+          ) : checkoutStep === "order" ? <Order /> : <Payment />}
+          
           <span className="cart-content-footer">
             Sous-total: {formatter.format(subTotal)}
             <span
@@ -184,7 +189,7 @@ const Cart = props => {
                 authContext.checkout();
               }}
             >
-              Checkout
+              Suivant <i className="fas fa-chevron-right next-btn-icon" />
             </span>
           </span>
         </section>

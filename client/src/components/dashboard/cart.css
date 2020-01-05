@@ -112,6 +112,11 @@ input[type=number] {
   align-items: center;
 }
 
+.next-btn-icon {
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+
 .cart-section {
     display: flex;
     flex-direction: column;
@@ -140,7 +145,7 @@ input[type=number] {
 .checkout-state-link {
   color: var(--black);
   font-weight: 500;
-  padding: 12.5px;
+  padding: 12.5px 0 12.5px 0;
   display: flex;
   opacity: 0.5;
   align-items: center;
@@ -163,6 +168,7 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   opacity: 0.5;
+  padding: 0 12.5px 0 12.5px;
 }
 
 @media only screen and (max-width: 825px) {
