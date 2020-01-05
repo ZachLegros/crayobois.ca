@@ -87,18 +87,18 @@
 }
 
 .qty-input input {
-    width: 45px;
-    margin-left: 10px;
+  width: 45px;
+  margin-left: 10px;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .cart-content-footer {
@@ -118,11 +118,11 @@ input[type=number] {
 }
 
 .cart-section {
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 65.6px);
-    overflow: hidden;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 65.6px);
+  overflow: hidden;
+  width: 100%;
 }
 
 .checkout-nav {
@@ -131,15 +131,15 @@ input[type=number] {
 }
 
 .checkout-states {
+  width: max-content;
   display: flex;
   flex-direction: row;
   list-style: none;
   font-size: 1rem;
-  margin: 0;
+  margin: 0px 0px 0px 0px !important;
   padding: 0;
   align-items: center;
-  justify-content: space-between;
-  width: max-content;
+  justify-content: space-evenly;
 }
 
 .checkout-state-link {
@@ -196,15 +196,56 @@ input[type=number] {
   }
 
   .cart-section {
-      display: flex;
-      flex-direction: column-reverse;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .checkout-states {
+    width: 100%;
+  }
+
+  .cart-pen-container {
+    padding: 25px 0 0 0;
+    width: 100%;
+  }
+
+  .checkout-nav {
+    margin: 0 25px 0 25px;
+    width: calc(100% - 50px);
+    justify-content: center;
+  }
+
+  .profile-change-password {
+    margin-bottom: 0;
   }
 
   .cart-content-footer {
-      margin: 0;
-      padding: 25px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-top: 66px;
+    margin: 12.5px 0 0 0;
+    padding: 25px;
+    width: calc(100% - 50px);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .dashboard-nav-container {
+    margin: 0 25px 0 25px;
+    width: calc(100% - 50px);
+  }
+
+  .dashboard-hero {
+    margin: 0 25px 0 25px;
+    width: calc(100% - 50px);
+    height: 100%;
+    overflow: visible;
+  }
+
+  .dashboard-user {
+    height: 100%;
+  }
+
+  .cart-container {
+    margin: 0 25px 0 25px;
+    width: calc(100% - 50px);
+    border-bottom: 0px;
   }
 }

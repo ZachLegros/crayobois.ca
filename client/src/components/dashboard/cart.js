@@ -61,8 +61,8 @@ const Cart = props => {
   return (
     <React.Fragment>
       <div className="checkout-nav">
-        <ul className="checkout-states">
-          <li
+        <div className="checkout-states">
+          <span
             className={
               checkoutStep === "cart"
                 ? "checkout-state-link active-checkout-state"
@@ -70,11 +70,11 @@ const Cart = props => {
             }
           >
             Panier
-          </li>
+          </span>
           <span className="checkout-state-icon-container">
             <i className="fas fa-chevron-right checkout-state-icon" />
           </span>
-          <li
+          <span
             className={
               checkoutStep === "order"
                 ? "checkout-state-link active-checkout-state"
@@ -82,11 +82,11 @@ const Cart = props => {
             }
           >
             Commande
-          </li>
+          </span>
           <span className="checkout-state-icon-container">
             <i className="fas fa-chevron-right checkout-state-icon" />
           </span>
-          <li
+          <span
             className={
               checkoutStep === "payment"
                 ? "checkout-state-link active-checkout-state"
@@ -94,8 +94,8 @@ const Cart = props => {
             }
           >
             Paiement
-          </li>
-        </ul>
+          </span>
+        </div>
       </div>
       {cart.length === 0 ? (
         <span className="dashboard-notice">
@@ -179,14 +179,12 @@ const Cart = props => {
             )}
           </div>
           ) : checkoutStep === "order" ? <Order /> : <Payment />}
-          
           <span className="cart-content-footer">
             Sous-total: {formatter.format(subTotal)}
             <span
               className="profile-change-password"
               onClick={() => {
-                history.push("/utilisateur/commander");
-                authContext.checkout();
+               setCheckoutStep("order");
               }}
             >
               Suivant <i className="fas fa-chevron-right next-btn-icon" />
