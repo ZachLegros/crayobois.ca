@@ -9,6 +9,7 @@ const Cart = props => {
   const [user, setUser] = authContext.user;
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
+  const [checkoutStep, setCheckoutStep] = useState("cart");
   const history = useHistory();
 
   const formatter = new Intl.NumberFormat("fr-CA", {
@@ -57,7 +58,43 @@ const Cart = props => {
 
   return (
     <React.Fragment>
-      <span className="dashboard-content-header">Mon panier</span>
+      <div className="checkout-nav">
+        <ul className="checkout-states">
+          <li
+            className={
+              checkoutStep === "cart"
+                ? "checkout-state-link active-checkout-state"
+                : "checkout-state-link"
+            }
+          >
+            Panier
+          </li>
+          <span className="checkout-state-icon-container">
+            <i className="fas fa-chevron-right checkout-state-icon" />
+          </span>
+          <li
+            className={
+              checkoutStep === "order"
+                ? "checkout-state-link active-checkout-state"
+                : "checkout-state-link"
+            }
+          >
+            Commande
+          </li>
+          <span className="checkout-state-icon-container">
+            <i className="fas fa-chevron-right checkout-state-icon" />
+          </span>
+          <li
+            className={
+              checkoutStep === "payment"
+                ? "checkout-state-link active-checkout-state"
+                : "checkout-state-link"
+            }
+          >
+            Paiement
+          </li>
+        </ul>
+      </div>
       {cart.length === 0 ? (
         <span className="dashboard-notice">
           Il n'y a aucun stylo dans votre panier
@@ -144,6 +181,7 @@ const Cart = props => {
               className="profile-change-password"
               onClick={() => {
                 history.push("/utilisateur/commander");
+                authContext.checkout();
               }}
             >
               Checkout
