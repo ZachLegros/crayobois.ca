@@ -223,7 +223,7 @@ const AuthState = props => {
       });
   };
 
-  const AddToCart = value => {
+  const AddToCart = (value, type) => {
     const uid = auth.currentUser.uid;
     const target = "shoppingCart";
 
@@ -237,6 +237,16 @@ const AuthState = props => {
         newObj["id"] = uuidv4();
         newObj["pen"] = value;
         newObj["quantity"] = 1;
+        newObj["type"] = type;
+
+        // initialize the fixed original sub total
+        let pricesSum = 0;
+        for (var e = 0; e < value.length; e++) {
+          pricesSum += value[e].obj.price;
+        }
+        newObj["pricesSum"] = pricesSum;
+
+        newObj["subTotal"] = newObj.pricesSum * newObj.quantity;
 
         // add new object in array
         userData.push(newObj);
@@ -323,7 +333,7 @@ const AuthState = props => {
     auth.sendPasswordResetEmail(email);
   };
 
-  const checkout = total => {
+  /* const checkout = total => {
     const uid = auth.currentUser.uid;
     let checkoutInfo;
     // fetching user's data
@@ -340,7 +350,7 @@ const AuthState = props => {
         };
         console.log(checkoutInfo);
       });
-  };
+  };*/
 
   return (
     <AuthContext.Provider
@@ -367,8 +377,8 @@ const AuthState = props => {
         alertParams: alertParams,
         changeName: changeName,
         changePassword: changePassword,
-        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
-        checkout: checkout
+        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn]
+        //  checkout: checkout
       }}
     >
       {props.children}

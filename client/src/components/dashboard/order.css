@@ -1,0 +1,7 @@
+.order-section {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 65.6px);
+  overflow: hidden;
+  width: 100%;
+}

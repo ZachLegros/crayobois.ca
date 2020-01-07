@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import "./cart.css";
 import Order from "./order";
@@ -12,7 +11,6 @@ const Cart = props => {
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
   const [checkoutStep, setCheckoutStep] = useState("cart");
-  const history = useHistory();
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -48,10 +46,17 @@ const Cart = props => {
       input.value = 1;
     }
 
+    const value = parseInt(input.value);
+
+    // updating the cart
     var newCart = Object.assign([], cart);
-    newCart[index].quantity = input.value;
+    newCart[index].quantity = value;
+
+    // updating both the inner and outer (from context) sub total
+    const subTotal = getSubTotal(newCart);
+    newCart[index].subTotal = newCart[index].quantity * newCart[index].pricesSum;
     authContext.updateCart(newCart);
-    setSubTotal(getSubTotal(newCart));
+    setSubTotal(subTotal);
   };
 
   useEffect(() => {

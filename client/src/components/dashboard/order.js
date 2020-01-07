@@ -15,9 +15,23 @@ const Order = props => {
     minimumFractionDigits: 2
   });
 
+  useEffect(() => {
+    console.log(cart);
+  });
+
   return (
     <React.Fragment>
-
+      <section className="order-section">
+        {cart.map(item => {
+          return (
+            <div key={uuidv4()} className="order-items-container">
+              <span className="order-item-text">{item.type}</span>
+              <span className="order-item-text">{`x${item.quantity}`}</span>
+              <span className="order-item-text">{formatter.format(item.subTotal)}</span>
+            </div>
+          );
+        })}
+      </section>
     </React.Fragment>
   );
 };
