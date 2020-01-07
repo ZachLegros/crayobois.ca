@@ -342,7 +342,4 @@
 }
 
 @media only screen and (max-height: 650px) {
-  .dashboard-user {
-    overflow-y: scroll;
-  }
 }

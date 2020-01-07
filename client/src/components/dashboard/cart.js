@@ -54,7 +54,8 @@ const Cart = props => {
 
     // updating both the inner and outer (from context) sub total
     const subTotal = getSubTotal(newCart);
-    newCart[index].subTotal = newCart[index].quantity * newCart[index].pricesSum;
+    newCart[index].subTotal =
+      newCart[index].quantity * newCart[index].pricesSum;
     authContext.updateCart(newCart);
     setSubTotal(subTotal);
   };
@@ -196,7 +197,7 @@ const Cart = props => {
               `Sous-total: ${formatter.format(subTotal)}`
             ) : (
               <span
-                className="profile-change-password"
+                className="profile-change-password cart-prev-btn"
                 onClick={() => {
                   if (checkoutStep === "order") {
                     setCheckoutStep("cart");
@@ -205,11 +206,28 @@ const Cart = props => {
                   }
                 }}
               >
-                <i className="fas fa-chevron-left prev-btn-icon" />Précédent
+                <i className="fas fa-chevron-left prev-btn-icon" />
+                Précédent
               </span>
             )}
             <span
-              className="profile-change-password"
+              className={
+                checkoutStep === "cart"
+                  ? "mobile-prev-btn hidden"
+                  : "mobile-prev-btn"
+              }
+              onClick={() => {
+                if (checkoutStep === "order") {
+                  setCheckoutStep("cart");
+                } else {
+                  setCheckoutStep("order");
+                }
+              }}
+            >
+              <i className="fas fa-chevron-left" />
+            </span>
+            <span
+              className="profile-change-password cart-next-btn"
               onClick={() => {
                 if (checkoutStep === "cart") {
                   setCheckoutStep("order");
@@ -218,7 +236,8 @@ const Cart = props => {
                 }
               }}
             >
-              Suivant<i className="fas fa-chevron-right next-btn-icon" />
+              Suivant
+              <i className="fas fa-chevron-right next-btn-icon" />
             </span>
           </span>
         </section>

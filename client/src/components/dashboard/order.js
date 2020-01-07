@@ -56,14 +56,24 @@ const Order = props => {
           {cart.map(item => {
             return (
               <div key={uuidv4()} className="order-item">
-                <span className="order-item-text">
-                  {(item.type === "Stylo personnalisé"
-                    ? `${item.pen[0].obj.name}, ${item.pen[1].obj.type +
-                        " " +
-                        item.pen[1].obj.color.toLowerCase()}`
-                    : "")}
-                    <span className="order-item-text item-quantity"> x{item.quantity}</span>
-                </span>
+                <div className="item-name">
+                  {item.type === "Stylo personnalisé" ? (
+                    <i className="fas fa-pen-alt order-pen-icon"></i>
+                  ) : (
+                    <React.Fragment></React.Fragment>
+                  )}
+                  <span className="order-item-text">
+                    {item.type === "Stylo personnalisé"
+                      ? `${item.pen[0].obj.name}, ${item.pen[1].obj.type +
+                          " " +
+                          item.pen[1].obj.color.toLowerCase()}`
+                      : ""}
+                    <span className="order-item-text item-quantity">
+                      {" "}
+                      x{item.quantity}
+                    </span>
+                  </span>
+                </div>
                 <span className="order-item-text right-aligned">
                   {formatter.format(item.subTotal)}
                 </span>

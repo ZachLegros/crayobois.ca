@@ -119,8 +119,22 @@ input[type="number"] {
 }
 
 .prev-btn-icon {
-  margin-right: 10px;
+  margin-right: 8px;
   font-size: 0.9rem;
+}
+
+.cart-prev-btn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.cart-next-btn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .cart-section {
@@ -177,6 +191,16 @@ input[type="number"] {
   padding: 0 12.5px 0 12.5px;
 }
 
+.hidden {
+  display: none
+}
+
+.mobile-prev-btn {
+  font-size: 1rem;
+  color: var(--black);
+  opacity: 0.8;
+}
+
 @media only screen and (max-width: 825px) {
   .cart-pen-item-name {
     font-size: 0.9rem;
@@ -223,13 +247,15 @@ input[type="number"] {
 
   .profile-change-password {
     margin-bottom: 0;
+    font-size: 0.9rem;
   }
 
+
   .cart-content-footer {
-    margin: 12.5px 0 0 0;
-    padding: 25px;
+    margin: 25px;
+    padding: 0;
     width: calc(100% - 50px);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
   }
 
@@ -253,5 +279,9 @@ input[type="number"] {
     margin: 0 25px 0 25px;
     width: calc(100% - 50px);
     border-bottom: 0px;
+  }
+
+  .cart-prev-btn {
+    display: none;
   }
 }
