@@ -25,6 +25,22 @@ const Order = props => {
     minimumFractionDigits: 2
   });
 
+  const getBreakdown = async () => {
+    const subTotal = await overallSubTotal();
+    const taxes = await taxCalc(subTotal);
+    const total = await totalCalc(subTotal, taxes);
+    setSubTotal(subTotal);
+    setTaxes(taxes);
+    setTotal(total);
+
+    setPriceBreakdown({
+      subTotal: subTotal,
+      taxes: taxes,
+      shipping: "0",
+      total: total
+    });
+  };
+
   // get overall sub total
   const overallSubTotal = () => {
     let overallSubTotal = 0;
@@ -37,24 +53,21 @@ const Order = props => {
   };
 
   // get value of taxes based on overall sub total
-  const taxCalc = () => {
+  const taxCalc = subTotal => {
     const TPS = (5 / 100) * subTotal;
     const TVQ = (9.975 / 100) * subTotal;
 
     return TPS + TVQ;
   };
 
-  const totalCalc = () => {
+  const totalCalc = (subTotal, taxes) => {
     return subTotal + taxes + shipping;
   };
 
   useEffect(() => {
     console.log(cart);
 
-    setPriceBreakdown(breakdown);
-    setSubTotal(overallSubTotal());
-    setTaxes(taxCalc());
-    setTotal(totalCalc());
+    getBreakdown();
   }, []);
 
   return (

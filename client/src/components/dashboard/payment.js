@@ -20,10 +20,13 @@ const Payment = props => {
 
   useEffect(() => {
     console.log(purchaseUnits);
+
     window.paypal
       .Buttons({
         createOrder: (data, actions) => {
-          return actions.order.create(purchaseUnits);
+          return actions.order.create({
+            purchase_units: purchaseUnits
+          });
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();

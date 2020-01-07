@@ -353,57 +353,66 @@ const AuthState = props => {
       });
   };*/
 
-  const createPurchaseUnits = (cart) => {
+  const createPurchaseUnits = cart => {
     const user = auth.currentUser;
 
-    let purchaseUnits = {
-      purchase_units: [
-        {
-          reference_id: "PUHF",
-          description: `Commande de ${user.displayName}`,
-          custom_id: uuidv4(),
+    // generating items list
+    let items = [];
+    for (var i = 0; i < cart.length ; i++) {
+      const currentItem = cart[i];
+      let item
+    }
 
-          // total amount of order
-          amount: {
-            currency_code: "CAD",
-            value: `${priceBreakdown.total}`,
-            breakdown: {
-              item_total: {
-                currency_code: "CAD",
-                value: `${priceBreakdown.subTotal}`,
-              }
-            }
-          },
+    let purchaseUnits = [
+      {
+        reference_id: "PUHF",
+        description: `Commande de ${user.displayName}`,
+        custom_id: `${uuidv4()}`,
 
-          // items list
-          items: [
-            {
-              name: "Item 1",
-              description: "The best item ever",
-              sku: "xyz-2654",
-              unit_amount: {
-                currency_code: "CAD",
-                value: "100.00"
-              },
-              quantity: "1"
+        // total amount of order
+        amount: {
+          currency_code: "CAD",
+          value: `${priceBreakdown.total}`,
+          breakdown: {
+            item_total: {
+              currency_code: "CAD",
+              value: `${priceBreakdown.subTotal}`
             },
-            {
-              name: "Item 2",
-              description: "Not bad too",
-              sku: "zdc-3942",
-              unit_amount: {
-                currency_code: "CAD",
-                value: "50.00"
-              },
-              quantity: "2"
+            tax_total: {
+              currency_code: "CAD",
+              value: `${priceBreakdown.taxes}`
             }
-          ]
-        }
-      ]
-    };
+          }
+        },
+
+        // items list
+        items: [
+          {
+            name: "Item 1",
+            description: "The best item ever",
+            sku: "xyz-2654",
+            unit_amount: {
+              currency_code: "CAD",
+              value: "100.00"
+            },
+            quantity: "1"
+          },
+          {
+            name: "Item 2",
+            description: "Not bad too",
+            sku: "zdc-3942",
+            unit_amount: {
+              currency_code: "CAD",
+              value: "50.00"
+            },
+            quantity: "2"
+          }
+        ]
+      }
+    ];
 
     return purchaseUnits;
-  }
+  };
 
   return (
     <AuthContext.Provider
@@ -432,7 +441,7 @@ const AuthState = props => {
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
         createPurchaseUnits: createPurchaseUnits,
-        priceBreakdown: [priceBreakdown, setPriceBreakdown],
+        priceBreakdown: [priceBreakdown, setPriceBreakdown]
         //  checkout: checkout
       }}
     >
