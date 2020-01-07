@@ -37,7 +37,7 @@
 }
 
 .profile-change-password {
-  background-color: var(--profile_color);
+  background-color: var(--orange);
   color: #fff;
   text-shadow: 5px 0px 35px rgba(95, 95, 95, 0.15);
   padding: 8px 16px 8px 16px;

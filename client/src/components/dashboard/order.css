@@ -27,7 +27,7 @@
 .order-pen-icon {
   font-size: 1rem;
   margin-right: 8px;
-  color: var(--profile_color);
+  color: var(--orange);
   opacity: 0.8;
 }
 
@@ -59,6 +59,7 @@
     width: calc(100% - 50px);
     margin: 0 25px 25px 25px;
     padding: 0 0 12.5px 0;
+    overflow: visible;
   }
 
   .order-total {
@@ -67,6 +68,6 @@
   }
 
   .order-item-text {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
   }
 }

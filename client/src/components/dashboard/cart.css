@@ -192,13 +192,15 @@ input[type="number"] {
 }
 
 .hidden {
-  display: none
+  display: none !important;
 }
 
 .mobile-prev-btn {
   font-size: 1rem;
   color: var(--black);
   opacity: 0.8;
+  display: none;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 825px) {
@@ -214,6 +216,10 @@ input[type="number"] {
   .cart-pen-item-price {
     font-size: 0.9rem;
     padding-left: 12.5px;
+  }
+
+  .mobile-prev-btn {
+    display: flex;
   }
 
   .cart-pen-img {

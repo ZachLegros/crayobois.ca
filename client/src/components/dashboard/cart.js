@@ -66,138 +66,160 @@ const Cart = props => {
 
   return (
     <React.Fragment>
-      <div className="checkout-nav">
-        <div className="checkout-states">
-          <span
-            className={
-              checkoutStep === "cart"
-                ? "checkout-state-link active-checkout-state"
-                : "checkout-state-link"
-            }
-          >
-            Panier
-          </span>
-          <span className="checkout-state-icon-container">
-            <i className="fas fa-chevron-right checkout-state-icon" />
-          </span>
-          <span
-            className={
-              checkoutStep === "order"
-                ? "checkout-state-link active-checkout-state"
-                : "checkout-state-link"
-            }
-          >
-            Commande
-          </span>
-          <span className="checkout-state-icon-container">
-            <i className="fas fa-chevron-right checkout-state-icon" />
-          </span>
-          <span
-            className={
-              checkoutStep === "payment"
-                ? "checkout-state-link active-checkout-state"
-                : "checkout-state-link"
-            }
-          >
-            Paiement
-          </span>
-        </div>
-      </div>
       {cart.length === 0 ? (
-        <span className="dashboard-notice">
-          Il n'y a aucun stylo dans votre panier
-        </span>
+        <React.Fragment>
+          <span className="dashboard-content-header">Mon panier</span>
+          <span className="dashboard-notice">
+            Il n'y a aucun stylo dans votre panier
+          </span>
+        </React.Fragment>
       ) : (
-        <section className="cart-section">
-          {checkoutStep === "cart" ? (
-            <div className="cart-container">
-              {cart.length !== 0 ? (
-                cart.map((pens, index) => {
-                  return (
-                    <div className="cart-pen-container" key={uuidv4()}>
-                      <div className="cart-pen-container-top">
-                        <div id={"qty-form" + index} className="qty-input">
-                          <label htmlFor="quantity">Quantité: </label>
-                          <input
-                            type="number"
-                            name="quantity"
-                            min="1"
-                            max="10"
-                            defaultValue={cart[index].quantity}
-                            onBlur={() => {
-                              setQuantity("quantity" + index, index);
-                            }}
-                            id={"quantity" + index}
-                          />
-                        </div>
-                        <div className="cart-pen-delete">
-                          <i
-                            className="fas fa-times-circle"
-                            onClick={async () => {
-                              const newCart = await authContext.removeFromCart(
-                                pens.id
-                              );
-                              setCart(newCart);
-                              setSubTotal(getSubTotal(newCart));
-                            }}
-                          ></i>
-                        </div>
-                      </div>
-                      {pens.pen.map(item => {
-                        return (
-                          <div className="cart-pen-item" key={uuidv4()}>
-                            <div className="cart-pen-img-and-name">
-                              <img
-                                src={item.obj.path}
-                                className="cart-pen-img"
-                                key={uuidv4()}
-                              />
-                              {item.obj.name ? (
-                                <span
-                                  className="cart-pen-item-name"
-                                  key={uuidv4()}
-                                >
-                                  {item.obj.name}
-                                </span>
-                              ) : (
-                                <span
-                                  className="cart-pen-item-name"
-                                  key={uuidv4()}
-                                >
-                                  {item.obj.type}{" "}
-                                  <span className="cart-pen-item-color">
-                                    {item.obj.color}
-                                  </span>
-                                </span>
-                              )}
-                            </div>
-                            <span
-                              className="cart-pen-item-price"
-                              key={uuidv4()}
-                            >
-                              {formatter.format(item.obj.price)}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })
-              ) : (
-                <React.Fragment></React.Fragment>
-              )}
-            </div>
-          ) : checkoutStep === "order" ? (
-            <Order />
-          ) : (
-            <Payment />
-          )}
-          <span className="cart-content-footer">
-            {checkoutStep === "cart" ? (
-              `Sous-total: ${formatter.format(subTotal)}`
-            ) : (
+        <React.Fragment>
+          <div className="checkout-nav">
+            <div className="checkout-states">
               <span
-                className="profile-change-password cart-prev-btn"
+                className={
+                  checkoutStep === "cart"
+                    ? "checkout-state-link active-checkout-state"
+                    : "checkout-state-link"
+                }
+              >
+                Panier
+              </span>
+              <span className="checkout-state-icon-container">
+                <i className="fas fa-chevron-right checkout-state-icon" />
+              </span>
+              <span
+                className={
+                  checkoutStep === "order"
+                    ? "checkout-state-link active-checkout-state"
+                    : "checkout-state-link"
+                }
+              >
+                Commande
+              </span>
+              <span className="checkout-state-icon-container">
+                <i className="fas fa-chevron-right checkout-state-icon" />
+              </span>
+              <span
+                className={
+                  checkoutStep === "payment"
+                    ? "checkout-state-link active-checkout-state"
+                    : "checkout-state-link"
+                }
+              >
+                Paiement
+              </span>
+            </div>
+          </div>
+          <section className="cart-section">
+            {checkoutStep === "cart" ? (
+              <div className="cart-container">
+                {cart.length !== 0 ? (
+                  cart.map((pens, index) => {
+                    return (
+                      <div className="cart-pen-container" key={uuidv4()}>
+                        <div className="cart-pen-container-top">
+                          <div id={"qty-form" + index} className="qty-input">
+                            <label htmlFor="quantity">Quantité: </label>
+                            <input
+                              type="number"
+                              name="quantity"
+                              min="1"
+                              max="10"
+                              defaultValue={cart[index].quantity}
+                              onBlur={() => {
+                                setQuantity("quantity" + index, index);
+                              }}
+                              id={"quantity" + index}
+                            />
+                          </div>
+                          <div className="cart-pen-delete">
+                            <i
+                              className="fas fa-times-circle"
+                              onClick={async () => {
+                                const newCart = await authContext.removeFromCart(
+                                  pens.id
+                                );
+                                setCart(newCart);
+                                setSubTotal(getSubTotal(newCart));
+                              }}
+                            ></i>
+                          </div>
+                        </div>
+                        {pens.pen.map(item => {
+                          return (
+                            <div className="cart-pen-item" key={uuidv4()}>
+                              <div className="cart-pen-img-and-name">
+                                <img
+                                  src={item.obj.path}
+                                  className="cart-pen-img"
+                                  key={uuidv4()}
+                                />
+                                {item.obj.name ? (
+                                  <span
+                                    className="cart-pen-item-name"
+                                    key={uuidv4()}
+                                  >
+                                    {item.obj.name}
+                                  </span>
+                                ) : (
+                                  <span
+                                    className="cart-pen-item-name"
+                                    key={uuidv4()}
+                                  >
+                                    {item.obj.type}{" "}
+                                    <span className="cart-pen-item-color">
+                                      {item.obj.color}
+                                    </span>
+                                  </span>
+                                )}
+                              </div>
+                              <span
+                                className="cart-pen-item-price"
+                                key={uuidv4()}
+                              >
+                                {formatter.format(item.obj.price)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <React.Fragment></React.Fragment>
+                )}
+              </div>
+            ) : checkoutStep === "order" ? (
+              <Order />
+            ) : (
+              <Payment />
+            )}
+            <span className="cart-content-footer">
+              {checkoutStep === "cart" ? (
+                `Sous-total: ${formatter.format(subTotal)}`
+              ) : (
+                <span
+                  className="profile-change-password cart-prev-btn"
+                  onClick={() => {
+                    if (checkoutStep === "order") {
+                      setCheckoutStep("cart");
+                    } else {
+                      setCheckoutStep("order");
+                    }
+                  }}
+                >
+                  <i className="fas fa-chevron-left prev-btn-icon" />
+                  Précédent
+                </span>
+              )}
+              <span
+                className={
+                  checkoutStep === "cart"
+                    ? "mobile-prev-btn hidden"
+                    : "mobile-prev-btn"
+                }
                 onClick={() => {
                   if (checkoutStep === "order") {
                     setCheckoutStep("cart");
@@ -206,41 +228,24 @@ const Cart = props => {
                   }
                 }}
               >
-                <i className="fas fa-chevron-left prev-btn-icon" />
-                Précédent
+                <i className="fas fa-chevron-left" />
               </span>
-            )}
-            <span
-              className={
-                checkoutStep === "cart"
-                  ? "mobile-prev-btn hidden"
-                  : "mobile-prev-btn"
-              }
-              onClick={() => {
-                if (checkoutStep === "order") {
-                  setCheckoutStep("cart");
-                } else {
-                  setCheckoutStep("order");
-                }
-              }}
-            >
-              <i className="fas fa-chevron-left" />
+              <span
+                className="profile-change-password cart-next-btn"
+                onClick={() => {
+                  if (checkoutStep === "cart") {
+                    setCheckoutStep("order");
+                  } else {
+                    setCheckoutStep("payment");
+                  }
+                }}
+              >
+                Suivant
+                <i className="fas fa-chevron-right next-btn-icon" />
+              </span>
             </span>
-            <span
-              className="profile-change-password cart-next-btn"
-              onClick={() => {
-                if (checkoutStep === "cart") {
-                  setCheckoutStep("order");
-                } else {
-                  setCheckoutStep("payment");
-                }
-              }}
-            >
-              Suivant
-              <i className="fas fa-chevron-right next-btn-icon" />
-            </span>
-          </span>
-        </section>
+          </section>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
