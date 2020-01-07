@@ -23,6 +23,16 @@ const Payment = props => {
 
     window.paypal
       .Buttons({
+        locale: "fr_CA",
+        style: {
+          layout: "horizontal",
+          color: "gold",
+          label: "checkout",
+          shape: "pill",
+          size: "responsive",
+          tagline: false
+        },
+
         createOrder: (data, actions) => {
           return actions.order.create({
             purchase_units: purchaseUnits

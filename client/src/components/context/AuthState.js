@@ -355,12 +355,28 @@ const AuthState = props => {
 
   const createPurchaseUnits = cart => {
     const user = auth.currentUser;
+    const spreadTaxes = priceBreakdown.taxes / cart.length;
 
     // generating items list
     let items = [];
-    for (var i = 0; i < cart.length ; i++) {
+    for (var i = 0; i < cart.length; i++) {
       const currentItem = cart[i];
-      let item
+      let item = {
+        name: `Stylo personnalisé ${i + 1}`,
+        description: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type}`,
+        sku: `${currentItem.id}`,
+        tax: {
+          currency_code: "CAD",
+          value: `${i === 0 ? priceBreakdown.taxes.toFixed(2) : 0.00}`
+        },
+        unit_amount: {
+          currency_code: "CAD",
+          value: `${currentItem.pricesSum.toFixed(2)}`
+        },
+        quantity: `${currentItem.quantity}`
+      };
+
+      items.push(item);
     }
 
     let purchaseUnits = [
@@ -372,42 +388,21 @@ const AuthState = props => {
         // total amount of order
         amount: {
           currency_code: "CAD",
-          value: `${priceBreakdown.total}`,
+          value: `${priceBreakdown.total.toFixed(2)}`,
           breakdown: {
             item_total: {
               currency_code: "CAD",
-              value: `${priceBreakdown.subTotal}`
+              value: `${priceBreakdown.subTotal.toFixed(2)}`
             },
             tax_total: {
               currency_code: "CAD",
-              value: `${priceBreakdown.taxes}`
+              value: `${priceBreakdown.taxes.toFixed(2)}`
             }
           }
         },
 
         // items list
-        items: [
-          {
-            name: "Item 1",
-            description: "The best item ever",
-            sku: "xyz-2654",
-            unit_amount: {
-              currency_code: "CAD",
-              value: "100.00"
-            },
-            quantity: "1"
-          },
-          {
-            name: "Item 2",
-            description: "Not bad too",
-            sku: "zdc-3942",
-            unit_amount: {
-              currency_code: "CAD",
-              value: "50.00"
-            },
-            quantity: "2"
-          }
-        ]
+        items: items
       }
     ];
 
