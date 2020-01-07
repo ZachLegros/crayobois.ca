@@ -26,6 +26,7 @@ const AuthState = props => {
     action: "",
     placeholder: ""
   });
+  const [priceBreakdown, setPriceBreakdown] = useState({});
 
   // random color generator for user profile
   function getRandomColor() {
@@ -352,6 +353,58 @@ const AuthState = props => {
       });
   };*/
 
+  const createPurchaseUnits = (cart) => {
+    const user = auth.currentUser;
+
+    let purchaseUnits = {
+      purchase_units: [
+        {
+          reference_id: "PUHF",
+          description: `Commande de ${user.displayName}`,
+          custom_id: uuidv4(),
+
+          // total amount of order
+          amount: {
+            currency_code: "CAD",
+            value: `${priceBreakdown.total}`,
+            breakdown: {
+              item_total: {
+                currency_code: "CAD",
+                value: `${priceBreakdown.subTotal}`,
+              }
+            }
+          },
+
+          // items list
+          items: [
+            {
+              name: "Item 1",
+              description: "The best item ever",
+              sku: "xyz-2654",
+              unit_amount: {
+                currency_code: "CAD",
+                value: "100.00"
+              },
+              quantity: "1"
+            },
+            {
+              name: "Item 2",
+              description: "Not bad too",
+              sku: "zdc-3942",
+              unit_amount: {
+                currency_code: "CAD",
+                value: "50.00"
+              },
+              quantity: "2"
+            }
+          ]
+        }
+      ]
+    };
+
+    return purchaseUnits;
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -377,7 +430,9 @@ const AuthState = props => {
         alertParams: alertParams,
         changeName: changeName,
         changePassword: changePassword,
-        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn]
+        dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
+        createPurchaseUnits: createPurchaseUnits,
+        priceBreakdown: [priceBreakdown, setPriceBreakdown],
         //  checkout: checkout
       }}
     >

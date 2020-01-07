@@ -11,6 +11,13 @@ const Order = props => {
   const [taxes, setTaxes] = useState(0);
   const [shipping, setShipping] = useState(0);
   const [total, setTotal] = useState(0);
+  const [priceBreakdown, setPriceBreakdown] = authContext.priceBreakdown;
+  const breakdown = {
+    subTotal: subTotal,
+    taxes: taxes,
+    shipping: shipping,
+    total: total
+  };
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -44,10 +51,11 @@ const Order = props => {
   useEffect(() => {
     console.log(cart);
 
+    setPriceBreakdown(breakdown);
     setSubTotal(overallSubTotal());
     setTaxes(taxCalc());
     setTotal(totalCalc());
-  });
+  }, []);
 
   return (
     <React.Fragment>
