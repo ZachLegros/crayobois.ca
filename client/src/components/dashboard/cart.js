@@ -18,6 +18,12 @@ const Cart = props => {
     minimumFractionDigits: 2
   });
 
+  const resetCheckout = () => {
+    setCheckoutStep("cart");
+    setCart([]);
+    user.shoppingCart = [];
+  }
+
   const getSubTotal = cart => {
     var value = 0;
 
@@ -194,7 +200,7 @@ const Cart = props => {
             ) : checkoutStep === "order" ? (
               <Order />
             ) : (
-              <Payment />
+              <Payment resetCheckout={resetCheckout}/>
             )}
             <span className="cart-content-footer">
               {checkoutStep === "cart" ? (

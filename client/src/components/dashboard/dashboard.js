@@ -17,7 +17,7 @@ const Dashboard = props => {
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
-  const cart = user.shoppingCart;
+  const [cart, setCart] = useState(authContext.cart[0]);
 
   // signout function
   function signout() {
@@ -34,6 +34,7 @@ const Dashboard = props => {
   useEffect(() => {
     getVerification();
     authContext.getUserSession();
+    console.log(cart);
   }, []);
 
   return (
@@ -209,7 +210,8 @@ const Dashboard = props => {
                           <div className="dashboard-nav-icon-container">
                             <i className="fas fa-shopping-basket dashboard-nav-icon"></i>
                           </div>
-                          Mon panier {cart.length === 0 ? "" : `(${cart.length})`}
+                          Mon panier{" "}
+                          {cart.length === 0 ? "" : `(${cart.length})`}
                         </a>
                       </span>
                     ) : (

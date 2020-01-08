@@ -197,6 +197,7 @@ const AuthState = props => {
             shoppingCart: userData.shoppingCart
           });
           setCart(userData.shoppingCart);
+          console.log(userData.shoppingCart);
         });
     }
   };
@@ -233,8 +234,8 @@ const AuthState = props => {
       .get()
       .then(doc => {
         const data = doc.data();
-        var userData = data[target];
-        var newObj = {};
+        let userData = data[target];
+        let newObj = {};
         newObj["id"] = uuidv4();
         newObj["pen"] = value;
         newObj["quantity"] = 1;
@@ -264,31 +265,39 @@ const AuthState = props => {
   function removeFromCart(id) {
     const uid = auth.currentUser.uid;
 
-    const newUser = { ...user };
-    const idx = newUser.shoppingCart.findIndex(pen => pen.id === id);
-    newUser.shoppingCart.splice(idx, 1);
-    setUser(newUser);
-    const cart = newUser.shoppingCart;
-
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        const cart = data["shoppingCart"];
-        var newCart = [];
-        for (var i = 0; i < cart.length; i++) {
-          if (cart[i].id !== id) {
-            newCart.push(cart[i]);
+    if (id === "*") {
+      const newUser = { ...user };
+      newUser.shoppingCart = [];
+      setUser(newUser);
+      const cart = newUser.shoppingCart;
+    } else {
+      const newUser = { ...user };
+      const idx = newUser.shoppingCart.findIndex(pen => pen.id === id);
+      newUser.shoppingCart.splice(idx, 1);
+      setUser(newUser);
+      const cart = newUser.shoppingCart;
+  
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          const cart = data["shoppingCart"];
+          var newCart = [];
+          for (var i = 0; i < cart.length; i++) {
+            if (cart[i].id !== id) {
+              newCart.push(cart[i]);
+            }
           }
-        }
-        //add new array to db
-        db.collection("users")
-          .doc(uid)
-          .update({
-            ["shoppingCart"]: newCart
-          });
-      });
+          //add new array to db
+          db.collection("users")
+            .doc(uid)
+            .update({
+              ["shoppingCart"]: newCart
+            });
+        });
+    }
+    
 
     return cart;
   }
@@ -334,25 +343,6 @@ const AuthState = props => {
     auth.sendPasswordResetEmail(email);
   };
 
-  /* const checkout = total => {
-    const uid = auth.currentUser.uid;
-    let checkoutInfo;
-    // fetching user's data
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        checkoutInfo = {
-          email: data.email,
-          name: data.fullName,
-          cart: data.shoppingCart,
-          total: total
-        };
-        console.log(checkoutInfo);
-      });
-  };*/
-
   const createPurchaseUnits = cart => {
     const user = auth.currentUser;
 
@@ -361,8 +351,8 @@ const AuthState = props => {
     for (var i = 0; i < cart.length; i++) {
       const currentItem = cart[i];
       let item = {
-        name: `Stylo personnalisé ${i + 1}`,
-        description: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type}`,
+        name: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type}`,
+        description: `Stylo personnalisé ${i + 1}`,
         sku: `${currentItem.id}`,
         tax: {
           currency_code: "CAD",
@@ -435,8 +425,7 @@ const AuthState = props => {
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
         createPurchaseUnits: createPurchaseUnits,
-        priceBreakdown: [priceBreakdown, setPriceBreakdown]
-        //  checkout: checkout
+        priceBreakdown: [priceBreakdown, setPriceBreakdown],
       }}
     >
       {props.children}

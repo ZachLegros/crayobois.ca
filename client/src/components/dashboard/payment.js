@@ -40,7 +40,10 @@ const Payment = props => {
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
+          authContext.updateCart([]);
+          authContext.removeFromCart("*");
           setPaidFor(true);
+          props.resetCheckout();
           console.log(order);
         },
         onError: err => {
