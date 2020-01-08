@@ -60,7 +60,6 @@ const Dashboard = props => {
                 className="dashboard-nav-link"
                 onClick={() => {
                   setUserNav("profile");
-                  console.log(cart);
                 }}
               >
                 <a>

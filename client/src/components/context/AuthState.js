@@ -196,7 +196,6 @@ const AuthState = props => {
             pensPurchased: userData.pensPurchased,
             shoppingCart: userData.shoppingCart
           };
-          console.log(userObj, userData);
           setUser(userObj);
           setCart(userData.shoppingCart);
         });

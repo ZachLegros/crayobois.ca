@@ -26,7 +26,7 @@ const Payment = props => {
         locale: "fr_CA",
         style: {
           layout: "horizontal",
-          color: "gold",
+          color: "silver",
           label: "checkout",
           shape: "pill",
           size: "responsive",

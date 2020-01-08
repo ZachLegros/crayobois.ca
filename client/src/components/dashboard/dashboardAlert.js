@@ -6,7 +6,7 @@ const DashboardAlert = props => {
   const authContext = useContext(AuthContext);
   const alert = authContext.alert;
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
-  const [user, setUser] = useState(authContext.user);
+  const [user, setUser] = authContext.user;
 
   useEffect(() => {
     const actionForm = document.querySelector("#dashboard-alert-form");

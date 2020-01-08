@@ -202,7 +202,7 @@ const Cart = props => {
             ) : (
               <Payment resetCheckout={resetCheckout}/>
             )}
-            <span className="cart-content-footer">
+            <span className="cart-content-footer bold">
               {checkoutStep === "cart" ? (
                 `Sous-total: ${formatter.format(subTotal)}`
               ) : (

@@ -65,8 +65,6 @@ const Order = props => {
   };
 
   useEffect(() => {
-    console.log(cart);
-
     getBreakdown();
   }, []);
 
@@ -78,11 +76,6 @@ const Order = props => {
             return (
               <div key={uuidv4()} className="order-item">
                 <div className="item-name">
-                  {item.type === "Stylo personnalisé" ? (
-                    <i className="fas fa-pen-alt order-pen-icon"></i>
-                  ) : (
-                    <React.Fragment></React.Fragment>
-                  )}
                   <span className="order-item-text">
                     {item.type === "Stylo personnalisé"
                       ? `${item.pen[0].obj.name}, ${item.pen[1].obj.type +
@@ -112,7 +105,7 @@ const Order = props => {
           <span className="order-item-text">
             Livraison: {formatter.format(shipping)}
           </span>
-          <span className="order-item-text">
+          <span className="order-item-text bold">
             Total: {formatter.format(total)}
           </span>
         </div>

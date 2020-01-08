@@ -32,11 +32,11 @@
 .dashboard-hero {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 50px 0 25px 0;
   width: 100%;
-  height: 35%;
+  height: max-content;
   border-bottom: 1px solid #dfdfdf;
   min-height: 225px;
 }
@@ -47,7 +47,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 70%;
 }
 
 .dashboard-hero-username {
@@ -55,6 +54,7 @@
   color: var(--black);
   font-weight: 600;
   font-size: 1.25em;
+  text-align: center;
 }
 
 .dashboard-hero-email {
@@ -69,8 +69,8 @@
   font-size: 2rem;
   position: relative;
   z-index: 10;
-  height: 75px;
-  width: 75px;
+  height: 65px !important;
+  width: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -303,13 +303,16 @@
   }
 
   .dashboard-content {
-    padding: 0;
-    width: 100%;
+    padding: 12.5px;
+    width: calc(100% - 25px);
     height: 100%;
   }
 
   .dashboard-hero {
+    margin: 0 25px 0 25px;
     padding-top: 30px;
+    width: calc(100% - 50px);
+    justify-content: center;
   }
 
   .dashboard-mobile-nav {
@@ -341,5 +344,3 @@
   }
 }
 
-@media only screen and (max-height: 650px) {
-}
