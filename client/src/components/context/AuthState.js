@@ -187,7 +187,7 @@ const AuthState = props => {
           const color = userData.color;
           const root = document.documentElement;
           root.style.setProperty("--profile_color", color);
-          setUser({
+          const userObj = {
             color: userData.color,
             dateCreated: userData.dateCreated,
             email: userData.email,
@@ -195,9 +195,10 @@ const AuthState = props => {
             orders: userData.orders,
             pensPurchased: userData.pensPurchased,
             shoppingCart: userData.shoppingCart
-          });
+          };
+          console.log(userObj, userData);
+          setUser(userObj);
           setCart(userData.shoppingCart);
-          console.log(userData.shoppingCart);
         });
     }
   };
@@ -276,7 +277,7 @@ const AuthState = props => {
       newUser.shoppingCart.splice(idx, 1);
       setUser(newUser);
       const cart = newUser.shoppingCart;
-  
+
       db.collection("users")
         .doc(uid)
         .get()
@@ -297,7 +298,6 @@ const AuthState = props => {
             });
         });
     }
-    
 
     return cart;
   }
@@ -356,7 +356,11 @@ const AuthState = props => {
         sku: `${currentItem.id}`,
         tax: {
           currency_code: "CAD",
-          value: `${i === 0 ? (priceBreakdown.taxes / currentItem.quantity).toFixed(2) : 0.00}`
+          value: `${
+            i === 0
+              ? (priceBreakdown.taxes / currentItem.quantity).toFixed(2)
+              : 0.0
+          }`
         },
         unit_amount: {
           currency_code: "CAD",
@@ -377,7 +381,10 @@ const AuthState = props => {
         // total amount of order
         amount: {
           currency_code: "CAD",
-          value: `${(parseFloat(items[0].tax.value * items[0].quantity) + parseFloat(priceBreakdown.subTotal)).toFixed(2)}`,
+          value: `${(
+            parseFloat(items[0].tax.value * items[0].quantity) +
+            parseFloat(priceBreakdown.subTotal)
+          ).toFixed(2)}`,
           breakdown: {
             item_total: {
               currency_code: "CAD",
@@ -425,7 +432,7 @@ const AuthState = props => {
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
         createPurchaseUnits: createPurchaseUnits,
-        priceBreakdown: [priceBreakdown, setPriceBreakdown],
+        priceBreakdown: [priceBreakdown, setPriceBreakdown]
       }}
     >
       {props.children}

@@ -13,11 +13,11 @@ const Dashboard = props => {
     setInitializedFirebase
   ] = authContext.initializedFirebase;
   const [user, setUser] = authContext.user;
+  const [cart, setCart] = authContext.cart;
   const [verified, setVerified] = useState(false);
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
-  const [cart, setCart] = useState(authContext.cart[0]);
 
   // signout function
   function signout() {
@@ -34,7 +34,6 @@ const Dashboard = props => {
   useEffect(() => {
     getVerification();
     authContext.getUserSession();
-    console.log(cart);
   }, []);
 
   return (
@@ -61,6 +60,7 @@ const Dashboard = props => {
                 className="dashboard-nav-link"
                 onClick={() => {
                   setUserNav("profile");
+                  console.log(cart);
                 }}
               >
                 <a>
