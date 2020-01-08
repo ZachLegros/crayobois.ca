@@ -355,7 +355,6 @@ const AuthState = props => {
 
   const createPurchaseUnits = cart => {
     const user = auth.currentUser;
-    const spreadTaxes = priceBreakdown.taxes / cart.length;
 
     // generating items list
     let items = [];
@@ -367,7 +366,7 @@ const AuthState = props => {
         sku: `${currentItem.id}`,
         tax: {
           currency_code: "CAD",
-          value: `${i === 0 ? priceBreakdown.taxes.toFixed(2) : 0.00}`
+          value: `${i === 0 ? (priceBreakdown.taxes / currentItem.quantity).toFixed(2) : 0.00}`
         },
         unit_amount: {
           currency_code: "CAD",
@@ -388,7 +387,7 @@ const AuthState = props => {
         // total amount of order
         amount: {
           currency_code: "CAD",
-          value: `${priceBreakdown.total.toFixed(2)}`,
+          value: `${(parseFloat(items[0].tax.value * items[0].quantity) + parseFloat(priceBreakdown.subTotal)).toFixed(2)}`,
           breakdown: {
             item_total: {
               currency_code: "CAD",
@@ -396,7 +395,7 @@ const AuthState = props => {
             },
             tax_total: {
               currency_code: "CAD",
-              value: `${priceBreakdown.taxes.toFixed(2)}`
+              value: `${(items[0].tax.value * items[0].quantity).toFixed(2)}`
             }
           }
         },
