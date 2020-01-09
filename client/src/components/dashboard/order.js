@@ -88,7 +88,7 @@ const Order = props => {
                     </span>
                   </span>
                 </div>
-                <span className="order-item-text right-aligned">
+                <span className="order-item-text right-aligned bold">
                   {formatter.format(item.subTotal)}
                 </span>
               </div>

@@ -304,7 +304,6 @@ const AuthState = props => {
   const updateCart = newCart => {
     const uid = auth.currentUser.uid;
 
-    //add new array to db
     db.collection("users")
       .doc(uid)
       .update({
@@ -404,6 +403,29 @@ const AuthState = props => {
     return purchaseUnits;
   };
 
+  const addOrderToClient = order => {
+    const uid = auth.currentUser.uid;
+
+    // get old orders
+    db.collection("users")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        let orders = data["orders"];
+        orders.push(order);
+
+        // update orders
+        db.collection("users")
+          .doc(uid)
+          .update({
+            ["orders"]: orders
+          });
+      });
+    
+    
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -431,7 +453,8 @@ const AuthState = props => {
         changePassword: changePassword,
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
         createPurchaseUnits: createPurchaseUnits,
-        priceBreakdown: [priceBreakdown, setPriceBreakdown]
+        priceBreakdown: [priceBreakdown, setPriceBreakdown],
+        addOrderToClient: addOrderToClient
       }}
     >
       {props.children}

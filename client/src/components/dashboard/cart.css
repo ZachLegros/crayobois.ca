@@ -9,7 +9,7 @@
 }
 
 .cart-pen-container {
-  width: calc(100% - 25px);
+  width: 100%;
   height: max-content;
   background-color: #fff;
   border-top: 1px solid #dfdfdf;
@@ -18,7 +18,6 @@
   align-items: space-around;
   flex-direction: column;
   padding: 25px 0 0 0;
-  margin-right: 25px;
   margin-top: -1px;
 }
 
@@ -143,6 +142,10 @@ input[type="number"] {
   height: calc(100% - 65.6px);
   overflow: hidden;
   width: 100%;
+}
+
+.reversed {
+  flex-direction: column-reverse;
 }
 
 .checkout-nav {

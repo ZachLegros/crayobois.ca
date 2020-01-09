@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import AuthContext from "../context/authContext";
 import "./payment.css";
+import Success from "./sucess";
 const uuidv4 = require("uuid/v4");
 
 const Payment = props => {
@@ -41,15 +42,16 @@ const Payment = props => {
 
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
+          authContext.addOrderToClient(order);
           authContext.updateCart([]);
           authContext.removeFromCart("*");
           setPaidFor(true);
+
           console.log(order);
         },
 
         onError: err => {
           setError(err);
-          console.error(err);
         }
       })
       .render(paypalRef.current);
@@ -58,9 +60,7 @@ const Payment = props => {
   // successfull
   if (paidFor) {
     return (
-      <div>
-        <h1>Congrats, you just bought !</h1>
-      </div>
+     <Success />
     );
   }
 
@@ -68,10 +68,10 @@ const Payment = props => {
     <React.Fragment>
       <div className="paypal">
         {/*failed*/}
-        {error && <div>Uh oh, an error occurred! {error.message}</div>}
+        {error && <div>Une erreur est survenue lors de la connexion aux services de PayPal: {error.message}</div>}
         {/* payment options*/}
         <span className="safe-payment-header">
-          Paiement sécurisé par PayPal<i className="fas fa-check-circle"></i>
+          Paiement sécurisé par PayPal<span><i className="fas fa-check-circle"></i></span>
         </span>
         <div ref={paypalRef} />
       </div>
