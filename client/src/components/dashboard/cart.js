@@ -18,11 +18,11 @@ const Cart = props => {
     minimumFractionDigits: 2
   });
 
-  const resetCheckout = () => {
+  const resetCheckout = () => {
     setCheckoutStep("cart");
     setCart([]);
     user.shoppingCart = [];
-  }
+  };
 
   const getSubTotal = cart => {
     var value = 0;
@@ -200,7 +200,7 @@ const Cart = props => {
             ) : checkoutStep === "order" ? (
               <Order />
             ) : (
-              <Payment resetCheckout={resetCheckout}/>
+              <Payment resetCheckout={resetCheckout} />
             )}
             <span className="cart-content-footer bold">
               {checkoutStep === "cart" ? (
@@ -234,10 +234,15 @@ const Cart = props => {
                   }
                 }}
               >
-                <i className="fas fa-chevron-left" />
+                <i className="fas fa-chevron-left mobile-prev-icon" />
+                Précédent
               </span>
               <span
-                className="profile-change-password cart-next-btn"
+                className={
+                  checkoutStep === "payment"
+                    ? "profile-change-password cart-next-btn hidden"
+                    : "profile-change-password cart-next-btn"
+                }
                 onClick={() => {
                   if (checkoutStep === "cart") {
                     setCheckoutStep("order");

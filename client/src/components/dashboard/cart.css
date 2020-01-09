@@ -203,6 +203,14 @@ input[type="number"] {
   opacity: 0.8;
   display: none;
   cursor: pointer;
+  font-weight: 500;
+}
+
+.mobile-prev-icon {
+  opacity: 0.8;
+  color: var(--black);
+  font-size: 0.9rem;
+  margin-right: 10px;
 }
 
 @media only screen and (max-width: 825px) {
@@ -222,6 +230,7 @@ input[type="number"] {
 
   .mobile-prev-btn {
     display: flex;
+    align-items: center;
   }
 
   .cart-pen-img {
@@ -248,8 +257,8 @@ input[type="number"] {
   }
 
   .checkout-nav {
-    margin: 0 25px 0 25px;
-    width: calc(100% - 50px);
+    margin: 0 12.5px 0 12.5px;
+    width: calc(100% - 25px);
     justify-content: center;
   }
 
@@ -257,7 +266,6 @@ input[type="number"] {
     margin-bottom: 0;
     font-size: 0.9rem;
   }
-
 
   .cart-content-footer {
     margin: 25px;

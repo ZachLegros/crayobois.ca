@@ -169,7 +169,7 @@ const GlobalState = props => {
   }
 
   function cvsNav(action, goTo) {
-    if (goTo === null) {
+    if (!goTo) {
       const idx = cvsPages.indexOf(activeCvsPage);
       if (action === "back" && activeCvsPage !== "materials") {
         toggleLoading();

@@ -26,11 +26,10 @@ const Payment = props => {
         locale: "fr_CA",
         style: {
           layout: "vertical",
-          color: "silver",
+          color: "blue",
           label: "checkout",
           shape: "pill",
           size: "responsive",
-          tagline: false,
           fundingicons: true
         },
 
@@ -45,7 +44,6 @@ const Payment = props => {
           authContext.updateCart([]);
           authContext.removeFromCart("*");
           setPaidFor(true);
-          props.resetCheckout();
           console.log(order);
         },
 
@@ -57,7 +55,7 @@ const Payment = props => {
       .render(paypalRef.current);
   }, []);
 
-  // testing
+  // successfull
   if (paidFor) {
     return (
       <div>
@@ -69,8 +67,12 @@ const Payment = props => {
   return (
     <React.Fragment>
       <div className="paypal">
+        {/*failed*/}
         {error && <div>Uh oh, an error occurred! {error.message}</div>}
-        <h1>Buy test</h1>
+        {/* payment options*/}
+        <span className="safe-payment-header">
+          Paiement sécurisé par PayPal<i className="fas fa-check-circle"></i>
+        </span>
         <div ref={paypalRef} />
       </div>
     </React.Fragment>
