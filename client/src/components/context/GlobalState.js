@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CvsContext from "./cvsContext";
+import Mats from "./TEMPjson/mats.json";
+import Haws from "./TEMPjson/haws.json";
 
 const GlobalState = props => {
   const [mats, setMats] = useState([]);
@@ -36,20 +38,25 @@ const GlobalState = props => {
 
   //fetching materials
   async function getMats() {
-    const url = "/mats";
+  /*  const url = "/mats";
     const response = await fetch(url);
     const data = await response.json();
     setMats(data);
+    setLoading(false);*/
+    setMats(Mats);
     setLoading(false);
   }
 
   //fetching hardwares
   async function getHaws() {
-    const url = "/haws";
+    /*const url = "/haws";
     const response = await fetch(url);
     const data = await response.json();
     setHaws(data);
     sortHawsByType(data);
+    setLoading(false);*/
+    setHaws(Haws);
+    sortHawsByType(Haws);
     setLoading(false);
   }
 
