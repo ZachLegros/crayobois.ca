@@ -4,7 +4,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  overflow-y: scroll;
   flex-direction: column;
   border-bottom: 1px solid #dfdfdf;
 }
@@ -104,7 +103,6 @@ input[type="number"] {
 
 .cart-content-footer {
   color: var(--black);
-  font-weight: 600;
   font-size: 1.5rem;
   width: 100%;
   margin: 25px 0 50px 0;
@@ -236,10 +234,6 @@ input[type="number"] {
   .cart-pen-img {
     height: 65px !important;
     width: 65px !important;
-  }
-
-  .cart-container {
-    overflow-y: visible;
   }
 
   .cart-section {

@@ -96,16 +96,16 @@ const Order = props => {
           })}
         </div>
         <div className="order-total">
-          <span className="order-item-text">
+          <span className="order-total-text">
             Sous-total: {formatter.format(subTotal)}
           </span>
-          <span className="order-item-text">
+          <span className="order-total-text">
             Taxes (TPS et TVQ): {formatter.format(taxes)}
           </span>
-          <span className="order-item-text">
+          <span className="order-total-text">
             Livraison: {formatter.format(shipping)}
           </span>
-          <span className="order-item-text bold">
+          <span className="order-total-text bold">
             Total: {formatter.format(total)}
           </span>
         </div>
