@@ -25,12 +25,13 @@ const Payment = props => {
       .Buttons({
         locale: "fr_CA",
         style: {
-          layout: "horizontal",
+          layout: "vertical",
           color: "silver",
           label: "checkout",
           shape: "pill",
           size: "responsive",
-          tagline: false
+          tagline: false,
+          fundingicons: true
         },
 
         createOrder: (data, actions) => {
@@ -38,6 +39,7 @@ const Payment = props => {
             purchase_units: purchaseUnits
           });
         },
+
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           authContext.updateCart([]);
@@ -46,6 +48,7 @@ const Payment = props => {
           props.resetCheckout();
           console.log(order);
         },
+
         onError: err => {
           setError(err);
           console.error(err);
