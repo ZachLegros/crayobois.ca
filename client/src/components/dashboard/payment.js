@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import AuthContext from "../context/authContext";
 import "./payment.css";
-import Success from "./sucess";
+import Success from "./success";
 const uuidv4 = require("uuid/v4");
 
 const Payment = props => {
