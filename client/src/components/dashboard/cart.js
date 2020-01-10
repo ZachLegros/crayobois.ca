@@ -141,6 +141,7 @@ const Cart = props => {
                               min="1"
                               max="10"
                               defaultValue={cart[index].quantity}
+                              className="qty-input-value"
                               onBlur={() => {
                                 setQuantity("quantity" + index, index);
                               }}

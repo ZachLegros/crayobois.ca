@@ -58,7 +58,7 @@
 }
 
 .bold {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 @media only screen and (max-width: 825px) {
@@ -75,5 +75,10 @@
 
   .order-item-text {
       font-size: 0.9rem;
+  }
+
+  .order-total-text {
+    font-size: 1.1rem;
+    font-weight: 400;
   }
 }
