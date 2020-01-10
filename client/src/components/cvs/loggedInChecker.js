@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
-import CvsContext from "../context/cvsContext";
 import AuthContext from "../context/authContext";
 import Cvs from "./cvs";
 import Spinner from "../spinner/spinner";
@@ -9,6 +7,7 @@ const LoggedInChecker = props => {
   const authContext = useContext(AuthContext);
   const [initializedFirebase, setInitializedFirebase] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [redirect, setRedirect] = authContext.redirect;
 
   useEffect(() => {
     authContext.isInitialized().then(val => {
@@ -23,6 +22,7 @@ const LoggedInChecker = props => {
    else if (initializedFirebase) {
     return <Cvs />;
   } else {
+    setRedirect("/creez-votre-stylo");
     props.history.push("/utilisateur");
     return null;
   }

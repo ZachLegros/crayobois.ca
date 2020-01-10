@@ -5,6 +5,7 @@ import SignIn from "./signIn";
 import SignUp from "./signUp";
 import Dashboard from "../dashboard/dashboard";
 import Spinner from "../spinner/spinner";
+import { useHistory } from "react-router-dom";
 
 const User = () => {
   const authContext = useContext(AuthContext);
@@ -14,6 +15,8 @@ const User = () => {
     setInitializedFirebase
   ] = authContext.initializedFirebase;
   const [loading, setLoading] = useState(true);
+  const [redirect, setRedirect] = authContext.redirect;
+  let history = useHistory();
 
   useEffect(() => {
     // nav color
@@ -28,18 +31,24 @@ const User = () => {
 
   if (loading) {
     return (
-        <React.Fragment>
+      <React.Fragment>
         <Nav />
         <Spinner />
       </React.Fragment>
-    ) 
-  } else if (initializedFirebase) {
-    return (
-      <React.Fragment>
-        <Nav />
-        <Dashboard />
-      </React.Fragment>
     );
+  } else if (initializedFirebase) {
+    if (redirect) {
+      history.push(redirect);
+      setRedirect(null);
+      return null;
+    } else {
+      return (
+        <React.Fragment>
+          <Nav />
+          <Dashboard />
+        </React.Fragment>
+      );
+    }
   } else {
     return (
       <React.Fragment>

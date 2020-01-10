@@ -2,13 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/authContext";
 import Nav from "../nav/nav";
 import "./signUpAndSignIn.css";
-import Spinner from "../spinner/spinner";
 
 const SignIn = () => {
   const authContext = useContext(AuthContext);
   const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
   const [caughtErr, setCaughtErr] = authContext.caughtErr;
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
+  
 
   function toggleSignUp() {
     setSignInOrUp("up");
@@ -31,6 +31,7 @@ const SignIn = () => {
 
       setTimeout(() => {
         authContext.signin(email, password);
+      
       }, 500);
     });
   }, []);
@@ -76,7 +77,10 @@ const SignIn = () => {
               />
               <i className="fas fa-lock input-icon"></i>
             </div>
-            <a href="/utilisateur/nouveau-mot-de-passe" className="signin-forgot-password-container">
+            <a
+              href="/utilisateur/nouveau-mot-de-passe"
+              className="signin-forgot-password-container"
+            >
               <span className="signin-forgot-password">
                 Vous avez oublié votre mot de passe?
               </span>

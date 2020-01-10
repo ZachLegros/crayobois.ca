@@ -27,6 +27,8 @@ const AuthState = props => {
     placeholder: ""
   });
   const [priceBreakdown, setPriceBreakdown] = useState({});
+  const [redirect, setRedirect] = useState(null);
+  
 
   // random color generator for user profile
   function getRandomColor() {
@@ -422,8 +424,6 @@ const AuthState = props => {
             ["orders"]: orders
           });
       });
-    
-    
   };
 
   return (
@@ -454,7 +454,8 @@ const AuthState = props => {
         dashboardAlertOn: [dashboardAlertOn, setDashboardAlertOn],
         createPurchaseUnits: createPurchaseUnits,
         priceBreakdown: [priceBreakdown, setPriceBreakdown],
-        addOrderToClient: addOrderToClient
+        addOrderToClient: addOrderToClient,
+        redirect: [redirect, setRedirect]
       }}
     >
       {props.children}
