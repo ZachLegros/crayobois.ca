@@ -73,7 +73,7 @@ const Payment = props => {
         <span className="safe-payment-header">
           Paiement sécurisé par PayPal<span><i className="fas fa-check-circle"></i></span>
         </span>
-        <div ref={paypalRef} />
+        <div className="paypal-buttons" ref={paypalRef} />
       </div>
     </React.Fragment>
   );

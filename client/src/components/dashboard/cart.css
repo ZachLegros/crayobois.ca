@@ -309,4 +309,9 @@ input[type="number"] {
   .cart-prev-btn {
     display: none;
   }
+
+  .cart-action {
+    margin-top: 0;
+    font-size: 1.1rem;
+  }
 }

@@ -69,7 +69,7 @@ const ResetPassword = props => {
               </div>
               <div className="action-container reset-password-action">
                 <button className="form-btn" id="forgot-password-action">
-                  Réinitialiser mon mot de passe
+                  Réinitialiser mon mot de passe<i className="fas fa-key form-btn-icon"></i>
                 </button>
               </div>
             </form>
@@ -84,7 +84,7 @@ const ResetPassword = props => {
                 setCaughtErr(false);
               }}
             >
-              Se connecter
+              Se connecter<i className="fas fa-sign-in-alt form-btn-icon"></i>
             </button>
           </div>
         </section>
