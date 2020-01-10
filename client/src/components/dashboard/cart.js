@@ -3,6 +3,7 @@ import AuthContext from "../context/authContext";
 import "./cart.css";
 import Order from "./order";
 import Payment from "./payment";
+import { useHistory } from "react-router-dom";
 const uuidv4 = require("uuid/v4");
 
 const Cart = props => {
@@ -11,6 +12,7 @@ const Cart = props => {
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
   const [checkoutStep, setCheckoutStep] = useState("cart");
+  let history = useHistory();
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -77,6 +79,11 @@ const Cart = props => {
           <span className="dashboard-content-header">Mon panier</span>
           <span className="dashboard-notice">
             Il n'y a aucun stylo dans votre panier
+          </span>
+          <span className="profile-change-password cart-action" onClick={() => {
+            history.push("/creez-votre-stylo");
+          }}>
+            Créez votre stylo
           </span>
         </React.Fragment>
       ) : (

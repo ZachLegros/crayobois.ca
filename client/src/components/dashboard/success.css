@@ -1,7 +1,6 @@
 svg {
   width: 100px;
   display: block;
-  margin: 40px auto 0;
 }
 .path {
   stroke-dasharray: 1000;
@@ -75,4 +74,17 @@ svg {
 
 .footer-hidden {
     display: none;
+}
+
+@media only screen and (max-width: 825px) {
+  .success-section {
+    padding: 0;
+    margin: 25px;
+    height: calc(100% - 50px);
+    width: calc(100% - 50px);
+  }
+
+  svg {
+    width: 55px;
+  }
 }

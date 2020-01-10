@@ -12,6 +12,8 @@ function CvsAlert(props) {
   const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
   const [materialPrice, setMaterialPrice] = context.materialPrice;
   const [hardwarePrice, setHardwarePrice] = context.hardwarePrice;
+  const [filteringName, setFilteringName] = context.filteringName;
+  const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
 
   return (
     <React.Fragment>
@@ -41,6 +43,9 @@ function CvsAlert(props) {
               setMaterialPrice(0);
               setPrevToggleHaw({});
               setHardwarePrice(0);
+              setFilteringName("Tous les matériaux");
+              setHawsFilteringName("");
+
               setMyPen([
                 { obj: null, id: 0 },
                 { obj: null, id: 1 }
