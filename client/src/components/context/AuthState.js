@@ -28,7 +28,6 @@ const AuthState = props => {
   });
   const [priceBreakdown, setPriceBreakdown] = useState({});
   const [redirect, setRedirect] = useState(null);
-  
 
   // random color generator for user profile
   function getRandomColor() {
@@ -407,6 +406,39 @@ const AuthState = props => {
 
   const addOrderToClient = order => {
     const uid = auth.currentUser.uid;
+    let customID = null;
+    let totalOrders = 0;
+    let grossRevenu = 0;
+    let totalTaxes = 0;
+    let totalShipping = 0;
+    let totalCustomers = 0;
+    let error = null;
+
+    // get custom id and previous analytics
+    db.collection("orders")
+      .doc("analytics")
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        const newTotalOrders = data.totalOrders + 100000001;
+        customID = newTotalOrders;
+        order["customId"] = customID;
+
+        // updating analytics
+        totalOrders = newTotalOrders;
+        grossRevenu = data.grossRevenu + order.purchase_units.value;
+        console.log(order.purchase_units);
+        totalTaxes =
+          data.totalTaxes +
+          order.purchase_units.amount.breakdown.tax_total.value;
+        totalShipping =
+          data.totalShipping +
+          order.purchase_units.amount.breakdown.shipping.value;
+        totalCustomers = data.totalCustomers + 1;
+      })
+      .catch(err => {
+        error = err;
+      });
 
     // get old orders
     db.collection("users")
@@ -424,6 +456,20 @@ const AuthState = props => {
             ["orders"]: orders
           });
       });
+
+    // update analytics
+    // get previous analytics
+    if (!error) {
+      db.collection("orders")
+        .doc("analytics")
+        .update({
+          ["totalOrders"]: totalOrders,
+          ["grossRevenu"]: grossRevenu,
+          ["totalTaxes"]: totalTaxes,
+          ["totalShipping"]: totalShipping,
+          ["totalCustomers"]: totalCustomers
+        });
+    }
   };
 
   return (
