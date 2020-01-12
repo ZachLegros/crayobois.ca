@@ -85,6 +85,8 @@ const AuthState = props => {
       .createUserWithEmailAndPassword(email, password)
       .then(cred => {
         auth.currentUser.updateProfile({ displayName: name }).then(() => {
+          let customers = 0;
+
           setCaughtErr(false);
           sendVerification();
 
@@ -96,6 +98,22 @@ const AuthState = props => {
           signupForm.reset();
           setInitializedFirebase(cred.user);
           setLoading(false);
+
+          // updating the customer count in analytics
+          db.collection("orders")
+            .doc("analytics")
+            .get()
+            .then(doc => {
+              const data = doc.data();
+              customers = data.totalCustomers + 1;
+            })
+            .then(() => {
+              db.collection("orders")
+                .doc("analytics")
+                .update({
+                  totalCustomers: customers
+                });
+            });
         });
       })
       .catch(err => {
@@ -411,8 +429,6 @@ const AuthState = props => {
     let grossRevenu = 0;
     let totalTaxes = 0;
     let totalShipping = 0;
-    let totalCustomers = 0;
-    let error = null;
 
     // get custom id and previous analytics
     db.collection("orders")
@@ -420,24 +436,32 @@ const AuthState = props => {
       .get()
       .then(doc => {
         const data = doc.data();
-        const newTotalOrders = data.totalOrders + 100000001;
+        const newTotalOrders = data.totalOrders + 1;
         customID = newTotalOrders;
         order["customId"] = customID;
 
         // updating analytics
+        console.log(order);
         totalOrders = newTotalOrders;
-        grossRevenu = data.grossRevenu + order.purchase_units.value;
-        console.log(order.purchase_units);
+        grossRevenu = data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
         totalTaxes =
           data.totalTaxes +
-          order.purchase_units.amount.breakdown.tax_total.value;
+          parseFloat(order.purchase_units[0].amount.breakdown.tax_total.value);
         totalShipping =
           data.totalShipping +
-          order.purchase_units.amount.breakdown.shipping.value;
-        totalCustomers = data.totalCustomers + 1;
+          parseFloat(order.purchase_units[0].amount.breakdown.shipping.value);
       })
-      .catch(err => {
-        error = err;
+      .then(() => {
+        // update analytics
+        // get previous analytics
+        db.collection("orders")
+          .doc("analytics")
+          .update({
+            ["totalOrders"]: totalOrders,
+            ["grossRevenu"]: grossRevenu,
+            ["totalTaxes"]: totalTaxes,
+            ["totalShipping"]: totalShipping
+          });
       });
 
     // get old orders
@@ -456,20 +480,6 @@ const AuthState = props => {
             ["orders"]: orders
           });
       });
-
-    // update analytics
-    // get previous analytics
-    if (!error) {
-      db.collection("orders")
-        .doc("analytics")
-        .update({
-          ["totalOrders"]: totalOrders,
-          ["grossRevenu"]: grossRevenu,
-          ["totalTaxes"]: totalTaxes,
-          ["totalShipping"]: totalShipping,
-          ["totalCustomers"]: totalCustomers
-        });
-    }
   };
 
   return (
