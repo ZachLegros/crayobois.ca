@@ -28,6 +28,7 @@ const AuthState = props => {
   });
   const [priceBreakdown, setPriceBreakdown] = useState({});
   const [redirect, setRedirect] = useState(null);
+  const [orders, setOrders] = useState(user.orders);
 
   // random color generator for user profile
   function getRandomColor() {
@@ -216,6 +217,7 @@ const AuthState = props => {
             shoppingCart: userData.shoppingCart
           };
           setUser(userObj);
+          setOrders(userData.orders);
           setCart(userData.shoppingCart);
         });
     }
@@ -439,9 +441,9 @@ const AuthState = props => {
         const newTotalOrders = data.totalOrders + 1;
         customID = newTotalOrders;
         order["customId"] = customID;
+        order["order_status"] = "Commande en cours de traitement";
 
         // updating analytics
-        console.log(order);
         totalOrders = newTotalOrders;
         grossRevenu = data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
         totalTaxes =
@@ -472,6 +474,8 @@ const AuthState = props => {
         const data = doc.data();
         let orders = data["orders"];
         orders.push(order);
+
+        setOrders(orders);
 
         // update orders
         db.collection("users")
@@ -511,7 +515,8 @@ const AuthState = props => {
         createPurchaseUnits: createPurchaseUnits,
         priceBreakdown: [priceBreakdown, setPriceBreakdown],
         addOrderToClient: addOrderToClient,
-        redirect: [redirect, setRedirect]
+        redirect: [redirect, setRedirect],
+        orders: [orders, setOrders]
       }}
     >
       {props.children}
