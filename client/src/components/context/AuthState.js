@@ -29,6 +29,7 @@ const AuthState = props => {
   const [priceBreakdown, setPriceBreakdown] = useState({});
   const [redirect, setRedirect] = useState(null);
   const [orders, setOrders] = useState(user.orders);
+  const [moreDetails, setMoreDetails] = useState("");
 
   // random color generator for user profile
   function getRandomColor() {
@@ -516,7 +517,8 @@ const AuthState = props => {
         priceBreakdown: [priceBreakdown, setPriceBreakdown],
         addOrderToClient: addOrderToClient,
         redirect: [redirect, setRedirect],
-        orders: [orders, setOrders]
+        orders: [orders, setOrders],
+        moreDetails: [moreDetails, setMoreDetails]
       }}
     >
       {props.children}
