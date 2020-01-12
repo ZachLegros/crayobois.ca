@@ -11,6 +11,22 @@ Also, this website will include a gallery which shows all sort of pictures from 
 
 For this application, we used the 'MERN' stack and Firebase.
 
-A quick preview of the 'Create your own pen' app on page 'Choose the material':
+A quick preview of the website:
 
+'Choose the material' page
 ![A quick preview of the 'Create your own pen' app](https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/github%20preview%2Fcvs%20preview.png?alt=media&token=9cf2f58d-7abc-44c8-b6ef-f6cfcd7a3488)
+
+'Choose the hardware' page
+
+Signin
+
+Signup
+
+User dashboard
+
+Checkout process:
+  Cart viewing and editing
+
+  Order
+  
+  Payment
