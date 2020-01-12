@@ -441,7 +441,7 @@ const AuthState = props => {
         const newTotalOrders = data.totalOrders + 1;
         customID = newTotalOrders;
         order["customId"] = customID;
-        order["order_status"] = "Commande en cours de traitement";
+        order["order_status"] = "Traitement en cours";
 
         // updating analytics
         totalOrders = newTotalOrders;

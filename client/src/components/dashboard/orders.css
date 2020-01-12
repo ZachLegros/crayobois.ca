@@ -1,0 +1,50 @@
+.orders-section {
+    height: 100%;
+    width: 100%;
+}
+
+.columns-names {
+    font-size: 1.15rem;
+    color: var(--black);
+    font-weight: 600;
+    padding-bottom: 12.5px;
+    border-bottom: 1px solid #efefef;
+}
+
+.columns-names ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.info-col {
+    width: 30%;
+}
+
+.details-col {
+    width: 40%;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 400;
+}
+
+.order {
+    display: flex;
+    margin: 12.5px 0 12.5px 0;
+}
+
+.status-col {
+    width: 30%;
+    text-align: right;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+}
