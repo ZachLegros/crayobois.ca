@@ -80,11 +80,17 @@ svg {
   .success-section {
     padding: 0;
     margin: 25px;
-    height: calc(100% - 50px);
+    height: calc(43vh - 37.5px);
     width: calc(100% - 50px);
+    justify-content: center;
   }
 
   svg {
     width: 55px;
+  }
+
+  .cart-section {
+    min-height: 43vh;
+    justify-content: flex-end;
   }
 }

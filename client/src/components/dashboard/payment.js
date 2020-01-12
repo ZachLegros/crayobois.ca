@@ -68,7 +68,7 @@ const Payment = props => {
         {error && <div>Une erreur est survenue lors de la connexion aux services de PayPal: {error.message}</div>}
         {/* payment options*/}
         <span className="safe-payment-header">
-          Paiement sécurisé par PayPal<span><i className="fas fa-check-circle"></i></span>
+          Paiement sécurisé par PayPal<i className="fas fa-check-circle"></i>
         </span>
         <div className="paypal-buttons" ref={paypalRef} />
       </div>

@@ -15,6 +15,7 @@
   padding: 25px;
   text-align: center;
   line-height: 87px;
+  width: 100%;
 }
 
 .fa-check-circle {
@@ -22,12 +23,13 @@
   margin-left: 12.5px;
   color: var(--green);
   opacity: 0.85;
+  display: inline-block;
 }
 
 @media only screen and (max-width: 825px) {
   .safe-payment-header {
     font-size: 1.2rem;
-    padding: 0 25px 25px 25px;
+    padding: 0 0 25px 0;
     line-height: 53px;
   }
 

@@ -4,7 +4,7 @@
 }
 
 .columns-names {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: var(--black);
     font-weight: 600;
     padding-bottom: 12.5px;
@@ -26,6 +26,11 @@
     width: 40%;
 }
 
+.status-col {
+    width: 30%;
+    text-align: right;
+}
+
 .orders {
     display: flex;
     flex-direction: column-reverse;
@@ -39,12 +44,35 @@
     margin: 12.5px 0 12.5px 0;
 }
 
-.status-col {
-    width: 30%;
-    text-align: right;
-}
-
 .order-details {
     display: flex;
     flex-direction: column;
+}
+
+@media only screen and (max-width: 825px) {
+    .orders-section {
+        margin: 0 12.5px 0 12.5px;
+        width: calc(100% - 25px);
+    }
+
+    .columns-names {
+        font-size: 0.95rem;
+    }
+
+    .orders {
+        font-size: 0.75rem;
+    }
+
+    .info-col {
+        width: 33.33%;
+    }
+    
+    .details-col {
+        width: 33.33%;
+    }
+    
+    .status-col {
+        width: 33.33%;
+    }
+
 }
