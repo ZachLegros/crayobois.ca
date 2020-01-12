@@ -20,8 +20,6 @@ const Payment = props => {
   });
 
   useEffect(() => {
-    console.log(purchaseUnits);
-
     window.paypal
       .Buttons({
         locale: "fr_CA",
@@ -42,12 +40,11 @@ const Payment = props => {
 
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
+          props.emptyCart();
           authContext.addOrderToClient(order);
           authContext.updateCart([]);
           authContext.removeFromCart("*");
           setPaidFor(true);
-
-          console.log(order);
         },
 
         onError: err => {

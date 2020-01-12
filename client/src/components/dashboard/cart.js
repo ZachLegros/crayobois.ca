@@ -208,7 +208,7 @@ const Cart = props => {
             ) : checkoutStep === "order" ? (
               <Order />
             ) : (
-              <Payment resetCheckout={resetCheckout} />
+              <Payment emptyCart={props.emptyCart} resetCheckout={resetCheckout} />
             )}
             <span className="cart-content-footer bold">
               {checkoutStep === "cart" ? (

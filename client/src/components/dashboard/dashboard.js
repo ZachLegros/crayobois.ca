@@ -13,7 +13,7 @@ const Dashboard = props => {
     setInitializedFirebase
   ] = authContext.initializedFirebase;
   const [user, setUser] = authContext.user;
-  const [cart, setCart] = authContext.cart;
+  const [cart, setCart] = Object.assign([], authContext.cart);
   const [verified, setVerified] = useState(false);
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
@@ -23,6 +23,10 @@ const Dashboard = props => {
   function signout() {
     authContext.signout();
     setInitializedFirebase(null);
+  }
+
+  const emptyCart = () => {
+    setCart([]);
   }
 
   // get verification of email state
@@ -246,7 +250,7 @@ const Dashboard = props => {
           {/*Render profile*/}
           {userNav === "profile" ? <Profile /> : <React.Fragment />}
           {/*Render cart*/}
-          {userNav === "cart" ? <Cart /> : <React.Fragment />}
+          {userNav === "cart" ? <Cart emptyCart={emptyCart}/> : <React.Fragment />}
           {/*Render orders*/}
           {userNav === "orders" ? <Orders /> : <React.Fragment />}
         </div>
