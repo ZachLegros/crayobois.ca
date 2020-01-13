@@ -6,7 +6,7 @@ const uuidv4 = require("uuid/v4");
 const Orders = props => {
   const authContext = useContext(AuthContext);
   const [orders, setOrders] = authContext.orders;
-  const [moreDetails, setMoreDetails] = authContext.moreDetails;
+  const [moreDetails, setMoreDetails] = useState("");
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -29,12 +29,13 @@ const Orders = props => {
     return newDate;
   };
 
-  const toggleMoreDetails = uid => {
-    const target = document.getElementById(uid);
-
-    target.style.height = "max-content";
-    target.style.transform = "scaleY(1)";
-  };
+  const toggleHandler = (uid) => {
+    if (moreDetails === uid) {
+      setMoreDetails("");
+    } else {
+      setMoreDetails(uid);
+    }
+  }
 
   return (
     <React.Fragment>
@@ -94,8 +95,7 @@ const Orders = props => {
                     <div className="order-more-details-container">
                       <span
                         onClick={() => {
-                          toggleMoreDetails(itemIndex);
-                          setMoreDetails(itemIndex);
+                          toggleHandler(itemIndex);
                         }}
                         className="order-more-details-btn"
                       >
@@ -108,7 +108,14 @@ const Orders = props => {
                           <i className="fas fa-plus order-details-icon"></i>
                         )}
                       </span>
-                      <div id={itemIndex} className="order-more-details">
+                      <div
+                        id={itemIndex}
+                        className={
+                          moreDetails === itemIndex
+                            ? "order-more-details more-details-toggled"
+                            : "order-more-details"
+                        }
+                      >
                         <div className="order-items-container more-details-container">
                           {items.map(item => {
                             return (
