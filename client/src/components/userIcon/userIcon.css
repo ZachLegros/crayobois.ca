@@ -5,13 +5,48 @@
   font-weight: 500;
   text-transform: lowercase;
   transition: opacity 0.25s ease;
-  padding: 12.5px;
   letter-spacing: 0.35px;
+  padding: 12.5px;
 }
 
 .nav-user-icons {
   font-size: 0.9rem;
   color: #fff;
   opacity: 0.9;
-  margin-left: 8px;
+  padding-left: 8px;
+}
+
+.nav-user-mobile-icon {
+  display: none;
+  font-size: 1.2rem;
+  color: #fff;
+  opacity: 1;
+}
+
+.nav-user-mobile {
+  width: 0px;
+}
+
+@media only screen and (max-width: 1250px) {
+  .nav-user-links {
+    font-size: 14px;
+  }
+
+  .nav-user-icons {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .nav-user-mobile-icon {
+    display: block;
+  }
+
+  .nav-user-mobile {
+    width: 25px;
+  }
+
+  .nav-user-links {
+    display: none;
+  }
 }

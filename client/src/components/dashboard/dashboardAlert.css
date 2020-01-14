@@ -122,7 +122,7 @@
   }
 }
 
-@media only screen and (max-width: 825px) {
+@media only screen and (max-width: 850px) {
   .dashboard-alert-msg {
     font-size: 1rem;
   }

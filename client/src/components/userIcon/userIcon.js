@@ -6,10 +6,15 @@ const User = () => {
     <React.Fragment>
       <a href="/utilisateur" className="nav-user-links">
         mon compte<i className="fas fa-user nav-user-icons"></i>
-        </a>
-        <a href="/utilisateur" className="nav-user-links">
+      </a>
+      <a href="/utilisateur" className="nav-user-links">
         panier<i className="fas fa-shopping-basket nav-user-icons"></i>
-        </a>
+      </a>
+      <a href="/utilisateur">
+        <span className="nav-user-mobile">
+          <i className="fas fa-user nav-user-mobile-icon"></i>
+        </span>
+      </a>
     </React.Fragment>
   );
 };
