@@ -77,7 +77,7 @@ const Nav = () => {
   }
 
   useEffect(() => {
-    navColor();
+    console.log("rerendered");
   });
 
   return (
@@ -85,7 +85,7 @@ const Nav = () => {
       <nav>
         <div
           className="navbar d-active"
-          style={{ backgroundColor: "transparent" }}
+          style={{ backgroundColor: "var(--black)" }}
         >
           <div className="navbar-content">
             <div className="navbar-left">

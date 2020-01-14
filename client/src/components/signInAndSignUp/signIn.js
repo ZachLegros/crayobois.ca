@@ -15,10 +15,6 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-    //nav color
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
-
     const signinForm = document.querySelector("#signin-form");
     const actionBtn = document.querySelector("#signin-action");
     signinForm.addEventListener("submit", e => {
@@ -38,7 +34,6 @@ const SignIn = () => {
 
   return (
     <React.Fragment>
-      <Nav />
       <section id="sign-in-sign-up">
         <div className="sign-in-sign-up-container">
           <span className="header-text">Se connecter</span>

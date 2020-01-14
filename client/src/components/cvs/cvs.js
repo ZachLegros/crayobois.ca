@@ -6,7 +6,6 @@ import BuildState from "../buildState/buildState";
 import Spinner from "../spinner/spinner";
 import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
-import Nav from "../nav/nav";
 import CvsAlert from "../cvsAlert/cvsAlert";
 
 const Cvs = React.memo(props => {
@@ -17,8 +16,6 @@ const Cvs = React.memo(props => {
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
     context.getMats();
     context.getHaws();
   }, []);
@@ -26,14 +23,12 @@ const Cvs = React.memo(props => {
   if (context.materials.length === 0) {
     return (
       <React.Fragment>
-        <Nav />
         <Spinner />
       </React.Fragment>
     );
   } else {
     return (
       <React.Fragment>
-        <Nav />
         {cvsAlertOn ? <CvsAlert /> : <React.Fragment />}
         <div className="app-wrapper">
           <section

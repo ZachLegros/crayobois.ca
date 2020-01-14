@@ -15,9 +15,7 @@ const SignUp = () => {
   }
 
   useEffect(() => {
-    // nav color
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
+
 
     const signupForm = document.querySelector("#signup-form");
     const actionBtn = document.querySelector("#signup-action");
@@ -41,7 +39,6 @@ const SignUp = () => {
 
   return (
     <React.Fragment>
-      <Nav />
         <section id="sign-in-sign-up">
           <div className="sign-in-sign-up-container">
             <span className="header-text">Créer un compte</span>

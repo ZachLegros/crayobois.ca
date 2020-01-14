@@ -19,10 +19,6 @@ const User = () => {
   let history = useHistory();
 
   useEffect(() => {
-    // nav color
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
-
     authContext.isInitialized().then(val => {
       setInitializedFirebase(val);
       setLoading(false);
@@ -32,7 +28,6 @@ const User = () => {
   if (loading) {
     return (
       <React.Fragment>
-        <Nav />
         <Spinner />
       </React.Fragment>
     );
@@ -44,7 +39,6 @@ const User = () => {
     } else {
       return (
         <React.Fragment>
-          <Nav />
           <Dashboard />
         </React.Fragment>
       );
@@ -52,7 +46,6 @@ const User = () => {
   } else {
     return (
       <React.Fragment>
-        <Nav />
         {signInOrUp === "in" ? <SignIn /> : <SignUp />}
       </React.Fragment>
     );

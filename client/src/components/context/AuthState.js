@@ -72,6 +72,7 @@ const AuthState = props => {
   // make auth and firestore references
   const auth = firebase.auth();
   const db = firebase.firestore();
+  const [isAuth, setIsAuth] = useState(auth.currentUser);
 
   const isInitialized = () => {
     return new Promise(resolve => {
@@ -100,6 +101,7 @@ const AuthState = props => {
           signupForm.reset();
           setInitializedFirebase(cred.user);
           setLoading(false);
+          setIsAuth(auth.currentUser);
 
           // updating the customer count in analytics
           db.collection("orders")
@@ -168,6 +170,8 @@ const AuthState = props => {
     auth.signOut();
     setSignInOrUp("in");
     setInitializedFirebase(null);
+    setIsAuth(null);
+
     const root = document.documentElement;
     root.style.setProperty("--profile_color", "#fff");
   };
@@ -184,6 +188,7 @@ const AuthState = props => {
 
         // get user from db to initialize session
         getUserSession();
+        setIsAuth(auth.currentUser);
 
         //ui update here
         const signinForm = document.querySelector("#signin-form");
@@ -217,10 +222,13 @@ const AuthState = props => {
             pensPurchased: userData.pensPurchased,
             shoppingCart: userData.shoppingCart
           };
+          setIsAuth(auth.currentUser);
           setUser(userObj);
           setOrders(userData.orders);
           setCart(userData.shoppingCart);
         });
+    } else {
+      return null;
     }
   };
 
@@ -446,7 +454,8 @@ const AuthState = props => {
 
         // updating analytics
         totalOrders = newTotalOrders;
-        grossRevenu = data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
+        grossRevenu =
+          data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
         totalTaxes =
           data.totalTaxes +
           parseFloat(order.purchase_units[0].amount.breakdown.tax_total.value);
@@ -518,6 +527,8 @@ const AuthState = props => {
         addOrderToClient: addOrderToClient,
         redirect: [redirect, setRedirect],
         orders: [orders, setOrders],
+        isAuth: [isAuth, setIsAuth],
+        auth: auth
       }}
     >
       {props.children}

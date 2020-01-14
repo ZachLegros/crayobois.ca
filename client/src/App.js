@@ -10,6 +10,7 @@ import LoggedInChecker from "./components/cvs/loggedInChecker";
 import ResetPassword from "./components/resetPassword/resetPassword";
 import Cart from "./components/dashboard/cart";
 import Checkout from "./components/dashboard/checkout";
+import Nav from "./components/nav/nav";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <GlobalState>
         <AuthState>
           <NavState>
+            <Nav />
             <Router>
               <Switch>
                 <Route path="/" exact render={props => <Home {...props} />} />

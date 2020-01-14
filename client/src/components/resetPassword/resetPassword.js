@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./resetPassword.css";
-import Nav from "../nav/nav";
 import AuthContext from "../context/authContext";
 
 const ResetPassword = props => {
@@ -10,10 +9,6 @@ const ResetPassword = props => {
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
 
   useEffect(() => {
-    //nav color
-    const nav = document.getElementsByClassName("navbar");
-    nav[0].style.backgroundColor = "var(--black)";
-
     const resetForm = document.querySelector("#reset-password-form");
     const actionBtn = document.querySelector("#forgot-password-action");
     resetForm.addEventListener("submit", e => {
@@ -32,7 +27,6 @@ const ResetPassword = props => {
 
   return (
     <React.Fragment>
-      <Nav />
       {emailSent ? (props.history.push("/utilisateur")
       ) : (
         <section id="reset-password-section">
