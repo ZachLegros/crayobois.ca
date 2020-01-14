@@ -89,7 +89,7 @@ const Orders = props => {
                         </span>
                       </div>
                       <div className="order-status status-col">
-                        <span>{order.order_status}</span>
+                        <span className="order-status">{order.order_status}</span>
                       </div>
                     </div>
                     <div className="order-more-details-container">

@@ -1,6 +1,7 @@
 .orders-section {
   height: 100%;
   width: 100%;
+  padding-bottom: 50px;
 }
 
 .columns-names {
@@ -39,10 +40,24 @@
   font-weight: 500;
 }
 
+.order-details {
+  color: hsl(204, 20%, 30%);
+}
+
+.order-info {
+  color: hsl(204, 20%, 30%);
+}
+
+.order-status {
+  color: var(--orange);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 .order {
   display: flex;
   flex-direction: column;
-  margin: 12.5px 0 0 0;
+  margin: 25px 0 0 0;
   padding-bottom: 12.5px;
   border-bottom: 1px solid #efefef;
 }
@@ -58,61 +73,71 @@
 
 .order-details-icon {
   font-size: 0.65rem;
-  color: var(--black);
+  color: hsl(204, 20%, 55%);
   margin-left: 8px;
 }
 
-.order-more-details {
-    transform: scaleY(0);
-    height: 0;
-    overflow: hidden;
-    transition: all 0.15s ease-in-out;
-    transform-origin: top;
+.order-more-details-container {
+  margin: 25px 0 0 0;
 }
 
-.order-more-details-container span {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.order-more-details {
+  transform: scaleY(0);
+  max-height: 0px;
+  transition: all 0.15s ease-in-out;
+  transform-origin: top;
 }
 
 .order-more-details-btn {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--black);
-    opacity: 0.5;
-    transition: all 0.15s ease;
-    width: max-content;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: hsl(204, 20%, 55%);
+  transition: all 0.15s ease;
+  width: max-content;
+  cursor: pointer;
 }
 
 .order-more-details-btn:hover {
-    opacity: 0.7;
+  opacity: 0.8;
 }
 
 .more-details-breakdown {
-    margin: 0;
-    width: 100%;
+  margin: 0;
+  width: 100%;
 }
 
 .item-more-details {
-    opacity: 1;
-    margin-bottom: 0;
-    font-size: 0.8rem;
+  opacity: 1;
+  margin-bottom: 0;
+  font-size: 0.8rem;
 }
 
 .more-details-item-txt {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .more-details-container {
-    margin: 12.5px 0 12.5px 0;
-    padding-bottom: 12.5px;
-    width: 100%;
+  margin: 12.5px 0 12.5px 0;
+  padding-bottom: 12.5px;
+  width: 100%;
 }
 
 .more-details-toggled {
-    height: max-content;
+  transform: scale(1);
+  max-height: 2000px;
+  padding-bottom: 12.5px;
+}
+
+@keyframes more-details-dropdown {
+  0% {
+    transform: scaleY(0);
+    height: 0;
+  }
+
+  100% {
     transform: scaleY(1);
+    height: max-content;
+  }
 }
 
 @media only screen and (max-width: 825px) {
