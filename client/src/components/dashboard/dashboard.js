@@ -45,7 +45,7 @@ const Dashboard = props => {
       {dashboardAlertOn === true ? <DashboardAlert /> : <React.Fragment />}
       <section className="dashboard">
         <div className="dashboard-user">
-          <div className="dashboard-hero">
+          <div className={userNav === "profile" ? "dashboard-hero" : "dashboard-hero profile-show"}>
             <i className="fas fa-user dashboard-user-icon"></i>
             <span className="dashboard-hero-username">{user.fullName}</span>
             <span className="dashboard-hero-email">{user.email}</span>

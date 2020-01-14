@@ -49,7 +49,7 @@
 }
 
 .order-status {
-  color: var(--orange);
+  color: hsl(204, 20%, 55%);
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -123,21 +123,11 @@
 }
 
 .more-details-toggled {
-  transform: scale(1);
-  max-height: 2000px;
+  transform: scaleY(1);
+  max-height: 5000px;
+  animation: dropdown 0.15s ease-in-out 0s;
   padding-bottom: 12.5px;
-}
-
-@keyframes more-details-dropdown {
-  0% {
-    transform: scaleY(0);
-    height: 0;
-  }
-
-  100% {
-    transform: scaleY(1);
-    height: max-content;
-  }
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 825px) {
