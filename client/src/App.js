@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Home from "./components/home/home";
 import Cvs from "./components/cvs/cvs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NavLinksProvider } from "./components/context/navLinksContext";
+import NavState from "./components/context/navState";
 import GlobalState from "./components/context/GlobalState";
 import AuthState from "./components/context/AuthState";
 import User from "./components/signInAndSignUp/user";
@@ -16,7 +16,7 @@ const App = () => {
     <React.Fragment>
       <GlobalState>
         <AuthState>
-          <NavLinksProvider>
+          <NavState>
             <Router>
               <Switch>
                 <Route path="/" exact render={props => <Home {...props} />} />
@@ -35,7 +35,7 @@ const App = () => {
                   exact
                   render={props => <ResetPassword {...props} />}
                 />
-                 <Route
+                <Route
                   path="/utilisateur/commander"
                   exact
                   render={props => <Checkout {...props} />}
@@ -51,7 +51,7 @@ const App = () => {
                 />
               </Switch>
             </Router>
-          </NavLinksProvider>
+          </NavState>
         </AuthState>
       </GlobalState>
     </React.Fragment>

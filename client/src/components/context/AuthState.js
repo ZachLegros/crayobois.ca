@@ -52,6 +52,7 @@ const AuthState = props => {
   }
 
   // firebase config
+  // testing only (will be hidden and changed)
   const firebaseConfig = {
     apiKey: "AIzaSyBccRjBkjdgTdVxFQwKvrbpUCGCMeVryAA",
     authDomain: "crayobois-fe722.firebaseapp.com",
@@ -127,8 +128,8 @@ const AuthState = props => {
   // add user to firestore
   const addUserToFirestore = (uid, name, email) => {
     //get date
-    var today = new Date();
-    var date =
+    let today = new Date();
+    let date =
       today.getFullYear() +
       "-" +
       (today.getMonth() + 1) +
@@ -264,7 +265,7 @@ const AuthState = props => {
 
         // initialize the fixed original sub total
         let pricesSum = 0;
-        for (var e = 0; e < value.length; e++) {
+        for (let e = 0; e < value.length; e++) {
           pricesSum += value[e].obj.price;
         }
         newObj["pricesSum"] = pricesSum;
@@ -304,8 +305,8 @@ const AuthState = props => {
         .then(doc => {
           const data = doc.data();
           const cart = data["shoppingCart"];
-          var newCart = [];
-          for (var i = 0; i < cart.length; i++) {
+          let newCart = [];
+          for (let i = 0; i < cart.length; i++) {
             if (cart[i].id !== id) {
               newCart.push(cart[i]);
             }
@@ -350,7 +351,7 @@ const AuthState = props => {
           ["fullName"]: newName
         });
 
-      var userCopy = Object.assign([], user);
+      let userCopy = Object.assign([], user);
       userCopy.fullName = newName;
       setUser(userCopy);
     });
@@ -367,7 +368,7 @@ const AuthState = props => {
 
     // generating items list
     let items = [];
-    for (var i = 0; i < cart.length; i++) {
+    for (let i = 0; i < cart.length; i++) {
       const currentItem = cart[i];
       let item = {
         name: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type}`,

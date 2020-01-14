@@ -43,6 +43,8 @@
 .logo {
   height: 50px;
   width: auto;
+  margin-right: 12.5px;
+  margin-left: 12.5px;
   transition: all 0.25s ease;
 }
 
@@ -57,16 +59,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 12.5px;
+}
+
+.navbar-left {
+  display: flex;
+}
+
+.navbar-right {
+  display: flex;
 }
 
 .nav-link {
   display: flex;
   position: relative;
   text-decoration: none;
-  font-size: 16px;
-  color: var(--white);
-  font-weight: 400;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  text-transform: lowercase;
   transition: opacity 0.25s ease;
 }
 
@@ -191,7 +202,8 @@
 .mobile-nav-links a {
   text-decoration: none;
   color: var(--white);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
+  text-transform: lowercase;
 }
 
 .mobile-nav-left {
@@ -207,7 +219,7 @@
   }
 
   .nav-link {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .logo {

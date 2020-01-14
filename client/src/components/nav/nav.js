@@ -1,16 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./nav.css";
 import User from "../userIcon/userIcon";
 import logo from "./logo.png";
-import { NavLinksContext } from "../context/navLinksContext";
+import NavContext from "../context/navLinksContext";
 
-function Nav() {
-  const [navLinks, setNavLinks] = useContext(NavLinksContext);
+const Nav = () => {
+  const context = useContext(NavContext);
+  const [navLinks, setNavLinks] = useState(context.navLinks);
 
-  /*navColor */
-  window.addEventListener("load", navColor);
-
-  function navColor() {
+  const navColor = () => {
     const nav = document.getElementsByClassName("navbar");
 
     if (
@@ -19,10 +17,10 @@ function Nav() {
     ) {
       nav[0].style.backgroundColor = "var(--black)";
     }
-  }
+  };
 
   /*Toggle*/
-  var toggled = false;
+  let toggled = false;
 
   function toggle() {
     const tabs = document.getElementById("mobile-tabs");
@@ -53,8 +51,8 @@ function Nav() {
   }
 
   function linesTrans(toggled) {
-    var line1 = document.getElementById("line1");
-    var line2 = document.getElementById("line2");
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
 
     if (toggled === true) {
       line1.style.transform = "translateY(5.5px) rotate(0)";
@@ -66,8 +64,8 @@ function Nav() {
   }
 
   function linesRot(toggled) {
-    var line1 = document.getElementById("line1");
-    var line2 = document.getElementById("line2");
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
 
     if (toggled === true) {
       line1.style.transform = "translateY(5.5px) rotate(-315deg)";
@@ -78,6 +76,10 @@ function Nav() {
     }
   }
 
+  useEffect(() => {
+    navColor();
+  });
+
   return (
     <React.Fragment>
       <nav>
@@ -86,23 +88,25 @@ function Nav() {
           style={{ backgroundColor: "transparent" }}
         >
           <div className="navbar-content">
-            <a className="logo-anchor" href="/">
-              <img className="logo" src={logo} alt="Crayobois logo" />
-            </a>
-            <ul className="nav-links">
-              {navLinks.map(link => {
-                return (
-                  <li key={link.id}>
-                    <a className="nav-link" href={link.path} key={link.id}>
-                      {link.text}
-                    </a>
-                  </li>
-                );
-              })}
-              <li>
-                  <User />
-              </li>
-            </ul>
+            <div className="navbar-left">
+              <a className="logo-anchor" href="/">
+                <img className="logo" src={logo} alt="Crayobois logo" />
+              </a>
+              <ul className="nav-links">
+                {navLinks.map(link => {
+                  return (
+                    <li key={link.id}>
+                      <a className="nav-link" href={link.path} key={link.id}>
+                        {link.text}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="navbar-right">
+              <User />
+            </div>
           </div>
         </div>
         <div
@@ -136,6 +140,6 @@ function Nav() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default Nav;
