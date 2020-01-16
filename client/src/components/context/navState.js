@@ -9,11 +9,14 @@ const NavState = props => {
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
     { id: uuidv4(), text: "Contact", path: "/" }
   ]);
+  const [color, setColor] = useState(null);
+
 
   return (
     <NavLinksContext.Provider
       value={{
-        navLinks: navLinks
+        navLinks: navLinks,
+        color: [color, setColor]
       }}
     >
       {props.children}

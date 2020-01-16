@@ -8,8 +8,6 @@ import AuthState from "./components/context/AuthState";
 import User from "./components/signInAndSignUp/user";
 import LoggedInChecker from "./components/cvs/loggedInChecker";
 import ResetPassword from "./components/resetPassword/resetPassword";
-import Cart from "./components/dashboard/cart";
-import Checkout from "./components/dashboard/checkout";
 import Nav from "./components/nav/nav";
 
 const App = () => {
@@ -36,11 +34,6 @@ const App = () => {
                   path="/utilisateur/nouveau-mot-de-passe"
                   exact
                   render={props => <ResetPassword {...props} />}
-                />
-                <Route
-                  path="/utilisateur/commander"
-                  exact
-                  render={props => <Checkout {...props} />}
                 />
                 <Route
                   path="/"

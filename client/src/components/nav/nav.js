@@ -7,6 +7,7 @@ import NavContext from "../context/navLinksContext";
 const Nav = () => {
   const context = useContext(NavContext);
   const [navLinks, setNavLinks] = useState(context.navLinks);
+  const [color, setColor] = context.color;
 
   const navColor = () => {
     const nav = document.getElementsByClassName("navbar");
@@ -77,15 +78,14 @@ const Nav = () => {
   }
 
   useEffect(() => {
-    console.log("rerendered");
   });
 
   return (
     <React.Fragment>
       <nav>
         <div
-          className="navbar d-active"
-          style={{ backgroundColor: "var(--black)" }}
+          className={color ? "navbar d-active black-nav" : "navbar d-active"}
+          
         >
           <div className="navbar-content">
             <div className="navbar-left">

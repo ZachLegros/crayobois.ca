@@ -5,9 +5,11 @@ import Profile from "./profile";
 import Cart from "./cart";
 import Orders from "./orders";
 import DashboardAlert from "./dashboardAlert";
+import NavContext from "../context/navLinksContext";
 
 const Dashboard = props => {
   const authContext = useContext(AuthContext);
+  const navContext = useContext(NavContext);
   const [
     initializedFirebase,
     setInitializedFirebase
@@ -18,6 +20,7 @@ const Dashboard = props => {
   const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
+  const [color, setColor] = navContext.color;
 
   // signout function
   function signout() {
@@ -36,6 +39,7 @@ const Dashboard = props => {
   };
 
   useEffect(() => {
+    setColor("var(--black)");
     getVerification();
     authContext.getUserSession();
   }, []);

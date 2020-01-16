@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
+import NavContext from "../context/navLinksContext";
 
-function Landing() {
+const Landing = props => {
+  const navContext = useContext(NavContext);
+  const [color, setColor] = navContext.color;
   /*Parallax and navColor */
 
   window.addEventListener("scroll", scrollEventHandler);
@@ -32,20 +35,9 @@ function Landing() {
     }
   }
 
- /* function navColorLanding() {
-    const nav = document.getElementsByClassName("navbar");
-    var scrollValue = document.documentElement.scrollTop;
-    nav[0].style.transition =
-      "background-color 0.25s cubic-bezier(0.55, 0, 0.1, 1)";
-
-    if (scrollValue > 90) {
-      nav[0].style.backgroundColor = "var(--black)";
-    } else {
-      nav[0].style.backgroundColor = "transparent";
-    }
-  }
-*/
-
+  useEffect(() => {
+    setColor(null);
+  })
 
   return (
     <React.Fragment>

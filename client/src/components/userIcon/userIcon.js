@@ -6,7 +6,7 @@ const User = () => {
   const authContext = useContext(AuthContext);
   const [redirect, setRedirect] = authContext.redirect;
   const [auth, setAuth] = useState(null);
-
+  
   authContext.isInitialized().then(authState => {
     setAuth(authState);
   });
