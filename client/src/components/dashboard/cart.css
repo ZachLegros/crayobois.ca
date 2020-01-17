@@ -102,6 +102,7 @@
   text-align: center;
   outline: none;
   border: none;
+  border-radius: 15px;
   background-color:  hsl(204, 20%, 92%);
 }
 
