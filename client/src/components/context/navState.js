@@ -3,20 +3,13 @@ import NavLinksContext from "./navLinksContext";
 const uuidv4 = require("uuid/v4");
 
 const NavState = props => {
-  const [navLinks, setNavLinks] = useState([
-    { id: uuidv4(), text: "Accueil", path: "/" },
-    { id: uuidv4(), text: "Galerie", path: "/" },
-    { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
-    { id: uuidv4(), text: "Contact", path: "/" }
-  ]);
-  const [color, setColor] = useState(null);
+  const [navigation, setNavigation] = useState("home");
 
 
   return (
     <NavLinksContext.Provider
       value={{
-        navLinks: navLinks,
-        color: [color, setColor]
+        navigation: [navigation, setNavigation]
       }}
     >
       {props.children}

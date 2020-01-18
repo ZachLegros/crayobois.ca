@@ -6,11 +6,8 @@ import SignUp from "./signUp";
 import Dashboard from "../dashboard/dashboard";
 import Spinner from "../spinner/spinner";
 import { useHistory } from "react-router-dom";
-import NavContext from "../context/navLinksContext";
 
-const User = () => {
-  const navContext = useContext(NavContext);
-  const [color, setColor] = navContext.color;
+const User = props => {
   const authContext = useContext(AuthContext);
   const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
   const [
@@ -22,7 +19,7 @@ const User = () => {
   let history = useHistory();
 
   useEffect(() => {
-    setColor("var(--black)");
+    props.onEnter();
     authContext.isInitialized().then(val => {
       setInitializedFirebase(val);
       setLoading(false);

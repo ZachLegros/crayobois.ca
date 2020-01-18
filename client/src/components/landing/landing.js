@@ -1,17 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
-import NavContext from "../context/navLinksContext";
 import simpleParallax from "simple-parallax-js";
 import bg from "./slideshow/img2.jpg";
 
 const Landing = props => {
-  const navContext = useContext(NavContext);
-  const [color, setColor] = navContext.color;
-
-  useEffect(() => {
-    setColor(null);
-  });
-
   return (
     <React.Fragment>
       <div id="landing-wrapper">
@@ -27,7 +19,7 @@ const Landing = props => {
             <i className="fas fa-long-arrow-alt-right" aria-hidden="true" />
           </a>
         </div>
-        <img src={bg} className="landing-image" alt="landing image" />
+        <img src={bg} className="landing-image" />
       </div>
     </React.Fragment>
   );

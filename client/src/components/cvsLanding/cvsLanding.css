@@ -32,8 +32,12 @@
 .cvs-landing-feature {
     display: flex;
     padding-right: 25px;
-    margin-bottom: 25px;
-    flex-direction: column;  
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0px 15px 45px rgba(50, 50, 93, 0.041),
+    0px 5px 15px rgba(0, 0, 0, 0.07);
 }
 
 .cvs-landing-feature-name {
@@ -57,8 +61,20 @@
     margin-bottom: 12.5px;
 }
 
-.bottom-feature {
-    margin-bottom: 0;
+.f1 {
+    margin: 0 12.5px 12.5px 0;
+}
+
+.f2 {
+    margin: 0 0 12.5px 12.5px;
+}
+
+.f3 {
+    margin: 12.5px 12.5px 0 0;
+}
+
+.f4 {
+    margin: 12.5px 0 0 12.5px;
 }
 
 @media only screen and (max-width: 1250px) {

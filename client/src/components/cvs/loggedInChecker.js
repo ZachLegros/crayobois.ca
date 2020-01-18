@@ -10,6 +10,7 @@ const LoggedInChecker = props => {
   const [redirect, setRedirect] = authContext.redirect;
 
   useEffect(() => {
+    props.onEnter();
     authContext.isInitialized().then(val => {
       setInitializedFirebase(val);
       setLoading(false);

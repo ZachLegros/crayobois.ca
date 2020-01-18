@@ -3,24 +3,20 @@ import "./nav.css";
 import User from "../userIcon/userIcon";
 import logo from "./logo.png";
 import NavContext from "../context/navLinksContext";
+const uuidv4 = require("uuid/v4");
 
 const Nav = () => {
   const context = useContext(NavContext);
-  const [navLinks, setNavLinks] = useState(context.navLinks);
-  const [color, setColor] = context.color;
+  const [navigation, setNavigation] = context.navigation;
+  const [color, setColor] = useState(null);
+  const navLinks = [
+    { id: uuidv4(), text: "Accueil", path: "/" },
+    { id: uuidv4(), text: "Galerie", path: "/" },
+    { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
+    { id: uuidv4(), text: "Contact", path: "/" }
+  ];
 
-  const navColor = () => {
-    const nav = document.getElementsByClassName("navbar");
-
-    if (
-      navigator.userAgent.indexOf("MSIE") !== -1 ||
-      navigator.userAgent.indexOf("Edge") !== -1
-    ) {
-      nav[0].style.backgroundColor = "var(--black)";
-    }
-  };
-
-  /*Toggle*/
+  /*Toggle hamburger*/
   let toggled = false;
 
   function toggle() {
@@ -77,7 +73,19 @@ const Nav = () => {
     }
   }
 
+  function stickyNav() {
+    const nav = document.querySelector(".navbar");
+
+    if (!color) {
+      console.log("sticky nav");
+    }
+  }
+
   useEffect(() => {
+    navigation === "home" || navigation === "gallery"
+      ? setColor(null)
+      : setColor("var(--black)");
+    stickyNav();
   });
 
   return (
@@ -85,7 +93,6 @@ const Nav = () => {
       <nav>
         <div
           className={color ? "navbar d-active black-nav" : "navbar d-active"}
-          
         >
           <div className="navbar-content">
             <div className="navbar-left">

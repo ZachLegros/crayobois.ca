@@ -9,6 +9,7 @@ const ResetPassword = props => {
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
 
   useEffect(() => {
+    props.onEnter();
     const resetForm = document.querySelector("#reset-password-form");
     const actionBtn = document.querySelector("#forgot-password-action");
     resetForm.addEventListener("submit", e => {
@@ -27,7 +28,8 @@ const ResetPassword = props => {
 
   return (
     <React.Fragment>
-      {emailSent ? (props.history.push("/utilisateur")
+      {emailSent ? (
+        props.history.push("/utilisateur")
       ) : (
         <section id="reset-password-section">
           <div className="reset-password-container">
@@ -63,7 +65,8 @@ const ResetPassword = props => {
               </div>
               <div className="action-container reset-password-action">
                 <button className="form-btn" id="forgot-password-action">
-                  Réinitialiser mon mot de passe<i className="fas fa-key form-btn-icon"></i>
+                  Réinitialiser mon mot de passe
+                  <i className="fas fa-key form-btn-icon"></i>
                 </button>
               </div>
             </form>

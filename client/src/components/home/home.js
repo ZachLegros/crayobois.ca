@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import Landing from "../landing/landing";
-import AuthContext from "../context/authContext";
 import CvsLanding from "../cvsLanding/cvsLanding";
 
-function Home() {
-  const authContext = useContext(AuthContext);
+function Home(props) {
+  useEffect(() => {
+    props.onEnter();
+  });
 
     return (
       <React.Fragment>

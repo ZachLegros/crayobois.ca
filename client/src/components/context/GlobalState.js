@@ -238,7 +238,7 @@ const GlobalState = props => {
         scrollTop: scrollTop,
         newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
-        cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
+        cvsAlertOn: [cvsAlertOn, setCvsAlertOn],
       }}
     >
       {props.children}
