@@ -43,8 +43,6 @@ const GlobalState = props => {
     const data = await response.json();
     setMats(data);
     setLoading(false);
-    /*setMats(Mats);
-    setLoading(false);*/
   }
 
   //fetching hardwares
@@ -55,9 +53,6 @@ const GlobalState = props => {
     setHaws(data);
     sortHawsByType(data);
     setLoading(false);
-    /*setHaws(Haws);
-    sortHawsByType(Haws);
-    setLoading(false);*/
   }
 
   const addToCart = pen => {};
@@ -154,6 +149,7 @@ const GlobalState = props => {
     for (var e = 0; e < haws.length; e++) {
       types[haws[e].type].push(haws[e]);
     }
+    console.log(haws, types);
     setSortedHaws(types);
     const arr = Object.entries(types);
     //default values for haws collection and displayed haw

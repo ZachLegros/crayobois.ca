@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Landing from "../landing/landing";
-import Perks from "../perks/perks";
 import AuthContext from "../context/authContext";
+import CvsLanding from "../cvsLanding/cvsLanding";
 
 function Home() {
   const authContext = useContext(AuthContext);
@@ -9,7 +9,7 @@ function Home() {
     return (
       <React.Fragment>
         <Landing />
-        <Perks />
+        <CvsLanding />
       </React.Fragment>
     );
   };

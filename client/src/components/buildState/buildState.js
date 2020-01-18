@@ -67,7 +67,7 @@ function BuildState(props) {
 
     setMatQty(sorted(context.materials, "mats"));
     setHawsQty(sorted(context.hardwares, "haws"));
-  }, [context.materials, context.hardwares]);
+  }, []);
 
   if (context.activeCvsPage[0] === "materials") {
     return (

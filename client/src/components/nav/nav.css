@@ -81,11 +81,11 @@
   content: "";
   transform-origin: center;
   transform: scaleX(0);
-  height: 2.5px;
+  height: 2px;
   width: 100%;
   background: var(--white);
   position: absolute;
-  bottom: -6px;
+  bottom: -3px;
   left: 0;
   opacity: 0;
   transition: all 0.25s ease;
