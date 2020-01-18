@@ -4,7 +4,6 @@ import * as firebase from "firebase";
 const uuidv4 = require("uuid/v4");
 
 const AuthState = props => {
-  const [signInOrUp, setSignInOrUp] = useState("in");
   const [initializedFirebase, setInitializedFirebase] = useState(null);
   const [user, setUser] = useState({
     color: "",
@@ -29,7 +28,8 @@ const AuthState = props => {
   const [priceBreakdown, setPriceBreakdown] = useState({});
   const [redirect, setRedirect] = useState(null);
   const [orders, setOrders] = useState(user.orders);
-
+  const [userNav, setUserNav] = useState(null);
+ 
   // random color generator for user profile
   function getRandomColor() {
     const availableColors = [
@@ -168,7 +168,6 @@ const AuthState = props => {
   // signout user
   const signout = () => {
     auth.signOut();
-    setSignInOrUp("in");
     setInitializedFirebase(null);
     setIsAuth(null);
 
@@ -502,7 +501,6 @@ const AuthState = props => {
         signup: signup,
         signout: signout,
         signin: signin,
-        signInOrUp: [signInOrUp, setSignInOrUp],
         initializedFirebase: [initializedFirebase, setInitializedFirebase],
         isInitialized: isInitialized,
         user: [user, setUser],
@@ -528,7 +526,8 @@ const AuthState = props => {
         redirect: [redirect, setRedirect],
         orders: [orders, setOrders],
         isAuth: [isAuth, setIsAuth],
-        auth: auth
+        auth: auth,
+        userNav: [userNav, setUserNav]
       }}
     >
       {props.children}

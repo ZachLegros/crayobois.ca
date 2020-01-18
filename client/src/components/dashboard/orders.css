@@ -72,8 +72,8 @@
 }
 
 .order-details-icon {
-  font-size: 0.65rem;
-  color: hsl(204, 20%, 55%);
+  font-size: 0.65rem !important;
+  color: hsl(204, 20%, 55%) !important;
   margin-left: 8px;
 }
 

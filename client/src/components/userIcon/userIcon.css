@@ -30,7 +30,7 @@
 .mobile-user-link {
   text-decoration: none;
   width: 25px !important;
-  display: flex;
+  display: none;
   justify-content: center;
 }
 
@@ -51,6 +51,10 @@
 
   .nav-user-mobile {
     width: 25px;
+  }
+
+  .mobile-user-link {
+    display: flex;
   }
 
   .nav-user-links {

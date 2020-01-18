@@ -4,16 +4,7 @@ import "./cvsLanding.css";
 const CvsLanding = () => {
   return (
     <div className="cvs-landing">
-      <span className="csv-landing-header">
-        Créez le stylo qui <i>vous</i> convient
-      </span>
-      <span className="cvs-landing-header-text">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque quos
-        tenetur ipsum molestiae nulla. Quis praesentium iure ratione nobis error
-        minima, aliquam accusamus, illo voluptate quaerat quidem quo officiis
-        voluptates.
-      </span>
-      <div className="cvs-landing-features">
+        <div className="cvs-landing-features">
         <div className="cvs-landing-feature f1">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/icons%2Ftree.png?alt=media&token=6512b6fc-2499-4e20-ae6a-e34d9b00ad7b"
@@ -68,6 +59,15 @@ const CvsLanding = () => {
           </span>
         </div>
       </div>
+      <span className="csv-landing-header">
+        Créez le stylo qui <i>vous</i> convient
+      </span>
+      <span className="cvs-landing-header-text">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque quos
+        tenetur ipsum molestiae nulla. Quis praesentium iure ratione nobis error
+        minima, aliquam accusamus, illo voluptate quaerat quidem quo officiis
+        voluptates.
+      </span>
     </div>
   );
 };

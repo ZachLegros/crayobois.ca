@@ -5,7 +5,6 @@ import "./profile.css";
 const Profile = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = authContext.user;
-
   const nameMsg = "Entrez votre nouveau nom d'utilisateur ci-dessous:";
   const passMsg =
     "Une autorisation de changement de mot de passe sera envoyée à l'adresse suivante:";

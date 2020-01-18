@@ -4,19 +4,24 @@ import AuthContext from "../context/authContext";
 
 const User = () => {
   const authContext = useContext(AuthContext);
-  const [redirect, setRedirect] = authContext.redirect;
+  const [userNav, setUserNav] = authContext.userNav;
   const [auth, setAuth] = useState(null);
-  
+
   authContext.isInitialized().then(authState => {
     setAuth(authState);
   });
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <React.Fragment>
-      <a href="/utilisateur" className="nav-user-links">
+      <a
+        href="/utilisateur"
+        onClick={() => {
+          setUserNav("profile");
+        }}
+        className="nav-user-links"
+      >
         {auth ? "mon compte" : "connexion"}
         {auth ? (
           <i className="fas fa-user nav-user-icons"></i>
@@ -25,13 +30,25 @@ const User = () => {
         )}
       </a>
       {auth ? (
-        <a href="/utilisateur" className="nav-user-links">
+        <a
+          href="/utilisateur"
+          onClick={() => {
+            setUserNav("cart");
+          }}
+          className="nav-user-links"
+        >
           panier<i className="fas fa-shopping-basket nav-user-icons"></i>
         </a>
       ) : (
         <React.Fragment />
       )}
-      <a href="/utilisateur" className="mobile-user-link">
+      <a
+        href="/utilisateur"
+        onClick={() => {
+          setUserNav("profile");
+        }}
+        className="mobile-user-link"
+      >
         <span className="nav-user-mobile">
           <i className="fas fa-shopping-basket nav-user-mobile-icon"></i>
         </span>

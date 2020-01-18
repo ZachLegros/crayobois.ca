@@ -9,13 +9,13 @@ import { useHistory } from "react-router-dom";
 
 const User = props => {
   const authContext = useContext(AuthContext);
-  const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
   const [
     initializedFirebase,
     setInitializedFirebase
   ] = authContext.initializedFirebase;
   const [loading, setLoading] = useState(true);
   const [redirect, setRedirect] = authContext.redirect;
+  const [userNav, setUserNav] = authContext.userNav;
   let history = useHistory();
 
   useEffect(() => {
@@ -40,16 +40,17 @@ const User = props => {
     } else {
       return (
         <React.Fragment>
-          <Dashboard />
+          {props.content === "" ? 
+          props.history.push("/utilisateur/profil")
+          :
+          <Dashboard content={props.content} history={props.history}/>
+        }
         </React.Fragment>
       );
     }
   } else {
-    return (
-      <React.Fragment>
-        {signInOrUp === "in" ? <SignIn /> : <SignUp />}
-      </React.Fragment>
-    );
+    props.history.push("/utilisateur/connexion");
+    return(null);
   }
 };
 

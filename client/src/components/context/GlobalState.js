@@ -149,7 +149,6 @@ const GlobalState = props => {
     for (var e = 0; e < haws.length; e++) {
       types[haws[e].type].push(haws[e]);
     }
-    console.log(haws, types);
     setSortedHaws(types);
     const arr = Object.entries(types);
     //default values for haws collection and displayed haw

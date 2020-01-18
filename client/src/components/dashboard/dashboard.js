@@ -15,7 +15,6 @@ const Dashboard = props => {
   const [user, setUser] = authContext.user;
   const [cart, setCart] = Object.assign([], authContext.cart);
   const [verified, setVerified] = useState(false);
-  const [userNav, setUserNav] = useState("profile");
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
 
@@ -25,9 +24,9 @@ const Dashboard = props => {
     setInitializedFirebase(null);
   }
 
-  const emptyCart = () => {
+  const emptyCart = () => {
     setCart([]);
-  }
+  };
 
   // get verification of email state
   const getVerification = () => {
@@ -45,7 +44,13 @@ const Dashboard = props => {
       {dashboardAlertOn === true ? <DashboardAlert /> : <React.Fragment />}
       <section className="dashboard">
         <div className="dashboard-user">
-          <div className={userNav === "profile" ? "dashboard-hero" : "dashboard-hero profile-show"}>
+          <div
+            className={
+              props.content === "profile"
+                ? "dashboard-hero"
+                : "dashboard-hero profile-show"
+            }
+          >
             <i className="fas fa-user dashboard-user-icon"></i>
             <span className="dashboard-hero-username">{user.fullName}</span>
             <span className="dashboard-hero-email">{user.email}</span>
@@ -63,7 +68,7 @@ const Dashboard = props => {
               <li
                 className="dashboard-nav-link"
                 onClick={() => {
-                  setUserNav("profile");
+                  props.history.push("/utilisateur/profil");
                 }}
               >
                 <a>
@@ -77,7 +82,7 @@ const Dashboard = props => {
               <li
                 className="dashboard-nav-link"
                 onClick={() => {
-                  setUserNav("cart");
+                  props.history.push("/utilisateur/panier");
                 }}
               >
                 <a>
@@ -91,7 +96,7 @@ const Dashboard = props => {
               <li
                 className="dashboard-nav-link"
                 onClick={() => {
-                  setUserNav("orders");
+                  props.history.push("/utilisateur/commandes");
                 }}
               >
                 <a>
@@ -105,12 +110,12 @@ const Dashboard = props => {
             {/* Mobile dropdown */}
             <ul className="dashboard-mobile-dropdown-toggler">
               <li className="dashboard-mobile-current">
-                {userNav === "profile" ? (
+                {props.content === "profile" ? (
                   // get selected link
                   <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
-                      setUserNav("profile");
+                      props.history.push("/utilisateur/profil");
                       const newState = !dropdownToggled;
                       setDropdownToggled(newState);
                     }}
@@ -130,11 +135,11 @@ const Dashboard = props => {
                     </a>
                   </span>
                 ) : // get selected link
-                userNav === "cart" ? (
+                props.content === "cart" ? (
                   <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
-                      setUserNav("cart");
+                      props.history.push("/utilisateur/panier");
                       const newState = !dropdownToggled;
                       setDropdownToggled(newState);
                     }}
@@ -158,7 +163,7 @@ const Dashboard = props => {
                   <span
                     className="dashboard-mobile-nav-link"
                     onClick={() => {
-                      setUserNav("orders");
+                      props.history.push("/utilisateur/commandes");
                       const newState = !dropdownToggled;
                       setDropdownToggled(newState);
                     }}
@@ -183,11 +188,11 @@ const Dashboard = props => {
               {dropdownToggled ? (
                 <li className="dashboard-mobile-dropdown">
                   <ul className="dashboard-mobile-nav">
-                    {userNav !== "profile" ? (
+                    {props.content !== "profile" ? (
                       <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
-                          setUserNav("profile");
+                          props.history.push("/utilisateur/profil");
                           setDropdownToggled(false);
                         }}
                       >
@@ -201,11 +206,11 @@ const Dashboard = props => {
                     ) : (
                       <React.Fragment />
                     )}
-                    {userNav !== "cart" ? (
+                    {props.content !== "cart" ? (
                       <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
-                          setUserNav("cart");
+                          props.history.push("/utilisateur/panier");
                           setDropdownToggled(false);
                         }}
                       >
@@ -220,11 +225,11 @@ const Dashboard = props => {
                     ) : (
                       <React.Fragment />
                     )}
-                    {userNav !== "orders" ? (
+                    {props.content !== "orders" ? (
                       <span
                         className="dashboard-mobile-nav-link"
                         onClick={() => {
-                          setUserNav("orders");
+                          props.history.push("/utilisateur/commandes");
                           setDropdownToggled(false);
                         }}
                       >
@@ -248,11 +253,15 @@ const Dashboard = props => {
         </div>
         <div className="dashboard-content">
           {/*Render profile*/}
-          {userNav === "profile" ? <Profile /> : <React.Fragment />}
+          {props.content === "profile" ? <Profile /> : <React.Fragment />}
           {/*Render cart*/}
-          {userNav === "cart" ? <Cart emptyCart={emptyCart}/> : <React.Fragment />}
+          {props.content === "cart" ? (
+            <Cart emptyCart={emptyCart} />
+          ) : (
+            <React.Fragment />
+          )}
           {/*Render orders*/}
-          {userNav === "orders" ? <Orders /> : <React.Fragment />}
+          {props.content === "orders" ? <Orders /> : <React.Fragment />}
         </div>
       </section>
     </React.Fragment>

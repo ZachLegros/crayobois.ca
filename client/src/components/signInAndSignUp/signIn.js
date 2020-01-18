@@ -1,18 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/authContext";
-import Nav from "../nav/nav";
 import "./signUpAndSignIn.css";
 
-const SignIn = () => {
+const SignIn = props => {
   const authContext = useContext(AuthContext);
-  const [signInOrUp, setSignInOrUp] = authContext.signInOrUp;
   const [caughtErr, setCaughtErr] = authContext.caughtErr;
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
-  
-
-  function toggleSignUp() {
-    setSignInOrUp("up");
-  }
 
   useEffect(() => {
     const signinForm = document.querySelector("#signin-form");
@@ -27,7 +20,6 @@ const SignIn = () => {
 
       setTimeout(() => {
         authContext.signin(email, password);
-      
       }, 500);
     });
   }, []);
@@ -92,7 +84,7 @@ const SignIn = () => {
           <button
             className="form-btn black"
             onClick={() => {
-              toggleSignUp();
+              props.history.push("/utilisateur/creer-un-compte");
               setErrorMsg("");
               setCaughtErr(false);
             }}

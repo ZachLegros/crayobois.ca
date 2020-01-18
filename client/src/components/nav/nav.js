@@ -3,10 +3,13 @@ import "./nav.css";
 import User from "../userIcon/userIcon";
 import logo from "./logo.png";
 import NavContext from "../context/navLinksContext";
+import AuthContext from "../context/authContext";
 const uuidv4 = require("uuid/v4");
 
 const Nav = () => {
   const context = useContext(NavContext);
+  const authContext = useContext(AuthContext);
+  const [userNav, setUserNav] = authContext.userNav;
   const [navigation, setNavigation] = context.navigation;
   const [color, setColor] = useState(null);
   const navLinks = [
@@ -90,12 +93,10 @@ const Nav = () => {
         prevScroll = scroll;
       }
     } else {
-      console.log(width);
     }
   }
 
   useEffect(() => {
-    console.log(navigation);
     navigation === "home" || navigation === "gallery"
       ? setColor(null)
       : setColor("var(--black)");
@@ -164,7 +165,7 @@ const Nav = () => {
             );
           })}
           <li>
-            <a className="mobile-nav-link" href="/utilisateur">
+            <a className="mobile-nav-link" onClick={() => {setUserNav("profile")}} href="/utilisateur">
               mon compte <i className="fas fa-user nav-user-icons"></i>
             </a>
           </li>

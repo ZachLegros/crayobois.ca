@@ -12,6 +12,7 @@
     margin-bottom: 12.5px;
     width: 100%;
     text-align: left;
+    margin-top: 100px;
 }
 
 .cvs-landing-header-text {
@@ -21,7 +22,6 @@
     color: hsl(201, 7%, 41%);
     margin-bottom: 50px;
     text-align: justify;
-    padding: 0 100px 0 0;
 }
 
 .cvs-landing-features {
@@ -85,7 +85,7 @@
 
 @media only screen and (max-width: 850px) {
     .cvs-landing {
-        margin: 50px 25px 50px 25px;
+        margin: 25px 25px 50px 25px;
         padding: 0;
     }
 
@@ -103,6 +103,7 @@
 
     .csv-landing-header {
         font-size: 24px;
+        margin-top: 50px
     }
 
     .cvs-landing-header-text {
