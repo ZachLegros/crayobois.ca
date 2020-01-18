@@ -15,7 +15,11 @@ const CvsLanding = () => {
       </span>
       <div className="cvs-landing-features">
         <div className="cvs-landing-feature">
-        <i className="fas fa-tree feature-icon"></i>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/icons%2Ftree.png?alt=media&token=6512b6fc-2499-4e20-ae6a-e34d9b00ad7b"
+            alt="wood"
+            className="feature-icon"
+          />
           <span className="cvs-landing-feature-name">
             Grand inventaire de bois
           </span>
@@ -26,22 +30,35 @@ const CvsLanding = () => {
           </span>
         </div>
         <div className="cvs-landing-feature">
-        <i className="fas fa-fist-raised feature-icon"></i>
-          <span className="cvs-landing-feature-name">Faits à la main</span>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/icons%2Ffist.png?alt=media&token=be335169-fa2e-4ee7-9830-75c2383dfb5f"
+            alt="fist"
+            className="feature-icon"
+          />
+          <span className="cvs-landing-feature-name">Fait à la main</span>
           <span className="cvs-landing-feature-text">
-            Tous nos stylos sont minutieusement fabriqués à la main par nos
-            artisans tels que Vincent Legros et Dominique Violette.
+            Tous nos stylos sont minutieusement fabriqués à la main par les
+            artisans Vincent Legros et Dominique Violette.
           </span>
         </div>
-        <div className="cvs-landing-feature">
+        <div className="cvs-landing-feature bottom-feature">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/icons%2Fquebec.png?alt=media&token=55f70c1f-2bfb-425f-a442-545e2a06048f"
+            alt="quebec"
+            className="feature-icon"
+          />
           <span className="cvs-landing-feature-name">Fait au Québec</span>
           <span className="cvs-landing-feature-text">
             Tous nos stylos sont fabriqués et assemblés dans la ville de
             Gatineau, Québec.
           </span>
         </div>
-        <div className="cvs-landing-feature">
-        <i className="fas fa-sliders-h feature-icon"></i>
+        <div className="cvs-landing-feature bottom-feature">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/icons%2Fsliders.png?alt=media&token=55f2a038-49c7-4646-b7c9-bb0fa40f3f9a"
+            alt="sliders"
+            className="feature-icon"
+          />
           <span className="cvs-landing-feature-name">
             Entièrement personnalisable
           </span>
