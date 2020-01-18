@@ -163,6 +163,11 @@ const Nav = () => {
               </li>
             );
           })}
+          <li>
+            <a className="mobile-nav-link" href="/utilisateur">
+              mon compte <i className="fas fa-user nav-user-icons"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </React.Fragment>

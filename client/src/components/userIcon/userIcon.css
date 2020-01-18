@@ -27,6 +27,13 @@
   width: 0px;
 }
 
+.mobile-user-link {
+  text-decoration: none;
+  width: 25px !important;
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 1250px) {
   .nav-user-links {
     font-size: 14px;

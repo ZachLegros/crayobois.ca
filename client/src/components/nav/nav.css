@@ -1,4 +1,3 @@
-
 /*Desktop nav*/
 .d-active {
   display: flex;
@@ -21,7 +20,7 @@
 
 .black-nav {
   background-color: var(--black);
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.13);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.185);
 }
 
 .navbar-content {
@@ -98,11 +97,11 @@
 
 .sticky {
   position: fixed;
-  animation: sticky .25s ease-in;
+  animation: sticky 0.25s ease-in;
   background-color: var(--black);
 }
 
-@keyframes sticky{
+@keyframes sticky {
   from {
     transform: translateY(-100%);
   }
@@ -249,21 +248,26 @@
 
   .m-active {
     display: flex;
+    position: fixed;
   }
 
   #mobile-tabs {
     display: flex;
   }
 
+  .navbar {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.185);
+  }
+
   .navbar-content {
     margin: 0 25px 0 25px;
     background-color: var(--black);
     width: calc(100vw - 50px);
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.13);
   }
 
   .logo {
     width: 125px;
     height: auto;
+    padding: 0;
   }
 }

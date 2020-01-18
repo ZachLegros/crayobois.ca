@@ -31,9 +31,9 @@ const User = () => {
       ) : (
         <React.Fragment />
       )}
-      <a href="/utilisateur">
+      <a href="/utilisateur" className="mobile-user-link">
         <span className="nav-user-mobile">
-          <i className="fas fa-user nav-user-mobile-icon"></i>
+          <i className="fas fa-shopping-basket nav-user-mobile-icon"></i>
         </span>
       </a>
     </React.Fragment>

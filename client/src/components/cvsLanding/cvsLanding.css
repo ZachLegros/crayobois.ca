@@ -103,12 +103,12 @@
 
     .csv-landing-header {
         font-size: 24px;
-        text-align: center;
     }
 
     .cvs-landing-header-text {
         font-size: 16px;
         padding-right: 0;
+        margin-bottom: 25px;
     }
 
     .cvs-landing-feature-name {
@@ -117,5 +117,21 @@
     
     .cvs-landing-feature-text {
         font-size: 16px;
+    }
+
+    .f1 {
+        margin: 12.5px 0 12.5px;
+    }
+    
+    .f2 {
+        margin: 12.5px 0 12.5px;
+    }
+    
+    .f3 {
+        margin: 12.5px 0 12.5px;
+    }
+    
+    .f4 {
+        margin: 12.5px 0 12.5px;
     }
 }
