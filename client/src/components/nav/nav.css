@@ -21,7 +21,7 @@
 
 .black-nav {
   background-color: var(--black);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.26);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.13);
 }
 
 .navbar-content {
@@ -94,6 +94,21 @@
 .nav-link:hover::after {
   transform: scaleX(1);
   opacity: 1;
+}
+
+.sticky {
+  position: fixed;
+  animation: sticky .25s ease-in;
+  background-color: var(--black);
+}
+
+@keyframes sticky{
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 /*Mobile nav*/
@@ -244,7 +259,7 @@
     margin: 0 25px 0 25px;
     background-color: var(--black);
     width: calc(100vw - 50px);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.26);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.13);
   }
 
   .logo {

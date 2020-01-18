@@ -15,6 +15,7 @@ const Nav = () => {
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
     { id: uuidv4(), text: "Contact", path: "/" }
   ];
+  const [scrollListener, setScrollListener] = useState(null);
 
   /*Toggle hamburger*/
   let toggled = false;
@@ -73,19 +74,38 @@ const Nav = () => {
     }
   }
 
+  let prevScroll = 0;
+
   function stickyNav() {
     const nav = document.querySelector(".navbar");
+    let scroll = window.pageYOffset || document.documentElement.scrollTop;
+    const width = window.pageXOffset || document.documentElement.clientWidth;
 
-    if (!color) {
-      console.log("sticky nav");
+    if (width > 850 && navigation === "home") {
+      if (scroll < 40) {
+        nav.classList.remove("sticky");
+        prevScroll = scroll;
+      } else {
+        nav.classList.add("sticky");
+        prevScroll = scroll;
+      }
+    } else {
+      console.log(width);
     }
   }
 
   useEffect(() => {
+    console.log(navigation);
     navigation === "home" || navigation === "gallery"
       ? setColor(null)
       : setColor("var(--black)");
-    stickyNav();
+    if (navigation === "home") {
+      window.addEventListener("scroll", stickyNav, true);
+    } else {
+      const nav = document.querySelector(".navbar");
+      nav.style.animation = "none";
+      nav.style.position = "fixed";
+    }
   });
 
   return (

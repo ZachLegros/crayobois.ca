@@ -1,7 +1,18 @@
+html {
+  scroll-behavior: smooth;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+@-moz-document url-prefix() {
+  body {
+    font-weight: lighter !important;
+  }
+}
+
 * {
   font-family: Poppins, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /*Vars*/
@@ -13,7 +24,7 @@
   --off_white: #efefef;
   --green: #288634;
   --light_green: #3ec951;
-  --orange: #C25100;
+  --orange: #c25100;
   --light_orange: #e98136;
   --profile_color: #fff;
 }
@@ -25,11 +36,7 @@ body {
   background-color: var(--off_white);
   box-sizing: border-box;
   height: 100%;
-  width: 100%;  
-}
-
-html {
-  scroll-behavior: smooth;
+  width: 100%;
 }
 
 #root {
