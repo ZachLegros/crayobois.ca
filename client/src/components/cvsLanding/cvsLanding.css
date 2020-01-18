@@ -3,10 +3,6 @@
     padding: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    z-index: 10;
-    border-radius: 25px;
 }
 
 .csv-landing-header {
@@ -63,4 +59,47 @@
 
 .bottom-feature {
     margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1250px) {
+    .cvs-landing {
+        margin: 50px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .cvs-landing {
+        margin: 50px 25px 50px 25px;
+        padding: 0;
+    }
+
+    .cvs-landing-features {
+        grid-template-columns: 100%;
+    }
+
+    .cvs-landing-feature-text {
+        padding-right: 0;
+    }
+
+    .bottom-feature {
+        margin-bottom: 25px;
+    }
+
+    .csv-landing-header {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .cvs-landing-header-text {
+        font-size: 16px;
+        padding-right: 0;
+    }
+
+    .cvs-landing-feature-name {
+        font-size: 16px;
+    }
+    
+    .cvs-landing-feature-text {
+        font-size: 16px;
+    }
 }
