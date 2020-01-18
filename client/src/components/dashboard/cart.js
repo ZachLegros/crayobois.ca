@@ -9,7 +9,7 @@ const uuidv4 = require("uuid/v4");
 const Cart = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = authContext.user;
-  const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
+  const [cart, setCart] = props.cart;
   const [subTotal, setSubTotal] = useState(0);
   const [checkoutStep, setCheckoutStep] = useState("cart");
   let history = useHistory();

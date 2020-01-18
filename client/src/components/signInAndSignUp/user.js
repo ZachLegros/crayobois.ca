@@ -5,7 +5,6 @@ import SignIn from "./signIn";
 import SignUp from "./signUp";
 import Dashboard from "../dashboard/dashboard";
 import Spinner from "../spinner/spinner";
-import { useHistory } from "react-router-dom";
 
 const User = props => {
   const authContext = useContext(AuthContext);
@@ -15,8 +14,6 @@ const User = props => {
   ] = authContext.initializedFirebase;
   const [loading, setLoading] = useState(true);
   const [redirect, setRedirect] = authContext.redirect;
-  const [userNav, setUserNav] = authContext.userNav;
-  let history = useHistory();
 
   useEffect(() => {
     props.onEnter();
@@ -34,7 +31,7 @@ const User = props => {
     );
   } else if (initializedFirebase) {
     if (redirect) {
-      history.push(redirect);
+      props.history.push(redirect);
       setRedirect(null);
       return null;
     } else {

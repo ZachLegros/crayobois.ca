@@ -306,7 +306,6 @@ select:-webkit-autofill:focus {
     font-size: 14px;
     border: none;
     -webkit-text-fill-color: hsl(204, 20%, 40%);
-    -webkit-box-shadow: 0 0 0px 1000px hsl(210, 20%, 92%) inset;
   }
 }
 

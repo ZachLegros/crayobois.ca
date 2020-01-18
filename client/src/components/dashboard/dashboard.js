@@ -256,7 +256,7 @@ const Dashboard = props => {
           {props.content === "profile" ? <Profile /> : <React.Fragment />}
           {/*Render cart*/}
           {props.content === "cart" ? (
-            <Cart emptyCart={emptyCart} />
+            <Cart emptyCart={emptyCart} cart={[cart, setCart]}/>
           ) : (
             <React.Fragment />
           )}

@@ -8,8 +8,15 @@ const SignUp = props => {
   const authContext = useContext(AuthContext);
   const [caughtErr, setCaughtErr] = authContext.caughtErr;
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
+  const [
+    initializedFirebase,
+    setInitializedFirebase
+  ] = authContext.initializedFirebase;
 
   useEffect(() => {
+    const nav = document.querySelector(".navbar");
+    nav.style.backgroundColor = "var(--black)";
+
     const signupForm = document.querySelector("#signup-form");
     const actionBtn = document.querySelector("#signup-action");
     signupForm.addEventListener("submit", e => {
@@ -30,8 +37,10 @@ const SignUp = props => {
     });
   }, []);
 
+
   return (
     <React.Fragment>
+      {initializedFirebase ? props.history.push("/utilisateur/profil") : <React.Fragment />}
       <section id="sign-in-sign-up">
         <div className="sign-in-sign-up-container">
           <span className="header-text">Créer un compte</span>

@@ -4,7 +4,6 @@ import AuthContext from "../context/authContext";
 
 const User = () => {
   const authContext = useContext(AuthContext);
-  const [userNav, setUserNav] = authContext.userNav;
   const [auth, setAuth] = useState(null);
 
   authContext.isInitialized().then(authState => {
@@ -16,10 +15,8 @@ const User = () => {
   return (
     <React.Fragment>
       <a
-        href="/utilisateur"
-        onClick={() => {
-          setUserNav("profile");
-        }}
+        href="/utilisateur/profil"
+       
         className="nav-user-links"
       >
         {auth ? "mon compte" : "connexion"}
@@ -31,10 +28,7 @@ const User = () => {
       </a>
       {auth ? (
         <a
-          href="/utilisateur"
-          onClick={() => {
-            setUserNav("cart");
-          }}
+          href="/utilisateur/panier"
           className="nav-user-links"
         >
           panier<i className="fas fa-shopping-basket nav-user-icons"></i>
@@ -43,10 +37,7 @@ const User = () => {
         <React.Fragment />
       )}
       <a
-        href="/utilisateur"
-        onClick={() => {
-          setUserNav("profile");
-        }}
+        href="/utilisateur/panier"
         className="mobile-user-link"
       >
         <span className="nav-user-mobile">
