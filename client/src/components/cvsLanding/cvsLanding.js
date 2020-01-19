@@ -27,8 +27,7 @@ const CvsLanding = () => {
           </span>
           <span className="cvs-landing-feature-text">
             Choisissez le matériau qui vous représente parmi notre grand
-            inventaire de bois. Vous y trouverez sans doutes un matériau qui
-            vous plaira.
+            inventaire de bois.
           </span>
         </div>
         <div className="cvs-landing-feature f2">

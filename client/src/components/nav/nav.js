@@ -16,7 +16,7 @@ const Nav = props => {
     { id: uuidv4(), text: "Accueil", path: "/" },
     { id: uuidv4(), text: "Galerie", path: "/" },
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
-    { id: uuidv4(), text: "Contact", path: "/" }
+    { id: uuidv4(), text: "Contact", path: "/contact" }
   ];
   const [scrollListener, setScrollListener] = useState(null);
 

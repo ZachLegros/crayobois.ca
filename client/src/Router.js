@@ -9,6 +9,7 @@ import NavContext from "./components/context/navLinksContext";
 import AuthContext from "./components/context/authContext";
 import SignIn from "./components/signInAndSignUp/signIn";
 import SignUp from "./components/signInAndSignUp/signUp";
+import Contact from "./components/contact/contact";
 
 const RouterComponent = () => {
   const context = useContext(NavContext);
@@ -29,6 +30,18 @@ const RouterComponent = () => {
                 {...props}
                 onEnter={() => {
                   setNavigation("home");
+                }}
+              />
+            )}
+          />
+          <Route
+            path="/contact"
+            exact
+            render={props => (
+              <Contact
+                {...props}
+                onEnter={() => {
+                  setNavigation("contact");
                 }}
               />
             )}
