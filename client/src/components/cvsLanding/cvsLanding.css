@@ -5,6 +5,37 @@
     flex-direction: column;
 }
 
+.cvs-features-header {
+    font-size: 36px;
+    color: var(--black);
+    font-weight: 600;
+    position: relative;
+    margin: 0 0 25px 0;
+    transition: all .25s ease-in-out;
+}
+
+.cvs-feature-header-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    padding-left: 25px;
+}
+
+.cvs-features-header::before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    left: -25px;
+    top: 0;
+    background-color: var(--light_orange);
+    border-radius: 1px;
+}
+
+
 .csv-landing-header {
     font-size: 36px;
     font-weight: 600;
@@ -14,6 +45,14 @@
     text-align: left;
     margin-top: 100px;
 }
+
+.cvs-features-header-icon {
+    color: var(--black);
+    font-size: 24px;
+    opacity: 0.7;
+    margin-left: 12.5px;
+}
+
 
 .cvs-landing-header-text {
     font-size: 20px;
@@ -97,6 +136,10 @@
         padding-right: 0;
     }
 
+    .cvs-features-header-icon {
+        font-size: 18px;
+    }
+
     .bottom-feature {
         margin-bottom: 25px;
     }
@@ -119,6 +162,21 @@
     .cvs-landing-feature-text {
         font-size: 16px;
     }
+
+    .cvs-features-header {
+        font-size: 24px;
+        margin: 25px 0 12.5px 0;
+    }
+
+    .cvs-features-header::before {
+        width: 3px;
+        left: -12.5px;
+    }
+
+    .cvs-feature-header-container {
+        padding-left: 12.5px;
+    }
+    
 
     .f1 {
         margin: 12.5px 0 12.5px;

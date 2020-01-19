@@ -6,7 +6,7 @@ import NavContext from "../context/navLinksContext";
 import AuthContext from "../context/authContext";
 const uuidv4 = require("uuid/v4");
 
-const Nav = () => {
+const Nav = props => {
   const context = useContext(NavContext);
   const authContext = useContext(AuthContext);
   const [userNav, setUserNav] = authContext.userNav;
@@ -165,7 +165,13 @@ const Nav = () => {
             );
           })}
           <li>
-            <a className="mobile-nav-link" onClick={() => {setUserNav("profile")}} href="/utilisateur">
+            <a
+              className="mobile-nav-link"
+              onClick={() => {
+                setUserNav("profile");
+              }}
+              href="/utilisateur"
+            >
               mon compte <i className="fas fa-user nav-user-icons"></i>
             </a>
           </li>

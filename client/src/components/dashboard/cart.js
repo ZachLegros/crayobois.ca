@@ -70,7 +70,7 @@ const Cart = props => {
 
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
-  }, []);
+  }, [cart]);
 
   return (
     <React.Fragment>

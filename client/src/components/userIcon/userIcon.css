@@ -6,7 +6,27 @@
   text-transform: lowercase;
   transition: opacity 0.25s ease;
   letter-spacing: 0.35px;
-  padding: 12.5px;
+  margin: 0 12.5px 0 12.5px;
+  position: relative;
+}
+
+.nav-user-links::after {
+  content: "";
+  transform-origin: center;
+  transform: scaleX(0);
+  height: 2px;
+  width: 100%;
+  background: var(--white);
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+.nav-user-links:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .nav-user-icons {

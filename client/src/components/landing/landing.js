@@ -6,7 +6,7 @@ const Landing = props => {
   const parallax = () => {
     const image = document.querySelector(".landing-image");
     const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    const rate = scrolled * 0.35;
+    const rate = scrolled * 0.5;
 
     image.style.transform = `translate3d(0, ${rate}px, 0)`;
   };

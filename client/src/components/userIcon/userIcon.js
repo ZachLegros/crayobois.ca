@@ -14,11 +14,7 @@ const User = () => {
 
   return (
     <React.Fragment>
-      <a
-        href="/utilisateur/profil"
-       
-        className="nav-user-links"
-      >
+      <a href="/utilisateur/profil" className="nav-user-links">
         {auth ? "mon compte" : "connexion"}
         {auth ? (
           <i className="fas fa-user nav-user-icons"></i>
@@ -27,19 +23,13 @@ const User = () => {
         )}
       </a>
       {auth ? (
-        <a
-          href="/utilisateur/panier"
-          className="nav-user-links"
-        >
+        <a href="/utilisateur/panier" className="nav-user-links">
           panier<i className="fas fa-shopping-basket nav-user-icons"></i>
         </a>
       ) : (
         <React.Fragment />
       )}
-      <a
-        href="/utilisateur/panier"
-        className="mobile-user-link"
-      >
+      <a href="/utilisateur/panier" className="mobile-user-link">
         <span className="nav-user-mobile">
           <i className="fas fa-shopping-basket nav-user-mobile-icon"></i>
         </span>

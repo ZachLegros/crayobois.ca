@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import CvsContext from "../context/cvsContext";
 import Spinner from "../spinner/spinner";
 import "./thumbnails.css";
+import ScrollReveal from "scrollreveal";
 const { uuid } = require('uuidv4');
 
 function Thumbnails(props) {
@@ -63,7 +64,8 @@ function Thumbnails(props) {
     }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+  }, []);
 
   if (context.activeCvsPage[0] === "materials") {
     if (context.filteredMats.length === 0) {

@@ -1,0 +1,11 @@
+.about-section {
+  background-color: #fff;
+}
+
+.about-container {
+  margin: 50px 250px 50px 250px;
+  padding: 50px;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}

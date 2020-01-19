@@ -85,7 +85,7 @@ const Orders = props => {
                           {`Expédié à: ${order.payer.name.given_name} ${order.payer.name.surname}`}
                         </span>
                         <span>
-                          {`Total: ${order.purchase_units[0].amount.value}`}
+                          {`Total: ${formatter.format(order.purchase_units[0].amount.value)}`}
                         </span>
                       </div>
                       <div className="order-status status-col">

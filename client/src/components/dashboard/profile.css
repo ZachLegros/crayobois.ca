@@ -45,6 +45,7 @@
   width: max-content;
   text-align: center;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   outline: none;
   transition-property: opacity;

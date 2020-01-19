@@ -18,8 +18,8 @@ const RouterComponent = () => {
 
   return (
     <React.Fragment>
-      <Nav />
       <Router>
+        <Nav />
         <Switch>
           <Route
             path="/"

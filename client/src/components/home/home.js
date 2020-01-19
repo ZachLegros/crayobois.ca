@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Landing from "../landing/landing";
 import CvsLanding from "../cvsLanding/cvsLanding";
+import About from "../about/about";
 
 function Home(props) {
   useEffect(() => {
@@ -11,6 +12,7 @@ function Home(props) {
       <React.Fragment>
         <Landing />
         <CvsLanding />
+        <About />
       </React.Fragment>
     );
   };
