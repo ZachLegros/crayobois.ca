@@ -1,9 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
-import simpleParallax from "simple-parallax-js";
 import bg from "./slideshow/img2.jpg";
 
 const Landing = props => {
+  const parallax = () => {
+    const image = document.querySelector(".landing-image");
+    const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    const rate = scrolled * 0.35;
+
+    image.style.transform = `translate3d(0, ${rate}px, 0)`;
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", parallax);
+  });
+
   return (
     <React.Fragment>
       <div id="landing-wrapper">
