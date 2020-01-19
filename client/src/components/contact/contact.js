@@ -29,7 +29,7 @@ const Contact = props => {
             <div className="technical-issues">
               <span className="contact-sub-header">
                 Problèmes techniques
-                <i class="fas fa-cogs contact-sub-header-icon"></i>
+                <i className="fas fa-cogs contact-sub-header-icon"></i>
               </span>
               <span className="contact-text">
                 Pour tous problèmes techniques, S.V.P contactez notre webmestre
@@ -40,7 +40,7 @@ const Contact = props => {
                 className="contact-btn bottom-btn"
               >
                 Reporter un problème
-                <i class="fas fa-cogs contact-sub-header-icon contact-btn-icon"></i>
+                <i className="fas fa-cogs contact-sub-header-icon contact-btn-icon"></i>
               </a>
             </div>
           </div>

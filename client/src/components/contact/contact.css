@@ -113,10 +113,10 @@
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   .contact-section {
     padding: 0;
-    height: auto;
+    height: 100%;
   }
 
   .contact-container {
@@ -128,8 +128,8 @@
     box-shadow: none;
     padding: 25px;
     overflow: visible;
-    height: auto;
     margin: 0;
+    height: 100vh;
   }
 
   .contact-content {

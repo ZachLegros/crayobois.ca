@@ -29,13 +29,13 @@ const Orders = props => {
     return newDate;
   };
 
-  const toggleHandler = (uid) => {
+  const toggleHandler = uid => {
     if (moreDetails === uid) {
       setMoreDetails("");
     } else {
       setMoreDetails(uid);
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -80,16 +80,20 @@ const Orders = props => {
                         <span>{`#${order.customId}`}</span>
                       </div>
                       <div className="order-details details-col">
+                        <span>
+                          {`Total: ${formatter.format(
+                            order.purchase_units[0].amount.value
+                          )}`}
+                        </span>
                         <span>{parseDate(order.create_time)}</span>
                         <span>
                           {`Expédié à: ${order.payer.name.given_name} ${order.payer.name.surname}`}
                         </span>
-                        <span>
-                          {`Total: ${formatter.format(order.purchase_units[0].amount.value)}`}
-                        </span>
                       </div>
                       <div className="order-status status-col">
-                        <span className="order-status">{order.order_status}</span>
+                        <span className="order-status">
+                          {order.order_status}
+                        </span>
                       </div>
                     </div>
                     <div className="order-more-details-container">

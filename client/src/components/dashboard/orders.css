@@ -40,16 +40,12 @@
   font-weight: 500;
 }
 
-.order-details {
-  color: hsl(204, 20%, 30%);
-}
-
 .order-info {
-  color: hsl(204, 20%, 30%);
+  color: hsl(203, 20%, 49%);
 }
 
 .order-status {
-  color: hsl(204, 20%, 55%);
+  color: var(--black);
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -69,12 +65,17 @@
 .order-details {
   display: flex;
   flex-direction: column;
+  color: hsl(204, 20%, 55%);
 }
 
 .order-details-icon {
   font-size: 0.65rem !important;
   color: hsl(204, 20%, 55%) !important;
   margin-left: 8px;
+}
+
+.black-txt {
+  color: var(--black);
 }
 
 .order-more-details-container {
@@ -89,6 +90,7 @@
   max-height: 0px;
   transition: all 0.15s ease-in-out;
   transform-origin: top;
+  width: 100%;
 }
 
 .order-more-details-btn {
