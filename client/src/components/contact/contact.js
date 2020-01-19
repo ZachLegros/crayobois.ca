@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./contact.css";
+import img from "./img/img1.jpg";
 
 const Contact = props => {
   useEffect(() => {
@@ -10,56 +11,39 @@ const Contact = props => {
     <React.Fragment>
       <section className="contact-section">
         <div className="contact-container">
-          <span className="header-text">Contactez-nous</span>
-          <form id="contact-form">
-            <div className="contact-infos">
-              <div className="input-field">
-                <input
-                  type="text"
-                  name="name"
-                  id="contact-name"
-                  className="input contact-fields contact-name"
-                  placeholder="Nom complet"
-                  autoComplete="off"
-                  required
-                />
-                <div className="input-icon">
-                  <i className="fas fa-id-badge"></i>
-                </div>
-              </div>
-              <div className="input-field right">
-                <input
-                  type="email"
-                  name="email"
-                  id="contact-email"
-                  className="input contact-fields contact-email"
-                  placeholder="Adresse e-mail"
-                  autoComplete="off"
-                  required
-                />
-                <i className="fas fa-envelope input-icon"></i>
-              </div>
+          <img src={img} className="contact-image" />
+          <div className="contact-content">
+            <span className="contact-header-text">Contactez-nous</span>
+            <span className="contact-sub-header">
+              Renseignements généraux
+              <i className="fas fa-question-circle contact-sub-header-icon"></i>
+            </span>
+            <span className="contact-text">
+              Pour toutes questions concernant les stylos, les prix ou la
+              livraison, n'hésitez pas à nous contacter via e-mail.
+            </span>
+            <a href="mailto:dv.crayobois@gmail.com" className="contact-btn">
+              Poser une question
+              <i className="fas fa-question-circle contact-sub-header-icon contact-btn-icon"></i>
+            </a>
+            <div className="technical-issues">
+              <span className="contact-sub-header">
+                Problèmes techniques
+                <i class="fas fa-cogs contact-sub-header-icon"></i>
+              </span>
+              <span className="contact-text">
+                Pour tous problèmes techniques, S.V.P contactez notre webmestre
+                afin de reporter ceux-ci.
+              </span>
+              <a
+                href="mailto:legroszach3921@gmail.com"
+                className="contact-btn bottom-btn"
+              >
+                Reporter un problème
+                <i class="fas fa-cogs contact-sub-header-icon contact-btn-icon"></i>
+              </a>
             </div>
-            <div className="input-field">
-              <input
-                type="text"
-                name="message"
-                id="contact-message"
-                className="input"
-                placeholder="Message"
-                autoComplete="off"
-                required
-              />
-              <div className="input-icon">
-                <i className="fas fa-comment"></i>
-              </div>
-            </div>
-            <div className="action-container">
-              <button id="signin-action" className="form-btn">
-                Envoyer<i className="fas fa-paper-plane form-btn-icon"></i>
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
     </React.Fragment>
