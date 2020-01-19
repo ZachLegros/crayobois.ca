@@ -18,7 +18,7 @@ const Contact = props => {
                   type="text"
                   name="name"
                   id="contact-name"
-                  className="input contact-name"
+                  className="input contact-fields contact-name"
                   placeholder="Nom complet"
                   autoComplete="off"
                   required
@@ -27,12 +27,12 @@ const Contact = props => {
                   <i className="fas fa-id-badge"></i>
                 </div>
               </div>
-              <div className="input-field contact-fields">
+              <div className="input-field right">
                 <input
                   type="email"
                   name="email"
                   id="contact-email"
-                  className="input contact-email"
+                  className="input contact-fields contact-email"
                   placeholder="Adresse e-mail"
                   autoComplete="off"
                   required

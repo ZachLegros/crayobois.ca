@@ -20,9 +20,14 @@
     0px 5px 15px rgba(0, 0, 0, 0.07);
 }
 
+.right {
+    justify-content: flex-end;
+    margin-left: 12.5px;
+}
+
 .contact-infos {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contact-name {
@@ -34,5 +39,9 @@
 }
 
 .contact-fields {
-    width: calc(100% - 12.5px);
+    width: calc(100% - 82.5px) !important;
+}
+
+.contact-input-field {
+    width: max-content !important;
 }

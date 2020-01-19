@@ -79,6 +79,9 @@
 
 .order-more-details-container {
   margin: 25px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .order-more-details {

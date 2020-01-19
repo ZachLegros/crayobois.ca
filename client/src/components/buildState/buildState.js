@@ -14,6 +14,8 @@ function BuildState(props) {
   const [filteringName, setFilteringName] = context.filteringName;
   const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
   const [filterName, setFilterName] = context.filterName;
+  const [materials, setMaterials] = useState(context.materials);
+  const [hardwares, setHardwares] = useState(context.hardwares);
 
   useEffect(() => {
     //function that gets all the wood type and their quantities
@@ -65,9 +67,9 @@ function BuildState(props) {
       }
     }
 
-    setMatQty(sorted(context.materials, "mats"));
-    setHawsQty(sorted(context.hardwares, "haws"));
-  }, []);
+    setMatQty(sorted(materials, "mats"));
+    setHawsQty(sorted(hardwares, "haws"));
+  }, [materials, hardwares]);
 
   if (context.activeCvsPage[0] === "materials") {
     return (
@@ -135,7 +137,6 @@ function BuildState(props) {
                   key={id}
                   onClick={() => {
                     context.filterHaws(hardware[0]);
-                    
                     setHawsFilteringName(hardware[0]);
                     context.scrollTop();
                     context.toggleLoading();

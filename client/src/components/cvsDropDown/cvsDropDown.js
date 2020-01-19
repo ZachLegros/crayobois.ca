@@ -75,7 +75,6 @@ function CvsDropDown(props) {
 
     setMatQty(sorted(context.materials, "mats"));
     setHawsQty(sorted(context.hardwares, "haws"));
-    
   }, []);
 
   if (context.activeCvsPage[0] === "materials") {
@@ -83,11 +82,13 @@ function CvsDropDown(props) {
       <div
         id="cvs-dropdown"
         className={
-          cvsDropDownToggle === true ? "cvs-dropdown-active" : "cvs-dropdown"
+          cvsDropDownToggle === true
+            ? "cvs-dropdown cvs-dropdown-active"
+            : "cvs-dropdown"
         }
       >
         <ul className="cvs-dropdown-filter-list">
-          <li>
+          <li className="filter-list-li">
             <a
               onClick={() => {
                 context.filterMats([]);
@@ -108,7 +109,7 @@ function CvsDropDown(props) {
           {matsQty.map(material => {
             const id = uuidv4();
             return (
-              <li key={id}>
+              <li className="filter-list-li" key={id}>
                 <a
                   key={id}
                   onClick={() => {
@@ -137,14 +138,16 @@ function CvsDropDown(props) {
       <div
         id="cvs-dropdown"
         className={
-          cvsDropDownToggle === true ? "cvs-dropdown-active" : "cvs-dropdown"
+          cvsDropDownToggle === true
+            ? "cvs-dropdown haws-dropdown cvs-dropdown-active"
+            : "cvs-dropdown haws-dropdown"
         }
       >
-        <ul className="cvs-dropdown-filter-list">
+        <ul className="cvs-dropdown-filter-list haws-filter-list">
           {hawsQty.map(hardware => {
             const id = uuidv4();
             return (
-              <li key={id}>
+              <li className="filter-list-li haws-filter-list-li" key={id}>
                 <a
                   key={id}
                   onClick={() => {
