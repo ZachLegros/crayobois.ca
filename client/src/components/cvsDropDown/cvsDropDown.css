@@ -76,4 +76,8 @@
   #cvs-dropdown {
     display: flex;
   }
+
+  .cvs-dropdown {
+    position: fixed;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
-import bg from "./slideshow/img2test.jpg";
+import bg from "./slideshow/img2.jpg";
 
 const Landing = props => {
   const parallax = () => {

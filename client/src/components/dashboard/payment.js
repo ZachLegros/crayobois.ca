@@ -8,8 +8,8 @@ const Payment = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = authContext.user;
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
-  const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = authContext.success;
   const paypalRef = useRef();
   const purchaseUnits = authContext.createPurchaseUnits(cart);
 
@@ -40,11 +40,11 @@ const Payment = props => {
 
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
+          authContext.addOrderToClient(order, [...cart]);
           props.emptyCart();
-          authContext.addOrderToClient(order);
           authContext.updateCart([]);
           authContext.removeFromCart("*");
-          setPaidFor(true);
+          setSuccess(true);
         },
 
         onError: err => {
@@ -53,13 +53,6 @@ const Payment = props => {
       })
       .render(paypalRef.current);
   }, []);
-
-  // successfull
-  if (paidFor) {
-    return (
-     <Success />
-    );
-  }
 
   return (
     <React.Fragment>

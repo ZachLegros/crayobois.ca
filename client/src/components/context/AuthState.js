@@ -11,7 +11,6 @@ const AuthState = props => {
     email: "",
     fullName: "",
     orders: [],
-    pensPurchased: [],
     shoppingCart: []
   });
   const [caughtErr, setCaughtErr] = useState(false);
@@ -29,7 +28,8 @@ const AuthState = props => {
   const [redirect, setRedirect] = useState(null);
   const [orders, setOrders] = useState(user.orders);
   const [userNav, setUserNav] = useState(null);
- 
+  const [success, setSuccess] = useState(false);
+
   // random color generator for user profile
   function getRandomColor() {
     const availableColors = [
@@ -52,7 +52,6 @@ const AuthState = props => {
   }
 
   // firebase config
-  // testing only (will be hidden and changed)
   const firebaseConfig = {
     apiKey: "AIzaSyBccRjBkjdgTdVxFQwKvrbpUCGCMeVryAA",
     authDomain: "crayobois-fe722.firebaseapp.com",
@@ -144,7 +143,6 @@ const AuthState = props => {
       email: email,
       fullName: name,
       orders: [],
-      pensPurchased: [],
       shoppingCart: []
     };
 
@@ -432,13 +430,15 @@ const AuthState = props => {
     return purchaseUnits;
   };
 
-  const addOrderToClient = order => {
+  const addOrderToClient = (order, cart) => {
     const uid = auth.currentUser.uid;
     let customID = null;
     let totalOrders = 0;
     let grossRevenu = 0;
     let totalTaxes = 0;
     let totalShipping = 0;
+    order["uid"] = auth.currentUser.uid;
+    const userCart = cart;
 
     // get custom id and previous analytics
     db.collection("orders")
@@ -450,6 +450,7 @@ const AuthState = props => {
         customID = newTotalOrders;
         order["customId"] = customID;
         order["order_status"] = "Traitement en cours";
+        order["cart"] = userCart;
 
         // updating analytics
         totalOrders = newTotalOrders;
@@ -475,7 +476,23 @@ const AuthState = props => {
           });
       });
 
-    // get old orders
+    // add order to analytics
+    db.collection("orders")
+      .doc("ordersList")
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        let waiting = data["waiting"];
+        waiting.push(order);
+        // update analytics
+        db.collection("orders")
+          .doc("ordersList")
+          .update({
+            ["waiting"]: waiting
+          });
+      });
+
+    // get old orders from users
     db.collection("users")
       .doc(uid)
       .get()
@@ -486,7 +503,7 @@ const AuthState = props => {
 
         setOrders(orders);
 
-        // update orders
+        // update orders of user
         db.collection("users")
           .doc(uid)
           .update({
@@ -527,7 +544,8 @@ const AuthState = props => {
         orders: [orders, setOrders],
         isAuth: [isAuth, setIsAuth],
         auth: auth,
-        userNav: [userNav, setUserNav]
+        userNav: [userNav, setUserNav],
+        success: [success, setSuccess]
       }}
     >
       {props.children}

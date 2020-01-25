@@ -4,6 +4,7 @@ import "./cart.css";
 import Order from "./order";
 import Payment from "./payment";
 import { useHistory } from "react-router-dom";
+import Success from "./success";
 const uuidv4 = require("uuid/v4");
 
 const Cart = props => {
@@ -12,6 +13,7 @@ const Cart = props => {
   const [cart, setCart] = props.cart;
   const [subTotal, setSubTotal] = useState(0);
   const [checkoutStep, setCheckoutStep] = useState("cart");
+  const [success, setSuccess] = authContext.success;
   let history = useHistory();
 
   const formatter = new Intl.NumberFormat("fr-CA", {
@@ -21,7 +23,6 @@ const Cart = props => {
   });
 
   const resetCheckout = () => {
-    setCheckoutStep("cart");
     setCart([]);
     user.shoppingCart = [];
   };
@@ -70,19 +71,27 @@ const Cart = props => {
 
   useEffect(() => {
     setSubTotal(getSubTotal(cart));
+    return () => {
+      setSuccess(false);
+    }
   }, [cart]);
 
   return (
     <React.Fragment>
-      {cart.length === 0 ? (
+      {success ? (
+        <Success />
+      ) : cart.length === 0 ? (
         <React.Fragment>
           <span className="dashboard-content-header">Mon panier</span>
           <span className="dashboard-notice">
             Il n'y a aucun stylo dans votre panier
           </span>
-          <span className="profile-change-password cart-action" onClick={() => {
-            history.push("/creez-votre-stylo");
-          }}>
+          <span
+            className="profile-change-password cart-action"
+            onClick={() => {
+              history.push("/creez-votre-stylo");
+            }}
+          >
             Créez votre stylo
           </span>
         </React.Fragment>
@@ -208,7 +217,10 @@ const Cart = props => {
             ) : checkoutStep === "order" ? (
               <Order />
             ) : (
-              <Payment emptyCart={props.emptyCart} resetCheckout={resetCheckout} />
+              <Payment
+                emptyCart={props.emptyCart}
+                resetCheckout={resetCheckout}
+              />
             )}
             <span className="cart-content-footer bold">
               {checkoutStep === "cart" ? (

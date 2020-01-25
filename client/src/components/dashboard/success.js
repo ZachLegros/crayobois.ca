@@ -3,15 +3,6 @@ import AuthContext from "../context/authContext";
 import "./success.css";
 
 const Success = props => {
-  const [successMsg, setSuccessMsg] = useState(false);
-
-  useEffect(() => {
-    setSuccessMsg(true);
-
-    const footer = document.querySelector(".cart-content-footer");
-    footer.classList.add("footer-hidden");
-  }, []);
-
   return (
     <section className="success-section">
       <svg
@@ -39,14 +30,9 @@ const Success = props => {
           points="100.2,40.2 51.5,88.8 29.8,67.5 "
         />
       </svg>
-      {successMsg ? (
-        <span className="succes-text">
-          Votre paiement a bien été reçu et votre commande sera traitée d'içi
-          peu.
-        </span>
-      ) : (
-        <React.Fragment />
-      )}
+      <span className="succes-text">
+        Votre paiement a bien été reçu et votre commande sera traitée d'içi peu.
+      </span>
     </section>
   );
 };

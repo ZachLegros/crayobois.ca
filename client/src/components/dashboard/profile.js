@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/authContext";
 import "./profile.css";
+import { auth } from "firebase";
 
 const Profile = props => {
   const authContext = useContext(AuthContext);

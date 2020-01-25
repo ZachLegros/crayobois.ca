@@ -94,7 +94,7 @@
 }
 
 .order-more-details-btn {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: hsl(204, 20%, 55%);
   transition: all 0.15s ease;
@@ -145,9 +145,18 @@
     font-size: 0.95rem;
   }
 
+  .more-details-item-txt {
+    font-size: 0.75rem;
+  }
+
   .orders {
     font-size: 0.75rem;
   }
+
+  
+.order-more-details-btn {
+  font-size: 0.75rem;
+}
 
   .info-col {
     width: 33.33%;

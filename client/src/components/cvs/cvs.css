@@ -69,7 +69,8 @@
   border-radius: 25px;
   width: auto;
   line-height: 30px;
-  box-shadow: 0px 15px 45px rgba(50, 50, 93, 0.041), 0px 5px 15px rgba(0, 0, 0, .07);
+  box-shadow: 0px 15px 45px rgba(50, 50, 93, 0.041),
+    0px 5px 15px rgba(0, 0, 0, 0.07);
   margin: 25px;
   padding: 20px;
 }
@@ -173,7 +174,7 @@
 }
 
 .fa-plus {
-  color: #29353D;
+  color: #29353d;
   font-size: calc(0.9rem + 0.4vw);
   cursor: pointer;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -237,8 +238,8 @@
   z-index: 2;
   background: var(--white);
   border-bottom: 1px solid #dfdfdf;
-  box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041), 0px 5px 15px rgba(36, 36, 36, 0.041);
-
+  box-shadow: 0px 15px 45px rgba(32, 32, 59, 0.041),
+    0px 5px 15px rgba(36, 36, 36, 0.041);
 }
 
 .fa-shopping-cart {
@@ -282,6 +283,8 @@
     height: 60px;
     padding: 0 25px 0 25px;
     width: calc(100% - 50px);
+    position: fixed;
+    top: 60px;
   }
   .materials-wrapper {
     padding: 25px 0 0 0;
