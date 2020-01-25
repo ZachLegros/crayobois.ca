@@ -440,6 +440,18 @@ const AuthState = props => {
     order["uid"] = auth.currentUser.uid;
     const userCart = cart;
 
+    for (var f=0; f < order.purchase_units[0].items.length; f++) {
+      order.purchase_units[0].items[f]["path"] = []; 
+    }
+
+    for (var i = 0; i < userCart.length; i++) {
+      for (var e = 0; e < userCart[i].pen.length; e++) {
+        // get path of img
+        const path = userCart[i].pen[e].obj.path;
+        order.purchase_units[0].items[i].path.push(path);
+      }
+    }
+
     // get custom id and previous analytics
     db.collection("orders")
       .doc("analytics")
