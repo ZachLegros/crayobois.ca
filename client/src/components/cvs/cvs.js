@@ -8,7 +8,7 @@ import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import CvsAlert from "../cvsAlert/cvsAlert";
 
-const Cvs = React.memo(props => {
+const Cvs = props => {
   const context = useContext(CvsContext);
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
@@ -16,8 +16,8 @@ const Cvs = React.memo(props => {
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
-    context.getMats();
     context.getHaws();
+    context.getMats();
   }, []);
 
   if (context.materials.length === 0) {
@@ -56,6 +56,6 @@ const Cvs = React.memo(props => {
       </React.Fragment>
     );
   }
-});
+};
 
 export default Cvs;

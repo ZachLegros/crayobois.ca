@@ -14,59 +14,61 @@ function BuildState(props) {
   const [filteringName, setFilteringName] = context.filteringName;
   const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
   const [filterName, setFilterName] = context.filterName;
-  const [materials, setMaterials] = useState(context.materials);
-  const [hardwares, setHardwares] = useState(context.hardwares);
+  const [materials, setMaterials] = useState([...context.materials]);
+  const [hardwares, setHardwares] = useState([...context.hardwares]);
+  const activeCvsPage = context.activeCvsPage[0];
 
-  useEffect(() => {
-    //function that gets all the wood type and their quantities
-    function sorted(collection, collectionName) {
-      var types = {};
+  //function that gets all the wood type and their quantities
+  function sorted(collection, collectionName) {
+    var types = {};
 
-      function getTypes() {
-        var set = new Set();
-        for (var i = 0; i < collection.length; i++) {
-          set.add(collection[i].type);
-        }
-        const arr = [...set];
-        var obj = {};
-        for (var e = 0; e < arr.length; e++) {
-          obj[arr[e]] = 0;
-        }
-        return obj;
+    function getTypes() {
+      var set = new Set();
+      for (var i = 0; i < collection.length; i++) {
+        set.add(collection[i].type);
       }
-
-      if (collectionName === "mats") {
-        types = getTypes();
-
-        for (var j = 0; j < collection.length; j++) {
-          const type = collection[j].type;
-          types[type]++;
-        }
-
-        //types: Array[type: qty of type]
-        types = Object.entries(types);
-
-        //gets the total amount of materials
-        var count = 0;
-        for (var f = 0; f < types.length; f++) {
-          count += types[f][1];
-        }
-
-        setTotal(count);
-        return types;
-      } else if (collectionName === "haws") {
-        types = getTypes();
-
-        for (var j = 0; j < collection.length; j++) {
-          const type = collection[j].type;
-          types[type]++;
-        }
-
-        types = Object.entries(types);
-        return types;
+      const arr = [...set];
+      var obj = {};
+      for (var e = 0; e < arr.length; e++) {
+        obj[arr[e]] = 0;
       }
+      return obj;
     }
 
+    if (collectionName === "mats") {
+      types = getTypes();
+
+      for (var j = 0; j < collection.length; j++) {
+        const type = collection[j].type;
+        types[type]++;
+      }
+
+      //types: Array[type: qty of type]
+      types = Object.entries(types);
+
+      //gets the total amount of materials
+      var count = 0;
+      for (var f = 0; f < types.length; f++) {
+        count += types[f][1];
+      }
+
+      setTotal(count);
+      return types;
+    } else if (collectionName === "haws") {
+      types = getTypes();
+
+      for (var j = 0; j < collection.length; j++) {
+        const type = collection[j].type;
+        types[type]++;
+      }
+
+      types = Object.entries(types);
+      return types;
+    }
+  }
+
+  useEffect(() => {
+    console.log(hardwares);
     setMatQty(sorted(materials, "mats"));
     setHawsQty(sorted(hardwares, "haws"));
   }, [materials, hardwares]);
@@ -142,7 +144,9 @@ function BuildState(props) {
                     context.toggleLoading();
                   }}
                   className={
-                    hawsFilteringName === hardware[0] ? "filter-active" : "filter-off"
+                    hawsFilteringName === hardware[0]
+                      ? "filter-active"
+                      : "filter-off"
                   }
                 >
                   {hardware[0] + ` (${hardware[1]})`}

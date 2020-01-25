@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CvsContext from "./cvsContext";
 import Mats from "./TEMPjson/mats.json";
 import Haws from "./TEMPjson/haws.json";
+import * as firebase from "firebase";
 
 const GlobalState = props => {
   const [mats, setMats] = useState([]);
@@ -29,6 +30,25 @@ const GlobalState = props => {
   const [prevToggleHaw, setPrevToggleHaw] = useState({});
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
 
+  // firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBccRjBkjdgTdVxFQwKvrbpUCGCMeVryAA",
+    authDomain: "crayobois-fe722.firebaseapp.com",
+    databaseURL: "https://crayobois-fe722.firebaseio.com",
+    projectId: "crayobois-fe722",
+    appId: "1:410478848299:web:b2f130cd32dba774fcbd6e",
+    measurementId: "G-XHQN6JX1WG"
+  };
+
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  }
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
   const toggleLoading = () => {
     setLoading(true);
     setTimeout(() => {
@@ -37,32 +57,29 @@ const GlobalState = props => {
   };
 
   //fetching materials
-  async function getMats() {
-   /* const url = "/mats";
-    const response = await fetch(url);
-    const data = await response.json();
-    setMats(data);
-    setLoading(false);*/
-    setMats(Mats);
-    setLoading(false);
+  function getMats() {
+    db.collection("shop")
+      .doc("materialsList")
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        setMats([...data.materials]);
+        setLoading(false);
+      });
   }
 
   //fetching hardwares
-  async function getHaws() {
-    /*const url = "/haws";
-    const response = await fetch(url);
-    const data = await response.json();
-    setHaws(data);
-    sortHawsByType(data);
-    setLoading(false);*/
-    setHaws(Haws);
-    sortHawsByType(Haws);
-    setLoading(false);
+  function getHaws() {
+    db.collection("shop")
+    .doc("hardwaresList")
+    .get()
+    .then(doc => {
+      const data = doc.data();
+      setHaws([...data.hardwares]);
+      sortHawsByType(data.hardwares);
+      setLoading(false);
+    });
   }
-
-  const addToCart = pen => {};
-
-  const removeFromCart = id => {};
 
   const filterMats = type => {
     const toFilter = mats;
@@ -214,8 +231,6 @@ const GlobalState = props => {
         materials: mats,
         hardwares: haws,
         cart: cart,
-        addToCart: addToCart,
-        removeFromCart: removeFromCart,
         filterMats: filterMats,
         filteredMats: filteredMats,
         filterHaws: filterHaws,
