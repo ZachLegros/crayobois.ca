@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import CvsContext from "./cvsContext";
-import Mats from "./TEMPjson/mats.json";
-import Haws from "./TEMPjson/haws.json";
 import * as firebase from "firebase";
 
 const GlobalState = props => {

@@ -435,16 +435,17 @@ const AuthState = props => {
     let customID = null;
     let totalOrders = 0;
     let grossRevenu = 0;
-    let totalTaxes = 0;
+    let tps = 0;
+    let tvq = 0;
     let totalShipping = 0;
     order["uid"] = auth.currentUser.uid;
     const userCart = cart;
 
-    for (var f=0; f < order.purchase_units[0].items.length; f++) {
-      order.purchase_units[0].items[f]["path"] = []; 
+    for (var f = 0; f < order.purchase_units[0].items.length; f++) {
+      order.purchase_units[0].items[f]["path"] = [];
     }
 
-    for (var i = 0; i < userCart.length; i++) {
+    for (var i = 0; i < userCart.length; i++) {
       for (var e = 0; e < userCart[i].pen.length; e++) {
         // get path of img
         const path = userCart[i].pen[e].obj.path;
@@ -468,9 +469,16 @@ const AuthState = props => {
         totalOrders = newTotalOrders;
         grossRevenu =
           data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
-        totalTaxes =
-          data.totalTaxes +
-          parseFloat(order.purchase_units[0].amount.breakdown.tax_total.value);
+        tps =
+          data.tps +
+          parseFloat(
+            order.purchase_units[0].amount.breakdown.item_total.value * 0.05
+          );
+        tvq =
+          data.tvq +
+          parseFloat(
+            order.purchase_units[0].amount.breakdown.item_total.value * 0.09975
+          );
         totalShipping =
           data.totalShipping +
           parseFloat(order.purchase_units[0].amount.breakdown.shipping.value);
@@ -483,7 +491,8 @@ const AuthState = props => {
           .update({
             ["totalOrders"]: totalOrders,
             ["grossRevenu"]: grossRevenu,
-            ["totalTaxes"]: totalTaxes,
+            ["tps"]: tps,
+            ["tvq"]: tvq,
             ["totalShipping"]: totalShipping
           });
       });
