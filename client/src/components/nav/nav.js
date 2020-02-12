@@ -21,7 +21,7 @@ const Nav = props => {
   ];
 
   /*Toggle hamburger*/
-  let toggled = false;
+  const [toggled, setToggled] = useState(false);
 
   function toggle() {
     const tabs = document.getElementById("mobile-tabs");
@@ -31,20 +31,20 @@ const Nav = props => {
       tabs.style.opacity = "1";
       tabs.style.transform = "translate(0, 0)";
       logo[1].style.opacity = "0";
-      toggled = true;
-      linesTrans(toggled);
+      linesTrans(!toggled);
       setTimeout(function() {
-        linesRot(toggled);
+        linesRot(!toggled);
       }, 250);
+      setToggled(true);
     } else {
-      toggled = false;
       tabs.style.opacity = "0";
       tabs.style.transform = "translate(100%, 0)";
       logo[1].style.opacity = "1";
-      linesRot(toggled);
+      linesRot(!toggled);
       setTimeout(function() {
-        linesTrans(toggled);
+        linesTrans(!toggled);
       }, 250);
+      setToggled(false);
     }
   }
 
@@ -141,7 +141,7 @@ const Nav = props => {
               </ul>
             </div>
             <div className="navbar-right">
-              <User />
+              <User toggle={toggle} toggled={toggled} />
             </div>
           </div>
         </div>
@@ -150,14 +150,27 @@ const Nav = props => {
           style={{ backgroundColor: "var(--black)" }}
         >
           <div className="navbar-content">
-            <div id="ham" onClick={toggle}>
+            <div
+              id="ham"
+              onClick={() => {
+                toggle();
+              }}
+            >
               <span id="line1" className="menu-lines"></span>
               <span id="line2" className="menu-lines"></span>
             </div>
-            <a className="logo-anchor" href="/">
+            <span
+              className="logo-anchor"
+              onClick={() => {
+                if (!toggled) {
+                  setNavigation("home");
+                  props.history.push("/");
+                }
+              }}
+            >
               <img className="logo" src={logo} alt="Crayobois logo" />
-            </a>
-            <User />
+            </span>
+            <User toggle={toggle} toggled={toggled} />
           </div>
         </div>
       </nav>
@@ -166,22 +179,31 @@ const Nav = props => {
           {navLinks.map(link => {
             return (
               <li key={link.id}>
-                <a className="mobile-nav-link" href={link.path} key={link.id}>
+                <span
+                  className="mobile-nav-link"
+                  onClick={() => {
+                    toggle();
+                    props.history.push(link.path);
+                  }}
+                  key={link.id}
+                >
                   {link.text}
-                </a>
+                </span>
               </li>
             );
           })}
           <li>
-            <a
+            <span
               className="mobile-nav-link"
               onClick={() => {
+                toggle();
                 setUserNav("profile");
+                setNavigation("dashboard");
+                props.history.push("/utilisateur");
               }}
-              href="/utilisateur"
             >
               mon compte <i className="fas fa-user nav-user-icons"></i>
-            </a>
+            </span>
           </li>
         </ul>
       </div>

@@ -14,6 +14,10 @@ const Landing = props => {
 
   useEffect(() => {
     window.addEventListener("scroll", parallax);
+
+    return () => {
+      window.removeEventListener("scroll", parallax);
+    };
   });
 
   return (

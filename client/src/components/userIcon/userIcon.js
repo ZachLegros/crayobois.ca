@@ -2,21 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 import "./userIcon.css";
 import AuthContext from "../context/authContext";
 import { withRouter } from "react-router-dom";
+import NavContext from "../context/navLinksContext";
 
 const User = props => {
+  const context = useContext(NavContext);
   const authContext = useContext(AuthContext);
   const [auth, setAuth] = useState(null);
+  const [navigation, setNavigation] = context.navigation;
 
   authContext.isInitialized().then(authState => {
     setAuth(authState);
   });
-
 
   return (
     <React.Fragment>
       <span
         onClick={() => {
           props.history.push("/utilisateur/profil");
+          setNavigation("dashboard");
         }}
         className="nav-user-links"
       >
@@ -29,7 +32,10 @@ const User = props => {
       </span>
       {auth ? (
         <span
-          onClick={() => {props.history.push("/utilisateur/panier")}}
+          onClick={() => {
+            setNavigation("dashboard");
+            props.history.push("/utilisateur/panier");
+          }}
           className="nav-user-links"
         >
           panier<i className="fas fa-shopping-basket nav-user-icons"></i>
@@ -38,7 +44,13 @@ const User = props => {
         <React.Fragment />
       )}
       <span
-        onClick={() => {props.history.push("/utilisateur/panier")}}
+        onClick={() => {
+          if (props.toggled === true) {
+            props.toggle();
+          }
+          setNavigation("dashboard");
+          props.history.push("/utilisateur/panier");
+        }}
         className="mobile-user-link"
       >
         <span className="nav-user-mobile">
