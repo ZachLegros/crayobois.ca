@@ -149,7 +149,7 @@ const Nav = props => {
           </div>
         </div>
         <div
-          className="navbar m-active"
+          className="navbar m-active black-nav"
         >
           <div className="navbar-content">
             <div
