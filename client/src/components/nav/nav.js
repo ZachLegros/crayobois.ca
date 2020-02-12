@@ -4,6 +4,7 @@ import User from "../userIcon/userIcon";
 import logo from "./logo.png";
 import NavContext from "../context/navLinksContext";
 import AuthContext from "../context/authContext";
+import { withRouter } from "react-router-dom";
 const uuidv4 = require("uuid/v4");
 
 const Nav = props => {
@@ -18,7 +19,6 @@ const Nav = props => {
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
     { id: uuidv4(), text: "Contact", path: "/contact" }
   ];
-  const [scrollListener, setScrollListener] = useState(null);
 
   /*Toggle hamburger*/
   let toggled = false;
@@ -26,13 +26,11 @@ const Nav = props => {
   function toggle() {
     const tabs = document.getElementById("mobile-tabs");
     const logo = document.getElementsByClassName("logo");
-    const user = document.getElementsByClassName("fa-user");
 
     if (toggled === false) {
       tabs.style.opacity = "1";
       tabs.style.transform = "translate(0, 0)";
       logo[1].style.opacity = "0";
-      user[1].style.opacity = "0";
       toggled = true;
       linesTrans(toggled);
       setTimeout(function() {
@@ -43,7 +41,6 @@ const Nav = props => {
       tabs.style.opacity = "0";
       tabs.style.transform = "translate(100%, 0)";
       logo[1].style.opacity = "1";
-      user[1].style.opacity = "1";
       linesRot(toggled);
       setTimeout(function() {
         linesTrans(toggled);
@@ -86,10 +83,10 @@ const Nav = props => {
 
     if (width > 850 && navigation === "home") {
       if (scroll < 40) {
-        nav.classList.remove("sticky");
+        setColor(null);
         prevScroll = scroll;
       } else {
-        nav.classList.add("sticky");
+        setColor("var(--black)");
         prevScroll = scroll;
       }
     } else {
@@ -97,17 +94,15 @@ const Nav = props => {
   }
 
   useEffect(() => {
-    navigation === "home" || navigation === "gallery"
-      ? setColor(null)
-      : setColor("var(--black)");
     if (navigation === "home") {
-      window.addEventListener("scroll", stickyNav, true);
+      window.addEventListener("scroll", stickyNav);
+      let nav = document.querySelector(".navbar");
+      nav.classList.remove("black-nav");
     } else {
-      const nav = document.querySelector(".navbar");
-      nav.style.animation = "none";
-      nav.style.position = "fixed";
+      let nav = document.querySelector(".navbar");
+      nav.classList.add("black-nav");
     }
-  });
+  }, [navigation]);
 
   return (
     <React.Fragment>
@@ -117,16 +112,29 @@ const Nav = props => {
         >
           <div className="navbar-content">
             <div className="navbar-left">
-              <a className="logo-anchor" href="/">
-                <img className="logo" src={logo} alt="Crayobois logo" />
-              </a>
+              <span
+                className="logo-anchor"
+                onClick={() => {
+                  props.history.push("/");
+                  setNavigation("home");
+                }}
+              >
+                <img className="logo" src={logo} />
+              </span>
               <ul className="nav-links">
                 {navLinks.map(link => {
                   return (
                     <li key={link.id}>
-                      <a className="nav-link" href={link.path} key={link.id}>
+                      <span
+                        className="nav-link"
+                        onClick={() => {
+                          props.history.push(link.path);
+                          setNavigation("home");
+                        }}
+                        key={link.id}
+                      >
                         {link.text}
-                      </a>
+                      </span>
                     </li>
                   );
                 })}
@@ -181,4 +189,4 @@ const Nav = props => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);

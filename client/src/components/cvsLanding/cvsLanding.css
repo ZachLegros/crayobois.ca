@@ -21,20 +21,7 @@
     align-items: center;
     width: max-content;
     height: max-content;
-    padding-left: 25px;
 }
-
-.cvs-features-header::before {
-    content: "";
-    width: 5px;
-    height: 100%;
-    position: absolute;
-    left: -25px;
-    top: 0;
-    background-color: var(--light_orange);
-    border-radius: 1px;
-}
-
 
 .csv-landing-header {
     font-size: 36px;
@@ -166,11 +153,6 @@
     .cvs-features-header {
         font-size: 24px;
         margin: 25px 0 12.5px 0;
-    }
-
-    .cvs-features-header::before {
-        width: 3px;
-        left: -12.5px;
     }
 
     .cvs-feature-header-container {

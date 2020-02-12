@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./userIcon.css";
 import AuthContext from "../context/authContext";
+import { withRouter } from "react-router-dom";
 
-const User = () => {
+const User = props => {
   const authContext = useContext(AuthContext);
   const [auth, setAuth] = useState(null);
 
@@ -10,32 +11,42 @@ const User = () => {
     setAuth(authState);
   });
 
-  useEffect(() => {}, []);
 
   return (
     <React.Fragment>
-      <a href="/utilisateur/profil" className="nav-user-links">
+      <span
+        onClick={() => {
+          props.history.push("/utilisateur/profil");
+        }}
+        className="nav-user-links"
+      >
         {auth ? "mon compte" : "connexion"}
         {auth ? (
           <i className="fas fa-user nav-user-icons"></i>
         ) : (
           <i className="fas fa-sign-in-alt  nav-user-icons"></i>
         )}
-      </a>
+      </span>
       {auth ? (
-        <a href="/utilisateur/panier" className="nav-user-links">
+        <span
+          onClick={() => {props.history.push("/utilisateur/panier")}}
+          className="nav-user-links"
+        >
           panier<i className="fas fa-shopping-basket nav-user-icons"></i>
-        </a>
+        </span>
       ) : (
         <React.Fragment />
       )}
-      <a href="/utilisateur/panier" className="mobile-user-link">
+      <span
+        onClick={() => {props.history.push("/utilisateur/panier")}}
+        className="mobile-user-link"
+      >
         <span className="nav-user-mobile">
           <i className="fas fa-shopping-basket nav-user-mobile-icon"></i>
         </span>
-      </a>
+      </span>
     </React.Fragment>
   );
 };
 
-export default User;
+export default withRouter(User);

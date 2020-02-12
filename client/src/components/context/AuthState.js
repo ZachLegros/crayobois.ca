@@ -87,8 +87,6 @@ const AuthState = props => {
       .createUserWithEmailAndPassword(email, password)
       .then(cred => {
         auth.currentUser.updateProfile({ displayName: name }).then(() => {
-          let customers = 0;
-
           setCaughtErr(false);
           sendVerification();
 
@@ -102,21 +100,20 @@ const AuthState = props => {
           setLoading(false);
           setIsAuth(auth.currentUser);
 
-          // updating the customer count in analytics
-          db.collection("orders")
-            .doc("analytics")
-            .get()
-            .then(doc => {
-              const data = doc.data();
-              customers = data.totalCustomers + 1;
-            })
-            .then(() => {
-              db.collection("orders")
-                .doc("analytics")
-                .update({
-                  totalCustomers: customers
-                });
-            });
+          if (auth.currentUser.uid) {
+            db.collection("orders")
+              .doc("analytics")
+              .get()
+              .then(doc => {
+                let data = doc.data();
+                let customers = data.totalCustomers + 1;
+                db.collection("orders")
+                  .doc("analytics")
+                  .update({
+                    ["totalCustomers"]: customers
+                  });
+              });
+          }
         });
       })
       .catch(err => {
@@ -146,10 +143,12 @@ const AuthState = props => {
       shoppingCart: []
     };
 
-    // adding user to db
-    db.collection("users")
-      .doc(uid)
-      .set(userObj);
+    if (auth.currentUser.uid) {
+      // adding user to db
+      db.collection("users")
+        .doc(uid)
+        .set(userObj);
+    }
 
     // initializes the user's session
     setUser(userObj);
@@ -256,37 +255,39 @@ const AuthState = props => {
     const uid = auth.currentUser.uid;
     const target = "shoppingCart";
 
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        let userData = data[target];
-        let newObj = {};
-        newObj["id"] = uuidv4();
-        newObj["pen"] = value;
-        newObj["quantity"] = 1;
-        newObj["type"] = type;
+    if (auth.currentUser.uid) {
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          let userData = data[target];
+          let newObj = {};
+          newObj["id"] = uuidv4();
+          newObj["pen"] = value;
+          newObj["quantity"] = 1;
+          newObj["type"] = type;
 
-        // initialize the fixed original sub total
-        let pricesSum = 0;
-        for (let e = 0; e < value.length; e++) {
-          pricesSum += value[e].obj.price;
-        }
-        newObj["pricesSum"] = pricesSum;
+          // initialize the fixed original sub total
+          let pricesSum = 0;
+          for (let e = 0; e < value.length; e++) {
+            pricesSum += value[e].obj.price;
+          }
+          newObj["pricesSum"] = pricesSum;
 
-        newObj["subTotal"] = newObj.pricesSum * newObj.quantity;
+          newObj["subTotal"] = newObj.pricesSum * newObj.quantity;
 
-        // add new object in array
-        userData.push(newObj);
+          // add new object in array
+          userData.push(newObj);
 
-        //add new array to db
-        db.collection("users")
-          .doc(uid)
-          .update({
-            [target]: userData
-          });
-      });
+          //add new array to db
+          db.collection("users")
+            .doc(uid)
+            .update({
+              [target]: userData
+            });
+        });
+    }
   };
 
   function removeFromCart(id) {
@@ -304,25 +305,27 @@ const AuthState = props => {
       setUser(newUser);
       const cart = newUser.shoppingCart;
 
-      db.collection("users")
-        .doc(uid)
-        .get()
-        .then(doc => {
-          const data = doc.data();
-          const cart = data["shoppingCart"];
-          let newCart = [];
-          for (let i = 0; i < cart.length; i++) {
-            if (cart[i].id !== id) {
-              newCart.push(cart[i]);
+      if (auth.currentUser.uid) {
+        db.collection("users")
+          .doc(uid)
+          .get()
+          .then(doc => {
+            const data = doc.data();
+            const cart = data["shoppingCart"];
+            let newCart = [];
+            for (let i = 0; i < cart.length; i++) {
+              if (cart[i].id !== id) {
+                newCart.push(cart[i]);
+              }
             }
-          }
-          //add new array to db
-          db.collection("users")
-            .doc(uid)
-            .update({
-              ["shoppingCart"]: newCart
-            });
-        });
+            //add new array to db
+            db.collection("users")
+              .doc(uid)
+              .update({
+                ["shoppingCart"]: newCart
+              });
+          });
+      }
     }
 
     return cart;
@@ -331,11 +334,13 @@ const AuthState = props => {
   const updateCart = newCart => {
     const uid = auth.currentUser.uid;
 
-    db.collection("users")
-      .doc(uid)
-      .update({
-        ["shoppingCart"]: newCart
-      });
+    if (auth.currentUser.uid) {
+      db.collection("users")
+        .doc(uid)
+        .update({
+          ["shoppingCart"]: newCart
+        });
+    }
   };
 
   const alertParams = (msg, action, placeholder) => {
@@ -349,17 +354,19 @@ const AuthState = props => {
 
   const changeName = newName => {
     const uid = auth.currentUser.uid;
-    auth.currentUser.updateProfile({ displayName: newName }).then(() => {
-      db.collection("users")
-        .doc(uid)
-        .update({
-          ["fullName"]: newName
-        });
+    if (auth.currentUser.uid) {
+      auth.currentUser.updateProfile({ displayName: newName }).then(() => {
+        db.collection("users")
+          .doc(uid)
+          .update({
+            ["fullName"]: newName
+          });
 
-      let userCopy = Object.assign([], user);
-      userCopy.fullName = newName;
-      setUser(userCopy);
-    });
+        let userCopy = Object.assign([], user);
+        userCopy.fullName = newName;
+        setUser(userCopy);
+      });
+    }
   };
 
   const changePassword = () => {
@@ -453,84 +460,86 @@ const AuthState = props => {
       }
     }
 
-    // get custom id and previous analytics
-    db.collection("orders")
-      .doc("analytics")
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        const newTotalOrders = data.totalOrders + 1;
-        customID = newTotalOrders;
-        order["customId"] = customID;
-        order["order_status"] = "Traitement en cours";
-        order["cart"] = userCart;
+    if (auth.currentUser.uid) {
+      // get custom id and previous analytics
+      db.collection("orders")
+        .doc("analytics")
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          const newTotalOrders = data.totalOrders + 1;
+          customID = newTotalOrders;
+          order["customId"] = customID;
+          order["order_status"] = "Traitement en cours";
+          order["cart"] = userCart;
 
-        // updating analytics
-        totalOrders = newTotalOrders;
-        grossRevenu =
-          data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
-        tps =
-          data.tps +
-          parseFloat(
-            order.purchase_units[0].amount.breakdown.item_total.value * 0.05
-          );
-        tvq =
-          data.tvq +
-          parseFloat(
-            order.purchase_units[0].amount.breakdown.item_total.value * 0.09975
-          );
-        totalShipping =
-          data.totalShipping +
-          parseFloat(order.purchase_units[0].amount.breakdown.shipping.value);
-      })
-      .then(() => {
-        // update analytics
-        // get previous analytics
-        db.collection("orders")
-          .doc("analytics")
-          .update({
-            ["totalOrders"]: totalOrders,
-            ["grossRevenu"]: grossRevenu,
-            ["tps"]: tps,
-            ["tvq"]: tvq,
-            ["totalShipping"]: totalShipping
-          });
-      });
+          // updating analytics
+          totalOrders = newTotalOrders;
+          grossRevenu =
+            data.grossRevenu + parseFloat(order.purchase_units[0].amount.value);
+          tps =
+            data.tps +
+            parseFloat(
+              order.purchase_units[0].amount.breakdown.item_total.value * 0.05
+            );
+          tvq =
+            data.tvq +
+            parseFloat(
+              order.purchase_units[0].amount.breakdown.item_total.value *
+                0.09975
+            );
+          totalShipping =
+            data.totalShipping +
+            parseFloat(order.purchase_units[0].amount.breakdown.shipping.value);
+        })
+        .then(() => {
+          // update analytics
+          // get previous analytics
+          db.collection("orders")
+            .doc("analytics")
+            .update({
+              ["totalOrders"]: totalOrders,
+              ["grossRevenu"]: grossRevenu,
+              ["tps"]: tps,
+              ["tvq"]: tvq,
+              ["totalShipping"]: totalShipping
+            });
+        });
+      // add order to analytics
+      db.collection("orders")
+        .doc("ordersList")
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          let waiting = data["waiting"];
+          waiting.push(order);
+          // update analytics
+          db.collection("orders")
+            .doc("ordersList")
+            .update({
+              ["waiting"]: waiting
+            });
+        });
 
-    // add order to analytics
-    db.collection("orders")
-      .doc("ordersList")
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        let waiting = data["waiting"];
-        waiting.push(order);
-        // update analytics
-        db.collection("orders")
-          .doc("ordersList")
-          .update({
-            ["waiting"]: waiting
-          });
-      });
+      // get old orders from users
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          let orders = data["orders"];
+          orders.push(order);
 
-    // get old orders from users
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        let orders = data["orders"];
-        orders.push(order);
+          setOrders(orders);
 
-        setOrders(orders);
-
-        // update orders of user
-        db.collection("users")
-          .doc(uid)
-          .update({
-            ["orders"]: orders
-          });
-      });
+          // update orders of user
+          db.collection("users")
+            .doc(uid)
+            .update({
+              ["orders"]: orders
+            });
+        });
+    }
   };
 
   return (

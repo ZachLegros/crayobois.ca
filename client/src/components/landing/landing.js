@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
 import bg from "./slideshow/img2.jpg";
+import { withRouter } from "react-router-dom";
 
 const Landing = props => {
   const parallax = () => {
     const image = document.querySelector(".landing-image");
     const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    const rate = scrolled * 0.5;
+    const rate = scrolled * 0.35;
 
     image.style.transform = `translate3d(0, ${rate}px, 0)`;
   };
@@ -25,10 +26,15 @@ const Landing = props => {
           <div className="landing-reveal">
             <h2>Le stylo qu'il vous faut!</h2>
           </div>
-          <a className="btn" href="/creez-votre-stylo">
+          <span
+            className="btn main-btn"
+            onClick={() => {
+              props.history.push("creez-votre-stylo");
+            }}
+          >
             Créez le vôtre
             <i className="fas fa-long-arrow-alt-right" aria-hidden="true" />
-          </a>
+          </span>
         </div>
         <img src={bg} className="landing-image" />
       </div>
@@ -36,4 +42,4 @@ const Landing = props => {
   );
 };
 
-export default Landing;
+export default withRouter(Landing);

@@ -8,6 +8,7 @@
   letter-spacing: 0.35px;
   margin: 0 12.5px 0 12.5px;
   position: relative;
+  cursor: pointer;
 }
 
 .nav-user-links::after {
@@ -51,6 +52,7 @@
   text-decoration: none;
   width: 25px !important;
   display: none;
+  cursor: pointer;
   justify-content: center;
 }
 

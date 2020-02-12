@@ -38,7 +38,7 @@ const CvsLanding = () => {
           <span className="cvs-landing-feature-name">Fait à la main</span>
           <span className="cvs-landing-feature-text">
             Tous nos stylos sont minutieusement fabriqués à la main par les
-            artisans Vincent Legros et Dominique Violette.
+            artisans Vincent Legros et Dominic Violette.
           </span>
         </div>
         <div className="cvs-landing-feature f3">
@@ -48,8 +48,7 @@ const CvsLanding = () => {
           />
           <span className="cvs-landing-feature-name">Fait au Québec</span>
           <span className="cvs-landing-feature-text">
-            Tous nos stylos sont fabriqués et assemblés dans la ville de
-            Gatineau, Québec.
+            Tous nos stylos sont fabriqués et assemblés en Outaouais.
           </span>
         </div>
         <div className="cvs-landing-feature f4">

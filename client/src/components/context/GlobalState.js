@@ -56,27 +56,31 @@ const GlobalState = props => {
 
   //fetching materials
   function getMats() {
-    db.collection("shop")
-      .doc("materialsList")
-      .get()
-      .then(doc => {
-        const data = doc.data();
-        setMats([...data.materials]);
-        setLoading(false);
-      });
+    if (auth.currentUser.uid) {
+      db.collection("shop")
+        .doc("materialsList")
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          setMats([...data.materials]);
+          setLoading(false);
+        });
+    }
   }
 
   //fetching hardwares
   function getHaws() {
-    db.collection("shop")
-    .doc("hardwaresList")
-    .get()
-    .then(doc => {
-      const data = doc.data();
-      setHaws([...data.hardwares]);
-      sortHawsByType(data.hardwares);
-      setLoading(false);
-    });
+    if (auth.currentUser.uid) {
+      db.collection("shop")
+        .doc("hardwaresList")
+        .get()
+        .then(doc => {
+          const data = doc.data();
+          setHaws([...data.hardwares]);
+          sortHawsByType(data.hardwares);
+          setLoading(false);
+        });
+    }
   }
 
   const filterMats = type => {
