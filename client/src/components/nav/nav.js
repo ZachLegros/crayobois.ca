@@ -150,7 +150,6 @@ const Nav = props => {
         </div>
         <div
           className="navbar m-active"
-          style={{ backgroundColor: "var(--black)" }}
         >
           <div className="navbar-content">
             <div

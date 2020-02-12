@@ -15,7 +15,7 @@ const SignUp = props => {
 
   useEffect(() => {
     const nav = document.querySelector(".navbar");
-    nav.style.backgroundColor = "var(--black)";
+    nav.classList.add("black-nav")
 
     const signupForm = document.querySelector("#signup-form");
     const actionBtn = document.querySelector("#signup-action");

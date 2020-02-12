@@ -18,6 +18,7 @@ const Landing = props => {
 
   useEffect(() => {
     setNavigation("/");
+    document.querySelector(".navbar").classList.remove("black-nav")
     window.addEventListener("scroll", parallax);
     return () => {
       window.removeEventListener("scroll", parallax);

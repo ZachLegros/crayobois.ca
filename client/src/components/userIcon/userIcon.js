@@ -19,7 +19,7 @@ const User = props => {
       <span
         onClick={() => {
           props.history.push("/utilisateur/profil");
-          setNavigation("dashboard");
+          setNavigation("/utilisateur");
         }}
         className="nav-user-links"
       >
@@ -33,7 +33,7 @@ const User = props => {
       {auth ? (
         <span
           onClick={() => {
-            setNavigation("dashboard");
+            setNavigation("/utilisateur");
             props.history.push("/utilisateur/panier");
           }}
           className="nav-user-links"
@@ -48,7 +48,7 @@ const User = props => {
           if (props.toggled === true) {
             props.toggle();
           }
-          setNavigation("dashboard");
+          setNavigation("/utilisateur");
           props.history.push("/utilisateur/panier");
         }}
         className="mobile-user-link"

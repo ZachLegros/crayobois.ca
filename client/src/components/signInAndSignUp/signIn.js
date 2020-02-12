@@ -13,8 +13,7 @@ const SignIn = props => {
 
   useEffect(() => {
     const nav = document.querySelector(".navbar");
-    nav.style.backgroundColor = "var(--black)";
-
+    nav.classList.add("black-nav");
     const signinForm = document.querySelector("#signin-form");
     const actionBtn = document.querySelector("#signin-action");
     signinForm.addEventListener("submit", e => {
