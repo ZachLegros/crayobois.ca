@@ -12,7 +12,7 @@ const ResetPassword = props => {
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
 
   useEffect(() => {
-    setNavigation("reset-pass");
+    setNavigation("/nouveau-mot-de-passe");
     const resetForm = document.querySelector("#reset-password-form");
     const actionBtn = document.querySelector("#forgot-password-action");
     resetForm.addEventListener("submit", e => {

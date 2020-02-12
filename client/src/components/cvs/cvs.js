@@ -19,7 +19,7 @@ const Cvs = props => {
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
-    setNavigation("cvs");
+    setNavigation("/creez-votre-stylo");
     context.getHaws();
     context.getMats();
   }, []);

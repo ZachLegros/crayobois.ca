@@ -80,7 +80,7 @@ const Nav = props => {
     const width = window.pageXOffset || document.documentElement.clientWidth;
     let nav = document.querySelector(".navbar");
 
-    if (width > 850 && navigation === "home") {
+    if (width > 850 && navigation === "/") {
       if (scroll < 40) {
         nav.classList.remove("black-nav");
         prevScroll = scroll;
@@ -93,7 +93,7 @@ const Nav = props => {
 
   useEffect(() => {
     const nav = document.querySelector(".navbar");
-    if (navigation === "home") {
+    if (navigation === "/") {
       window.addEventListener("scroll", stickyNav);
       nav.classList.remove("black-nav");
     } else {
@@ -114,8 +114,10 @@ const Nav = props => {
               <span
                 className="logo-anchor"
                 onClick={() => {
-                  props.history.push("/");
-                  setNavigation("home");
+                  if (navigation !== "/") {
+                    props.history.push("/");
+                    setNavigation("/");
+                  }
                 }}
               >
                 <img className="logo" src={logo} />
@@ -127,8 +129,10 @@ const Nav = props => {
                       <span
                         className="nav-link"
                         onClick={() => {
-                          props.history.push(link.path);
-                          setNavigation(link.path);
+                          if (navigation !== link.path) {
+                            props.history.push(link.path);
+                            setNavigation(link.path);
+                          }
                         }}
                         key={link.id}
                       >
@@ -162,7 +166,7 @@ const Nav = props => {
               className="logo-anchor"
               onClick={() => {
                 if (!toggled) {
-                  setNavigation("home");
+                  setNavigation("/");
                   props.history.push("/");
                 }
               }}
@@ -197,7 +201,7 @@ const Nav = props => {
               onClick={() => {
                 toggle();
                 setUserNav("profile");
-                setNavigation("dashboard");
+                setNavigation("/utilisateur");
                 props.history.push("/utilisateur");
               }}
             >

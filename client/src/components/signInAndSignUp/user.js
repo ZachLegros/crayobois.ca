@@ -17,7 +17,7 @@ const User = props => {
   const [redirect, setRedirect] = authContext.redirect;
 
   useEffect(() => {
-    setNavigation("dashboard");
+    setNavigation("/utilisateur");
     document.querySelector(".navbar").classList.add("black-nav");
     authContext.isInitialized().then(val => {
       setInitializedFirebase(val);

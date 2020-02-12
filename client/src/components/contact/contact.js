@@ -8,7 +8,7 @@ const Contact = props => {
   const [navigation, setNavigation] = context.navigation;
 
   useEffect(() => {
-    setNavigation("contact");
+    setNavigation("/contact");
   });
 
   return (

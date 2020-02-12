@@ -17,7 +17,7 @@ const Landing = props => {
   };
 
   useEffect(() => {
-    setNavigation("home");
+    setNavigation("/");
     window.addEventListener("scroll", parallax);
     return () => {
       window.removeEventListener("scroll", parallax);
