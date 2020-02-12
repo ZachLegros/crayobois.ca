@@ -2,8 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import "./landing.css";
 import bg from "./slideshow/img2.jpg";
 import { withRouter } from "react-router-dom";
+import Context from "../context/navLinksContext";
 
 const Landing = props => {
+  const context = useContext(Context);
+  const [navigation, setNavigation] = context.navigation;
+
   const parallax = () => {
     const image = document.querySelector(".landing-image");
     const scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -13,8 +17,8 @@ const Landing = props => {
   };
 
   useEffect(() => {
+    setNavigation("home");
     window.addEventListener("scroll", parallax);
-
     return () => {
       window.removeEventListener("scroll", parallax);
     };

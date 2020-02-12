@@ -12,7 +12,6 @@ const Nav = props => {
   const authContext = useContext(AuthContext);
   const [userNav, setUserNav] = authContext.userNav;
   const [navigation, setNavigation] = context.navigation;
-  const [color, setColor] = useState(null);
   const navLinks = [
     { id: uuidv4(), text: "Accueil", path: "/" },
     { id: uuidv4(), text: "Galerie", path: "/" },
@@ -77,39 +76,39 @@ const Nav = props => {
   let prevScroll = 0;
 
   function stickyNav() {
-    const nav = document.querySelector(".navbar");
     let scroll = window.pageYOffset || document.documentElement.scrollTop;
     const width = window.pageXOffset || document.documentElement.clientWidth;
+    let nav = document.querySelector(".navbar");
 
     if (width > 850 && navigation === "home") {
       if (scroll < 40) {
-        setColor(null);
+        nav.classList.remove("black-nav");
         prevScroll = scroll;
       } else {
-        setColor("var(--black)");
+        nav.classList.add("black-nav");
         prevScroll = scroll;
       }
-    } else {
     }
   }
 
   useEffect(() => {
+    const nav = document.querySelector(".navbar");
     if (navigation === "home") {
       window.addEventListener("scroll", stickyNav);
-      let nav = document.querySelector(".navbar");
       nav.classList.remove("black-nav");
     } else {
-      let nav = document.querySelector(".navbar");
       nav.classList.add("black-nav");
     }
+    return () => {
+      window.removeEventListener("scroll", stickyNav);
+      nav.classList.add("black-nav");
+    };
   }, [navigation]);
 
   return (
     <React.Fragment>
       <nav>
-        <div
-          className={color ? "navbar d-active black-nav" : "navbar d-active"}
-        >
+        <div className={"navbar d-active"}>
           <div className="navbar-content">
             <div className="navbar-left">
               <span
@@ -129,7 +128,7 @@ const Nav = props => {
                         className="nav-link"
                         onClick={() => {
                           props.history.push(link.path);
-                          setNavigation("home");
+                          setNavigation(link.path);
                         }}
                         key={link.id}
                       >

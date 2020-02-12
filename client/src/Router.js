@@ -23,132 +23,51 @@ const RouterComponent = () => {
         <div>
           <Nav />
           <Switch>
-            <Route
-              path="/"
-              exact
-              render={props => (
-                <Home
-                  {...props}
-                  onEnter={() => {
-                    setNavigation("home");
-                  }}
-                />
-              )}
-            />
+            <Route path="/" exact render={props => <Home {...props} />} />
             <Route
               path="/contact"
               exact
-              render={props => (
-                <Contact
-                  {...props}
-                  onEnter={() => {
-                    setNavigation("contact");
-                  }}
-                />
-              )}
+              render={props => <Contact {...props} />}
             />
             <Route
               path="/creez-votre-stylo"
               exact
-              render={props => (
-                <LoggedInChecker
-                  {...props}
-                  onEnter={() => {
-                    setNavigation("cvs");
-                  }}
-                />
-              )}
+              render={props => <LoggedInChecker {...props} />}
             />
             <Route
               path="/utilisateur"
               exact
-              render={props => (
-                <User
-                  {...props}
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                  content=""
-                />
-              )}
+              render={props => <User {...props} content="" />}
             />
             <Route
               path="/utilisateur/profil"
               exact
-              render={props => (
-                <User
-                  {...props}
-                  content="profile"
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                />
-              )}
+              render={props => <User {...props} content="profile" />}
             />
             <Route
               path="/utilisateur/panier"
               exact
-              render={props => (
-                <User
-                  {...props}
-                  content="cart"
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                />
-              )}
+              render={props => <User {...props} content="cart" />}
             />
             <Route
               path="/utilisateur/commandes"
               exact
-              render={props => (
-                <User
-                  {...props}
-                  content="orders"
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                />
-              )}
+              render={props => <User {...props} content="orders" />}
             />
             <Route
               path="/utilisateur/connexion"
               exact
-              render={props => (
-                <SignIn
-                  {...props}
-                  content=""
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                />
-              )}
+              render={props => <SignIn {...props} content="" />}
             />
             <Route
               path="/utilisateur/creer-un-compte"
               exact
-              render={props => (
-                <SignUp
-                  {...props}
-                  content=""
-                  onEnter={() => {
-                    setNavigation("dashboard");
-                  }}
-                />
-              )}
+              render={props => <SignUp {...props} content="" />}
             />
             <Route
               path="/utilisateur/nouveau-mot-de-passe"
               exact
-              render={props => (
-                <ResetPassword
-                  {...props}
-                  content=""
-                  onEnter={() => {
-                    setNavigation("reset-pass");
-                  }}
-                />
-              )}
+              render={props => <ResetPassword {...props} content="" />}
             />
             <Route
               path="/"

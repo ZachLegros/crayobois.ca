@@ -1,15 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./resetPassword.css";
 import AuthContext from "../context/authContext";
+import NavContext from "../context/navLinksContext";
 
 const ResetPassword = props => {
   const authContext = useContext(AuthContext);
+  const navContext = useContext(NavContext);
+  const [navigation, setNavigation] = navContext.navigation;
   const emailSent = authContext.emailSent[0];
   const [caughtErr, setCaughtErr] = authContext.caughtErr;
   const [errorMsg, setErrorMsg] = authContext.errorMsg;
 
   useEffect(() => {
-    props.onEnter();
+    setNavigation("reset-pass");
     const resetForm = document.querySelector("#reset-password-form");
     const actionBtn = document.querySelector("#forgot-password-action");
     resetForm.addEventListener("submit", e => {

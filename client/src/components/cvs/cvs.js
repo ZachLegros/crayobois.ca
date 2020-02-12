@@ -7,15 +7,19 @@ import Spinner from "../spinner/spinner";
 import CvsContext from "../context/cvsContext";
 import CvsDropDown from "../cvsDropDown/cvsDropDown";
 import CvsAlert from "../cvsAlert/cvsAlert";
+import NavContext from "../context/navLinksContext";
 
 const Cvs = props => {
   const context = useContext(CvsContext);
+  const navContext = useContext(NavContext);
+  const [navigation, setNavigation] = navContext.navigation;
   const loading = context.loading;
   const [cvsDropDownToggle, setCvsDropDownToggle] = context.cvsDropDownToggle;
   const active = context.activeCvsPage[0];
   const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
 
   useEffect(() => {
+    setNavigation("cvs");
     context.getHaws();
     context.getMats();
   }, []);

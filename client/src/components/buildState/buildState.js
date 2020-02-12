@@ -68,7 +68,6 @@ function BuildState(props) {
   }
 
   useEffect(() => {
-    console.log(hardwares);
     setMatQty(sorted(materials, "mats"));
     setHawsQty(sorted(hardwares, "haws"));
   }, [materials, hardwares]);

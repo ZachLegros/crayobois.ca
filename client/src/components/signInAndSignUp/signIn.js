@@ -31,11 +31,13 @@ const SignIn = props => {
     });
   }, []);
 
-  
-
   return (
     <React.Fragment>
-      {initializedFirebase ? props.history.push("/utilisateur/profil") : <React.Fragment />}
+      {initializedFirebase ? (
+        props.history.push("/utilisateur/profil")
+      ) : (
+        <React.Fragment />
+      )}
       <section id="sign-in-sign-up">
         <div className="sign-in-sign-up-container">
           <span className="header-text">Se connecter</span>
@@ -74,14 +76,16 @@ const SignIn = props => {
               />
               <i className="fas fa-lock input-icon"></i>
             </div>
-            <a
-              href="/utilisateur/nouveau-mot-de-passe"
+            <span
+              onClick={() => {
+                props.history.push("/utilisateur/nouveau-mot-de-passe");
+              }}
               className="signin-forgot-password-container"
             >
               <span className="signin-forgot-password">
                 Vous avez oublié votre mot de passe?
               </span>
-            </a>
+            </span>
             <div className="action-container">
               <button id="signin-action" className="form-btn">
                 Se connecter<i className="fas fa-sign-in-alt form-btn-icon"></i>

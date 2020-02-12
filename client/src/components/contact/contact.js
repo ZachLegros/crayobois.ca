@@ -1,11 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./contact.css";
 import img from "./img/img1.jpg";
+import Context from "../context/navLinksContext";
 
 const Contact = props => {
+  const context = useContext(Context);
+  const [navigation, setNavigation] = context.navigation;
+
   useEffect(() => {
-    props.onEnter();
-  }, []);
+    setNavigation("contact");
+  });
 
   return (
     <React.Fragment>
