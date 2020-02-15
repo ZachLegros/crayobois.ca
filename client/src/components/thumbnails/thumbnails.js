@@ -3,7 +3,7 @@ import CvsContext from "../context/cvsContext";
 import Spinner from "../spinner/spinner";
 import "./thumbnails.css";
 import ScrollReveal from "scrollreveal";
-const { uuid } = require('uuidv4');
+const { uuid } = require("uuidv4");
 
 function Thumbnails(props) {
   const context = useContext(CvsContext);
@@ -64,8 +64,7 @@ function Thumbnails(props) {
     }
   }
 
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   if (context.activeCvsPage[0] === "materials") {
     if (context.filteredMats.length === 0) {
@@ -87,11 +86,10 @@ function Thumbnails(props) {
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
-                    <span className="material-origin">
-                      <i className="fas fa-globe-americas" />
-                      {material.origin}
+                    <span className="material-name">
+                      {material.name}
                     </span>
-                    <a
+                    <span
                       onClick={() => {
                         context.addToPen(material._id, 0);
                         toggleMatsHeart(material._id);
@@ -105,18 +103,12 @@ function Thumbnails(props) {
                             : "fas fa-plus"
                         }
                       ></i>
-                    </a>
+                    </span>
                   </div>
                   <div className="material-thumbnail-content-mid">
-                    <span className="material-name">
-                      {material.name}
-                      <a
-                        className="thumbnail-img-link"
-                        href={material.path}
-                        target="blank"
-                      >
-                        <i className="fas fa-search-plus"></i>
-                      </a>
+                    <span className="material-origin">
+                      <i className="fas fa-globe-americas globe"></i>
+                      {material.origin}
                     </span>
                   </div>
                   <div className="material-thumbnail-content-bottom">
@@ -149,9 +141,8 @@ function Thumbnails(props) {
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
-                    <span className="material-origin">
-                      <i className="fas fa-globe-americas" />
-                      {material.origin}
+                    <span className="material-name">
+                      {material.name}
                     </span>
                     <a
                       onClick={() => {
@@ -170,16 +161,9 @@ function Thumbnails(props) {
                     </a>
                   </div>
                   <div className="material-thumbnail-content-mid">
-                    <span className="material-name">
-                      {material.name}
-                      <a
-                        className="thumbnail-img-link"
-                        href={material.path}
-                        loading="lazy"
-                        target="blank"
-                      >
-                        <i className="fas fa-search-plus"></i>
-                      </a>
+                    <span className="material-origin">
+                      <i className="fas fa-globe-americas globe" />
+                      {material.origin}
                     </span>
                   </div>
                   <div className="material-thumbnail-content-bottom">
@@ -207,21 +191,35 @@ function Thumbnails(props) {
               <span className="hardware-color">{displayed.color}</span>
             </div>
             <a>
-              <i className={prevToggleHaw === displayed ? "fas fa-heart" : "fas fa-plus"} onClick={() => {
-                context.addToPen(displayed, 1);
-                toggleHawsHeart();
-              }}></i>
+              <i
+                className={
+                  prevToggleHaw === displayed ? "fas fa-heart" : "fas fa-plus"
+                }
+                onClick={() => {
+                  context.addToPen(displayed, 1);
+                  toggleHawsHeart();
+                }}
+              ></i>
             </a>
           </div>
           <div className="hardware-thumbnail-mid">
             <div className="hardware-thumbnail-mid-nav">
-              <i className="fas fa-chevron-left haws-nav-arrow" onClick={() => {
-                context.newDisplayedHaw("prev")}}></i>
+              <i
+                className="fas fa-chevron-left haws-nav-arrow"
+                onClick={() => {
+                  context.newDisplayedHaw("prev");
+                }}
+              ></i>
               <div
                 className="hardware-thumbnail-mid-img"
                 style={imgStyle}
               ></div>
-              <i className="fas fa-chevron-right haws-nav-arrow" onClick={() => {context.newDisplayedHaw("next")}}></i>
+              <i
+                className="fas fa-chevron-right haws-nav-arrow"
+                onClick={() => {
+                  context.newDisplayedHaw("next");
+                }}
+              ></i>
             </div>
           </div>
           <div className="hardware-thumbnail-bottom">

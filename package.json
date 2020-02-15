@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "concurrently \"cd client && npm start\" \"cd api && nodemon start\""
+    "start": "cd client && npm start"
   },
   "repository": {
     "type": "git",

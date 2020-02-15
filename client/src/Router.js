@@ -10,6 +10,7 @@ import AuthContext from "./components/context/authContext";
 import SignIn from "./components/signInAndSignUp/signIn";
 import SignUp from "./components/signInAndSignUp/signUp";
 import Contact from "./components/contact/contact";
+import Gallery from "./components/gallery/gallery";
 
 const RouterComponent = () => {
   const context = useContext(NavContext);
@@ -24,6 +25,11 @@ const RouterComponent = () => {
           <Nav />
           <Switch>
             <Route path="/" exact render={props => <Home {...props} />} />
+            <Route
+              path="/galerie"
+              exact
+              render={props => <Gallery {...props} />}
+            />
             <Route
               path="/contact"
               exact

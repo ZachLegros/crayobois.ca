@@ -14,7 +14,7 @@ const Nav = props => {
   const [navigation, setNavigation] = context.navigation;
   const navLinks = [
     { id: uuidv4(), text: "Accueil", path: "/" },
-    { id: uuidv4(), text: "Galerie", path: "/" },
+    { id: uuidv4(), text: "Galerie", path: "/galerie" },
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
     { id: uuidv4(), text: "Contact", path: "/contact" }
   ];
