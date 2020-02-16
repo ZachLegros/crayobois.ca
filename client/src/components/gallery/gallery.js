@@ -9,74 +9,25 @@ const Gallery = props => {
 
   return (
     <React.Fragment>
-      <header>
-        <span className="gallery-header">Galerie</span>
-      </header>
-      <section className="gallery-section">
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
+      <div className="gallery">
+        <header>
+          <span className="cvs-features-header">
+            Galerie
+            <i className="fas fa-camera-retro cvs-features-header-icon"></i>
           </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-        <div className="image-container">
-          <span className="image-description">
-            This is the image description
-          </span>
-          <img
-            src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
-            className="gallery-image"
-          />
-        </div>
-      </section>
+        </header>
+        <section className="gallery-section">
+          <div className="image-container">
+            <img
+              src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
+              className="gallery-image"
+            />
+            <span className="image-description">
+              Loupe d'amboine - Bolt action
+            </span>
+          </div>
+        </section>
+      </div>
     </React.Fragment>
   );
 };
