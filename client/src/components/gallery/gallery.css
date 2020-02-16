@@ -49,10 +49,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(100%);
+  transform: translateY(100%) rotateX(90deg);
   transition: all 0.35s ease-in-out;
   opacity: 0;
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-weight: 500;
 }
 
@@ -61,6 +61,31 @@
 }
 
 .image-container:hover > .image-description {
-  transform: translateY(0);
+  transform: translateY(0) rotateX(0);
   opacity: 1;
+}
+
+@media only screen and (max-width: 1280px) {
+  .gallery {
+    padding: 0;
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .cvs-features-header {
+    justify-content: center;
+    font-size: 24px;
+    margin: 25px 0;
+  }
+
+  .gallery-section{
+    grid-template-columns: 100%;
+    grid-gap: 0;
+    width: calc(100% - 50px);
+    padding: 0 25px
+  }
+
+  .image-description {
+    font-size: 16px;
+  }
 }
