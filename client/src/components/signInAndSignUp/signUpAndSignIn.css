@@ -10,7 +10,7 @@
 
 .sign-in-sign-up-container {
   padding: 50px;
-  border-radius: 25px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@
   color: hsl(204, 20%, 40%);
   font-size: 18px !important;
   padding: 12px 20px 12px 50px;
-  border-radius: 35px;
+  border-radius: 8px;
   outline: none;
   width: calc(100% - 70px);
   filter: none;
@@ -137,7 +137,7 @@ select:-webkit-autofill:focus {
 .input-icon {
   color: hsl(204, 20%, 70%);
   position: absolute;
-  left: 20px;
+  left: 12.5px;
   top: 50%;
   transform: translateY(-50%);
   height: 18px;
@@ -152,7 +152,7 @@ select:-webkit-autofill:focus {
   background-color: var(--orange);
   color: #fff;
   padding: 12px;
-  border-radius: 35px;
+  border-radius: 8px;
   width: 100%;
   text-align: center;
   margin-top: 25px;

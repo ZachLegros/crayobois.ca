@@ -5,6 +5,9 @@ import AuthState from "./components/context/AuthState";
 import RouterComponent from "./Router";
 
 const App = () => {
+  useEffect(() => {
+    window.scrollTo(0, 1);
+  }, []);
 
   return (
     <React.Fragment>

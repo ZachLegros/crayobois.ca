@@ -26,6 +26,33 @@ const Gallery = props => {
               Loupe d'amboine - Bolt action
             </span>
           </div>
+          <div className="image-container">
+            <img
+              src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
+              className="gallery-image"
+            />
+            <span className="image-description">
+              Loupe d'amboine - Bolt action
+            </span>
+          </div>
+          <div className="image-container">
+            <img
+              src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
+              className="gallery-image"
+            />
+            <span className="image-description">
+              Loupe d'amboine - Bolt action
+            </span>
+          </div>
+          <div className="image-container">
+            <img
+              src="https://thepaintpeople.com/wp-content/uploads/2015/09/prepare-bare-wood-staining.jpg"
+              className="gallery-image"
+            />
+            <span className="image-description">
+              Loupe d'amboine - Bolt action
+            </span>
+          </div>
         </section>
       </div>
     </React.Fragment>

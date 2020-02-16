@@ -20,7 +20,7 @@
   margin-left: 25px;
   background-color: hsl(204, 20%, 92%);
   padding: 12px 20px 12px 20px;
-  border-radius: 35px;
+  border-radius: 8px;
 }
 
 .profile-attribute-state-uneditable {
@@ -39,18 +39,22 @@
 .profile-change-password {
   background-color: var(--orange);
   color: #fff;
-  text-shadow: 5px 0px 35px rgba(95, 95, 95, 0.15);
   padding: 8px 16px 8px 16px;
-  border-radius: 35px;
+  border-radius: 8px;
   width: max-content;
   text-align: center;
+  margin-top: 25px;
   font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
   outline: none;
   transition-property: opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  border: 0px;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
 }
 
 .profile-change-password:hover {
