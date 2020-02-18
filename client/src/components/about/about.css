@@ -22,8 +22,8 @@
 .about-img {
   width: auto;
   object-fit: cover;
-  height: 75%;
-  max-height: 542px;
+  height: 80%;
+  max-height: 500px;
   max-width: 350px;
   position: relative;
   border-radius: 8px;
@@ -53,7 +53,7 @@
 
 @media only screen and (max-width: 1250px) {
   .about-container {
-    padding: 25px;
+    padding: 50px;
   }
 
   .about-p {
@@ -64,6 +64,7 @@
 @media only screen and (max-width: 850px) {
   .about-container {
     flex-direction: column;
+    padding: 25px;
   }
 
   .about-img {

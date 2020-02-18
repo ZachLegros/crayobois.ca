@@ -128,7 +128,6 @@
 @media only screen and (max-width: 850px) {
   #landing-wrapper {
     align-items: center;
-    background-position: left;
     height: 55vh;
     margin-top: 60px;
   }
@@ -151,6 +150,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .landing-image {
+    object-fit: cover;
+    width: 150%;
+    max-height: 100%;
   }
 }
 

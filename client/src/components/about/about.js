@@ -7,8 +7,8 @@ import ScrollReveal from "scrollreveal";
 const About = () => {
   useEffect(() => {
     ScrollReveal().reveal(".cvs-features-header");
-    ScrollReveal().reveal(".about-p", { delay: 25 });
-    ScrollReveal().reveal(".about-img", { delay: 50 });
+    ScrollReveal().reveal(".about-p");
+    ScrollReveal().reveal(".about-img");
   }, []);
   return (
     <section className="about-section">

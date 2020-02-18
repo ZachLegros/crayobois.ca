@@ -1,0 +1,67 @@
+.monitor {
+    height: auto;
+    width: 350px;
+    user-select: none;
+    object-fit: cover;
+}
+
+.gear {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    transform: translate3d(25%, 5px, 0) rotate(0deg);
+    animation: rotate 4s linear infinite;
+}
+
+.under-dev {
+    height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.under-dev-header {
+    color: var(--black);
+    margin-bottom: 50px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate3d(25%, 5px, 0) rotate(0deg);
+    }    
+    100% {
+        transform: translate3d(25%, 5px, 0) rotate(360deg);
+    }
+}
+
+.under-dev-animation {
+    position: relative;
+    height: max-content;
+    width: 350px;
+}
+
+@media only screen and (max-width: 850px) {
+    .under-dev-animation {
+        width: 200px;
+    }
+
+    .monitor {
+        width: 200px;
+    }
+
+    .gear {
+        height: 50px;
+        width: 50px;
+    }
+
+    .under-dev-header {
+        font-size: 1.15rem;
+    }
+}
