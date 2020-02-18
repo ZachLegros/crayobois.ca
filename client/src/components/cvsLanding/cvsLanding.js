@@ -6,11 +6,11 @@ const CvsLanding = () => {
 
   useEffect(() => {
     ScrollReveal().reveal(".f1");
-    ScrollReveal().reveal(".f2", { delay: 50 });
-    ScrollReveal().reveal(".f3", { delay: 100 });
-    ScrollReveal().reveal(".f4", { delay: 150 });
+    ScrollReveal().reveal(".f2", { delay: 25 });
+    ScrollReveal().reveal(".f3", { delay: 50 });
+    ScrollReveal().reveal(".f4", { delay: 75 });
     ScrollReveal().reveal(".cvs-feature-header-container");
-});
+}, []);
   return (
     <section className="cvs-landing">
       <div className="cvs-feature-header-container">

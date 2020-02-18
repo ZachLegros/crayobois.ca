@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import img1 from "./images/DSC01607.jpg";
+import img2 from "./images/DSC01677.jpg";
 import "./about.css";
 import ScrollReveal from "scrollreveal";
 
 const About = () => {
-  useEffect(() => {});
+  useEffect(() => {
+    ScrollReveal().reveal(".cvs-features-header");
+    ScrollReveal().reveal(".about-p", { delay: 25 });
+    ScrollReveal().reveal(".about-img", { delay: 50 });
+  }, []);
   return (
     <section className="about-section">
       <div className="about-container">
@@ -28,7 +33,7 @@ const About = () => {
             </p>
           </div>
         </div>
-        <img src={img1} className="about-img" />
+        <img src={img2} className="about-img" />
       </div>
     </section>
   );

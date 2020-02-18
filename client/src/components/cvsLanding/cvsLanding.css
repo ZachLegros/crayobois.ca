@@ -5,12 +5,14 @@
 }
 
 .cvs-features-header {
-  font-size: 36px;
+  font-size: 32px;
   color: var(--black);
   font-weight: 600;
   position: relative;
   margin: 0 0 25px 0;
   display: flex;
+  text-align: left;
+  justify-content: flex-start;
   align-items: center;
   transition: all 0.25s ease-in-out;
 }
@@ -36,7 +38,7 @@
 
 .cvs-features-header-icon {
   color: var(--black);
-  font-size: 28px;
+  font-size: 22px;
   opacity: 0.5;
   margin-left: 12.5px;
 }
@@ -107,6 +109,10 @@
   .cvs-landing {
     margin: 50px;
   }
+
+  .cvs-features-header {
+    font-size: 28px;
+  }
 }
 
 @media only screen and (max-width: 850px) {
@@ -151,12 +157,20 @@
   }
 
   .cvs-features-header {
-    font-size: 24px;
     margin: 25px 0 12.5px 0;
   }
 
   .cvs-feature-header-container {
     padding-left: 12.5px;
+  }
+
+  .cvs-features-header {
+    font-size: 24px;
+    margin: 25px 0;
+  }
+
+  .cvs-feature-header-container {
+    padding-left: 0;
   }
 
   .f1 {
