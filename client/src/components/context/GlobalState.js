@@ -25,7 +25,7 @@ const GlobalState = props => {
   const [loading, setLoading] = useState(true);
   const [cvsDropDownToggle, setCvsDropDownToggle] = useState(false);
   const [sortedHaws, setSortedHaws] = useState([]);
-  const [prevToggleHaw, setPrevToggleHaw] = useState({});
+  const [prevToggleHaw, setPrevToggleHaw] = useState(0);
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
 
   // firebase config
@@ -215,9 +215,9 @@ const GlobalState = props => {
         hardwares: haws,
         cart: cart,
         filterMats: filterMats,
-        filteredMats: filteredMats,
+        filteredMats: [filteredMats, setFilteredMats],
         filterHaws: filterHaws,
-        filteredHaws: filteredHaws,
+        filteredHaws: [filteredHaws, setFilteredHaws],
         activeHaws: [activeHaws, setActiveHaws],
         getMats: getMats,
         getHaws: getHaws,

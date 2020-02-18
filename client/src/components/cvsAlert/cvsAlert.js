@@ -5,15 +5,17 @@ import AuthContext from "../context/authContext";
 
 function CvsAlert(props) {
   const context = useContext(CvsContext);
-  const [cvsAlertOn, setCvsAlertOn] = context.cvsAlertOn;
+  const setCvsAlertOn = context.cvsAlertOn[1];
   const authContext = useContext(AuthContext);
   const [myPen, setMyPen] = context.myPen;
-  const [prevToggleId, setPrevToggleId] = context.prevToggleId;
-  const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
-  const [materialPrice, setMaterialPrice] = context.materialPrice;
-  const [hardwarePrice, setHardwarePrice] = context.hardwarePrice;
-  const [filteringName, setFilteringName] = context.filteringName;
-  const [hawsFilteringName, setHawsFilteringName] = context.hawsFilteringName;
+  const setPrevToggleId = context.prevToggleId[1];
+  const setPrevToggleHaw = context.prevToggleHaw[1];
+  const setMaterialPrice = context.materialPrice[1];
+  const setHardwarePrice = context.hardwarePrice[1];
+  const setFilteringName = context.filteringName[1];
+  const setHawsFilteringName = context.hawsFilteringName[1];
+  const setFilteredHaws = context.filteredHaws[1];
+  const setFilteredMats = context.filteredMats[1];
   const [filterName, setFilterName] = context.filterName;
 
   return (
@@ -42,8 +44,12 @@ function CvsAlert(props) {
               context.cvsNav("", "materials");
               setPrevToggleId(0);
               setMaterialPrice(0);
-              setPrevToggleHaw({});
+              setPrevToggleHaw(0);
               setHardwarePrice(0);
+              setFilteringName("Tous les matériaux");
+              setFilteredMats([]);
+              setFilteredHaws([]);
+              setHawsFilteringName("Tous les matériels")
               setMyPen([
                 { obj: null, id: 0 },
                 { obj: null, id: 1 }

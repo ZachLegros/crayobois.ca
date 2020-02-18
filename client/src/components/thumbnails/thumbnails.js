@@ -17,12 +17,12 @@ function Thumbnails(props) {
   });
 
   function toggleMatsHeart(id) {
-    var isOnPage = false;
+    let isOnPage = false;
     function checkIfOnPage() {
       //check if the mats are filtered and if the previous selected item is on the page
-      if (context.filteredMats.length !== 0) {
-        for (var i = 0; i < context.filteredMats.length; i++) {
-          if (context.filteredMats[i]._id === prevToggleId) {
+      if (context.filteredMats[0].length !== 0) {
+        for (let i = 0; i < context.filteredMats[0].length; i++) {
+          if (context.filteredMats[0][i]._id === prevToggleId) {
             isOnPage = true;
           }
         }
@@ -53,12 +53,47 @@ function Thumbnails(props) {
     }
   }
 
-  function toggleHawsHeart() {}
+  function toggleHawsHeart(id) {
+    let isOnPage = false;
+    function checkIfOnPage() {
+      //check if the mats are filtered and if the previous selected item is on the page
+      if (context.filteredHaws[0].length !== 0) {
+        for (let i = 0; i < context.filteredHaws[0].length; i++) {
+          if (context.filteredHaws[0][i]._id === prevToggleHaw) {
+            isOnPage = true;
+          }
+        }
+      } else {
+        isOnPage = true;
+      }
+    }
+    checkIfOnPage();
+    //same thumbnail
+    if (prevToggleHaw === id) {
+      document.getElementById(id).classList.remove("fa-heart");
+      document.getElementById(id).classList.add("fa-plus");
+      setPrevToggleHaw(0);
+      //if no other thumbnail is selected
+      //if another thumbnail is selected in another page
+    } else if (prevToggleHaw === 0 || isOnPage === false) {
+      document.getElementById(id).classList.add("fa-heart");
+      document.getElementById(id).classList.remove("fa-plus");
+      setPrevToggleHaw(id);
+    }
+    //if another thumbnail is selected in the page
+    else {
+      document.getElementById(prevToggleHaw).classList.remove("fa-heart");
+      document.getElementById(prevToggleHaw).classList.add("fa-plus");
+      document.getElementById(id).classList.add("fa-heart");
+      document.getElementById(id).classList.remove("fa-plus");
+      setPrevToggleHaw(id);
+    }
+  }
 
   useEffect(() => {}, []);
 
   if (context.activeCvsPage[0] === "materials") {
-    if (context.filteredMats.length === 0) {
+    if (context.filteredMats[0].length === 0) {
       return (
         <React.Fragment>
           {context.materials.map(material => {
@@ -113,7 +148,7 @@ function Thumbnails(props) {
     } else {
       return (
         <React.Fragment>
-          {context.filteredMats.map(material => {
+          {context.filteredMats[0].map(material => {
             return (
               <div className="material-thumbnail" key={material._id}>
                 <div className="thumbnail-img-container">
@@ -165,7 +200,7 @@ function Thumbnails(props) {
       );
     }
   } else if (context.activeCvsPage[0] === "hardwares") {
-    if (context.filteredHaws.length === 0) {
+    if (context.filteredHaws[0].length === 0) {
       return (
         <React.Fragment>
           {context.hardwares.map(hardware => {
@@ -186,7 +221,6 @@ function Thumbnails(props) {
                     <span className="material-name">{hardware.type}</span>
                     <span
                       onClick={() => {
-                        console.log(hardware);
                         context.addToPen(hardware, 1);
                         toggleHawsHeart(hardware._id);
                       }}
@@ -221,7 +255,7 @@ function Thumbnails(props) {
     } else {
       return (
         <React.Fragment>
-          {context.filteredHaws.map(hardware => {
+          {context.filteredHaws[0].map(hardware => {
             return (
               <div className="material-thumbnail" key={hardware._id}>
                 <div className="thumbnail-img-container">
@@ -239,7 +273,6 @@ function Thumbnails(props) {
                     <span className="material-name">{hardware.type}</span>
                     <span
                       onClick={() => {
-                        console.log(hardware);
                         context.addToPen(hardware, 1);
                         toggleHawsHeart(hardware._id);
                       }}
@@ -271,65 +304,6 @@ function Thumbnails(props) {
           })}
         </React.Fragment>
       );
-    }
-
-    {
-      /*
-    const imgStyle = {
-      backgroundImage: "url(" + displayed.path + ")"
-    };
-    return (
-      <React.Fragment>
-        <div className="hardware-thumbnail">
-          <div className="hardware-thumbnail-top">
-            <div className="haws-icon-container">
-              <i className="fas fa-palette"></i>
-              <span className="hardware-color">{displayed.color}</span>
-            </div>
-            <a>
-              <i
-                className={
-                  prevToggleHaw === displayed ? "fas fa-heart" : "fas fa-plus"
-                }
-                onClick={() => {
-                  context.addToPen(displayed, 1);
-                  toggleHawsHeart();
-                }}
-              ></i>
-            </a>
-          </div>
-          <div className="hardware-thumbnail-mid">
-            <div className="hardware-thumbnail-mid-nav">
-              <i
-                className="fas fa-chevron-left haws-nav-arrow"
-                onClick={() => {
-                  context.newDisplayedHaw("prev");
-                }}
-              ></i>
-              <div
-                className="hardware-thumbnail-mid-img"
-                style={imgStyle}
-              ></div>
-              <i
-                className="fas fa-chevron-right haws-nav-arrow"
-                onClick={() => {
-                  context.newDisplayedHaw("next");
-                }}
-              ></i>
-            </div>
-          </div>
-          <div className="hardware-thumbnail-bottom">
-            <span className="hardware-thumbnail-mid-notice">
-              *Le matériau démontré est la loupe d’érable
-            </span>
-            <span className="hardware-price">
-              {formatter.format(displayed.price)}
-            </span>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-    */
     }
   }
 }

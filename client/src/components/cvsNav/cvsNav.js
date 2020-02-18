@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CvsContext from "../context/cvsContext";
 
-function CvsNav(props) {
+const CvsNav = (props) => {
   const context = useContext(CvsContext);
   const myPen = context.myPen;
   const cvsPage = context.activeCvsPage[0];
