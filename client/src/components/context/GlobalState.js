@@ -96,10 +96,15 @@ const GlobalState = props => {
   };
 
   const filterHaws = type => {
-    const active = sortedHaws[type];
-    const displayed = active[0];
-    setActiveHaws(active);
-    setDisplayedHaw(displayed);
+    if (type === "*") {
+      setActiveHaws("*");
+      setDisplayedHaw("*");
+    } else {
+      const active = sortedHaws[type];
+      const displayed = active[0];
+      setActiveHaws(active);
+      setDisplayedHaw(displayed);
+    }
   };
 
   const newDisplayedHaw = action => {

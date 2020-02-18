@@ -17,7 +17,7 @@ function Thumbnails(props) {
     minimumFractionDigits: 2
   });
 
-  function toggleMatsHeart(id, type) {
+  function toggleMatsHeart(id) {
     var isOnPage = false;
     function checkIfOnPage() {
       //check if the mats are filtered and if the previous selected item is on the page
@@ -81,14 +81,11 @@ function Thumbnails(props) {
                       context.addToPen(material._id, 0);
                       toggleMatsHeart(material._id);
                     }}
-                    alt=""
                   />
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
-                    <span className="material-name">
-                      {material.name}
-                    </span>
+                    <span className="material-name">{material.name}</span>
                     <span
                       onClick={() => {
                         context.addToPen(material._id, 0);
@@ -141,9 +138,7 @@ function Thumbnails(props) {
                 </div>
                 <div className="material-thumbnail-content">
                   <div className="material-thumbnail-content-top">
-                    <span className="material-name">
-                      {material.name}
-                    </span>
+                    <span className="material-name">{material.name}</span>
                     <a
                       onClick={() => {
                         context.addToPen(material._id, 0);
@@ -179,6 +174,60 @@ function Thumbnails(props) {
       );
     }
   } else if (context.activeCvsPage[0] === "hardwares") {
+    return (
+      <React.Fragment>
+        {context.hardwares.map(hardware => {
+          return (
+            <div className="material-thumbnail" key={hardware._id}>
+              <div className="thumbnail-img-container">
+                <img
+                  src={hardware.path}
+                  className="material-img"
+                  onClick={() => {
+                    context.addToPen(hardware._id, 0);
+                    toggleHawsHeart(hardware._id);
+                  }}
+                />
+              </div>
+              <div className="material-thumbnail-content">
+                <div className="material-thumbnail-content-top">
+                  <span className="material-name">{hardware.type}</span>
+                  <span
+                    onClick={() => {
+                      context.addToPen(hardware._id, 0);
+                      toggleHawsHeart(hardware._id);
+                    }}
+                  >
+                    <i
+                      id={hardware._id}
+                      className={
+                        prevToggleId === hardware._id
+                          ? "fas fa-heart"
+                          : "fas fa-plus"
+                      }
+                    ></i>
+                  </span>
+                </div>
+                <div className="material-thumbnail-content-mid">
+                  <span className="material-origin">
+                    <i className="fas fa-globe-americas globe"></i>
+                    {hardware.color}
+                  </span>
+                </div>
+                <div className="material-thumbnail-content-bottom">
+                  <span className="material-price">
+                    {formatter.format(hardware.price)}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </React.Fragment>
+    );
+
+    {
+      /*
     const imgStyle = {
       backgroundImage: "url(" + displayed.path + ")"
     };
@@ -233,6 +282,8 @@ function Thumbnails(props) {
         </div>
       </React.Fragment>
     );
+    */
+    }
   }
 }
 

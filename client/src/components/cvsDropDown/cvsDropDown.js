@@ -144,6 +144,24 @@ function CvsDropDown(props) {
         }
       >
         <ul className="cvs-dropdown-filter-list haws-filter-list">
+          <li className="filter-list-li haws-filter-list-li">
+            <a
+              onClick={() => {
+                context.filterHaws("*");
+                setHawsFilteringName("Tous les matériels");
+                scrollTop();
+                context.toggleLoading();
+                toggleDropDown();
+              }}
+              className={
+                hawsFilteringName === "Tous les matériels"
+                  ? "filter-dropdown-active"
+                  : "filter-dropdown-off"
+              }
+            >
+              {"Tous les matériels"}
+            </a>
+          </li>
           {hawsQty.map(hardware => {
             const id = uuidv4();
             return (

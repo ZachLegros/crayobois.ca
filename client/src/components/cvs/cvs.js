@@ -45,11 +45,11 @@ const Cvs = props => {
           >
             <TopThumbnails />
             <CvsDropDown />
-            <div className={active + "-wrapper"}>
+            <div className={"material-wrapper"}>
               {loading === true ? (
                 <Spinner />
               ) : (
-                <div className={active}>
+                <div className={"materials"}>
                   <Thumbnails />
                 </div>
               )}
