@@ -6,7 +6,7 @@ const GlobalState = props => {
   const [mats, setMats] = useState([]);
   const [haws, setHaws] = useState([]);
   const [activeHaws, setActiveHaws] = useState([]);
-  const [displayedHaw, setDisplayedHaw] = useState({});
+  const [DisplayedHaws, setDisplayedHaws] = useState({});
   const [cart, setCart] = useState([]);
   const [filteredMats, setFilteredMats] = useState([]);
   const [filteredHaws, setFilteredHaws] = useState([]);
@@ -97,34 +97,10 @@ const GlobalState = props => {
 
   const filterHaws = type => {
     if (type === "*") {
-      setActiveHaws("*");
-      setDisplayedHaw("*");
+      setFilteredHaws([]);
     } else {
       const active = sortedHaws[type];
-      const displayed = active[0];
-      setActiveHaws(active);
-      setDisplayedHaw(displayed);
-    }
-  };
-
-  const newDisplayedHaw = action => {
-    const maxIdx = activeHaws.length - 1;
-    const currentIdx = activeHaws.indexOf(displayedHaw);
-
-    if (action === "next") {
-      if (currentIdx === maxIdx) {
-        setDisplayedHaw(activeHaws[0]);
-      } else if (currentIdx < maxIdx) {
-        const newIdx = currentIdx + 1;
-        setDisplayedHaw(activeHaws[newIdx]);
-      }
-    } else if (action === "prev") {
-      if (currentIdx === 0) {
-        setDisplayedHaw(activeHaws[maxIdx]);
-      } else if (currentIdx > 0) {
-        const newIdx = currentIdx - 1;
-        setDisplayedHaw(activeHaws[newIdx]);
-      }
+      setFilteredHaws(active);
     }
   };
 
@@ -182,8 +158,8 @@ const GlobalState = props => {
     const arr = Object.entries(types);
     //default values for haws collection and displayed haw
     setActiveHaws(arr[0][1]);
-    setDisplayedHaw(arr[0][1][0]);
-    setHawsFilteringName(arr[0][0]);
+    setDisplayedHaws(arr[0][1]);
+    setHawsFilteringName("Tous les matériels");
   }
 
   function getTypes(collection) {
@@ -258,11 +234,10 @@ const GlobalState = props => {
         loading: [loading, setLoading],
         cvsDropDownToggle: [cvsDropDownToggle, setCvsDropDownToggle],
         sortedHaws: [sortedHaws, setSortedHaws],
-        displayedHaw: [displayedHaw, setDisplayedHaw],
+        DisplayedHaws: [DisplayedHaws, setDisplayedHaws],
         cvsNav: cvsNav,
         hawsFilteringName: [hawsFilteringName, setHawsFilteringName],
         scrollTop: scrollTop,
-        newDisplayedHaw: newDisplayedHaw,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
         cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
       }}

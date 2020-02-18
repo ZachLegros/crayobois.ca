@@ -8,7 +8,6 @@ const { uuid } = require("uuidv4");
 function Thumbnails(props) {
   const context = useContext(CvsContext);
   const [prevToggleId, setPrevToggleId] = context.prevToggleId;
-  const displayed = context.displayedHaw[0];
   const [prevToggleHaw, setPrevToggleHaw] = context.prevToggleHaw;
 
   const formatter = new Intl.NumberFormat("fr-CA", {
@@ -54,15 +53,7 @@ function Thumbnails(props) {
     }
   }
 
-  function toggleHawsHeart() {
-    if (prevToggleHaw === {}) {
-      setPrevToggleHaw(displayed);
-    } else if (prevToggleHaw === displayed) {
-      setPrevToggleHaw({});
-    } else {
-      setPrevToggleHaw(displayed);
-    }
-  }
+  function toggleHawsHeart() {}
 
   useEffect(() => {}, []);
 
@@ -174,57 +165,113 @@ function Thumbnails(props) {
       );
     }
   } else if (context.activeCvsPage[0] === "hardwares") {
-    return (
-      <React.Fragment>
-        {context.hardwares.map(hardware => {
-          return (
-            <div className="material-thumbnail" key={hardware._id}>
-              <div className="thumbnail-img-container">
-                <img
-                  src={hardware.path}
-                  className="material-img"
-                  onClick={() => {
-                    context.addToPen(hardware._id, 0);
-                    toggleHawsHeart(hardware._id);
-                  }}
-                />
-              </div>
-              <div className="material-thumbnail-content">
-                <div className="material-thumbnail-content-top">
-                  <span className="material-name">{hardware.type}</span>
-                  <span
+    if (context.filteredHaws.length === 0) {
+      return (
+        <React.Fragment>
+          {context.hardwares.map(hardware => {
+            return (
+              <div className="material-thumbnail" key={hardware._id}>
+                <div className="thumbnail-img-container">
+                  <img
+                    src={hardware.path}
+                    className="material-img"
                     onClick={() => {
-                      context.addToPen(hardware._id, 0);
+                      context.addToPen(hardware, 1);
                       toggleHawsHeart(hardware._id);
                     }}
-                  >
-                    <i
-                      id={hardware._id}
-                      className={
-                        prevToggleId === hardware._id
-                          ? "fas fa-heart"
-                          : "fas fa-plus"
-                      }
-                    ></i>
-                  </span>
+                  />
                 </div>
-                <div className="material-thumbnail-content-mid">
-                  <span className="material-origin">
-                    <i className="fas fa-globe-americas globe"></i>
-                    {hardware.color}
-                  </span>
-                </div>
-                <div className="material-thumbnail-content-bottom">
-                  <span className="material-price">
-                    {formatter.format(hardware.price)}
-                  </span>
+                <div className="material-thumbnail-content">
+                  <div className="material-thumbnail-content-top">
+                    <span className="material-name">{hardware.type}</span>
+                    <span
+                      onClick={() => {
+                        console.log(hardware);
+                        context.addToPen(hardware, 1);
+                        toggleHawsHeart(hardware._id);
+                      }}
+                    >
+                      <i
+                        id={hardware._id}
+                        className={
+                          prevToggleHaw === hardware._id
+                            ? "fas fa-heart"
+                            : "fas fa-plus"
+                        }
+                      ></i>
+                    </span>
+                  </div>
+                  <div className="material-thumbnail-content-mid">
+                    <span className="material-origin">
+                      <i className="fas fa-palette globe"></i>
+                      {hardware.color}
+                    </span>
+                  </div>
+                  <div className="material-thumbnail-content-bottom">
+                    <span className="material-price">
+                      {formatter.format(hardware.price)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </React.Fragment>
-    );
+            );
+          })}
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          {context.filteredHaws.map(hardware => {
+            return (
+              <div className="material-thumbnail" key={hardware._id}>
+                <div className="thumbnail-img-container">
+                  <img
+                    src={hardware.path}
+                    className="material-img"
+                    onClick={() => {
+                      context.addToPen(hardware, 1);
+                      toggleHawsHeart(hardware._id);
+                    }}
+                  />
+                </div>
+                <div className="material-thumbnail-content">
+                  <div className="material-thumbnail-content-top">
+                    <span className="material-name">{hardware.type}</span>
+                    <span
+                      onClick={() => {
+                        console.log(hardware);
+                        context.addToPen(hardware, 1);
+                        toggleHawsHeart(hardware._id);
+                      }}
+                    >
+                      <i
+                        id={hardware._id}
+                        className={
+                          prevToggleHaw === hardware._id
+                            ? "fas fa-heart"
+                            : "fas fa-plus"
+                        }
+                      ></i>
+                    </span>
+                  </div>
+                  <div className="material-thumbnail-content-mid">
+                    <span className="material-origin">
+                      <i className="fas fa-palette globe"></i>
+                      {hardware.color}
+                    </span>
+                  </div>
+                  <div className="material-thumbnail-content-bottom">
+                    <span className="material-price">
+                      {formatter.format(hardware.price)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </React.Fragment>
+      );
+    }
 
     {
       /*

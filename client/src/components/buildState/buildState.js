@@ -129,6 +129,23 @@ function BuildState(props) {
       <div className="cvs-building-status">
         <span className="cvs-filter-name">{filterName}</span>
         <ul className="cvs-filter-list">
+        <li>
+            <span
+              onClick={() => {
+                context.filterHaws("*");
+                setHawsFilteringName("Tous les matériels");
+                context.scrollTop();
+                context.toggleLoading();
+              }}
+              className={
+                hawsFilteringName === "Tous les matériels"
+                  ? "filter-active"
+                  : "filter-off"
+              }
+            >
+              Tous les matériels
+            </span>
+          </li>
           {hawsQty.map(hardware => {
             const id = uuidv4();
             return (

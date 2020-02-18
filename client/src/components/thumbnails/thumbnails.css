@@ -89,33 +89,12 @@
   color: #393939;
 }
 
-.fa-palette {
-  margin-right: 20px;
-  color: #FFFFFF;
-  font-size: calc(0.75rem + 0.4vw);
-  position: relative;
-  z-index: 1;
-  margin-left: 7px;
-}
-
 .hardware-thumbnail-top a {
   width: 35px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.fa-palette::after {
-  content: "";
-  width: 180%;
-  height: 180%;
-  position: absolute;
-  top: -40%;
-  left: -40%;
-  background-color: #29353D;
-  border-radius: 50%;
-  z-index: -1;
 }
 
 .haws-nav-arrow {
@@ -185,10 +164,6 @@
   }
 
   .hardware-color {
-    font-size: calc(0.9rem + 0.4vw);
-  }
-
-  .fa-palette {
     font-size: calc(0.9rem + 0.4vw);
   }
 

@@ -45,7 +45,7 @@ const Cvs = props => {
           >
             <TopThumbnails />
             <CvsDropDown />
-            <div className={"material-wrapper"}>
+            <div className={"materials-wrapper"}>
               {loading === true ? (
                 <Spinner />
               ) : (
