@@ -98,7 +98,7 @@ function BuildState(props) {
             const id = uuidv4();
             return (
               <li key={id}>
-                <a
+                <span
                   key={id}
                   onClick={() => {
                     context.filterMats(material[0]);
@@ -113,7 +113,7 @@ function BuildState(props) {
                   }
                 >
                   {material[0] + ` (${material[1]})`}
-                </a>
+                </span>
               </li>
             );
           })}
@@ -134,7 +134,7 @@ function BuildState(props) {
             const id = uuidv4();
             return (
               <li key={id}>
-                <a
+                <span
                   key={id}
                   onClick={() => {
                     context.filterHaws(hardware[0]);
@@ -149,7 +149,7 @@ function BuildState(props) {
                   }
                 >
                   {hardware[0] + ` (${hardware[1]})`}
-                </a>
+                </span>
               </li>
             );
           })}

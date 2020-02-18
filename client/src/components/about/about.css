@@ -3,9 +3,50 @@
 }
 
 .about-container {
-  margin: 50px 250px 50px 250px;
-  padding: 50px;
   display: flex;
-  height: 100vh;
+  height: max-content;
+  flex-direction: row;
+  padding: 100px 250px 100px 250px;
+  position: relative;
+}
+
+.about-img-container {
+  width: 100%;
+  overflow: hidden;
+  height: calc(100% - 125px);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-img {
+  width: auto;
+  object-fit: cover;
+  height: 75%;
+  max-height: 542px;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: var(--mid_shadow);
+  margin-left: 25px;
+
+}
+
+.about-txt-container {
+  display: flex;
   flex-direction: column;
+}
+
+.about-p {
+  color: hsl(201, 7%, 35%);
+  font-weight: 400;
+  font-size: 22px;
+  max-width: 575px;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+.about-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }

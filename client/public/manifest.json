@@ -3,9 +3,9 @@
   "name": "Crayobois",
   "icons": [
     {
-      "src": "favicon-orange.ico",
-      "sizes": "256x256",
-      "type": "image/ico"
+      "src": "icons/golo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": "/",

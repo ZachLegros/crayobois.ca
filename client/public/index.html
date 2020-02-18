@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon-orange.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/icons/golo-512.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Crayobois - Le stylo qu'il vous faut!</title>
     <link
@@ -10,15 +10,26 @@
       rel="stylesheet"
     />
     <meta charset="utf-8" />
-    <meta name="theme-color" content="#29353d"> 
+    <meta name="theme-color" content="#29353d" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <script
       src="https://kit.fontawesome.com/be738c2079.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function msieversion() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+          alert("Votre navigateur est incompatible. Veuillez utiliser un navigateur ayant un meilleur moteur JavaScript tel que Google Chrome, Mozilla Firefox, etc.");
+        }
+      };
+      msieversion();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
