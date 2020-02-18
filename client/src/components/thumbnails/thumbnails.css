@@ -164,7 +164,7 @@
 
   .hardware-thumbnail {
     overflow-y: hidden;
-    height: 100%;
+    height: calc(100% - 145px);
     width: calc(100% - 50px);
   }
 

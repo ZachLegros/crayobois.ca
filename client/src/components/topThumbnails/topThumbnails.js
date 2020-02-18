@@ -28,7 +28,7 @@ function TopThumbnails(props) {
               toggleDropDown();
             }}
           >
-            {filteringName}
+            {context.activeCvsPage[0] === "hardwares" ? context.hawsFilteringName : filteringName}
             <i className="fas fa-sort" id="sort"></i>
           </span>
           <div className="mobile-cvs-header">
