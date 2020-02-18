@@ -118,7 +118,6 @@ function BuildState(props) {
             );
           })}
         </ul>
-        {/*sub total component*/}
         <div className="buildState-bottom">
           <SubTotal />
           <CvsNav />

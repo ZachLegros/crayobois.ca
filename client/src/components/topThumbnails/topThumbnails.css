@@ -1,7 +1,7 @@
 .cvs-state {
   font-size: calc(0.5rem + 1vw);
   font-weight: 500;
-  color: #29353D;
+  color: #29353d;
   display: flex;
   align-items: center;
   position: relative;
@@ -50,10 +50,28 @@
 
 .back {
   font-size: 1.25rem;
-  color: #29353D;
+  color: #29353d;
   opacity: 0.5;
   cursor: pointer;
   display: none;
+}
+
+.cvs-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 12.5px;
+}
+
+.mobile-cvs-header {
+  display: none;
+}
+
+.mobile {
+  display: none;
+  margin-top: 12.5px;
+  margin-bottom: 12.5px;
 }
 
 @media only screen and (max-width: 850px) {
@@ -73,19 +91,34 @@
   .back {
     display: block;
   }
-  
-}
 
+  .mobile-cvs-header {
+    display: flex;
+  }
 
-
-@media only screen and (max-width: 500px) {
-  .cvs-search-box:hover ~ .cvs-state {
+  .sub-total {
     display: none;
   }
 
-  .cvs-search-box:hover > .cvs-search-bar {
-    width: 200px;
-    padding-left: 8px;
-    opacity: 1;
+  .sub-total-container {
+    width: max-content !important;
+    line-height: 18px !important;
+    margin-top: 0 !important;
+  }
+
+  .sub-total-value {
+    margin: 0 !important;
+  }
+
+  .cvs-nav-container {
+    width: 100% !important;
+  }
+
+  .cvs-btn {
+    margin-bottom: 0 !important;
+  }
+
+  .mobile {
+    display: flex;
   }
 }

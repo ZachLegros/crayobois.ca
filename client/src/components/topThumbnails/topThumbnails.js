@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import CvsContext from "../context/cvsContext";
 import "./topThumbnails.css";
+import SubTotal from "../subTotal/subTotal";
+import CvsNav from "../cvsNav/cvsNav";
 
 function TopThumbnails(props) {
   const context = useContext(CvsContext);
@@ -16,10 +18,10 @@ function TopThumbnails(props) {
     }
   }
 
-  if (activeCvsPage === "materials") {
-    return (
-      <React.Fragment>
-        <div className="cvs-header">
+  return (
+    <React.Fragment>
+      <div className="cvs-header">
+        <div className="cvs-header-row">
           <span
             className="cvs-state"
             onClick={() => {
@@ -29,29 +31,16 @@ function TopThumbnails(props) {
             {filteringName}
             <i className="fas fa-sort" id="sort"></i>
           </span>
+          <div className="mobile-cvs-header">
+            <SubTotal />
+          </div>
         </div>
-      </React.Fragment>
-    );
-  } else if (activeCvsPage === "hardwares") {
-    return (
-      <React.Fragment>
-        <div className="cvs-header">
-          <i className="fas fa-chevron-left back" onClick={() => {
-          context.cvsNav("back");
-        }}></i>
-          <span
-            className="cvs-state"
-            onClick={() => {
-              toggleDropDown();
-            }}
-          >
-            {hawsFilteringName}
-            <i className="fas fa-sort" id="sort"></i>
-          </span>
+        <div className="cvs-header-row mobile">
+            <CvsNav />
         </div>
-      </React.Fragment>
-    );
-  }
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default TopThumbnails;
