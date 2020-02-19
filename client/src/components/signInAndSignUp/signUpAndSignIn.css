@@ -26,7 +26,9 @@
   background-color: #fff;
   box-shadow: 5px 5px 25px hsla(0, 0%, 65%, 15%);
   width: 450px;
+  max-width: 450px !important;
   height: auto;
+  -webkit-transition-webkit-transition: all 0.25s ease-in-out;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
@@ -218,6 +220,10 @@ select:-webkit-autofill:focus {
   outline: none;
   -webkit-transition-property: width, background-color, border-radius, font-size,
     border, border-left-color, height;
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height;
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height;
   -webkit-transition-property: width, background-color, border-radius, font-size, border,
     border-left-color, height;
   transition-property: width, background-color, border-radius, font-size, border,
@@ -335,7 +341,7 @@ select:-webkit-autofill:focus {
   margin-left: 10px;
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 850px) {
   .sign-in-sign-up-container {
     padding: 0 25px 0 25px;
     width: 100%;

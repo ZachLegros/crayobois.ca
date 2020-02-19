@@ -34,8 +34,8 @@ const ResetPassword = props => {
       {emailSent ? (
         props.history.push("/utilisateur")
       ) : (
-        <section id="reset-password-section">
-          <div className="reset-password-container">
+        <section id="sign-in-sign-up">
+          <div className="sign-in-sign-up-container">
             <span className="header-text">
               Quelle est votre adresse e-mail?
             </span>

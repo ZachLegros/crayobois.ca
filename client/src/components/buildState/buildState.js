@@ -84,7 +84,7 @@ function BuildState(props) {
     if (totalHaws === 0) {
       countHaws();
     }
-    }, [materials, hardwares, totalHaws]);
+  }, [materials, hardwares, totalHaws]);
 
   if (context.activeCvsPage[0] === "materials") {
     return (
@@ -133,8 +133,10 @@ function BuildState(props) {
           })}
         </ul>
         <div className="buildState-bottom">
-          <SubTotal />
-          <CvsNav />
+          <div className="bottom-content">
+            <SubTotal />
+            <CvsNav />
+          </div>
         </div>
       </div>
     );

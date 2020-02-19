@@ -1,5 +1,5 @@
 .cvs-landing {
-  margin: 100px 250px 100px 250px;
+  padding: 100px 250px 100px 250px;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -74,7 +74,6 @@
 .cvs-landing-feature {
   display: -webkit-box;
   display: flex;
-  padding-right: 25px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
@@ -83,6 +82,7 @@
   padding: 25px;
   box-shadow: 0px 15px 45px rgba(50, 50, 93, 0.041),
     0px 5px 15px rgba(0, 0, 0, 0.07);
+  height: calc(100% - 62.5px);
 }
 
 .cvs-landing-feature-name {
@@ -125,7 +125,7 @@
 
 @media only screen and (max-width: 1250px) {
   .cvs-landing {
-    margin: 50px;
+    padding: 50px 50px 125px 50px;
   }
 
   .cvs-features-header {
@@ -135,8 +135,7 @@
 
 @media only screen and (max-width: 850px) {
   .cvs-landing {
-    margin: 25px 25px 50px 25px;
-    padding: 0;
+    padding: 25px;
   }
 
   .cvs-landing-features {
