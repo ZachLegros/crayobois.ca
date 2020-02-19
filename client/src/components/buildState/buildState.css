@@ -154,16 +154,25 @@
   .cvs-building-status {
     width: 40%;
   }
+
+  .cvs-filter-list li span {
+    font-size: 1rem;
+  }
+
   #cvs-scrollable-section {
     width: 100%;
   }
 
   .sub-total {
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   .sub-total-value {
-    font-size: 20px;
+    font-size: 1rem;
+  }
+
+  .cvs-btn {
+    font-size: 0.9rem;
   }
 }
 

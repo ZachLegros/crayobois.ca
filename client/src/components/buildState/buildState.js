@@ -92,7 +92,7 @@ function BuildState(props) {
         <span className="cvs-filter-name">{filterName}</span>
         <ul className="cvs-filter-list">
           <li>
-            <a
+            <span
               onClick={() => {
                 context.filterMats([]);
                 setFilteringName("Tous les matériaux");
@@ -106,7 +106,7 @@ function BuildState(props) {
               }
             >
               Tous les matériaux ({total})
-            </a>
+            </span>
           </li>
           {matsQty.map(material => {
             const id = uuidv4();
