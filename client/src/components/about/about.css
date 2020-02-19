@@ -56,11 +56,8 @@
   margin-top: 0;
 }
 
-.about-content {
-  display: -webkit-box;
-  display: flex;
-  height: 100%;
-  width: 100%;
+.about-p2 {
+  margin-bottom: 0;
 }
 
 .desktop-img {

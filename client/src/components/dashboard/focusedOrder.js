@@ -89,12 +89,12 @@ const FocusedOrder = props => {
                   return (
                     <div key={item.name} className="focused-order-item-info">
                       <div className="focused-order-img-container">
-                        {item.path.map((path, index) => {
+                        {item.path.map(path => {
                           return (
                             <img
                               key={uuidv4()}
                               src={path}
-                              className={index === 1 ? "focused-order-img second" : "focused-order-img"}
+                              className="focused-order-img"
                             />
                           );
                         })}

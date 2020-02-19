@@ -73,7 +73,7 @@ const Cart = props => {
     setSubTotal(getSubTotal(cart));
     return () => {
       setSuccess(false);
-    }
+    };
   }, [cart]);
 
   return (
@@ -133,6 +133,59 @@ const Cart = props => {
                 Paiement
               </span>
             </div>
+          </div>
+          <div className="cart-content-footer bold">
+            {checkoutStep === "cart" ? (
+              `Sous-total: ${formatter.format(subTotal)}`
+            ) : (
+              <span
+                className="profile-change-password cart-prev-btn"
+                onClick={() => {
+                  if (checkoutStep === "order") {
+                    setCheckoutStep("cart");
+                  } else {
+                    setCheckoutStep("order");
+                  }
+                }}
+              >
+                <i className="fas fa-chevron-left prev-btn-icon" />
+                Précédent
+              </span>
+            )}
+            <span
+              className={
+                checkoutStep === "cart"
+                  ? "mobile-prev-btn hidden"
+                  : "mobile-prev-btn"
+              }
+              onClick={() => {
+                if (checkoutStep === "order") {
+                  setCheckoutStep("cart");
+                } else {
+                  setCheckoutStep("order");
+                }
+              }}
+            >
+              <i className="fas fa-chevron-left mobile-prev-icon" />
+              Précédent
+            </span>
+            <span
+              className={
+                checkoutStep === "payment"
+                  ? "profile-change-password cart-next-btn hidden"
+                  : "profile-change-password cart-next-btn"
+              }
+              onClick={() => {
+                if (checkoutStep === "cart") {
+                  setCheckoutStep("order");
+                } else {
+                  setCheckoutStep("payment");
+                }
+              }}
+            >
+              Suivant
+              <i className="fas fa-chevron-right next-btn-icon" />
+            </span>
           </div>
           <section className="cart-section">
             {checkoutStep === "cart" ? (
@@ -222,59 +275,6 @@ const Cart = props => {
                 resetCheckout={resetCheckout}
               />
             )}
-            <span className="cart-content-footer bold">
-              {checkoutStep === "cart" ? (
-                `Sous-total: ${formatter.format(subTotal)}`
-              ) : (
-                <span
-                  className="profile-change-password cart-prev-btn"
-                  onClick={() => {
-                    if (checkoutStep === "order") {
-                      setCheckoutStep("cart");
-                    } else {
-                      setCheckoutStep("order");
-                    }
-                  }}
-                >
-                  <i className="fas fa-chevron-left prev-btn-icon" />
-                  Précédent
-                </span>
-              )}
-              <span
-                className={
-                  checkoutStep === "cart"
-                    ? "mobile-prev-btn hidden"
-                    : "mobile-prev-btn"
-                }
-                onClick={() => {
-                  if (checkoutStep === "order") {
-                    setCheckoutStep("cart");
-                  } else {
-                    setCheckoutStep("order");
-                  }
-                }}
-              >
-                <i className="fas fa-chevron-left mobile-prev-icon" />
-                Précédent
-              </span>
-              <span
-                className={
-                  checkoutStep === "payment"
-                    ? "profile-change-password cart-next-btn hidden"
-                    : "profile-change-password cart-next-btn"
-                }
-                onClick={() => {
-                  if (checkoutStep === "cart") {
-                    setCheckoutStep("order");
-                  } else {
-                    setCheckoutStep("payment");
-                  }
-                }}
-              >
-                Suivant
-                <i className="fas fa-chevron-right next-btn-icon" />
-              </span>
-            </span>
           </section>
         </React.Fragment>
       )}

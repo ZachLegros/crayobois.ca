@@ -1,15 +1,8 @@
 .cart-container {
   width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: start;
-  justify-content: flex-start;
-  -webkit-box-align: start;
-  align-items: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
   border-bottom: 1px solid #dfdfdf;
 }
 
@@ -146,17 +139,16 @@ input[type="number"] {
 }
 
 .cart-content-footer {
-  color: var(--black);
-  font-size: 1.5rem;
-  width: 100%;
-  margin: 25px 0 50px 0;
+  margin: 25px 0 25px 0;
   display: -webkit-box;
-  display: flex;
+  display: -webkit-inline-box;
+  display: inline-flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
+  height: 37.2px;
   -webkit-box-align: center;
   align-items: center;
-  height: 37.2px;
+  width: 100%;
 }
 
 .next-btn-icon {
@@ -170,26 +162,12 @@ input[type="number"] {
 }
 
 .cart-prev-btn {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  -webkit-box-align: center;
-  align-items: center;
   font-weight: 500;
+  margin: 0;
+  margin-right: auto;
 }
 
 .cart-next-btn {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  -webkit-box-align: center;
-  align-items: center;
   font-weight: 500;
   margin: 0;
 }
@@ -200,9 +178,9 @@ input[type="number"] {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  height: 100%;
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .reversed {
@@ -310,10 +288,8 @@ input[type="number"] {
   }
 
   .mobile-prev-btn {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
+    display: block;
+    margin-right: auto;
   }
 
   .cart-pen-img {
@@ -361,10 +337,6 @@ input[type="number"] {
   .dashboard-nav-container {
     margin: 0 25px 0 25px;
     width: calc(100% - 50px);
-  }
-
-  .dashboard-user {
-    height: 100%;
   }
 
   .cart-container {

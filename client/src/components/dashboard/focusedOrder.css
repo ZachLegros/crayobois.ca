@@ -52,10 +52,6 @@
   opacity: 0.85;
 }
 
-.second {
-  display: inline-block;
-}
-
 .focused-order-info {
   display: -webkit-box;
   display: flex;
@@ -102,11 +98,6 @@
 
 .focused-order-items {
   margin-top: 12.5px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
 }
 
 .focused-order-item-info {
@@ -136,8 +127,8 @@
 }
 
 .focused-order-img {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: auto;
   -o-object-fit: contain;
   object-fit: contain;
 }

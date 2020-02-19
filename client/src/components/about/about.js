@@ -20,7 +20,7 @@ const About = () => {
               Crayobois est une microentreprise de menuiserie spécialisée dans
               la fabrication de stylos en bois divers de haute qualité.
             </p>
-            <p className="about-p">
+            <p className="about-p about-p2">
               Fondée en 2019 par <b className="bold"> Vincent Legros </b> et{" "}
               <b className="bold"> Dominic Violette </b>, jeunes entrepreneurs
               québécois de <b>17 ans</b>, à la suite d’un simple projet

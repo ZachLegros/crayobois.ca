@@ -3,18 +3,19 @@ import "./cvsLanding.css";
 import ScrollReveal from "scrollreveal";
 
 const CvsLanding = () => {
-
   useEffect(() => {
     ScrollReveal().reveal(".f1");
-    ScrollReveal().reveal(".f2", { delay: 25 });
-    ScrollReveal().reveal(".f3", { delay: 50 });
-    ScrollReveal().reveal(".f4", { delay: 75 });
+    ScrollReveal().reveal(".f2");
+    ScrollReveal().reveal(".f3");
+    ScrollReveal().reveal(".f4");
     ScrollReveal().reveal(".cvs-feature-header-container");
-}, []);
+  }, []);
   return (
     <section className="cvs-landing">
       <div className="cvs-feature-header-container">
-        <span className="cvs-features-header">Nos atouts<i className="fas fa-tools cvs-features-header-icon"></i></span>
+        <span className="cvs-features-header">
+          Nos atouts<i className="fas fa-tools cvs-features-header-icon"></i>
+        </span>
       </div>
       <div className="cvs-landing-features">
         <div className="cvs-landing-feature f1">
