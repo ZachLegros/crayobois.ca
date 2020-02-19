@@ -44,7 +44,9 @@
   }
 
   .dashboard-content {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-align: center;
     align-items: center;
   }
 }

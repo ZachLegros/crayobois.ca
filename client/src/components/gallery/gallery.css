@@ -1,11 +1,15 @@
 .image-container {
   height: auto;
+  -o-object-fit: cover;
   object-fit: cover;
   position: relative;
   overflow: hidden;
+  display: -webkit-box;
   display: flex;
   border-radius: 8px;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -20,14 +24,20 @@
 .gallery-image {
   width: 100%;
   height: auto;
+  -o-object-fit: cover;
   object-fit: cover;
+  -webkit-filter: none;
   filter: none;
+  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
 
 .gallery {
   margin-top: 60px;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
   padding: 0 150px;
   width: calc(100% - 300px);
@@ -47,10 +57,15 @@
   width: 100%;
   height: 100%;
   top: 0;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-transform: translateY(100%);
   transform: translateY(100%);
+  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
   opacity: 0;
   font-size: 1.25em;
@@ -58,15 +73,15 @@
 }
 
 .image-container:hover > .gallery-image {
+  -webkit-filter: blur(5px);
   filter: blur(5px);
 }
 
 .image-container:hover > .image-description {
+  -webkit-transform: translateY(0);
   transform: translateY(0);
   opacity: 1;
 }
-
-
 
 @media only screen and (max-width: 1280px) {
   .gallery {
@@ -75,11 +90,11 @@
     margin-top: 60px;
   }
 
-  .gallery-section{
+  .gallery-section {
     grid-template-columns: 100%;
     grid-gap: 0;
     width: calc(100% - 50px);
-    padding: 0 25px
+    padding: 0 25px;
   }
 
   .image-description {

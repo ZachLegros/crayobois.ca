@@ -2,17 +2,26 @@
 #landing-wrapper {
   height: 115vh;
   width: 100vw;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
 }
 
 #landing-txt {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
   margin-top: -15vh;
   line-height: 1.35;
@@ -26,13 +35,17 @@
   top: 0;
   left: 0;
   right: auto;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
 .main-btn {
   min-width: 150px;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -59,22 +72,31 @@
 
 .landing-reveal {
   width: auto;
+  height: -webkit-min-content;
+  height: -moz-min-content;
   height: min-content;
 }
 
 .btn {
+  display: -webkit-box;
   display: flex;
   flex-wrap: nowrap;
   background: var(--orange);
+  -webkit-box-align: center;
   align-items: center;
   text-decoration: none;
   color: var(--white);
   padding: 18px 23px 18px 23px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   font-size: 1.2rem;
   font-weight: 500;
+  -webkit-transition-property: all;
   transition-property: all;
+  -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
   margin-top: 50px;
   border-radius: 8px;
@@ -87,6 +109,7 @@
 }
 
 .btn:hover {
+  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   box-shadow: var(--long_shadow);
   background-color: var(--light_orange);
@@ -97,8 +120,6 @@
   margin-left: 15px;
   color: hsl(0, 0%, 96%);
 }
-
-
 
 /*Responsiveness*/
 
@@ -127,7 +148,10 @@
 
 @media only screen and (max-width: 850px) {
   #landing-wrapper {
+    -webkit-box-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
     height: 55vh;
     margin-top: 60px;
   }
@@ -147,16 +171,19 @@
   }
 
   #landing-txt {
+    display: -webkit-box;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
   }
 
   .landing-image {
+    -o-object-fit: cover;
     object-fit: cover;
     width: 150%;
     max-height: 100%;
   }
 }
-
-

@@ -2,15 +2,23 @@
   margin-top: 60px;
   height: calc(100vh - 60px);
   padding: 0 250px 0 250px;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
   align-items: center;
 }
 
 .contact-container {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
   flex-direction: row;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
   width: 900px;
   background-color: #fff;
@@ -23,6 +31,7 @@
 }
 
 .contact-image {
+  -o-object-fit: cover;
   object-fit: cover;
   height: 100%;
   max-width: 40%;
@@ -30,17 +39,22 @@
 }
 
 .contact-content {
+  display: -webkit-box;
   display: flex;
   height: calc(100% - 100px);
   width: 70%;
+  -webkit-box-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: start;
   align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
   padding: 50px;
 }
 
 .contact-header-text {
-  font-size: 1.65rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-align: left;
   line-height: 1.5rem;
@@ -52,9 +66,9 @@
 }
 
 .contact-sub-header {
-  color: hsl(204, 20%, 30%) !important;
-  font-weight: 500 !important;
-  font-size: 18px !important;
+  color: hsl(204, 20%, 40%) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
   margin: 12.5px 0 0 0;
 }
 
@@ -66,13 +80,16 @@
 }
 
 .technical-issues {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
 }
 
 .contact-sub-header-icon {
   font-size: 14px;
-  color: hsl(204, 25%, 75%);
+  color: hsl(204, 20%, 60%);
   margin-left: 8px;
 }
 
@@ -84,11 +101,15 @@
   border-radius: 8px;
   padding: 8px 16px 8px 16px;
   text-shadow: 5px 0px 35px rgba(95, 95, 95, 0.15);
+  width: -webkit-max-content;
   width: max-content;
   width: -moz-max-content;
   cursor: pointer;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-property: opacity;
   transition-property: opacity;
+  -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
   margin: 12.5px 0 37.5px 0;
   text-decoration: none;
@@ -106,7 +127,7 @@
   .contact-section {
     padding: 0 50px 0 50px;
   }
-  
+
   .contact-container {
     width: 100%;
   }
@@ -119,7 +140,9 @@
   }
 
   .contact-container {
+    -webkit-box-align: start;
     align-items: flex-start;
+    -webkit-box-pack: start;
     justify-content: flex-start;
     width: 100%;
     background-color: #fff;

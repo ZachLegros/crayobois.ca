@@ -4,6 +4,7 @@
   font-size: 17px;
   cursor: pointer;
   position: relative;
+  -webkit-transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -13,26 +14,37 @@
   font-size: 17px;
   cursor: pointer;
   position: relative;
+  -webkit-transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cvs-dropdown-filter-list {
   padding: 0;
   list-style: none;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   height: 100%;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
-  margin: 120px 0 0 25px;
+  margin: 132.5px 0 0 25px;
 }
 
 .filter-list-li {
   padding: 0 0 10px 0;
   width: 100%;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
   align-items: center;
   z-index: 10;
 }
@@ -45,22 +57,27 @@
   width: 100%;
   height: 100%;
   display: none;
+  -webkit-box-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: start;
   align-items: flex-start;
   position: absolute;
   z-index: 1;
+  -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: #fff;
+  -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
   opacity: 0;
 }
 
 .haws-dropdown {
+  -webkit-box-pack: end;
   justify-content: flex-end;
 }
 
 .haws-filter-list {
-  margin: 120px 25px 0 0;
+  margin: 132.5px 25px 0 0;
   width: 100%;
   padding: 0 0 0 25px;
 }
@@ -68,19 +85,24 @@
 .haws-filter-list-li {
   padding: 0 0 10px 0;
   width: 100%;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
   align-items: center;
   z-index: 10;
 }
 
 .cvs-dropdown-active {
+  -webkit-transform: translateY(0);
   transform: translateY(0);
   opacity: 1;
 }
 
 @media only screen and (max-width: 850px) {
   #cvs-dropdown {
+    display: -webkit-box;
     display: flex;
   }
 

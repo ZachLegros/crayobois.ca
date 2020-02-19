@@ -2,10 +2,16 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
   align-items: center;
   z-index: 101;
   background-color: #fff;
@@ -13,8 +19,11 @@
   padding: 25px;
   max-width: 550px;
   width: 70%;
+  -webkit-animation: alert-active;
   animation: alert-active;
+  -webkit-animation-duration: 0.25s;
   animation-duration: 0.25s;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -28,8 +37,11 @@
 }
 
 .dashboard-alert-buttons {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
   align-items: center;
   color: #fff;
   font-size: 1.1rem;
@@ -50,6 +62,7 @@
   margin-right: 12.5px;
   border: none;
   outline: none;
+  -webkit-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
 }
 
@@ -69,6 +82,7 @@
   margin-left: 12.5px;
   border: none;
   outline: none;
+  -webkit-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
 }
 
@@ -83,8 +97,11 @@
   z-index: 100;
   top: 0;
   background-color: rgba(33, 33, 39, 0.267);
+  -webkit-animation: overlay-active;
   animation: overlay-active;
+  -webkit-animation-duration: 0.25s;
   animation-duration: 0.25s;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -97,9 +114,20 @@
   font-weight: 400;
   font-size: 1.25rem;
   color: hsl(204, 20%, 40%);
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: center;
   justify-content: center;
   margin-bottom: 25px;
+}
+
+@-webkit-keyframes overlay-active {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes overlay-active {
@@ -111,13 +139,28 @@
   }
 }
 
-@keyframes alert-active {
+@-webkit-keyframes alert-active {
   from {
     opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0);
     transform: translate(-50%, -50%) scale(0);
   }
   to {
     opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes alert-active {
+  from {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
     transform: translate(-50%, -50%) scale(1);
   }
 }

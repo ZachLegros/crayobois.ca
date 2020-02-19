@@ -56,9 +56,14 @@ svg {
 .success-section {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
   padding-bottom: 50px;
 }
@@ -73,7 +78,7 @@ svg {
 }
 
 .footer-hidden {
-    display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 850px) {
@@ -82,6 +87,7 @@ svg {
     margin: 25px;
     height: calc(43vh - 37.5px);
     width: calc(100% - 50px);
+    -webkit-box-pack: center;
     justify-content: center;
   }
 
@@ -91,6 +97,7 @@ svg {
 
   .cart-section {
     min-height: 43vh;
+    -webkit-box-pack: end;
     justify-content: flex-end;
   }
 }

@@ -7,10 +7,12 @@
 /* mapping */
 
 .order {
+  display: -webkit-box;
   display: flex;
   height: 100px;
   width: calc(100% - 50px);
   padding: 12.5px 25px;
+  -webkit-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
   cursor: pointer;
   border-bottom: 1px solid #e9ebf1;
@@ -30,8 +32,12 @@
 
 .order-info-container {
   width: 15%;
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: end;
   align-items: flex-end;
 }
 
@@ -46,37 +52,56 @@
   color: hsl(204, 20%, 75%);
   margin-right: 8px;
   width: 15px;
+  display: -webkit-inline-box;
   display: inline-flex;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
   align-items: center;
 }
 
 .order-icon-right {
   margin-left: 8px;
   margin-right: 0;
+  -webkit-box-pack: end;
   justify-content: flex-end;
 }
 
 .order-user {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
 }
 
 .order-user-info {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
 }
 
 .order-info-container {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: end;
   align-items: flex-end;
+  -webkit-box-pack: justify;
   justify-content: space-between;
 }
 
 .order-info-quantities {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   flex-direction: column;
+  -webkit-box-align: end;
   align-items: flex-end;
 }
 
@@ -84,9 +109,6 @@
   font-weight: 600;
   font-size: 16px;
 }
-
-
-
 
 @media only screen and (max-width: 1250px) {
   .order {
@@ -120,6 +142,8 @@
   }
 
   .focused-order-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
   }
 
@@ -147,7 +171,4 @@
   .second {
     display: none !important;
   }
-
-
-  
 }
