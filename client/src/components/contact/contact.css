@@ -40,7 +40,7 @@
 }
 
 .contact-header-text {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: 600;
   text-align: left;
   line-height: 1.5rem;
@@ -52,10 +52,9 @@
 }
 
 .contact-sub-header {
-  color: hsl(204, 20%, 55%) !important;
-  font-weight: 600 !important;
-  font-size: 16px !important;
-  text-transform: uppercase;
+  color: hsl(204, 20%, 30%) !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
   margin: 12.5px 0 0 0;
 }
 

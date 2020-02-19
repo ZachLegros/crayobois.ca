@@ -1,14 +1,18 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../context/authContext";
+import CvsContext from "../context/cvsContext";
 import "./orders.css";
+import FocusedOrder from "./focusedOrder";
 const uuidv4 = require("uuid/v4");
 
 const Orders = props => {
   const authContext = useContext(AuthContext);
+  const context = useContext(CvsContext);
   const [orders, setOrders] = authContext.orders;
   const [moreDetails, setMoreDetails] = useState("");
+  const [focusedOrder, setFocusedOrder] = context.focusedOrder;
 
-  const formatter = new Intl.NumberFormat("fr-CA", {
+  const priceFormatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
     currency: "CAD",
     minimumFractionDigits: 2
@@ -27,6 +31,10 @@ const Orders = props => {
     }
 
     return newDate;
+  };
+
+  const removeFocus = () => {
+    setFocusedOrder(null);
   };
 
   const toggleHandler = uid => {
@@ -48,122 +56,66 @@ const Orders = props => {
         </React.Fragment>
       ) : (
         <section className="orders-section">
-          <div className="orders-container">
-            <div className="columns-names">
-              <ul>
-                <li className="info-col">Commande</li>
-                <li className="details-col">Détails</li>
-                <li className="status-col">Statut</li>
-              </ul>
-            </div>
+          {focusedOrder ? (
+            <FocusedOrder order={focusedOrder} removeFocus={removeFocus} />
+          ) : (
             <div className="orders">
-              {orders.map((order, index) => {
-                const itemsList = order.purchase_units[0].items;
-                const subTotal =
-                  order.purchase_units[0].amount.breakdown.item_total.value;
-                const taxes =
-                  order.purchase_units[0].amount.breakdown.tax_total.value;
-                const shipping =
-                  order.purchase_units[0].amount.breakdown.shipping.value;
-                const total = order.purchase_units[0].amount.value;
-                let items = [];
-                const itemIndex = `more-details-item${index}`;
-
-                for (var i = 0; i < itemsList.length; i++) {
-                  items.push(itemsList[i]);
-                }
-
+              {orders.map(order => {
                 return (
-                  <div className="order" key={uuidv4()}>
-                    <div className="order-cols">
-                      <div className="order-info info-col">
-                        <span>{`#${order.customId}`}</span>
-                      </div>
-                      <div className="order-details details-col">
-                        <span>
-                          {`Total: ${formatter.format(
-                            order.purchase_units[0].amount.value
-                          )}`}
-                        </span>
-                        <span>{parseDate(order.create_time)}</span>
-                        <span>
-                          {`Expédié à: ${order.payer.name.given_name} ${order.payer.name.surname}`}
-                        </span>
-                      </div>
-                      <div className="order-status status-col">
-                        <span className="order-status">
-                          {order.order_status}
+                  <div
+                    className="order"
+                    onClick={() => {
+                      setFocusedOrder(order);
+                      const d = document.querySelector(".dashboard-right");
+                    }}
+                    key={order.id}
+                  >
+                    <div className="order-id-container">
+                      <span className="order-text">
+                        #{order.customId - 100000000}
+                      </span>
+                    </div>
+                    <div className="order-client-info-container">
+                      <div className="order-user">
+                        <div className="order-user-info">
+                          <span className="order-text">
+                            <i className="fas fa-user order-icon"></i>
+                            {`${order.payer.name.given_name} ${order.payer.name.surname}`}
+                          </span>
+                          <span className="order-text">
+                            <i className="fas fa-envelope order-icon"></i>
+                            {order.payer.email_address}
+                          </span>
+                        </div>
+                        <span className="order-text">
+                          <i className="far fa-calendar-alt order-icon"></i>
+                          {parseDate(order.create_time)}
                         </span>
                       </div>
                     </div>
-                    <div className="order-more-details-container">
-                      <span
-                        onClick={() => {
-                          toggleHandler(itemIndex);
-                        }}
-                        className="order-more-details-btn"
-                      >
-                        {moreDetails === itemIndex
-                          ? "Moins de détails"
-                          : "Plus de détails"}
-                        {moreDetails === itemIndex ? (
-                          <i className="fas fa-minus order-details-icon"></i>
-                        ) : (
-                          <i className="fas fa-plus order-details-icon"></i>
-                        )}
-                      </span>
-                      <div
-                        id={itemIndex}
-                        className={
-                          moreDetails === itemIndex
-                            ? "order-more-details more-details-toggled"
-                            : "order-more-details"
-                        }
-                      >
-                        <div className="order-items-container more-details-container">
-                          {items.map(item => {
-                            return (
-                              <div
-                                key={uuidv4()}
-                                className="order-item item-more-details"
-                              >
-                                <div className="item-name">
-                                  <span className="order-item-text more-details-item-txt">
-                                    {`${item.name} `}
-                                    <span className="order-item-text item-quantity more-details-item-txt">
-                                      {" "}
-                                      {` x${item.quantity}`}
-                                    </span>
-                                  </span>
-                                </div>
-                                <span className="order-item-text right-aligned bold more-details-item-txt">
-                                  {formatter.format(item.unit_amount.value)}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <div className="order-total more-details-breakdown">
-                          <span className="order-total-text more-details-item-txt">
-                            Sous-total: {formatter.format(subTotal)}
-                          </span>
-                          <span className="order-total-text more-details-item-txt">
-                            Taxes (TPS et TVQ): {formatter.format(taxes)}
-                          </span>
-                          <span className="order-total-text more-details-item-txt">
-                            Livraison: {formatter.format(shipping)}
-                          </span>
-                          <span className="order-total-text bold more-details-item-txt">
-                            Total: {formatter.format(total)}
-                          </span>
-                        </div>
+                    <div className="order-info-container">
+                      <div className="order-info-quantities">
+                        <span className="order-text">
+                          {priceFormatter.format(
+                            order.purchase_units[0].amount.value
+                          )}
+                        </span>
+                        <span className="order-text">
+                          {order.purchase_units[0].items.length}
+                          <i className="fas fa-pen-alt order-icon order-icon-right"></i>
+                        </span>
                       </div>
+                      <span className="order-text order-state">
+                        {order.order_status === "Livré"
+                          ? "Livré"
+                          : "En attente"}
+                      </span>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
+          )}
         </section>
       )}
     </React.Fragment>

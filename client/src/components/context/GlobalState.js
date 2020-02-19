@@ -27,6 +27,7 @@ const GlobalState = props => {
   const [sortedHaws, setSortedHaws] = useState([]);
   const [prevToggleHaw, setPrevToggleHaw] = useState(0);
   const [cvsAlertOn, setCvsAlertOn] = useState(false);
+  const [focusedOrder, setFocusedOrder] = useState(null);
 
   // firebase config
   const firebaseConfig = {
@@ -239,7 +240,8 @@ const GlobalState = props => {
         hawsFilteringName: [hawsFilteringName, setHawsFilteringName],
         scrollTop: scrollTop,
         prevToggleHaw: [prevToggleHaw, setPrevToggleHaw],
-        cvsAlertOn: [cvsAlertOn, setCvsAlertOn]
+        cvsAlertOn: [cvsAlertOn, setCvsAlertOn],
+        focusedOrder: [focusedOrder, setFocusedOrder]
       }}
     >
       {props.children}

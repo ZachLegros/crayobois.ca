@@ -36,7 +36,7 @@ const Contact = props => {
                 <i className="fas fa-cogs contact-sub-header-icon"></i>
               </span>
               <span className="contact-text">
-                Pour tous problèmes techniques, S.V.P contactez notre webmestre
+                Pour tous problèmes techniques, S.V.P contactez notre développeur
                 afin de reporter ceux-ci.
               </span>
               <a
