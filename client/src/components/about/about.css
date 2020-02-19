@@ -51,6 +51,14 @@
   width: 100%;
 }
 
+.desktop-img {
+  display: block;
+}
+
+.mobile-img {
+  display: none;
+}
+
 @media only screen and (max-width: 1250px) {
   .about-container {
     padding: 50px;
@@ -76,5 +84,17 @@
     box-shadow: var(--mid_shadow);
     max-width: none;
     max-height: none;
+  }
+
+  .desktop-img {
+    display: none;
+  }
+
+  .mobile-img {
+    display: block;
+  }
+
+  .about-section {
+    padding-bottom: 25px;
   }
 }

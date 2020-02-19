@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Landing from "../landing/landing";
 import CvsLanding from "../cvsLanding/cvsLanding";
 import About from "../about/about";
+import Footer from "../footer/footer";
 
 function Home(props) {
 
@@ -10,6 +11,7 @@ function Home(props) {
         <Landing />
         <CvsLanding />
         <About />
+        <Footer />
       </React.Fragment>
     );
   };

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import img1 from "./images/DSC01607.jpg";
-import img2 from "./images/DSC01677.jpg";
-import "./about.css";
 import ScrollReveal from "scrollreveal";
+import "./about.css";
 
 const About = () => {
   useEffect(() => {
     ScrollReveal().reveal(".cvs-features-header");
     ScrollReveal().reveal(".about-p");
-    ScrollReveal().reveal(".about-img");
   }, []);
   return (
     <section className="about-section">
@@ -33,7 +30,14 @@ const About = () => {
             </p>
           </div>
         </div>
-        <img src={img2} className="about-img" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/images%2FDSC01677.jpg?alt=media&token=b473ab8e-e0f6-4ab2-b682-d10b3b69b0c8"
+          className="about-img mobile-img"
+        />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/images%2FDSC01607.jpg?alt=media&token=250984a5-57e3-407a-af56-820e6bcbbf32"
+          className="about-img desktop-img"
+        />
       </div>
     </section>
   );

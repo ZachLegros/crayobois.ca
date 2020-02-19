@@ -17,6 +17,8 @@ function BuildState(props) {
   const [materials, setMaterials] = useState([...context.materials]);
   const [hardwares, setHardwares] = useState([...context.hardwares]);
   const activeCvsPage = context.activeCvsPage[0];
+  const sortedHaws = context.sortedHaws[0];
+  const [totalHaws, setTotalHaws] = useState(0);
 
   //function that gets all the wood type and their quantities
   function sorted(collection, collectionName) {
@@ -67,10 +69,22 @@ function BuildState(props) {
     }
   }
 
+  const countHaws = () => {
+    let total = 0;
+    const types = Object.entries(sortedHaws);
+    for (let i = 0; i < types.length; i++) {
+      total += types[i].length;
+    }
+    setTotalHaws(total);
+  };
+
   useEffect(() => {
     setMatQty(sorted(materials, "mats"));
     setHawsQty(sorted(hardwares, "haws"));
-  }, [materials, hardwares]);
+    if (totalHaws === 0) {
+      countHaws();
+    }
+    }, [materials, hardwares, totalHaws]);
 
   if (context.activeCvsPage[0] === "materials") {
     return (
@@ -129,7 +143,7 @@ function BuildState(props) {
       <div className="cvs-building-status">
         <span className="cvs-filter-name">{filterName}</span>
         <ul className="cvs-filter-list">
-        <li>
+          <li>
             <span
               onClick={() => {
                 context.filterHaws("*");
@@ -143,7 +157,7 @@ function BuildState(props) {
                   : "filter-off"
               }
             >
-              Tous les matériels
+              Tous les matériels {`(${totalHaws})`}
             </span>
           </li>
           {hawsQty.map(hardware => {
