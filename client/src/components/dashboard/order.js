@@ -9,7 +9,7 @@ const Order = props => {
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
   const [taxes, setTaxes] = useState(0);
-  const shipping = authContext.shipping;
+  const shipping = authContext.shipping[0];
   const [total, setTotal] = useState(0);
   const [priceBreakdown, setPriceBreakdown] = authContext.priceBreakdown;
 
