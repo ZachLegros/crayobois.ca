@@ -270,6 +270,7 @@ input[type="number"] {
 
 .cart-action {
   margin-top: 25px;
+  width: 140px !important;
 }
 
 @media only screen and (max-width: 850px) {

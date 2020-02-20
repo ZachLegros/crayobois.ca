@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "crayobois-fe722"
+  },
+  "targets": {
+    "crayobois-fe722": {
+      "hosting": {
+        "public": [
+          "crayobois-testing"
+        ]
+      }
+    }
+  }
+}

@@ -9,15 +9,9 @@ const Order = props => {
   const [cart, setCart] = useState(Object.assign([], user.shoppingCart));
   const [subTotal, setSubTotal] = useState(0);
   const [taxes, setTaxes] = useState(0);
-  const [shipping, setShipping] = useState(0);
+  const shipping = authContext.shipping;
   const [total, setTotal] = useState(0);
   const [priceBreakdown, setPriceBreakdown] = authContext.priceBreakdown;
-  const breakdown = {
-    subTotal: subTotal,
-    taxes: taxes,
-    shipping: shipping,
-    total: total
-  };
 
   const formatter = new Intl.NumberFormat("fr-CA", {
     style: "currency",
@@ -36,7 +30,7 @@ const Order = props => {
     setPriceBreakdown({
       subTotal: subTotal,
       taxes: taxes,
-      shipping: "0",
+      shipping: shipping,
       total: total
     });
   };

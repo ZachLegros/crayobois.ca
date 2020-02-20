@@ -26,7 +26,7 @@ const SignIn = props => {
 
       setTimeout(() => {
         authContext.signin(email, password);
-      }, 500);
+      }, 250);
     });
   }, []);
 

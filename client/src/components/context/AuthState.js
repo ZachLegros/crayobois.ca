@@ -29,6 +29,7 @@ const AuthState = props => {
   const [orders, setOrders] = useState(user.orders);
   const [userNav, setUserNav] = useState(null);
   const [success, setSuccess] = useState(false);
+  const shipping = useState(9.6);
 
   // random color generator for user profile
   function getRandomColor() {
@@ -377,6 +378,9 @@ const AuthState = props => {
 
   const createPurchaseUnits = cart => {
     const user = auth.currentUser;
+    if (priceBreakdown.shipping !== shipping) {
+      priceBreakdown.shipping = shipping;
+    }
 
     // generating items list
     let items = [];
@@ -415,7 +419,8 @@ const AuthState = props => {
           currency_code: "CAD",
           value: `${(
             parseFloat(items[0].tax.value * items[0].quantity) +
-            parseFloat(priceBreakdown.subTotal)
+            parseFloat(priceBreakdown.subTotal) +
+            parseFloat(priceBreakdown.shipping)
           ).toFixed(2)}`,
           breakdown: {
             item_total: {
@@ -425,6 +430,10 @@ const AuthState = props => {
             tax_total: {
               currency_code: "CAD",
               value: `${(items[0].tax.value * items[0].quantity).toFixed(2)}`
+            },
+            shipping: {
+              currency_code: "CAD",
+              value: parseFloat(priceBreakdown.shipping).toFixed(2)
             }
           }
         },
@@ -575,7 +584,8 @@ const AuthState = props => {
         isAuth: [isAuth, setIsAuth],
         auth: auth,
         userNav: [userNav, setUserNav],
-        success: [success, setSuccess]
+        success: [success, setSuccess],
+        shipping: shipping
       }}
     >
       {props.children}

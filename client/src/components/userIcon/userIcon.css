@@ -62,6 +62,22 @@
   justify-content: center;
 }
 
+.cart-notif {
+  position: relative;
+}
+
+.cart-length {
+  position: absolute;
+  background-color: var(--orange);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  color: #fff;
+}
+
 @media only screen and (max-width: 1250px) {
   .nav-user-links {
     font-size: 14px;
