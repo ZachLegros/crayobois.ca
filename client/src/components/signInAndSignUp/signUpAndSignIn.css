@@ -224,6 +224,27 @@ select:-webkit-autofill:focus {
   -webkit-transition-property: width, background-color, border-radius, font-size,
     border, border-left-color, height, opacity;
 
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
   -webkit-transition-property: width, background-color, border-radius, font-size, border,
     border-left-color, height, opacity;
 
@@ -346,7 +367,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 850px) {
   .sign-in-sign-up-container {
     padding: 0 25px 0 25px;
-    width: 100%;
+    width: calc(100% - 50px);
     border-radius: 0;
     height: calc(100vh - 160px);
     display: -webkit-box;
@@ -354,7 +375,6 @@ select:-webkit-autofill:focus {
     -webkit-box-pack: start;
     justify-content: flex-start;
     box-shadow: none;
-    overflow: hidden;
   }
 
   .input {
@@ -376,6 +396,10 @@ select:-webkit-autofill:focus {
 
   #sign-in-sign-up {
     background-color: #fff;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    padding-top: 0;
   }
 
   .signin-forgot-password {
@@ -400,12 +424,15 @@ select:-webkit-autofill:focus {
 
 @media only screen and (max-height: 650px) {
   .sign-in-sign-up-container {
-    width: 100%;
     height: calc(100vh - 60px);
+    min-height: 550px;
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
-    overflow: hidden;
+  }
+
+  .header-text {
+    font-size: 22px;
   }
 }

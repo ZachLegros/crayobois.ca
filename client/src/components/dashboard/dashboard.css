@@ -268,7 +268,7 @@
 }
 
 .dashboard-mobile-dropdown-toggler {
-  padding: 12.5px;
+  padding: 12.5px 0;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -277,7 +277,7 @@
   align-items: center;
   list-style: none;
   border-bottom: 1px solid #dfdfdf;
-  margin: 0;
+  margin: 0 12.5px;
   width: 100%;
 }
 
@@ -352,6 +352,10 @@
 
   .profile-show {
     display: none;
+  }
+
+  .dashboard-hero-logout-btn {
+    font-size: 0.8rem;
   }
 
   .dashboard-user {

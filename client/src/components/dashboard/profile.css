@@ -86,6 +86,10 @@
     align-items: center;
   }
 
+  .profile-change-password {
+    font-size: 0.8rem !important;
+  }
+
   .profile-attribute-state {
     margin: 0;
     font-size: 0.95rem;

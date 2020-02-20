@@ -402,3 +402,29 @@
     margin-bottom: 60px;
   }
 }
+
+@media only screen and (max-width: 380px) {
+  .cvs-state {
+    font-size: 16px !important;
+  }
+
+  .sub-total-value {
+    font-size: 16px !important;
+  }
+
+  .cvs-btn {
+    font-size: 14px !important;
+  }
+
+  .materials-wrapper {
+    margin-top: 100px !important;
+  }
+
+  .thumbnail-img-container {
+    width: 9.5vw;
+  }
+
+  .filter-list-li a {
+    font-size: 0.9rem;
+  }
+}

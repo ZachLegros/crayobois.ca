@@ -187,3 +187,20 @@
     max-height: 100%;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  .landing-reveal h1 {
+    font-size: 2.2rem !important;
+  }
+
+  .landing-reveal h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .main-btn {
+    font-size: 0.8rem;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content !important;
+  }
+}

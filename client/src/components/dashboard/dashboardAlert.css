@@ -170,9 +170,17 @@
     font-size: 1rem;
   }
 
+  .dashboard {
+    overflow: scroll !important;
+  }
+
   .reset-password-email {
     font-size: 1rem;
     margin: 12.5px 0 25px 0;
+  }
+
+  .dashboard-mobile-nav-link {
+    font-size: 1rem;
   }
 
   .dashboard-alert-msg {

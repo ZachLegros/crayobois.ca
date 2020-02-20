@@ -313,3 +313,25 @@
     cursor: default;
   }
 }
+
+@media only screen and (max-width: 380px) {
+  #ham {
+    width: 21px;
+  }
+
+  .nav-user-mobile {
+    width: 21px;
+  }
+
+  .nav-user-mobile-icon {
+    font-size: 1.1rem !important;
+  }
+
+  .logo {
+    width: 110px;
+  }
+
+  .mobile-nav-links li span {
+    font-size: 1rem;
+  }
+}

@@ -387,7 +387,7 @@ const AuthState = props => {
     for (let i = 0; i < cart.length; i++) {
       const currentItem = cart[i];
       let item = {
-        name: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type}`,
+        name: `${currentItem.pen[0].obj.name}, ${currentItem.pen[1].obj.type} ${currentItem.pen[1].obj.color}`,
         description: `Stylo personnalisé ${i + 1}`,
         sku: `${currentItem.id}`,
         tax: {
