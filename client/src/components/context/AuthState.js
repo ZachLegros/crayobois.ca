@@ -517,17 +517,8 @@ const AuthState = props => {
       // add order to analytics
       db.collection("orders")
         .doc("ordersList")
-        .get()
-        .then(doc => {
-          const data = doc.data();
-          let waiting = data["waiting"];
-          waiting.push(order);
-          // update analytics
-          db.collection("orders")
-            .doc("ordersList")
-            .update({
-              ["waiting"]: waiting
-            });
+        .update({
+          ["waiting"]: firebase.firestore.FieldValue.arrayUnion(order)
         });
 
       // get old orders from users
