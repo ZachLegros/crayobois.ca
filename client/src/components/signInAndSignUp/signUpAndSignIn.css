@@ -245,6 +245,12 @@ select:-webkit-autofill:focus {
   -webkit-transition-property: width, background-color, border-radius, font-size,
     border, border-left-color, height, opacity;
 
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
+  -webkit-transition-property: width, background-color, border-radius, font-size,
+    border, border-left-color, height, opacity;
+
   -webkit-transition-property: width, background-color, border-radius, font-size, border,
     border-left-color, height, opacity;
 
@@ -399,7 +405,7 @@ select:-webkit-autofill:focus {
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;
-    padding-top: 0;
+    padding-top: 60px;
   }
 
   .signin-forgot-password {
@@ -430,6 +436,10 @@ select:-webkit-autofill:focus {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
+  }
+
+  #sign-in-sign-up {
+    padding-top: 0;
   }
 
   .header-text {

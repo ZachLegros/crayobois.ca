@@ -51,7 +51,7 @@ const Dashboard = props => {
                 : "dashboard-hero profile-show"
             }
           >
-            <i className="fas fa-user dashboard-user-icon"></i>
+            <i class="fas fa-smile dashboard-user-icon"></i>
             <span className="dashboard-hero-username">{user.fullName}</span>
             <span className="dashboard-hero-email">{user.email}</span>
             <button

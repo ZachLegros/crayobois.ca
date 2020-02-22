@@ -11,8 +11,7 @@
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   flex-direction: row;
-  padding: 100px 250px 100px 250px;
-  position: relative;
+  padding: 100px 250px;
 }
 
 .about-img-container {

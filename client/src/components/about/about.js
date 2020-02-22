@@ -21,12 +21,12 @@ const About = () => {
               la fabrication de stylos en bois divers de haute qualité.
             </p>
             <p className="about-p about-p2">
-              Fondée en 2019 par <b className="bold"> Vincent Legros </b> et{" "}
-              <b className="bold"> Dominic Violette </b>, jeunes entrepreneurs
-              québécois de <b>17 ans</b>, à la suite d’un simple projet
-              scolaire, Crayobois est devenue une microentreprise qui se
-              démarque par son authenticité, son originalité, sa jeunesse et par
-              la qualité de ses produits.
+              Fondée en 2019 par <b> Vincent Legros </b> et{" "}
+              <b> Dominic Violette </b>, jeunes entrepreneurs québécois de{" "}
+              <b>17 ans</b>, à la suite d’un simple projet scolaire, Crayobois
+              est devenue une microentreprise qui se démarque par son
+              authenticité, son originalité, sa jeunesse et par la qualité de
+              ses produits.
             </p>
           </div>
         </div>

@@ -232,6 +232,8 @@ const Cart = props => {
                                   className="cart-pen-img"
                                   key={uuidv4()}
                                 />
+                              </div>
+                              <div>
                                 {item.obj.name ? (
                                   <span
                                     className="cart-pen-item-name"
@@ -244,10 +246,7 @@ const Cart = props => {
                                     className="cart-pen-item-name"
                                     key={uuidv4()}
                                   >
-                                    {item.obj.type}{" "}
-                                    <span className="cart-pen-item-color">
-                                      {item.obj.color}
-                                    </span>
+                                    {item.obj.type} {item.obj.color}
                                   </span>
                                 )}
                               </div>

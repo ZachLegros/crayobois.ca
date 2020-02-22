@@ -513,30 +513,33 @@ const AuthState = props => {
               ["tvq"]: tvq,
               ["totalShipping"]: totalShipping
             });
-        });
-      // add order to analytics
-      db.collection("orders")
-        .doc("ordersList")
-        .update({
-          ["waiting"]: firebase.firestore.FieldValue.arrayUnion(order)
-        });
-
-      // get old orders from users
-      db.collection("users")
-        .doc(uid)
-        .get()
-        .then(doc => {
-          const data = doc.data();
-          let orders = data["orders"];
-          orders.push(order);
-
-          setOrders(orders);
-
-          // update orders of user
+        })
+        .then(() => {
+          // add order to analytics
+          db.collection("orders")
+            .doc("ordersList")
+            .update({
+              ["waiting"]: firebase.firestore.FieldValue.arrayUnion(order)
+            });
+        })
+        .then(() => {
+          // get old orders from users
           db.collection("users")
             .doc(uid)
-            .update({
-              ["orders"]: orders
+            .get()
+            .then(doc => {
+              const data = doc.data();
+              let orders = data["orders"];
+              orders.push(order);
+
+              setOrders(orders);
+
+              // update orders of user
+              db.collection("users")
+                .doc(uid)
+                .update({
+                  ["orders"]: orders
+                });
             });
         });
     }
