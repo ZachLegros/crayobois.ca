@@ -30,6 +30,7 @@ const AuthState = props => {
   const [userNav, setUserNav] = useState(null);
   const [success, setSuccess] = useState(false);
   const shipping = useState(9.6);
+  const [gallery, setGallery] = useState([]);
 
   // random color generator for user profile
   function getRandomColor() {
@@ -545,6 +546,17 @@ const AuthState = props => {
     }
   };
 
+  const getGallery = () => {
+    db.collection("gallery").get().then(snapshot => {
+      let docs = [];
+      snapshot.forEach(doc => {
+        docs.push(doc.data());
+      })
+      setGallery(docs);
+    });
+
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -579,7 +591,9 @@ const AuthState = props => {
         auth: auth,
         userNav: [userNav, setUserNav],
         success: [success, setSuccess],
-        shipping: shipping
+        shipping: shipping,
+        getGallery: getGallery,
+        gallery: gallery
       }}
     >
       {props.children}
