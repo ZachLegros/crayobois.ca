@@ -33,7 +33,7 @@ const Cvs = props => {
   } else {
     return (
       <React.Fragment>
-        {cvsAlertOn ? <CvsAlert /> : <React.Fragment />}
+        {cvsAlertOn ? <CvsAlert history={props.history}/> : <React.Fragment />}
         <div className="app-wrapper">
           <section
             id="cvs-scrollable-section"

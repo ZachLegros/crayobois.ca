@@ -32,10 +32,6 @@ const About = () => {
         </div>
         <img
           src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/images%2FDSC01677.jpg?alt=media&token=b473ab8e-e0f6-4ab2-b682-d10b3b69b0c8"
-          className="about-img mobile-img"
-        />
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/crayobois-fe722.appspot.com/o/images%2FDSC01607.jpg?alt=media&token=250984a5-57e3-407a-af56-820e6bcbbf32"
           className="about-img desktop-img"
         />
       </div>

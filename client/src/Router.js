@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Home from "./components/home/home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import User from "./components/signInAndSignUp/user";
-import LoggedInChecker from "./components/cvs/loggedInChecker";
+import Cvs from "./components/cvs/cvs";
 import ResetPassword from "./components/resetPassword/resetPassword";
 import Nav from "./components/nav/nav";
 import NavContext from "./components/context/navLinksContext";
@@ -38,7 +38,7 @@ const RouterComponent = () => {
             <Route
               path="/creez-votre-stylo"
               exact
-              render={props => <LoggedInChecker {...props} />}
+              render={props => <Cvs {...props} />}
             />
             <Route
               path="/utilisateur"

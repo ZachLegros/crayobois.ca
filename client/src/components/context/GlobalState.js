@@ -57,7 +57,6 @@ const GlobalState = props => {
 
   //fetching materials
   function getMats() {
-    if (auth.currentUser.uid) {
       db.collection("shop")
         .doc("materialsList")
         .get()
@@ -66,12 +65,10 @@ const GlobalState = props => {
           setMats([...data.materials]);
           setLoading(false);
         });
-    }
   }
 
   //fetching hardwares
   function getHaws() {
-    if (auth.currentUser.uid) {
       db.collection("shop")
         .doc("hardwaresList")
         .get()
@@ -81,7 +78,6 @@ const GlobalState = props => {
           sortHawsByType(data.hardwares);
           setLoading(false);
         });
-    }
   }
 
   const filterMats = type => {
