@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import CvsContext from "../context/cvsContext";
 import "./cvsAlert.css";
 import AuthContext from "../context/authContext";
-
+import NavContext from "../context/navLinksContext";
+ 
 function CvsAlert(props) {
   const context = useContext(CvsContext);
   const setCvsAlertOn = context.cvsAlertOn[1];
@@ -19,6 +20,7 @@ function CvsAlert(props) {
   const [filterName, setFilterName] = context.filterName;
   const [msg, setMsg] = useState("");
   const [buttonMsg, setBtnMsg] = useState("");
+  const navContext = useContext(NavContext);
 
   useEffect(() => {
     if (authContext.isAuth[0]) {
@@ -68,7 +70,9 @@ function CvsAlert(props) {
                   { obj: null, id: 1 }
                 ]);
               } else {
-                props.history.push("/utilisateur/connexion");
+                navContext.navigation[1]("/utilisateur");
+                props.history.push("/utilisateur");
+
               }
               
             }}

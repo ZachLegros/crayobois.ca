@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/authContext";
 import "./gallery.css";
-import UnderDev from "../underDev/underDev";
+import Footer from "../footer/footer";
 
 const Gallery = props => {
   const context = useContext(AuthContext);
@@ -11,8 +11,7 @@ const Gallery = props => {
   return (
     <React.Fragment>
       <div className="gallery">
-        {/*
-         <header>
+         <header class="gallery-header">
           <span className="cvs-features-header">
             Galerie
             <i className="fas fa-camera-retro cvs-features-header-icon"></i>
@@ -56,9 +55,8 @@ const Gallery = props => {
             </span>
           </div>
         </section>
-        */}
-        <UnderDev />
       </div>
+      <Footer />
     </React.Fragment>
   );
 };

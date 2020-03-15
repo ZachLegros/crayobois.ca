@@ -9,7 +9,7 @@ const User = props => {
   const authContext = useContext(AuthContext);
   const [auth, setAuth] = useState(null);
   const [navigation, setNavigation] = context.navigation;
-  const cart = Object.assign([], authContext.cart);
+  let cart = authContext.cart[0];
 
   authContext.isInitialized().then(authState => {
     setAuth(authState);
@@ -39,15 +39,7 @@ const User = props => {
           }}
           className="nav-user-links"
         >
-          panier<i className="fas fa-shopping-basket nav-user-icons"></i>
-          {/* <div className="cart-notif">
-            {cart.length !== 0 ? (
-              <span className="cart-length">{cart.length}</span>
-            ) : (
-              <React.Fragment />
-            )}
-            <i className="fas fa-shopping-basket nav-user-icons"></i>
-            </div>*/}
+          panier {cart.length != 0 ? ("(" + cart.length + ")") : ""}<i className="fas fa-shopping-basket nav-user-icons"></i>
         </span>
       ) : (
         <React.Fragment />

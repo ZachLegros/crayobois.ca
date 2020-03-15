@@ -13,7 +13,7 @@ const Dashboard = props => {
     setInitializedFirebase
   ] = authContext.initializedFirebase;
   const [user, setUser] = authContext.user;
-  const [cart, setCart] = Object.assign([], authContext.cart);
+  const [cart, setCart] = authContext.cart;
   const [verified, setVerified] = useState(false);
   const [dashboardAlertOn, setDashboardAlertOn] = authContext.dashboardAlertOn;
   const [dropdownToggled, setDropdownToggled] = useState(false);
