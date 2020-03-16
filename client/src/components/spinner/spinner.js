@@ -1,16 +1,15 @@
 import React from "react";
 import "./spinner.css";
 
-const Spinner = () => {
+const Spinner = (props) => {
   return (
     <React.Fragment>
-      <div className="sk-chase">
-        <div className="sk-chase-dot"></div>
-        <div className="sk-chase-dot"></div>
-        <div className="sk-chase-dot"></div>
-        <div className="sk-chase-dot"></div>
-        <div className="sk-chase-dot"></div>
-        <div className="sk-chase-dot"></div>
+      <div className={props.addStyle ? "spinner-container spinner-in-parent" : "spinner-container"}>
+        <div className={props.addStyle ? "spinner in-parent" : "spinner"}>
+          <div className="bounce1"></div>
+          <div className="bounce2"></div>
+          <div className="bounce3"></div>
+        </div>
       </div>
     </React.Fragment>
   );

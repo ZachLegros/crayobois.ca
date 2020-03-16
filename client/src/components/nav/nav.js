@@ -22,6 +22,11 @@ const Nav = props => {
   /*Toggle hamburger*/
   const [toggled, setToggled] = useState(false);
 
+  function scrollTop() {
+    const root = document.getElementById("root");
+    window.scrollTo(0,0);
+  }
+
   function toggle() {
     const tabs = document.getElementById("mobile-tabs");
     const logo = document.getElementsByClassName("logo");
@@ -117,6 +122,7 @@ const Nav = props => {
                   if (navigation !== "/") {
                     props.history.push("/");
                     setNavigation("/");
+                    scrollTop();
                   }
                 }}
               >
@@ -132,6 +138,7 @@ const Nav = props => {
                           if (navigation !== link.path) {
                             props.history.push(link.path);
                             setNavigation(link.path);
+                            scrollTop();
                           }
                         }}
                         key={link.id}
@@ -167,6 +174,7 @@ const Nav = props => {
                 if (!toggled) {
                   setNavigation("/");
                   props.history.push("/");
+                  scrollTop();
                 }
               }}
             >
@@ -186,6 +194,7 @@ const Nav = props => {
                   onClick={() => {
                     toggle();
                     props.history.push(link.path);
+                    scrollTop();
                   }}
                   key={link.id}
                 >
@@ -202,6 +211,7 @@ const Nav = props => {
                 setUserNav("profile");
                 setNavigation("/utilisateur");
                 props.history.push("/utilisateur");
+                scrollTop();
               }}
             >
               mon compte <i className="fas fa-user nav-user-icons"></i>
