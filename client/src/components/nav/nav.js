@@ -18,6 +18,11 @@ const Nav = props => {
     { id: uuidv4(), text: "Créez votre stylo", path: "/creez-votre-stylo" },
     { id: uuidv4(), text: "Contact", path: "/contact" }
   ];
+  const [auth, setAuth] = useState(null);
+
+  authContext.isInitialized().then(authState => {
+    setAuth(authState);
+  });
 
   /*Toggle hamburger*/
   const [toggled, setToggled] = useState(false);
@@ -214,7 +219,12 @@ const Nav = props => {
                 scrollTop();
               }}
             >
-              mon compte <i className="fas fa-user nav-user-icons"></i>
+              {auth ? "mon compte" : "connexion"}
+              {auth ? (
+                <i className="fas fa-user nav-user-icons"></i>
+              ) : (
+                <i className="fas fa-sign-in-alt  nav-user-icons"></i>
+              )}
             </span>
           </li>
         </ul>

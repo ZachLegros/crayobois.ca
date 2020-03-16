@@ -28,15 +28,10 @@ const Dashboard = props => {
     setCart([]);
   };
 
-  // get verification of email state
-  const getVerification = () => {
-    const verification = authContext.getVerification();
-    setVerified(verification);
-  };
-
   useEffect(() => {
-    getVerification();
-    authContext.getUserSession();
+    if (initializedFirebase) {
+      authContext.getUserSession();
+    }
   }, []);
 
   return (
@@ -51,7 +46,7 @@ const Dashboard = props => {
                 : "dashboard-hero profile-show"
             }
           >
-            <i class="fas fa-smile dashboard-user-icon"></i>
+            <i className="fas fa-user dashboard-user-icon"></i>
             <span className="dashboard-hero-username">{user.fullName}</span>
             <span className="dashboard-hero-email">{user.email}</span>
             <button

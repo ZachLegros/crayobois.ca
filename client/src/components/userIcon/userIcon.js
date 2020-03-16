@@ -15,6 +15,12 @@ const User = props => {
     setAuth(authState);
   });
 
+  useEffect(() => {
+    if (auth) {
+      authContext.getUserSession();
+    }
+  }, [auth]);
+
   return (
     <React.Fragment>
       <span
@@ -39,7 +45,7 @@ const User = props => {
           }}
           className="nav-user-links"
         >
-          panier {cart.length != 0 ? ("(" + cart.length + ")") : ""}<i className="fas fa-shopping-basket nav-user-icons"></i>
+          panier{cart.length != 0 ? ` (${cart.length})` : ""}<i className="fas fa-shopping-basket nav-user-icons"></i>
         </span>
       ) : (
         <React.Fragment />

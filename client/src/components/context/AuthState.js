@@ -166,12 +166,15 @@ const AuthState = props => {
 
   // signout user
   const signout = () => {
-    auth.signOut();
-    setInitializedFirebase(null);
-    setIsAuth(null);
-
-    const root = document.documentElement;
-    root.style.setProperty("--profile_color", "#fff");
+    auth.signOut().then(() => {
+      setInitializedFirebase(null);
+      setIsAuth(null);
+  
+      const root = document.documentElement;
+      root.style.setProperty("--profile_color", "#fff");
+    }).catch(err => {
+      alert("Une erreur s'est produite.");
+    });
   };
 
   // signin user
@@ -186,7 +189,6 @@ const AuthState = props => {
 
         // get user from db to initialize session
         getUserSession();
-        setIsAuth(auth.currentUser);
 
         //ui update here
         const signinForm = document.querySelector("#signin-form");
@@ -224,6 +226,8 @@ const AuthState = props => {
           setUser(userObj);
           setOrders(userData.orders);
           setCart(userData.shoppingCart);
+        }).catch(err => {
+          alert("Une erreur s'est produite.");
         });
     } else {
       return null;
@@ -281,6 +285,7 @@ const AuthState = props => {
 
           // add new object in array
           userData.push(newObj);
+          setCart(userData);
 
           //add new array to db
           db.collection("users")
@@ -288,6 +293,8 @@ const AuthState = props => {
             .update({
               [target]: userData
             });
+        }).catch(err => {
+          alert("Une erreur s'est produite.");
         });
     }
   };
@@ -326,6 +333,8 @@ const AuthState = props => {
               .update({
                 ["shoppingCart"]: newCart
               });
+          }).catch(err => {
+            alert("Une erreur s'est produite.");
           });
       }
     }
@@ -341,6 +350,8 @@ const AuthState = props => {
         .doc(uid)
         .update({
           ["shoppingCart"]: newCart
+        }).catch(err => {
+          alert("Une erreur s'est produite.");
         });
     }
   };
@@ -362,6 +373,8 @@ const AuthState = props => {
           .doc(uid)
           .update({
             ["fullName"]: newName
+          }).catch(err => {
+            alert("Une erreur s'est produite.");
           });
 
         let userCopy = Object.assign([], user);
@@ -542,6 +555,8 @@ const AuthState = props => {
                   ["orders"]: orders
                 });
             });
+        }).catch(err => {
+          alert("Une erreur s'est produite.");
         });
     }
   };
@@ -553,6 +568,8 @@ const AuthState = props => {
         docs.push(doc.data());
       })
       setGallery(docs);
+    }).catch(err => {
+      alert("Une erreur s'est produite.");
     });
 
   }
