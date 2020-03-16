@@ -354,7 +354,7 @@ input[type="number"] {
 
   .checkout-nav {
     margin: 0 12.5px 0 12.5px;
-    width: calc(100% - 50px);
+    width: calc(100% - 25px);
     -webkit-box-pack: center;
     justify-content: center;
   }

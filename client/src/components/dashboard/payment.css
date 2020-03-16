@@ -27,6 +27,11 @@
   display: inline-block;
 }
 
+.paypal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 850px) {
   .safe-payment-header {
     font-size: 0.9rem;

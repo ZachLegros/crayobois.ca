@@ -51,6 +51,10 @@
 
 .nav-user-mobile {
   width: 0px;
+  position: relative;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .mobile-user-link {
@@ -76,6 +80,25 @@
   -webkit-box-align: center;
   align-items: center;
   color: #fff;
+}
+
+.mobile-items-bubble {
+  background-color: var(--orange);
+  width: 12.5px;
+  height: 12.5px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  padding: 2.5px;
+  font-weight: 600;
+  top: -5px;
+  right: -5px;
 }
 
 @media only screen and (max-width: 1250px) {

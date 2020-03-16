@@ -62,6 +62,7 @@ const User = props => {
       >
         <span className="nav-user-mobile">
           <i className="fas fa-shopping-basket nav-user-mobile-icon"></i>
+          <span className={cart.length != 0 ? "mobile-items-bubble" : "mobile-items-bubble hidden"}>{cart.length != 0 ? cart.length : ""}</span>
         </span>
       </span>
     </React.Fragment>
